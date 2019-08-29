@@ -2,11 +2,10 @@ import React from 'react';
 import './styles/Header.less';
 import {Icon} from 'antd';
 function TopHeader(){
-   
     return(
         <div className="top">
             <div className="top-title">
-             <span class="icon iconfont icon-diqiu"></span>
+             <span class="icon iconfont icon-diqiu" style={{fontSize:'18px'}}></span>
                 <span>南京・江宁区</span>
                 公共数据开发门户
             </div>
