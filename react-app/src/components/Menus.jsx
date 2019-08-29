@@ -1,6 +1,6 @@
 
 import React ,{useState}from 'react';
-import './styles/Menus.css';
+import './styles/Menus.less';
 function Menus(){
     const [list] = useState([
         {name:"首页"},
