@@ -1,0 +1,57 @@
+.top {
+    width   : 100%;
+    position: relative;
+
+    &-title {
+        margin-left: 20px;
+        font-size  : 20px;
+        font-weight: bold;
+
+        &>span {
+            color       : #639aed;
+            font-size   : 16px;
+            font-weight : normal;
+            margin-right: 10px;
+        }
+    }
+
+    &-float {
+        position: absolute;
+        right   : 10px;
+        top     : 0;
+        display : flex;
+
+        &-search {
+            width        : 300px;
+            height       : 40px;
+            border       : 1px solid #639aed;
+            border-radius: 40px;
+            display      : flex;
+            margin-top   : 12px;
+            margin-right : 10px;
+
+            &-icon {
+                width      : 40px;
+                line-height: 48px;
+            }
+
+            &>input {
+                height : 38px;
+                width  : 180px;
+                outline: none;
+                border : none;
+            }
+
+            &-btn {
+                width                     : 80px;
+                background-color          : #639aed;
+                text-align                : center;
+                line-height               : 40px;
+                color                     : #fff;
+                border-top-right-radius   : 40px;
+                border-bottom-right-radius: 40px;
+
+            }
+        }
+    }
+}

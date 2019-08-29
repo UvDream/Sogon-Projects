@@ -1,4 +1,29 @@
 .menus {
-    display: flex;
-    outline: 1px solid red;
+    width           : 100%;
+    background-color: #639aed;
+
+    &-list {
+        display  : flex;
+        max-width: 1200px;
+        margin   : 0 auto;
+        min-width: 800px;
+
+        &>a {
+            width: 100%;
+
+            &>section {
+                width     : 100%;
+                text-align: center;
+                color     : #fff;
+                cursor    : pointer;
+            }
+        }
+
+
+    }
+
+}
+
+.active {
+    background-color: rgba(49, 47, 47, 0.25);
 }
