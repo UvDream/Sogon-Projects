@@ -1,3 +1,11 @@
+/*
+ * @Author: wangzhongjie
+ * @Date: 2019-08-29 15:05:19
+ * @LastEditors: wangzhongjie
+ * @LastEditTime: 2019-08-29 19:21:28
+ * @Description: 头部
+ * @Email: UvDream@163.com
+ */
 import React from 'react';
 import './styles/Header.less';
 import {Icon} from 'antd';
