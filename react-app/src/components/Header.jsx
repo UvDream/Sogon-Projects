@@ -6,6 +6,7 @@ function TopHeader(){
     return(
         <div className="top">
             <div className="top-title">
+             <span class="icon iconfont icon-diqiu"></span>
                 <span>南京・江宁区</span>
                 公共数据开发门户
             </div>
@@ -19,7 +20,7 @@ function TopHeader(){
                 </div>
                 <div className="top-float-user">
                     <Icon type="user"/>
-                    登陆
+                    <span>登陆</span>
                 </div>
             </div>
         </div>

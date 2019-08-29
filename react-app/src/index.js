@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.less';
+import './styles/index.less';
 import 'antd/dist/antd.css';
 import App from './pages/App.jsx';
 
