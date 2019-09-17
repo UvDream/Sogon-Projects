@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route } from "react-router-dom";
 import DashBoard from "./dashboard/index"
 import OperationLog from "./operation-log/index"
-import { Layout, Menu, Icon, Breadcrumb } from 'antd';
+import { Layout, Menu, Icon } from 'antd';
 import "../styles/index.less"
 const { Header, Sider, Content } = Layout;
 export default class Home extends Component {
