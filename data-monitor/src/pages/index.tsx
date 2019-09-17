@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route } from "react-router-dom";
 import DashBoard from "./dashboard/index"
 import OperationLog from "./operation-log/index"
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon, Breadcrumb } from 'antd';
 import "../styles/index.less"
 const { Header, Sider, Content } = Layout;
 export default class Home extends Component {
@@ -14,7 +14,7 @@ export default class Home extends Component {
             <div className="main" >
                 <Layout>
                     <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-                        <div className="logo" />
+                        <div className="logo">logo</div>
                         <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                             <Menu.Item key="1">
                                 <Icon type="user" />
@@ -31,23 +31,29 @@ export default class Home extends Component {
                         </Menu>
                     </Sider>
                     <Layout>
-                        <Header style={{ background: '#fff', padding: 0 }}>
+                        <Header style={{ background: '#fff', width: "100%", position: 'fixed', padding: 0 }}>
                             <Icon
                                 className="trigger"
                                 type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
                                 onClick={this.toggle}
                             />
+                            {/* <Breadcrumb style={{ position: "fixed" }}>
+                                <Breadcrumb.Item>User</Breadcrumb.Item>
+                                <Breadcrumb.Item>Bill</Breadcrumb.Item>
+                            </Breadcrumb> */}
                         </Header>
                         <Content
                             style={{
-                                margin: '24px 16px',
-                                padding: 24,
-                                background: '#fff',
                                 minHeight: 280,
+                                background: '#f7f7f7'
                             }}
                         >
-                            <Route path="/" exact component={DashBoard}></Route>
-                            <Route path="/operationLog/" component={OperationLog}></Route>
+
+                            <div style={{ margin: "74px 10px 0", background: '#fff', borderRadius: "10px", padding: "10px" }}>
+                                <Route path="/" exact component={DashBoard}></Route>
+                                <Route path="/operationLog/" component={OperationLog}></Route>
+                            </div>
+
                         </Content>
                     </Layout>
                 </Layout>
@@ -55,7 +61,7 @@ export default class Home extends Component {
             <Link to="/operationLog/">仪表盘</Link>
             <Route path="/" exact component={DashBoard}></Route>
             <Route path="/operationLog/" component={OperationLog}></Route> */}
-            </div>
+            </div >
         );
     }
 
