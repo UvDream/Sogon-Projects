@@ -1,0 +1,29 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<!--
+2013-9-30: Created.
+-->
+<svg>
+<metadata>
+Created by iconfont
+</metadata>
+<defs>
+
+<font id="iconfont" horiz-adv-x="1024" >
+  <font-face
+    font-family="iconfont"
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="1024"
+    ascent="896"
+    descent="-128"
+  />
+    <missing-glyph />
+    
+    <glyph glyph-name="gerenzhongxinxuanzhong1" unicode="&#58880;" d="M153.018 35.559999999999945A502.387 502.387 0 0 0 8 389.333c0 278.342 225.658 504 504 504s504-225.658 504-504c0-137.861-55.34-262.752-145.018-353.775A502.454 502.454 0 0 0 512-114.66600000000005a502.454 502.454 0 0 0-358.982 150.225z m29.601 66.863a378.84 378.84 0 0 0 229.354 179.02 201.6 201.6 0 1 0 200.054 0c98.146-26.88 180.365-92.298 229.354-179.02A435.12 435.12 0 0 1 948.8 389.333c0 241.248-195.552 436.8-436.8 436.8S75.2 630.581 75.2 389.333a435.12 435.12 0 0 1 107.42-286.91z"  horiz-adv-x="1024" />
+
+    
+
+
+  </font>
+</defs></svg>
