@@ -5,8 +5,8 @@ import OperationLog from "./operation-log/index"
 const Home: React.FC = () => {
     return(
         <div>
-        这才是首页
-        <Link to="/operationLog/">React教程</Link>
+            这才是首页
+            <Link to="/operationLog/">仪表盘</Link>
             <Route path="/" exact component={DashBoard}></Route>
             <Route path="/operationLog/" component={OperationLog}></Route>
         </div>
