@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-09-17 17:06:35
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-09-17 17:06:35
+ * @LastEditTime: 2019-09-17 17:17:57
  * @Description: 菜单
  * @Email: UvDream@163.com
  */
@@ -16,14 +16,14 @@ export default class Menus extends Component {
             <Fragment>
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                     <Menu.Item key="1">
-                        <Icon type="user" />
+                        <Icon type="dashboard" />
                         <span>仪表盘</span>
                     </Menu.Item>
                     <SubMenu
                         key="2"
                         title={
                             <span>
-                                <Icon type="appstore" />
+                                <Icon type="desktop" />
                                 <span>平台监控</span>
                             </span>
                         }
