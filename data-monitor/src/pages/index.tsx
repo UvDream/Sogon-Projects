@@ -1,9 +1,18 @@
+/*
+ * @Author: wangzhongjie
+ * @Date: 2019-09-17 16:40:41
+ * @LastEditors: wangzhongjie
+ * @LastEditTime: 2019-09-17 17:15:30
+ * @Description: 主界面
+ * @Email: UvDream@163.com
+ */
 import React, { Component } from 'react';
 import { Route } from "react-router-dom";
 import DashBoard from "./dashboard/index"
 import OperationLog from "./operation-log/index"
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Icon } from 'antd';
 import "../styles/index.less"
+import Menus from "../components/menus/index"
 const { Header, Sider, Content } = Layout;
 export default class Home extends Component {
     state = {
@@ -15,20 +24,7 @@ export default class Home extends Component {
                 <Layout>
                     <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
                         <div className="logo">logo</div>
-                        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                            <Menu.Item key="1">
-                                <Icon type="user" />
-                                <span>nav 1</span>
-                            </Menu.Item>
-                            <Menu.Item key="2">
-                                <Icon type="video-camera" />
-                                <span>nav 2</span>
-                            </Menu.Item>
-                            <Menu.Item key="3">
-                                <Icon type="upload" />
-                                <span>nav 3</span>
-                            </Menu.Item>
-                        </Menu>
+                        <Menus />
                     </Sider>
                     <Layout>
                         <Header style={{ background: '#fff', width: "100%", position: 'fixed', padding: 0 }}>
@@ -48,19 +44,13 @@ export default class Home extends Component {
                                 background: '#f7f7f7'
                             }}
                         >
-
                             <div style={{ margin: "74px 10px 0", background: '#fff', borderRadius: "10px", padding: "10px" }}>
                                 <Route path="/" exact component={DashBoard}></Route>
                                 <Route path="/operationLog/" component={OperationLog}></Route>
                             </div>
-
                         </Content>
                     </Layout>
                 </Layout>
-                {/* 这才是首页
-            <Link to="/operationLog/">仪表盘</Link>
-            <Route path="/" exact component={DashBoard}></Route>
-            <Route path="/operationLog/" component={OperationLog}></Route> */}
             </div >
         );
     }
