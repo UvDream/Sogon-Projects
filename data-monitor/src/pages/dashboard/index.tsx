@@ -1,9 +1,9 @@
 import React from 'react';
 
 const DashBoard: React.FC = () => {
-    return(
+    return (
         <div>
-        仪表盘
+            仪表盘
         </div>
     );
 }

@@ -1,9 +1,9 @@
 import React from 'react';
-import {  Route ,Link} from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import DashBoard from "./dashboard/index"
 import OperationLog from "./operation-log/index"
 const Home: React.FC = () => {
-    return(
+    return (
         <div>
             这才是首页
             <Link to="/operationLog/">仪表盘</Link>
