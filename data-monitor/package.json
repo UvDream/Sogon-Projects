@@ -9,6 +9,7 @@
     "@types/node": "12.7.5",
     "@types/react": "16.9.2",
     "@types/react-dom": "16.9.0",
+    "@types/react-redux": "^7.1.2",
     "@types/react-router-dom": "^4.3.5",
     "@typescript-eslint/eslint-plugin": "1.13.0",
     "@typescript-eslint/parser": "1.13.0",
@@ -90,7 +91,8 @@
   "devDependencies": {
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
-    "react-redux": "^7.1.1"
+    "react-redux": "^7.1.1",
+    "redux": "^4.0.4"
   },
   "jest": {
     "roots": [
