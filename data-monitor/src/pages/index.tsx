@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-09-17 16:40:41
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-09-19 14:08:12
+ * @LastEditTime: 2019-09-19 14:16:07
  * @Description: 主界面
  * @Email: UvDream@163.com
  */
@@ -51,8 +51,8 @@ export default class Home extends Component {
                             style={{
                                 minHeight: 280,
                                 background: '#f7f7f7',
+                                overflowX: "hidden",
                                 overflowY: "auto"
-
                             }}
                         >
                             <div style={{ margin: "10px 10px 0", background: '#fff', borderRadius: "10px", padding: "10px" }}>
