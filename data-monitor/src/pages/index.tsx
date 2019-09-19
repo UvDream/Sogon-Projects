@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-09-17 16:40:41
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-09-19 15:09:34
+ * @LastEditTime: 2019-09-19 15:16:09
  * @Description: 主界面
  * @Email: UvDream@163.com
  */
@@ -43,16 +43,16 @@ export default class Home extends Component {
                                         <Breadcrumb.Item>仪表盘</Breadcrumb.Item>
                                     </Breadcrumb>
                                 </Col>
-                                <Col span={10}></Col>
-                                <Col span={2} >
-                                    <Dropdown overlay={UserDropdown}>
-                                        <span className="ant-dropdown-link" >
-                                            <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
+                                {/* <Col span={10}></Col> */}
+                                <Col span={12} >
+                                    <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
+                                        <Dropdown overlay={UserDropdown} >
+                                            <span className="ant-dropdown-link" style={{ display: "flex", alignItems: "center", marginRight: "20px" }}>
                                                 <Avatar size="large" icon="user" />
-                                                <div style={{ marginLeft: "10px", marginRight: "20px" }}>root</div>
-                                            </div>
-                                        </span>
-                                    </Dropdown>
+                                                <div style={{ marginLeft: "10px" }}>root</div>
+                                            </span>
+                                        </Dropdown>
+                                    </div>
                                 </Col>
                             </Row>
                         </Header>

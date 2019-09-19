@@ -7,11 +7,15 @@ export const UserDropdown = () => {
         <Fragment>
             <Menu>
                 <Menu.Item>
-                    1st menu item
-                    </Menu.Item>
+                    个人中心
+                </Menu.Item>
                 <Menu.Item>
-                    2nd menu item
-                    </Menu.Item>
+                    设置
+                </Menu.Item>
+                <Menu.Divider />
+                <Menu.Item>
+                    退出
+                </Menu.Item>
             </Menu>
         </Fragment>
     )
