@@ -1,16 +1,18 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
+import "../styles/index.less"
 import Home from "../pages/index";
 import Login from "../pages/login/index"
 const AppRoutes = () => {
     return (
-        <Router>
-            <Switch>
-                <Route path="/" component={Home}></Route>
-                <Route path="/login/" component={Login}></Route>
-            </Switch>
-        </Router>
+        <div className="main">
+            <Router>
+                <Switch>
+                    <Route path="/" component={Home}></Route>
+                    <Route path="/login/" component={Login}></Route>
+                </Switch>
+            </Router>
+        </div>
     )
 }
 
