@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-09-17 16:40:41
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-09-19 11:35:37
+ * @LastEditTime: 2019-09-19 11:45:35
  * @Description: 主界面
  * @Email: UvDream@163.com
  */
@@ -26,7 +26,7 @@ export default class Home extends Component {
                         <div className="logo"></div>
                         <Menus />
                     </Sider>
-                    <Layout>
+                    <Layout style={{ width: "100%" }}>
                         <Header style={{ background: '#fff', width: "100%", minWidth: "800px", position: 'fixed', padding: 0, display: "flex", alignItems: "center" }}>
                             <Icon
                                 className="trigger"
@@ -34,17 +34,14 @@ export default class Home extends Component {
                                 onClick={this.toggle}
                             />
 
-                            {/* <div style={{ right: "20px", display: "flex", alignItems: "center" }}>
-                                <Avatar size="large" icon="user" />
-                                <div style={{ marginLeft: "10px" }}>root</div>
-                            </div> */}
+
                             <Row style={{ width: "100%", height: "64px", display: "flex", alignItems: "center" }}>
                                 <Col span={12}>
                                     <Breadcrumb style={{ marginLeft: "20px" }}>
                                         <Breadcrumb.Item>首页</Breadcrumb.Item>
                                         <Breadcrumb.Item>仪表盘</Breadcrumb.Item>
                                     </Breadcrumb></Col>
-                                <Col span={12} style={{ outline: "1px solid red", textAlign: "right" }} >
+                                <Col span={12} style={{ textAlign: "right" }} >
                                     <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                                         <Avatar size="large" icon="user" />
                                         <div style={{ marginLeft: "10px" }}>root</div>
