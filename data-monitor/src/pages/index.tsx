@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-09-17 16:40:41
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-09-19 11:25:26
+ * @LastEditTime: 2019-09-19 11:35:37
  * @Description: 主界面
  * @Email: UvDream@163.com
  */
@@ -44,7 +44,12 @@ export default class Home extends Component {
                                         <Breadcrumb.Item>首页</Breadcrumb.Item>
                                         <Breadcrumb.Item>仪表盘</Breadcrumb.Item>
                                     </Breadcrumb></Col>
-                                <Col span={12}>col-12</Col>
+                                <Col span={12} style={{ outline: "1px solid red", textAlign: "right" }} >
+                                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                                        <Avatar size="large" icon="user" />
+                                        <div style={{ marginLeft: "10px" }}>root</div>
+                                    </div>
+                                </Col>
                             </Row>
                         </Header>
                         <Content
