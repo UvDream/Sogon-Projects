@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button, Input } from 'antd';
 import { AddNum, ReduceNum } from "../../store/actions/counter";
 import { Chart, Geom, Axis, Tooltip, Legend } from 'bizcharts';
+import Card from "../../components/card/index";
 const DashBoard = (props: any) => {
     // 数据源
     const data = [
@@ -30,6 +31,7 @@ const DashBoard = (props: any) => {
                 <Tooltip />
                 <Geom type="interval" position="genre*sold" color="genre" />
             </Chart>
+            <Card number={11} contrast={false} />
             <Input placeholder="请输入" value={num}></Input>
             <Button onClick={() => { Add() }}>+</Button>
             <Button onClick={() => Reduce()}>-</Button>
