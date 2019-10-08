@@ -6,11 +6,11 @@ import { Chart, Geom, Axis, Tooltip, Legend } from 'bizcharts';
 const DashBoard = (props: any) => {
     // 数据源
     const data = [
-        { genre: 'Sports', sold: 275, income: 2300 },
-        { genre: 'Strategy', sold: 115, income: 667 },
-        { genre: 'Action', sold: 120, income: 982 },
-        { genre: 'Shooter', sold: 350, income: 5271 },
-        { genre: 'Other', sold: 150, income: 3710 }
+        { genre: '星期一', sold: 275, income: 2300 },
+        { genre: '星期二', sold: 115, income: 667 },
+        { genre: '星期三', sold: 120, income: 982 },
+        { genre: '星期四', sold: 350, income: 5271 },
+        { genre: '星期五', sold: 150, income: 3710 }
     ];
     // 定义度量
     const cols = {
