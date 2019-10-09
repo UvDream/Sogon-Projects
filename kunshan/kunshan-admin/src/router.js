@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
+import Index from "./views/index.vue";
 
 Vue.use(Router);
 
@@ -9,7 +9,16 @@ export default new Router({
     {
       path: "/",
       name: "home",
-      component: Home
+      component: Index,
+      redirect: "/dashboard",
+      children: [
+        {
+          path: "/dashboard",
+          name: "dashboard",
+          label: "仪表盘",
+          component: () => import("@/views/dashboard/index.vue")
+        }
+      ]
     },
     {
       path: "/about",
