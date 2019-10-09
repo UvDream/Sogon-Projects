@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-09-17 16:40:41
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-09 21:31:45
+ * @LastEditTime: 2019-10-09 21:45:46
  * @Description: 主界面
  * @Email: UvDream@163.com
  */
@@ -10,7 +10,7 @@ import React, { Component } from 'react';
 import { Route } from "react-router-dom";
 import DashBoard from "./dashboard/index"
 import OperationLog from "./operation-log/index"
-import { Layout, Icon, Breadcrumb, Avatar, Row, Col, Dropdown } from 'antd';
+import { Layout, Breadcrumb, Avatar, Row, Col, Dropdown } from 'antd';
 import "../styles/index.less"
 import Menus from "../components/menus/index"
 import { UserDropdown } from "../components/user-dropdown/index";
@@ -70,7 +70,7 @@ export default class Home extends Component {
                                 overflowY: "auto"
                             }}
                         >
-                            <div style={{ margin: "10px 10px 0", borderRadius: "10px", padding: "10px" }}>
+                            <div style={{height:"100%" }}>
                                 <Route path="/" exact component={DashBoard}></Route>
                                 <Route path="/operationLog/" component={OperationLog}></Route>
                             </div>
