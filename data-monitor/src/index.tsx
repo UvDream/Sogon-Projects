@@ -6,10 +6,14 @@ import * as serviceWorker from './serviceWorker';
 import AppRoutes from "./routes/index";
 import { Provider } from 'react-redux';
 import store from "./store/index";
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/es/locale/zh_CN';
 const App = (
+    <ConfigProvider locale={zhCN}>
         <Provider store={store}>
             <AppRoutes />
         </Provider>
+    </ConfigProvider>
 )
 ReactDOM.render(App, document.getElementById('root'));
 
