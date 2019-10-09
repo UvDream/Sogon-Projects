@@ -8,13 +8,8 @@
         <Menus></Menus>
       </a-layout-sider>
       <a-layout>
-        <!-- <a-breadcrumb style="margin: 16px 0">
-          <a-breadcrumb-item>Home</a-breadcrumb-item>
-          <a-breadcrumb-item>List</a-breadcrumb-item>
-          <a-breadcrumb-item>App</a-breadcrumb-item>
-        </a-breadcrumb>-->
         <a-layout-content
-          :style="{ background: '#fff', padding: '10px', margin: 0, minHeight: '280px' }"
+          :style="{ background: '#f4f6fa', padding: '10px', margin: 0, minHeight: '280px' }"
         >
           <router-view></router-view>
         </a-layout-content>
