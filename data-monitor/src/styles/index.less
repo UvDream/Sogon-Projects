@@ -20,13 +20,33 @@ body {
   .logo {
     width          : 80%;
     margin         : 0 auto;
-    height         : 50px;
-    background     : url('https://www.sugon.com/uploads/default/a69a7b6b4a291b09b348feec5bca0664.png');
+    height         : 60px;
+    display        : flex;
     background-size: 100% 100%;
+    color          : #fff;
+    align-items    : center;
+
+    &>span {
+      margin-left: 15px;
+    }
+
+    &>div {
+      margin-left: 10px;
+
+      &>p {
+        margin: 0;
+      }
+    }
+
   }
 
   .ant-layout {
     height: 100vh;
+  }
+
+  .iconfont {
+    color    : #fff;
+    font-size: 40px;
   }
 }
 
