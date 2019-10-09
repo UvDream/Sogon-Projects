@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-09-17 16:40:41
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-09-19 15:30:07
+ * @LastEditTime: 2019-10-09 21:31:45
  * @Description: 主界面
  * @Email: UvDream@163.com
  */
@@ -26,16 +26,22 @@ export default class Home extends Component {
             <div className="content" >
                 <Layout>
                     <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-                        <div className="logo"></div>
+                        <div className="logo">
+                            <span className="iconfont" >&#xe600;</span>
+                            <div>
+                                <p>用户名</p>
+                                <p>武汉法治财政</p>
+                            </div>
+                        </div>
                         <Menus />
                     </Sider>
                     <Layout style={{ width: "100%", overflow: "hidden" }}>
                         <Header style={{ background: '#fff', width: "100%", minWidth: "800px", padding: 0, display: "flex", alignItems: "center" }}>
-                            <Icon
+                            {/* <Icon
                                 className="trigger"
                                 type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
                                 onClick={this.toggle}
-                            />
+                            /> */}
                             <Row style={{ width: "100%", height: "64px", display: "flex", alignItems: "center" }}>
                                 <Col span={12}>
                                     <Breadcrumb style={{ marginLeft: "20px" }}>
