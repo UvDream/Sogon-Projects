@@ -1,7 +1,7 @@
 <template>
   <div class="logo">
     <img src="../../assets/images/policeBadge.png" alt />
-    <span class="logo-max">"数据赋能"&#x3000;智慧督报</span>
+    <span class="logo-max">"数据赋能"&nbsp;&nbsp;智慧督报</span>
     <span class="logo-min">管理平台</span>
   </div>
 </template>
@@ -19,7 +19,7 @@
     margin-left: 10px;
   }
   &-min {
-    margin-left: 10px;
+    margin-left: 8px;
     font-size: 16px;
     // font-weight: bold;
   }
