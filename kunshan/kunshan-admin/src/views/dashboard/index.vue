@@ -2,14 +2,14 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-10 10:00:57
+ * @LastEditTime: 2019-10-10 10:15:36
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
 <template>
   <div class="dashboard">
     <div class="dashboard-top">
-      <a-select style="width: 250px;padding-left:14px" @change="selectChange" v-model="selectVal">
+      <a-select style="width: 250px;padding-left:14px" placeholder="请选择大屏" @change="selectChange">
         <a-select-option value="jack">Jack</a-select-option>
         <a-select-option value="lucy">Lucy</a-select-option>
         <a-select-option value="Yiminghe">yiminghe</a-select-option>
@@ -23,7 +23,8 @@
     <div class="dashboard-bottom">
       <div class="dashboard-bottom-left">
         <div class="dashboard-bottom-left-title">
-          <a-icon type="file-text" style="margin:0 10px;" />今日值班情况
+          <a-icon type="file-text" style="margin:0 10px;font-size:22px;position:relative;top:3px;" />
+          <span>今日值班情况</span>
           <a-radio-group @change="radioChange" v-model="radioVal" style="margin-left:40px;">
             <a-radio :value="1">真实数据</a-radio>
             <a-radio :value="2">人工数据</a-radio>
@@ -81,7 +82,8 @@
       </div>
       <div class="dashboard-bottom-right">
         <div class="dashboard-bottom-right-title">
-          <a-icon type="exception" style="margin:0 10px;" />可视化样例
+          <a-icon type="exception" style="margin:0 10px;font-size:22px;position:relative;top:3px;" />
+          <span>可视化样例</span>
         </div>
         <div class="dashboard-bottom-right-content">
           <img src="../../assets/images/u186.png" alt />
@@ -96,14 +98,16 @@ export default {
   data() {
     return {
       radioVal: 1,
-      selectVal: "lucy",
+      selectVal: "",
       tab: 1
     };
   },
   methods: {
     radioChange(e) {},
-    selectChange() {
+    selectChange(value) {
+      this.selectVal = value;
       console.log(this.selectVal);
+      console.log(value);
     },
     tabCLick(id) {
       this.tab = id;
@@ -159,11 +163,15 @@ export default {
       &-title {
         height: 45px;
         line-height: 45px;
+        & > span {
+          font-size: 16px;
+          color: #333;
+        }
       }
       &-content {
         &-btn {
-          text-align: center;
-          margin-top: 15px;
+          padding-left: 210px;
+          margin-top: 20px;
         }
         &-block {
           display: flex;
@@ -192,6 +200,10 @@ export default {
       &-title {
         height: 45px;
         line-height: 45px;
+        & > span {
+          font-size: 16px;
+          color: #333;
+        }
       }
       &-content {
         display: flex;
