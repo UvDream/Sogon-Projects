@@ -2,21 +2,14 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 10:24:15
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-10 11:48:22
+ * @LastEditTime: 2019-10-10 17:36:31
  * @Description: 警情质态分析
  * @Email: UvDream@163.com
  -->
 <template>
   <div class="dashboard-bottom">
     <div class="dashboard-bottom-left">
-      <div class="dashboard-bottom-left-title">
-        <a-icon type="file-text" style="margin:0 10px;font-size:22px;position:relative;top:3px;" />
-        <span>警情质态分析</span>
-        <a-radio-group @change="radioChange" v-model="radioVal" style="margin-left:40px;">
-          <a-radio :value="1">真实数据</a-radio>
-          <a-radio :value="2">人工数据</a-radio>
-        </a-radio-group>
-      </div>
+      <Title title="警情质态分析" />
       <div class="dashboard-bottom-left-content">
         <div class="dashboard-bottom-left-content-block">
           <div>
@@ -101,7 +94,12 @@
 </template>
 
 <script>
+import Title from "../../components/two-titlw/twoTitle";
+
 export default {
+  components: {
+    Title
+  },
   data() {
     return {
       radioVal: 1,

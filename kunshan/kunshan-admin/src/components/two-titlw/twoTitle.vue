@@ -7,7 +7,7 @@
  * @Email: UvDream@163.com
  -->
 <template>
-  <div class="">
+  <div class="dashboard-bottom-left-title">
     <a-icon type="file-text" style="margin:0 10px;font-size:22px;position:relative;top:3px;" />
     <span>{{title}}</span>
     <a-radio-group @change="radioChange" v-model="radioVal" style="margin-left:40px;">
