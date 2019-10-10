@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 13:54:15
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-10 10:25:55
+ * @LastEditTime: 2019-10-10 11:46:17
  * @Description: 警情质态
  * @Email: UvDream@163.com
  -->
@@ -15,20 +15,23 @@
         <a-select-option value="Yiminghe">yiminghe</a-select-option>
       </a-select>
       <div style="padding-right:14px" class="dashboard-top-week">
-        <section @click="tabCLick(1)" :class="{'dashboard-top-week-click':tab===1}">日</section>
-        <section @click="tabCLick(2)" :class="{'dashboard-top-week-click':tab===2}">周</section>
-        <section @click="tabCLick(3)" :class="{'dashboard-top-week-click':tab===3}">月</section>
+        <section @click="tabCLick(1)" :class="{ 'dashboard-top-week-click': tab === 1 }">日</section>
+        <section @click="tabCLick(2)" :class="{ 'dashboard-top-week-click': tab === 2 }">周</section>
+        <section @click="tabCLick(3)" :class="{ 'dashboard-top-week-click': tab === 3 }">月</section>
       </div>
     </div>
     <Analysis />
+    <Great />
   </div>
 </template>
 
 <script>
 import Analysis from "./analysis";
+import Great from "./great";
 export default {
   components: {
-    Analysis
+    Analysis,
+    Great
   },
   data() {
     return {

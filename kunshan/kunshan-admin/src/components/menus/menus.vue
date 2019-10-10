@@ -7,9 +7,9 @@
     :style="{ height: '100%', borderRight: 0 }"
     @click="menusClick"
   >
-    <a-menu-item v-for="(item,index) in menusList" :key="index">
+    <a-menu-item v-for="(item, index) in menusList" :key="index">
       <a-icon :type="item.icon" />
-      {{item.name}}
+      {{ item.name }}
     </a-menu-item>
   </a-menu>
 </template>
@@ -102,5 +102,4 @@ export default {
   }
 };
 </script>
-<style lang="less" scoped>
-</style>
+<style lang="less" scoped></style>

@@ -9,4 +9,3 @@
 <template>
   <div>入所人员管理</div>
 </template>
-    
