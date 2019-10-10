@@ -1,14 +1,7 @@
 <template>
   <div class="dashboard-bottom">
     <div class="dashboard-bottom-left">
-      <div class="dashboard-bottom-left-title">
-        <a-icon type="file-text" style="margin:0 10px;font-size:22px;position:relative;top:3px;" />
-        <span>异常报警分析</span>
-        <a-radio-group @change="radioChange" v-model="radioVal" style="margin-left:40px;">
-          <a-radio :value="1">真实数据</a-radio>
-          <a-radio :value="2">人工数据</a-radio>
-        </a-radio-group>
-      </div>
+      <Title title="异常报警分析" />
       <PhoneTop :title="'24小时'" />
       <PhoneTop :title="'30天'" />
       <PhoneTop :title="'半年'" />
@@ -30,9 +23,11 @@
 
 <script>
 import PhoneTop from "./phoneTop";
+import Title from "../../components/two-titlw/twoTitle";
 export default {
   components: {
-    PhoneTop
+    PhoneTop,
+    Title
   },
   data() {
     return {
