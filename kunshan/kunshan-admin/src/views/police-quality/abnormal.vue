@@ -9,22 +9,11 @@
           <a-radio :value="2">人工数据</a-radio>
         </a-radio-group>
       </div>
-      <div class="dashboard-bottom-left-title">
-        <a-icon
-          type="file-text"
-          style="margin:0 10px 0px 20px;font-size:18px;position:relative;top:3px;"
-        />
-        <span style="font-size:12px">最近24小时重复报警电话TOP10</span>
-      </div>
-      <div class="dashboard-bottom-left-content">
-        <div class="dashboard-bottom-left-content-four">
-          <div class="dashboard-bottom-left-content-four-title">
-            <section>报警电话</section>
-            <section>报警次数</section>
-            <section>报警电话</section>
-            <section>报警次数</section>
-          </div>
-        </div>
+      <PhoneTop :title="'24小时'" />
+      <PhoneTop :title="'30天'" />
+      <PhoneTop :title="'半年'" />
+      <div class="dashboard-bottom-left-content-btn">
+        <a-button type="primary">保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-right">
@@ -40,10 +29,15 @@
 </template>
 
 <script>
+import PhoneTop from "./phoneTop";
 export default {
+  components: {
+    PhoneTop
+  },
   data() {
     return {
-      radioVal: 1
+      radioVal: 1,
+      phoneList: []
     };
   },
   methods: {
