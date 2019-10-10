@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 13:54:15
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-10 11:46:17
+ * @LastEditTime: 2019-10-10 16:27:58
  * @Description: 警情质态
  * @Email: UvDream@163.com
  -->
@@ -22,16 +22,25 @@
     </div>
     <Analysis />
     <Great />
+    <Happening />
+    <Distributed />
+    <Abnormal />
   </div>
 </template>
 
 <script>
 import Analysis from "./analysis";
 import Great from "./great";
+import Happening from "./happening";
+import Distributed from "./distributed";
+import Abnormal from "./abnormal";
 export default {
   components: {
     Analysis,
-    Great
+    Great,
+    Happening,
+    Distributed,
+    Abnormal
   },
   data() {
     return {
