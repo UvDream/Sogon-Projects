@@ -10,17 +10,22 @@ import {
 import DataSet from "@antv/data-set";
 
 class Donut extends React.Component {
+    constructor(props) {
+        super(props);
+        console.log(props)
+        this.state = {};
+    }
     render() {
         const { DataView } = DataSet;
         const { Html } = Guide;
         const data = [
             {
                 item: "未完成",
-                count: 40
+                count: this.props.total-this.props.complete
             },
             {
                 item: "已完成",
-                count: 21
+                count: this.props.complete
             }
         ];
         const dv = new DataView();
@@ -38,6 +43,7 @@ class Donut extends React.Component {
                 }
             }
         };
+        const range=(this.props.complete/this.props.total*100).toFixed(2);
         return (
             <div>
                 <Chart
@@ -57,7 +63,9 @@ class Donut extends React.Component {
                     <Guide>
                         <Html
                             position={["50%", "50%"]}
-                            html="<div style=&quot;color:#8c8c8c;font-size:1.16em;text-align: center;width: 10em;&quot;><span style=&quot;color:#262626;font-size:0.8em&quot;>75%</span></div>"
+                            html={()=>{
+                                return `<div style=&quot;color:#8c8c8c;font-size:1.16em;text-align: center;width: 10em;&quot;><span style=&quot;color:#262626;font-size:0.8em&quot;>${range}%</span></div>`
+                            }}
                             alignX="middle"
                             alignY="middle"
                         />
@@ -72,7 +80,7 @@ class Donut extends React.Component {
                                 percent = percent * 100 + "%";
                                 return {
                                     name: item,
-                                    value: percent
+                                    value: percent,
                                 };
                             }
                         ]}

@@ -16,11 +16,10 @@ const DashBoardLeft = () => {
                     管理任务
                 </div>
                 <div className="dashboard-left-chart-content">
-                    <RingChart title={"奖分任务（周）"} />
-                    <RingChart title={"扣分任务（周）"} />
-                    <RingChart title={"人次任务（周）"} />
-                    <RingChart title={"比例任务（周）"} />
-
+                    <RingChart title={"奖分任务（周）"} total={120} complete={10} />
+                    <RingChart title={"扣分任务（周）"} total={100} complete={0} />
+                    <RingChart title={"人次任务（周）"} total={200} complete={0} />
+                    <RingChart title={"比例任务（周）"} total={300} complete={150} />
                 </div>
             </div>
         </div>

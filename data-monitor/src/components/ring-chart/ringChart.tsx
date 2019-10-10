@@ -3,7 +3,9 @@ import "./ringChart.less"
 import Donut from "./chart"
 
 export interface RingChartProps {
-    title: string
+    title: string,
+    total: number,
+    complete: number
 }
 
 export interface RingChartState {
@@ -22,15 +24,15 @@ class RingChart extends React.Component<RingChartProps, RingChartState> {
                     {this.props.title}
                 </div>
                 <div className="ring-chart">
-                    <Donut />
+                    <Donut total={this.props.total} complete={this.props.complete} />
                 </div>
                 <div className="ring-bottom">
                     <div>
-                        <p>1000</p>
+                        <p>{this.props.total}</p>
                         <p>目标</p>
                     </div>
                     <div>
-                        <p>750</p>
+                        <p>{this.props.complete}</p>
                         <p>已完成</p>
                     </div>
                 </div>
