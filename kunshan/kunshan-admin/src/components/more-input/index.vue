@@ -2,12 +2,15 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 09:30:47
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 09:47:40
+ * @LastEditTime: 2019-10-11 15:51:22
  * @Description: 两个输入框并列
  * @Email: UvDream@163.com
  -->
 <template>
   <div class="more">
+    <div v-if="isCheck">
+      <a-checkbox></a-checkbox>
+    </div>
     <div class="more-name">{{name}}:</div>
     <a-input placeholder="数量" v-model="value" style="width:75px" @change="inputChange" />
   </div>
@@ -16,6 +19,9 @@
 <script>
 export default {
   props: {
+    isCheck: {
+      default: false
+    },
     name: "",
     value: ""
   },

@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 15:46:06
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-10 17:39:13
+ * @LastEditTime: 2019-10-11 14:17:22
  * @Description: 警情分布
  * @Email: UvDream@163.com
  -->
@@ -18,7 +18,7 @@
         />
         <span style="font-size:12px">派出所违法警情</span>
       </div>
-      <div class="dashboard-bottom-left-table" style="width:450zpx">
+      <div class="dashboard-bottom-left-table" style="width:450px">
         <div>
           <div class="dashboard-bottom-left-table-row">
             <section>派出所</section>

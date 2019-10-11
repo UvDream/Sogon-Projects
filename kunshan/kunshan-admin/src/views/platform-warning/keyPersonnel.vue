@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 11:11:20
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 11:47:03
+ * @LastEditTime: 2019-10-11 15:50:18
  * @Description: 重点人员情况
  * @Email: UvDream@163.com
  -->
@@ -11,6 +11,18 @@
   <div class="dashboard-bottom" style="height:340px">
     <div class="dashboard-bottom-left">
       <Title title="重点人员情况" />
+      <div class="control" style="margin-left:10px">
+        <MoreInput name="治安高危人员触网总人数" :is-check="true" />
+        <MoreInput name="侵财关注预警" :is-check="true" />
+        <MoreInput name="侵财盯控人数" :is-check="true" />
+        <MoreInput name="涉黑人数" :is-check="true" />
+        <MoreInput name="关爱回家" :is-check="true" />
+        <MoreInput name="临控人数" :is-check="true" />
+        <MoreInput name="临控车辆" :is-check="true" />
+      </div>
+      <div class="dashboard-bottom-left-content-btn">
+        <a-button type="primary">保存</a-button>
+      </div>
     </div>
     <div class="dashboard-bottom-right">
       <div class="dashboard-bottom-right-title">
@@ -27,10 +39,13 @@
 <script>
 import TopSelect from "../../components/top-select/topSelect";
 import Title from "../../components/two-title/twoTitle";
+import MoreInput from "../../components/more-input/index";
+
 export default {
   components: {
     TopSelect,
-    Title
+    Title,
+    MoreInput
   }
 };
 </script>
@@ -46,5 +61,9 @@ export default {
     height: 220px;
     background-color: #b3b3b3;
   }
+}
+.control {
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>
