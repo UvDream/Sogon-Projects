@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 08:56:52
+ * @LastEditTime: 2019-10-11 09:19:38
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
@@ -87,7 +87,7 @@ export default {
   data() {
     return {
       radioVal: 1,
-      selectVal: "22",
+      selectVal: "",
       tab: 1
     };
   },
