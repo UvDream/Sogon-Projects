@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-09-17 16:40:41
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 21:34:07
+ * @LastEditTime: 2019-10-11 22:45:03
  * @Description: 主界面
  * @Email: UvDream@163.com
  */
@@ -18,6 +18,38 @@ import OperationLog from "./operation-log/index"
 import Notice from "./daily-office/notice/index"
 // 工作汇报
 import WorkReport from "./daily-office/work-report/index"
+// 我的积分
+import MyScores from "./point-management/my-scores/index"
+// 积分奖扣
+import PointBonus from "./point-management/point-bonus/index"
+// 积分任务
+import IntegrationTask from "./point-management/integration-task/index"
+// 积分审批
+import PointApproval from "./point-management/integration-task/index"
+// 管理任务
+import ManagementTask from "./point-management/management-task/index"
+// 积分排名
+import PointRanking from "./point-management/point-ranking/index"
+// 积分查询
+import PointQuery from "./point-management/point-query/index"
+// 积分奖票
+import PointTicket from "./point-management/point-ticket/index"
+// 核查结算
+import CheckSettlement from "./point-management/check-settlement/index"
+// 事件库
+import EventLibrary from "./point-management/event-library/index"
+// 考勤
+import Attendance from "./mobile-attendance/attendance/index"
+// 排班打卡
+import Scheduling from "./mobile-attendance/scheduling/index"
+// 成员管理
+import MemberManagement from "./system-management/member-management/index"
+// 积分配制
+import PointPreparation from "./system-management/point-preparation/index"
+// 角色权限设置
+import RolePermissionSetting from "./system-management/role-permission-settings/index"
+// 奖扣权限设置
+import BonusPermissionSetting from "./system-management/bonus-permission-setting/index"
 const { Header, Sider, Content } = Layout;
 
 
@@ -80,8 +112,23 @@ export default class Home extends Component {
                                 <Route path="/operationLog/" component={OperationLog}></Route>
                                 <Route path="/notice/" component={Notice}></Route>
                                 <Route path="/workReport/" component={WorkReport}></Route>
+                                <Route path="/myScores/" component={MyScores}></Route>
+                                <Route path="/pointBonus/" component={PointBonus}></Route>
+                                <Route path="/integrationTask/" component={IntegrationTask}></Route>
+                                <Route path="/pointApproval/" component={PointApproval}></Route>
+                                <Route path="/managementTask/" component={ManagementTask}></Route>
+                                <Route path="/pointRanking/" component={PointRanking}></Route>
+                                <Route path="/pointQuery/" component={PointQuery}></Route>
+                                <Route path="/pointTicket/" component={PointTicket}></Route>
+                                <Route path="/checkSettlement/" component={CheckSettlement}></Route>
+                                <Route path="/eventLibrary/" component={EventLibrary}></Route>
+                                <Route path="/attendance/" component={Attendance}></Route>
+                                <Route path="/scheduling/" component={Scheduling}></Route>
+                                <Route path="/memberManagement/" component={MemberManagement}></Route>
+                                <Route path="/pointPreparation/" component={PointPreparation}></Route>
+                                <Route path="/rolePermissionSetting/" component={RolePermissionSetting}></Route>
+                                <Route path="/bonusPermissionSetting/" component={BonusPermissionSetting}></Route>
                             </div>
-
                         </Content>
                     </Layout>
                 </Layout>
