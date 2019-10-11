@@ -5,7 +5,8 @@ import Donut from "./chart"
 export interface RingChartProps {
     title: string,
     total: number,
-    complete: number
+    complete: number,
+    color?: string
 }
 
 export interface RingChartState {
@@ -24,7 +25,7 @@ class RingChart extends React.Component<RingChartProps, RingChartState> {
                     {this.props.title}
                 </div>
                 <div className="ring-chart">
-                    <Donut total={this.props.total} complete={this.props.complete} />
+                    <Donut total={this.props.total} complete={this.props.complete} color={this.props.color} />
                 </div>
                 <div className="ring-bottom">
                     <div>
