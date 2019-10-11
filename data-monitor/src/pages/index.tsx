@@ -2,22 +2,22 @@
  * @Author: wangzhongjie
  * @Date: 2019-09-17 16:40:41
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 21:32:40
+ * @LastEditTime: 2019-10-11 21:34:07
  * @Description: 主界面
  * @Email: UvDream@163.com
  */
 import React, { Component } from 'react';
 import { Route } from "react-router-dom";
-import DashBoard from "./dashboard/index"
+import DashBoard from "./daily-office/dashboard/index"
 import { Layout, Breadcrumb, Avatar, Row, Col, Dropdown } from 'antd';
 import "../styles/index.less"
 import Menus from "../components/menus/index"
 import { UserDropdown } from "../components/user-dropdown/index";
 import OperationLog from "./operation-log/index"
 // 通知
-import Notice from "./notice/index"
+import Notice from "./daily-office/notice/index"
 // 工作汇报
-import WorkReport from "./work-report/index"
+import WorkReport from "./daily-office/work-report/index"
 const { Header, Sider, Content } = Layout;
 
 

@@ -1,7 +1,7 @@
 import React from 'react';
-import Card from "../../components/card/index";
-import "../../styles/dashboard.less"
-import RingChart from '../../components/ring-chart/ringChart'
+import Card from "../../../components/card/index";
+import "../../../styles/dashboard.less"
+import RingChart from '../../../components/ring-chart/ringChart'
 const DashBoardLeft = () => {
     return (
         <div className="dashboard-left">
