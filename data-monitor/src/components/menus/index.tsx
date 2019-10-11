@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-09-17 17:06:35
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 21:13:53
+ * @LastEditTime: 2019-10-11 21:29:56
  * @Description: 菜单
  * @Email: UvDream@163.com
  */
@@ -23,8 +23,9 @@ export default class Menus extends Component {
         const list = [
             {
                 id: "1", name: "日常办公", children: [
-                    { id: "1-1", name: "通知", url: "/" },
-                    { id: "1-2", name: "工作汇报", url: "/" },
+                    { id: "1-1", name: "工作台", url: "/" },
+                    { id: "1-2", name: "通知", url: "/notice" },
+                    { id: "1-3", name: "工作汇报", url: "/workReport" },
                 ]
             },
             {

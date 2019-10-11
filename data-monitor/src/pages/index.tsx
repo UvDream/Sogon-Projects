@@ -2,19 +2,24 @@
  * @Author: wangzhongjie
  * @Date: 2019-09-17 16:40:41
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-09 21:45:46
+ * @LastEditTime: 2019-10-11 21:32:40
  * @Description: 主界面
  * @Email: UvDream@163.com
  */
 import React, { Component } from 'react';
 import { Route } from "react-router-dom";
 import DashBoard from "./dashboard/index"
-import OperationLog from "./operation-log/index"
 import { Layout, Breadcrumb, Avatar, Row, Col, Dropdown } from 'antd';
 import "../styles/index.less"
 import Menus from "../components/menus/index"
 import { UserDropdown } from "../components/user-dropdown/index";
+import OperationLog from "./operation-log/index"
+// 通知
+import Notice from "./notice/index"
+// 工作汇报
+import WorkReport from "./work-report/index"
 const { Header, Sider, Content } = Layout;
+
 
 export default class Home extends Component {
     state = {
@@ -70,10 +75,13 @@ export default class Home extends Component {
                                 overflowY: "auto"
                             }}
                         >
-                            <div style={{height:"100%" }}>
+                            <div style={{ height: "100%" }}>
                                 <Route path="/" exact component={DashBoard}></Route>
                                 <Route path="/operationLog/" component={OperationLog}></Route>
+                                <Route path="/notice/" component={Notice}></Route>
+                                <Route path="/workReport/" component={WorkReport}></Route>
                             </div>
+
                         </Content>
                     </Layout>
                 </Layout>
