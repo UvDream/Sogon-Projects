@@ -2,13 +2,13 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 08:48:47
+ * @LastEditTime: 2019-10-11 08:56:52
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
 <template>
   <div class="dashboard">
-    <TopSelect />
+    <TopSelect :select-val="selectVal" :tab-val="tab" />
 
     <div class="dashboard-bottom">
       <div class="dashboard-bottom-left">
@@ -87,7 +87,7 @@ export default {
   data() {
     return {
       radioVal: 1,
-      selectVal: "",
+      selectVal: "22",
       tab: 1
     };
   },

@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 08:47:45
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 08:50:14
+ * @LastEditTime: 2019-10-11 08:57:56
  * @Description: 顶部下拉选择框
  * @Email: UvDream@163.com
  -->
@@ -14,23 +14,28 @@
       <a-select-option value="Yiminghe">yiminghe</a-select-option>
     </a-select>
     <div style="padding-right:14px" class="dashboard-top-week">
-      <section @click="tabCLick(1)" :class="{ 'dashboard-top-week-click': tab === 1 }">日</section>
-      <section @click="tabCLick(2)" :class="{ 'dashboard-top-week-click': tab === 2 }">周</section>
-      <section @click="tabCLick(3)" :class="{ 'dashboard-top-week-click': tab === 3 }">月</section>
+      <section @click="tabCLick(1)" :class="{ 'dashboard-top-week-click': tabVal === 1 }">日</section>
+      <section @click="tabCLick(2)" :class="{ 'dashboard-top-week-click': tabVal === 2 }">周</section>
+      <section @click="tabCLick(3)" :class="{ 'dashboard-top-week-click': tabVal === 3 }">月</section>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      tab: 1
-    };
+  props: {
+    selectVal: "",
+    tabVal: {
+      default: 1
+    }
   },
+  data() {
+    return {};
+  },
+  mounted() {},
   methods: {
     tabCLick(id) {
-      this.tab = id;
+      this.tabVal = id;
     }
   }
 };
