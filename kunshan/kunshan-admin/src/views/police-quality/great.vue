@@ -20,30 +20,42 @@
         </div>
         <div
           class="dashboard-bottom-left-content-great"
-          v-for="(item,index) in greatList"
+          v-for="(item, index) in greatList"
           :key="index"
         >
           <section>
             <Time v-model="item.time" />
           </section>
           <section>
-            <a-select style="width: 160px" @change="selectChange" v-model="item.type">
+            <a-select
+              style="width: 160px"
+              @change="selectChange"
+              v-model="item.type"
+            >
               <a-select-option value="jack">Jack</a-select-option>
               <a-select-option value="lucy">Lucy</a-select-option>
               <a-select-option value="Yiminghe">yiminghe</a-select-option>
             </a-select>
           </section>
           <section>
-            <a-input placeholder="所属派出所" style="width: 160px" v-model="item.from" />
+            <a-input
+              placeholder="所属派出所"
+              style="width: 160px"
+              v-model="item.from"
+            />
           </section>
           <section>
-            <a-input placeholder="详情" style="width: 160px" v-model="item.more" />
+            <a-input
+              placeholder="详情"
+              style="width: 160px"
+              v-model="item.more"
+            />
           </section>
           <section>
             <a-icon
               type="plus-circle"
               style="font-size:20px"
-              v-if="greatList.length==index+1"
+              v-if="greatList.length == index + 1"
               @click="addList"
             />
           </section>
@@ -55,7 +67,10 @@
     </div>
     <div class="dashboard-bottom-right">
       <div class="dashboard-bottom-right-title">
-        <a-icon type="exception" style="margin:0 10px;font-size:22px;position:relative;top:3px;" />
+        <a-icon
+          type="exception"
+          style="margin:0 10px;font-size:22px;position:relative;top:3px;"
+        />
         <span>可视化样例</span>
       </div>
       <div class="dashboard-bottom-right-content">

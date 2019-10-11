@@ -8,9 +8,16 @@
  -->
 <template>
   <div class="dashboard-bottom-left-title">
-    <a-icon type="file-text" style="margin:0 10px;font-size:22px;position:relative;top:3px;" />
-    <span>{{title}}</span>
-    <a-radio-group @change="radioChange" v-model="radioVal" style="margin-left:40px;">
+    <a-icon
+      type="file-text"
+      style="margin:0 10px;font-size:22px;position:relative;top:3px;"
+    />
+    <span>{{ title }}</span>
+    <a-radio-group
+      @change="radioChange"
+      v-model="radioVal"
+      style="margin-left:40px;"
+    >
       <a-radio :value="1">真实数据</a-radio>
       <a-radio :value="2">人工数据</a-radio>
     </a-radio-group>

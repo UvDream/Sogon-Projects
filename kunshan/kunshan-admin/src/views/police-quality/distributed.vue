@@ -30,15 +30,15 @@
           </div>
           <div
             class="dashboard-bottom-left-table-row"
-            v-for="(item,index) in tableList"
+            v-for="(item, index) in tableList"
             :key="index"
           >
-            <section>{{item.name}}</section>
-            <section>{{item.dj}}</section>
-            <section>{{item.dq}}</section>
-            <section>{{item.sh}}</section>
-            <section>{{item.zp}}</section>
-            <section>{{item.other}}</section>
+            <section>{{ item.name }}</section>
+            <section>{{ item.dj }}</section>
+            <section>{{ item.dq }}</section>
+            <section>{{ item.sh }}</section>
+            <section>{{ item.zp }}</section>
+            <section>{{ item.other }}</section>
           </div>
         </div>
       </div>
@@ -177,7 +177,10 @@
     </div>
     <div class="dashboard-bottom-right">
       <div class="dashboard-bottom-right-title">
-        <a-icon type="exception" style="margin:0 10px;font-size:22px;position:relative;top:3px;" />
+        <a-icon
+          type="exception"
+          style="margin:0 10px;font-size:22px;position:relative;top:3px;"
+        />
         <span>可视化样例</span>
       </div>
       <div class="dashboard-bottom-right-content">
