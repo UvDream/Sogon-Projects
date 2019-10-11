@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-date-picker
-      style="width: 165px"
+      style="width: 180px"
       :defaultValue="moment(value, dateFormat)"
       showTime
       format="YYYY-MM-DD HH:mm:ss"

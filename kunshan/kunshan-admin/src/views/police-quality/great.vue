@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 11:43:39
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-10 17:37:33
+ * @LastEditTime: 2019-10-11 13:43:41
  * @Description: 重大警情
  * @Email: UvDream@163.com
  -->
@@ -27,29 +27,17 @@
             <Time v-model="item.time" />
           </section>
           <section>
-            <a-select
-              style="width: 160px"
-              @change="selectChange"
-              v-model="item.type"
-            >
+            <a-select style="width: 120px" @change="selectChange" v-model="item.type">
               <a-select-option value="jack">Jack</a-select-option>
               <a-select-option value="lucy">Lucy</a-select-option>
               <a-select-option value="Yiminghe">yiminghe</a-select-option>
             </a-select>
           </section>
           <section>
-            <a-input
-              placeholder="所属派出所"
-              style="width: 160px"
-              v-model="item.from"
-            />
+            <a-input placeholder="所属派出所" style="width: 120px" v-model="item.from" />
           </section>
           <section>
-            <a-input
-              placeholder="详情"
-              style="width: 160px"
-              v-model="item.more"
-            />
+            <a-input placeholder="详情" style="width: 120px" v-model="item.more" />
           </section>
           <section>
             <a-icon
@@ -67,10 +55,7 @@
     </div>
     <div class="dashboard-bottom-right">
       <div class="dashboard-bottom-right-title">
-        <a-icon
-          type="exception"
-          style="margin:0 10px;font-size:22px;position:relative;top:3px;"
-        />
+        <a-icon type="exception" style="margin:0 10px;font-size:22px;position:relative;top:3px;" />
         <span>可视化样例</span>
       </div>
       <div class="dashboard-bottom-right-content">

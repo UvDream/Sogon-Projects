@@ -1,189 +1,209 @@
 .dashboard {
   padding-bottom: 50px;
+
   &-top {
-    width: 100%;
-    height: 40px;
+    width           : 100%;
+    height          : 40px;
     background-color: #fff;
-    box-shadow: 0px 2px 8px 0px rgba(77, 119, 158, 0.2);
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 4px;
+    box-shadow      : 0px 2px 8px 0px rgba(77, 119, 158, 0.2);
+    position        : relative;
+    display         : flex;
+    justify-content : space-between;
+    align-items     : center;
+    border-radius   : 4px;
 
     &-week {
       &-click {
         background-color: #fff !important;
-        color: #b3b3b3 !important;
+        color           : #b3b3b3 !important;
       }
 
       display: flex;
 
-      & > section {
+      &>section {
         &:hover {
           cursor: pointer;
         }
 
-        width: 26px;
-        height: 26px;
-        line-height: 26px;
-        text-align: center;
-        border-radius: 4px;
-        border: 1px solid #b3b3b3;
+        width           : 26px;
+        height          : 26px;
+        line-height     : 26px;
+        text-align      : center;
+        border-radius   : 4px;
+        border          : 1px solid #b3b3b3;
         background-color: #b3b3b3;
-        color: #fff;
+        color           : #fff;
       }
     }
   }
 
   &-bottom {
-    border-radius: 4px;
-    width: 100%;
+    border-radius   : 4px;
+    width           : 100%;
     background-color: #fff;
-    box-shadow: 0px 2px 8px 0px rgba(77, 119, 158, 0.2);
-    margin-top: 10px;
-    padding-bottom: 50px;
-    display: flex;
+    box-shadow      : 0px 2px 8px 0px rgba(77, 119, 158, 0.2);
+    margin-top      : 10px;
+    padding-bottom  : 50px;
+    display         : flex;
 
     &-left {
-      width: 50%;
+      width : 50%;
       height: 100%;
 
       &-content {
         &-four {
-          width: 500px;
+          width : 500px;
           margin: 0 auto;
+
           &-title {
-            display: flex;
-            flex-wrap: wrap;
-            color: #999;
-            height: 40px;
-            line-height: 40px;
+            display      : flex;
+            flex-wrap    : wrap;
+            color        : #999;
+            height       : 40px;
+            line-height  : 40px;
             border-bottom: 1px solid #ccc;
-            & > section:nth-child(1),
-            & > section:nth-child(3) {
+
+            &>section:nth-child(1),
+            &>section:nth-child(3) {
               width: 150px;
             }
-            & > section:nth-child(2),
-            & > section:nth-child(4) {
+
+            &>section:nth-child(2),
+            &>section:nth-child(4) {
               width: 100px;
             }
           }
+
           &-content {
             display: flex;
 
             flex-wrap: wrap;
-            color: #999;
-            & > div {
-              width: 50%;
+            color    : #999;
+
+            &>div {
+              width     : 50%;
               margin-top: 10px;
-              display: flex;
-              & > section {
-                display: flex;
+              display   : flex;
+
+              &>section {
+                display    : flex;
                 align-items: center;
-                & > div {
+
+                &>div {
                   width: 15px;
                 }
               }
             }
           }
         }
+
         &-btn {
-          padding-left: 240px;
+          text-align: center;
           margin-top: 20px;
         }
 
         &-block {
-          display: flex;
-          margin-top: 10px;
+          display    : flex;
+          margin-top : 10px;
           margin-left: 20px;
-          text-align: center;
+          text-align : center;
 
-          & > div {
-            width: 40%;
-            display: flex;
+          &>div {
+            width      : 40%;
+            display    : flex;
             align-items: center;
-            color: #999;
+            color      : #999;
 
-            & > section {
-              width: 100px;
+            &>section {
+              width     : 100px;
               text-align: right;
             }
 
             .ant-input {
-              width: 100px;
+              width      : 100px;
               margin-left: 4px;
             }
           }
         }
+
         &-great {
-          width: 720px;
-          margin: 0 auto;
-          color: #999;
+          width  : 600px;
+          margin : 0 auto;
+          color  : #999;
           display: flex;
-          & > section:nth-child(1),
-          & > section:nth-child(2),
-          & > section:nth-child(3),
-          & > section:nth-child(4) {
-            width: 175px;
-            height: 40px;
+
+          &>section:nth-child(1) {
+            width      : 180px;
+            height     : 40px;
             line-height: 40px;
           }
 
-          & > section:nth-child(5) {
-            width: 20px;
-            height: 40px;
+          &>section:nth-child(2),
+          &>section:nth-child(3),
+          &>section:nth-child(4) {
+            width      : 122px;
+            height     : 40px;
+            line-height: 40px;
+          }
+
+          &>section:nth-child(5) {
+            width      : 20px;
+            height     : 40px;
             line-height: 40px;
           }
         }
       }
 
       &-table {
-        display: flex;
-        margin: 0 auto;
-        width: 414px;
+        display     : flex;
+        margin      : 0 auto;
+        width       : 414px;
         border-right: 1px solid #cbcbcb;
-        border-top: 1px solid #cbcbcb;
-        & > div {
+        border-top  : 1px solid #cbcbcb;
+
+        &>div {
           width: 100%;
         }
+
         &-row {
-          display: flex;
+          display  : flex;
           font-size: 12px;
-          & > section {
-            width: 100%;
-            text-align: center;
-            height: 40px;
-            line-height: 40px;
-            border-left: 1px solid #cbcbcb;
+
+          &>section {
+            width        : 100%;
+            text-align   : center;
+            height       : 40px;
+            line-height  : 40px;
+            border-left  : 1px solid #cbcbcb;
             border-bottom: 1px solid #cbcbcb;
           }
         }
+
         &-left {
           width: 113px;
 
-          & > div {
-            height: 30px;
-            line-height: 30px;
-            color: #999;
-            border-left: 1px solid #cbcbcb;
+          &>div {
+            height       : 30px;
+            line-height  : 30px;
+            color        : #999;
+            border-left  : 1px solid #cbcbcb;
             border-bottom: 1px solid #cbcbcb;
-            padding-left: 8px;
+            padding-left : 8px;
           }
         }
 
         &-right {
-          & > div {
+          &>div {
             display: flex;
 
-            & > section {
-              width: 60px;
-              height: 30px;
-              text-align: center;
-              line-height: 30px;
-              border-left: 1px solid #cbcbcb;
+            &>section {
+              width        : 60px;
+              height       : 30px;
+              text-align   : center;
+              line-height  : 30px;
+              border-left  : 1px solid #cbcbcb;
               border-bottom: 1px solid #cbcbcb;
-              color: #999;
+              color        : #999;
 
               .ant-input {
                 border: none;
@@ -196,43 +216,45 @@
     }
 
     &-right {
-      width: 50%;
-      height: 100%;
+      width   : 50%;
+      height  : 100%;
       position: relative;
 
       &-title {
-        height: 45px;
+        height     : 45px;
         line-height: 45px;
 
-        & > span {
+        &>span {
           font-size: 16px;
-          color: #333;
+          color    : #333;
         }
       }
 
       &-content {
-        display: flex;
+        display        : flex;
         justify-content: center;
-        align-items: center;
-        height: 80%;
+        align-items    : center;
+        height         : 80%;
       }
 
       &::before {
-        content: "";
-        position: absolute;
-        top: 50px;
-        width: 1px;
-        height: 430px;
+        content         : "";
+        position        : absolute;
+        top             : 50px;
+        width           : 1px;
+        height          : 430px;
         background-color: #b3b3b3;
       }
     }
   }
 }
+
 .dashboard-bottom-left-title {
-  height: 45px;
+  height     : 45px;
   line-height: 45px;
-  & > span {
+
+  &>span {
     font-size: 16px;
-    color: #333;
+    color    : #333;
   }
 }
