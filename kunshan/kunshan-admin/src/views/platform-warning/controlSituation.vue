@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 11:07:08
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 15:45:53
+ * @LastEditTime: 2019-10-11 16:18:51
  * @Description: 布控
  * @Email: UvDream@163.com
  -->
@@ -10,7 +10,7 @@
 <template>
   <div class="dashboard-bottom" style="height:275px">
     <div class="dashboard-bottom-left">
-      <Title title="布控情况" />
+      <Title title="布控情况" :is-check="true" />
       <div class="control" style="margin-left:10px">
         <MoreInput name="布控人数" :is-check="true" />
         <MoreInput name="当天布控人数" :is-check="true" />

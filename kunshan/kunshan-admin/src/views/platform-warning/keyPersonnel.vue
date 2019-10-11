@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 11:11:20
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 15:50:18
+ * @LastEditTime: 2019-10-11 16:19:15
  * @Description: 重点人员情况
  * @Email: UvDream@163.com
  -->
@@ -10,7 +10,7 @@
 <template>
   <div class="dashboard-bottom" style="height:340px">
     <div class="dashboard-bottom-left">
-      <Title title="重点人员情况" />
+      <Title title="重点人员情况" :is-check="true" />
       <div class="control" style="margin-left:10px">
         <MoreInput name="治安高危人员触网总人数" :is-check="true" />
         <MoreInput name="侵财关注预警" :is-check="true" />

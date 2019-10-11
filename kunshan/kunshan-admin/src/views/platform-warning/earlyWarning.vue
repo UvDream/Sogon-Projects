@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 11:03:51
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 14:12:01
+ * @LastEditTime: 2019-10-11 15:56:27
  * @Description: 车辆卡扣预警
  * @Email: UvDream@163.com
  -->
@@ -11,7 +11,7 @@
     <div class="dashboard-bottom-left">
       <Title title=" 车辆卡口预警情况" />
       <div class="early-one">
-        <div class="early-one-table">
+        <div class="early-one-table" style="border-bottom: 1px solid #ccc;">
           <section>车辆类型</section>
           <section>车牌号码</section>
           <section>车身颜色</section>
@@ -102,7 +102,6 @@ export default {
   color: #666;
   &-table {
     display: flex;
-    border-bottom: 1px solid #ccc;
     height: 40px;
     align-items: center;
     & > section:nth-child(1) {
