@@ -9,7 +9,12 @@
       </a-layout-sider>
       <a-layout>
         <a-layout-content
-          :style="{ background: '#f4f6fa', padding: '10px', margin: 0, minHeight: '280px' }"
+          :style="{
+            background: '#f4f6fa',
+            padding: '10px',
+            margin: 0,
+            minHeight: '280px'
+          }"
         >
           <router-view></router-view>
         </a-layout-content>
