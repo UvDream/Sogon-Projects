@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 13:56:27
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 11:22:40
+ * @LastEditTime: 2019-10-11 11:54:25
  * @Description: 平台预警
  * @Email: UvDream@163.com
  -->
@@ -22,7 +22,7 @@
 
 <script>
 import TopSelect from "../../components/top-select/topSelect";
-import Title from "../../components/two-titlw/twoTitle";
+import Title from "../../components/two-title/twoTitle.vue";
 // 车辆卡扣预警
 import EarlyWarning from "./earlyWarning";
 // 布控情况

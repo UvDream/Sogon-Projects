@@ -93,7 +93,7 @@
 
 <script>
 import TopSelect from "../../components/top-select/topSelect";
-import Title from "../../components/two-titlw/twoTitle";
+import Title from "../../components/two-title/twoTitle";
 import MoreInput from "../../components/more-input/index";
 
 export default {

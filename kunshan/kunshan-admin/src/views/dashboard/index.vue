@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 09:19:38
+ * @LastEditTime: 2019-10-11 11:53:54
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import Title from "../../components/two-titlw/twoTitle";
+import Title from "../../components/two-title/twoTitle.vue";
 import TopSelect from "../../components/top-select/topSelect";
 export default {
   components: {

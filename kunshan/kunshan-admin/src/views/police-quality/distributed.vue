@@ -177,10 +177,7 @@
     </div>
     <div class="dashboard-bottom-right">
       <div class="dashboard-bottom-right-title">
-        <a-icon
-          type="exception"
-          style="margin:0 10px;font-size:22px;position:relative;top:3px;"
-        />
+        <a-icon type="exception" style="margin:0 10px;font-size:22px;position:relative;top:3px;" />
         <span>可视化样例</span>
       </div>
       <div class="dashboard-bottom-right-content">
@@ -191,7 +188,7 @@
 </template>
 
 <script>
-import Title from "../../components/two-titlw/twoTitle";
+import Title from "../../components/two-title/twoTitle";
 
 export default {
   components: {

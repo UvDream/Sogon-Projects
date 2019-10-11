@@ -97,7 +97,7 @@
 </template>
 
 <script>
-import Title from "../../components/two-titlw/twoTitle";
+import Title from "../../components/two-title/twoTitle";
 
 export default {
   components: {

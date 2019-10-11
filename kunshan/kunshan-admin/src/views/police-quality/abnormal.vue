@@ -23,7 +23,7 @@
 
 <script>
 import PhoneTop from "./phoneTop";
-import Title from "../../components/two-titlw/twoTitle";
+import Title from "../../components/two-title/twoTitle";
 export default {
   components: {
     PhoneTop,
