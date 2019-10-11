@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 11:11:20
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 11:22:22
+ * @LastEditTime: 2019-10-11 11:47:03
  * @Description: 重点人员情况
  * @Email: UvDream@163.com
  -->
@@ -18,7 +18,7 @@
         <span>可视化样例</span>
       </div>
       <div class="dashboard-bottom-right-content">
-        <img src="../../assets/images/u1043.png" />
+        <img src="../../assets/images/u1511.png" />
       </div>
     </div>
   </div>

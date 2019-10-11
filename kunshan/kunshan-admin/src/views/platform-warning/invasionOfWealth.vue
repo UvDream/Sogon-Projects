@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 11:09:48
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 11:21:08
+ * @LastEditTime: 2019-10-11 11:46:29
  * @Description:  侵财关注人员维护、预警处置情况
  * @Email: UvDream@163.com
  -->
@@ -18,7 +18,7 @@
         <span>可视化样例</span>
       </div>
       <div class="dashboard-bottom-right-content">
-        <img src="../../assets/images/u1043.png" />
+        <img src="../../assets/images/u1509.png" />
       </div>
     </div>
   </div>

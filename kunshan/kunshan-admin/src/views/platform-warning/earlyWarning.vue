@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 11:03:51
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 11:19:08
+ * @LastEditTime: 2019-10-11 11:44:05
  * @Description: 车辆卡扣预警
  * @Email: UvDream@163.com
  -->
@@ -17,7 +17,7 @@
         <span>可视化样例</span>
       </div>
       <div class="dashboard-bottom-right-content">
-        <img src="../../assets/images/u1043.png" />
+        <img src="../../assets/images/u1402.png" />
       </div>
     </div>
   </div>
