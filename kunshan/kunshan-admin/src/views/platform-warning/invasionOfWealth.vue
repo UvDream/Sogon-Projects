@@ -2,13 +2,13 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 11:09:48
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 11:10:26
+ * @LastEditTime: 2019-10-11 11:21:08
  * @Description:  侵财关注人员维护、预警处置情况
  * @Email: UvDream@163.com
  -->
 
 <template>
-  <div class="dashboard-bottom" style="height:340px">
+  <div class="dashboard-bottom" style="height:360px">
     <div class="dashboard-bottom-left">
       <Title title="侵财关注人员维护、预警处置情况" />
     </div>
@@ -35,15 +35,15 @@ export default {
 };
 </script>
 
-<style lang="less" scopes>
+<style lang="less" scoped>
 @import url("../police-quality/policeQuality");
 .dashboard-bottom-right {
   &::before {
     content: "";
     position: absolute;
-    top: 80px;
+    top: 70px;
     width: 1px;
-    height: 210px;
+    height: 250px;
     background-color: #b3b3b3;
   }
 }

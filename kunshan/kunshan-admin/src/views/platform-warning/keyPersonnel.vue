@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 11:11:20
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 11:12:00
+ * @LastEditTime: 2019-10-11 11:22:22
  * @Description: 重点人员情况
  * @Email: UvDream@163.com
  -->
@@ -35,15 +35,15 @@ export default {
 };
 </script>
 
-<style lang="less" scopes>
+<style lang="less" scoped>
 @import url("../police-quality/policeQuality");
 .dashboard-bottom-right {
   &::before {
     content: "";
     position: absolute;
-    top: 80px;
+    top: 70px;
     width: 1px;
-    height: 210px;
+    height: 220px;
     background-color: #b3b3b3;
   }
 }

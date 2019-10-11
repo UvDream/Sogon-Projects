@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 11:03:51
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 11:08:41
+ * @LastEditTime: 2019-10-11 11:19:08
  * @Description: 车辆卡扣预警
  * @Email: UvDream@163.com
  -->
@@ -34,13 +34,13 @@ export default {
 };
 </script>
 
-<style lang="less" scopes>
+<style lang="less" scoped>
 @import url("../police-quality/policeQuality");
 .dashboard-bottom-right {
   &::before {
     content: "";
     position: absolute;
-    top: 80px;
+    top: 70px;
     width: 1px;
     height: 210px;
     background-color: #b3b3b3;
