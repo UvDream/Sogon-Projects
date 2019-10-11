@@ -11,10 +11,7 @@
     </div>
     <div class="dashboard-bottom-right">
       <div class="dashboard-bottom-right-title">
-        <a-icon
-          type="exception"
-          style="margin:0 10px;font-size:22px;position:relative;top:3px;"
-        />
+        <a-icon type="exception" style="margin:0 10px;font-size:22px;position:relative;top:3px;" />
         <span>可视化样例</span>
       </div>
       <div class="dashboard-bottom-right-content">
@@ -46,4 +43,14 @@ export default {
 
 <style lang="less" scoped>
 @import url("./policeQuality.less");
+.dashboard-bottom-right {
+  &::before {
+    content: "";
+    position: absolute;
+    top: 80px;
+    width: 1px;
+    height: 880px;
+    background-color: #b3b3b3;
+  }
+}
 </style>
