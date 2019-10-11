@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 08:47:45
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 08:57:56
+ * @LastEditTime: 2019-10-11 09:11:54
  * @Description: 顶部下拉选择框
  * @Email: UvDream@163.com
  -->
@@ -34,8 +34,12 @@ export default {
   },
   mounted() {},
   methods: {
+    selectChange(value) {
+      this.$emit("selectOk", value);
+    },
     tabCLick(id) {
       this.tabVal = id;
+      this.$emit("tabOk", id);
     }
   }
 };

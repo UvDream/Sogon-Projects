@@ -3,7 +3,6 @@
     mode="inline"
     :defaultSelectedKeys="['1']"
     theme="dark"
-    :defaultOpenKeys="['sub1']"
     :style="{ height: '100%', borderRight: 0 }"
     @click="menusClick"
   >
@@ -97,6 +96,7 @@ export default {
   },
   methods: {
     menusClick(e) {
+      console.log(e);
       this.$router.push(this.routes[e.key]);
     }
   }
