@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 15:46:06
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 14:17:22
+ * @LastEditTime: 2019-10-12 11:13:08
  * @Description: 警情分布
  * @Email: UvDream@163.com
  -->
@@ -10,7 +10,7 @@
 <template>
   <div class="dashboard-bottom">
     <div class="dashboard-bottom-left">
-      <Title title="警情分布" />
+      <Title title="警情分布" v-model="data" />
       <div class="dashboard-bottom-left-title">
         <a-icon
           type="file-text"
@@ -34,11 +34,47 @@
             :key="index"
           >
             <section>{{ item.name }}</section>
-            <section>{{ item.dj }}</section>
-            <section>{{ item.dq }}</section>
-            <section>{{ item.sh }}</section>
-            <section>{{ item.zp }}</section>
-            <section>{{ item.other }}</section>
+            <section>
+              <!-- {{ item.dj }} -->
+              <a-input
+                placeholder="数量"
+                style="width:50px;height:28px"
+                v-model="item.dj"
+                :disabled="disabled"
+              />
+            </section>
+            <section>
+              <a-input
+                placeholder="数量"
+                style="width:50px;height:28px"
+                v-model="item.dq"
+                :disabled="disabled"
+              />
+            </section>
+            <section>
+              <a-input
+                placeholder="数量"
+                style="width:50px;height:28px"
+                v-model="item.sh"
+                :disabled="disabled"
+              />
+            </section>
+            <section>
+              <a-input
+                placeholder="数量"
+                style="width:50px;height:28px"
+                v-model="item.zp"
+                :disabled="disabled"
+              />
+            </section>
+            <section>
+              <a-input
+                placeholder="数量"
+                style="width:50px;height:28px"
+                v-model="item.other"
+                :disabled="disabled"
+              />
+            </section>
           </div>
         </div>
       </div>
@@ -49,54 +85,54 @@
         />
         <span style="font-size:12px">
           本所共受理违法犯罪警情
-          <a-input placeholder="数量" style="width:80px" />起
+          <a-input placeholder="数量" :disabled="disabled" style="width:80px" />起
         </span>
       </div>
       <div class="dashboard-bottom-left-content">
         <div class="dashboard-bottom-left-content-block">
           <div>
             <section>违法警情:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
           <div>
             <section>群众报警:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
         </div>
         <div class="dashboard-bottom-left-content-block">
           <div>
             <section>举报投诉:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
           <div>
             <section>纠纷:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
         </div>
         <div class="dashboard-bottom-left-content-block">
           <div>
             <section>交通类警情:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
           <div>
             <section>火灾事故:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
         </div>
         <div class="dashboard-bottom-left-content-block">
           <div>
             <section>经济类警情:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
           <div>
             <section>其他行政违法:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
         </div>
         <div class="dashboard-bottom-left-content-block">
           <div>
             <section>其他警情:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
           <div></div>
         </div>
@@ -112,67 +148,67 @@
         <div class="dashboard-bottom-left-content-block">
           <div>
             <section>非法盗窃:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
           <div>
             <section>电话诈骗:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
         </div>
         <div class="dashboard-bottom-left-content-block">
           <div>
             <section>盗窃电动车电瓶:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
           <div>
             <section>打架斗殴:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
         </div>
         <div class="dashboard-bottom-left-content-block">
           <div>
             <section>扒窃:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
           <div>
             <section>嫖娼:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
         </div>
         <div class="dashboard-bottom-left-content-block">
           <div>
             <section>盗窃车内财物:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
           <div>
             <section>网络诈骗:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
         </div>
         <div class="dashboard-bottom-left-content-block">
           <div>
             <section>盗窃电动车:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
           <div>
             <section>赌博:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
         </div>
         <div class="dashboard-bottom-left-content-block">
           <div>
             <section>损坏公共财物:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
           <div>
             <section>其他违法警情:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
         </div>
       </div>
 
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary">保存</a-button>
+        <a-button type="primary" :disabled="disabled">保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-right">
@@ -189,8 +225,10 @@
 
 <script>
 import Title from "../../components/two-title/twoTitle";
+import data from "../../mixin/data";
 
 export default {
+  mixins: [data],
   components: {
     Title
   },
