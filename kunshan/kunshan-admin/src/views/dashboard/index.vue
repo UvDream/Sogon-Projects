@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 11:53:54
+ * @LastEditTime: 2019-10-12 10:35:02
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
@@ -12,50 +12,50 @@
 
     <div class="dashboard-bottom">
       <div class="dashboard-bottom-left">
-        <Title title="今日值班情况" />
+        <Title title="今日值班情况" v-model="data" />
         <div class="dashboard-bottom-left-content">
           <div class="dashboard-bottom-left-content-block">
             <section>周领导:</section>
             <section>
-              <a-input placeholder="姓名" style="margin:0 15px" />
-              <a-input placeholder="号码" />
+              <a-input placeholder="姓名" :disabled="disabled" style="margin:0 15px" />
+              <a-input placeholder="号码" :disabled="disabled" />
             </section>
           </div>
           <div class="dashboard-bottom-left-content-block">
             <section></section>
             <section>
-              <a-input placeholder="姓名" style="margin:0 15px" />
-              <a-input placeholder="号码" />
+              <a-input placeholder="姓名" :disabled="disabled" style="margin:0 15px" />
+              <a-input placeholder="号码" :disabled="disabled" />
             </section>
           </div>
           <div class="dashboard-bottom-left-content-block">
             <section>总值班长:</section>
             <section>
-              <a-input placeholder="姓名" style="margin:0 15px" />
-              <a-input placeholder="号码" />
+              <a-input placeholder="姓名" :disabled="disabled" style="margin:0 15px" />
+              <a-input placeholder="号码" :disabled="disabled" />
             </section>
           </div>
           <div class="dashboard-bottom-left-content-block">
             <section>值班指挥长:</section>
             <section>
-              <a-input placeholder="姓名" style="margin:0 15px" />
-              <a-input placeholder="号码" />
+              <a-input placeholder="姓名" :disabled="disabled" style="margin:0 15px" />
+              <a-input placeholder="号码" :disabled="disabled" />
             </section>
           </div>
           <div class="dashboard-bottom-left-content-block">
             <section>联指长:</section>
             <section>
-              <a-input placeholder="姓名" style="margin:0 15px" />
-              <a-input placeholder="号码" />
+              <a-input placeholder="姓名" :disabled="disabled" style="margin:0 15px" />
+              <a-input placeholder="号码" :disabled="disabled" />
             </section>
           </div>
           <div class="dashboard-bottom-left-content-block">
             <section>值班力量:</section>
             <section>
               <span style="margin:0 12px">民警</span>
-              <a-input placeholder="人数" style="width:100px;" />
+              <a-input placeholder="人数" :disabled="disabled" style="width:100px;" />
               <span style="margin:0 13px">辅警</span>
-              <a-input placeholder="人数" style="width:100px;" />
+              <a-input placeholder="人数" :disabled="disabled" style="width:100px;" />
             </section>
           </div>
           <div class="dashboard-bottom-left-content-btn">
@@ -88,9 +88,17 @@ export default {
     return {
       radioVal: 1,
       selectVal: "",
-      tab: 1
+      tab: 1,
+      data: 0,
+      disabled: true
     };
   },
+  watch: {
+    data: function(val) {
+      val == 0 ? (this.disabled = true) : (this.disabled = false);
+    }
+  },
+
   methods: {
     radioChange(e) {},
     selectChange(value) {

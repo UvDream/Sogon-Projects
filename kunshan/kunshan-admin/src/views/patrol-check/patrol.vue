@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-12 09:47:36
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-12 10:18:48
+ * @LastEditTime: 2019-10-12 10:19:35
  * @Description: 巡逻盘查质态
  * @Email: UvDream@163.com
  -->
@@ -25,8 +25,8 @@
       </div>
       <div class="table">
         <div class="table-row">
-          <section style="border-top: solid 1px #cbcbcb;">时间</section>
-          <section style="border-top: solid 1px #cbcbcb;">数值</section>
+          <section style="border-top: solid 1px #cbcbcb;color:#999;">时间</section>
+          <section style="border-top: solid 1px #cbcbcb;color:#999;">数值</section>
           <section></section>
         </div>
         <div class="table-row" v-for="(item,index) in tableList" :key="index">
