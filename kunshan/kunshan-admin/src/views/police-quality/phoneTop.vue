@@ -24,6 +24,7 @@
               <div>{{ index + 1 }}</div>
               <a-input
                 placeholder="手机号码"
+                :disabled="disabled"
                 v-model="item.phone"
                 style="width:120px"
               />
@@ -31,6 +32,7 @@
             <section>
               <a-input
                 placeholder="数量"
+                :disabled="disabled"
                 v-model="item.num"
                 style="width:100px;margin-left:10px"
               />
@@ -47,6 +49,10 @@ export default {
   props: {
     title: {
       default: "24小时"
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     },
     phoneList: {
       type: Array,

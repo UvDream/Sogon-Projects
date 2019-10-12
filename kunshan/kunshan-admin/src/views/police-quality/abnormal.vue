@@ -1,12 +1,20 @@
+<!--
+ * @Author: wangzhongjie
+ * @Date: 2019-10-11 09:02:22
+ * @LastEditors: wangzhongjie
+ * @LastEditTime: 2019-10-12 11:17:15
+ * @Description: 异常报警分析
+ * @Email: UvDream@163.com
+ -->
 <template>
   <div class="dashboard-bottom">
     <div class="dashboard-bottom-left">
-      <Title title="异常报警分析" />
-      <PhoneTop :title="'24小时'" />
-      <PhoneTop :title="'30天'" />
-      <PhoneTop :title="'半年'" />
+      <Title title="异常报警分析" v-model="data" />
+      <PhoneTop :title="'24小时'" :disabled="disabled" />
+      <PhoneTop :title="'30天'" :disabled="disabled" />
+      <PhoneTop :title="'半年'" :disabled="disabled" />
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary">保存</a-button>
+        <a-button type="primary" :disabled="disabled">保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-right">
@@ -24,7 +32,10 @@
 <script>
 import PhoneTop from "./phoneTop";
 import Title from "../../components/two-title/twoTitle";
+import data from "../../mixin/data";
+
 export default {
+  mixins: [data],
   components: {
     PhoneTop,
     Title
