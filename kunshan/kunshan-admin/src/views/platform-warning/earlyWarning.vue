@@ -2,14 +2,14 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 11:03:51
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 15:56:27
+ * @LastEditTime: 2019-10-12 11:31:29
  * @Description: 车辆卡扣预警
  * @Email: UvDream@163.com
  -->
 <template>
   <div class="dashboard-bottom" style="height:340px">
     <div class="dashboard-bottom-left">
-      <Title title=" 车辆卡口预警情况" />
+      <Title title=" 车辆卡口预警情况" v-model="data" />
       <div class="early-one">
         <div class="early-one-table" style="border-bottom: 1px solid #ccc;">
           <section>车辆类型</section>
@@ -19,7 +19,12 @@
         </div>
         <div class="early-one-table" v-for="(item,index) in tabList" :key="index">
           <section>
-            <a-select defaultValue="lucy" style="width: 110px" v-model="item.type">
+            <a-select
+              defaultValue="lucy"
+              style="width: 110px"
+              :disabled="disabled"
+              v-model="item.type"
+            >
               <a-select-option value="jack">Jack</a-select-option>
               <a-select-option value="lucy">Lucy</a-select-option>
               <a-select-option value="disabled" disabled>Disabled</a-select-option>
@@ -27,18 +32,36 @@
             </a-select>
           </section>
           <section>
-            <a-input placeholder="车牌号" style="width: 130px" v-model="item.number" />
+            <a-input
+              placeholder="车牌号"
+              style="width: 130px"
+              :disabled="disabled"
+              v-model="item.number"
+            />
           </section>
           <section>
-            <a-input placeholder="车身颜色" style="width: 130px" v-model="item.color" />
+            <a-input
+              placeholder="车身颜色"
+              style="width: 130px"
+              :disabled="disabled"
+              v-model="item.color"
+            />
           </section>
           <section>
-            <a-icon type="minus-circle" v-if="index+1!=tabList.length " @click="reduce(index,1)" />
-            <a-icon type="plus-circle" v-if="index+1==tabList.length" @click="reduce(index,2)" />
+            <a-icon
+              type="minus-circle"
+              v-if="index+1!=tabList.length &&disabled==false "
+              @click="reduce(index,1)"
+            />
+            <a-icon
+              type="plus-circle"
+              v-if="index+1==tabList.length && disabled==false"
+              @click="reduce(index,2)"
+            />
           </section>
         </div>
         <div class="dashboard-bottom-left-content-btn">
-          <a-button type="primary">保存</a-button>
+          <a-button type="primary" :disabled="disabled">保存</a-button>
         </div>
       </div>
     </div>
@@ -58,7 +81,10 @@
 <script>
 import TopSelect from "../../components/top-select/topSelect";
 import Title from "../../components/two-title/twoTitle";
+import data from "../../mixin/data";
+
 export default {
+  mixins: [data],
   components: {
     TopSelect,
     Title

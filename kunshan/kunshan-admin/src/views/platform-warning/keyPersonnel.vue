@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 11:11:20
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 16:19:15
+ * @LastEditTime: 2019-10-12 11:35:04
  * @Description: 重点人员情况
  * @Email: UvDream@163.com
  -->
@@ -10,18 +10,18 @@
 <template>
   <div class="dashboard-bottom" style="height:340px">
     <div class="dashboard-bottom-left">
-      <Title title="重点人员情况" :is-check="true" />
+      <Title title="重点人员情况" :is-check="true" v-model="data" />
       <div class="control" style="margin-left:10px">
-        <MoreInput name="治安高危人员触网总人数" :is-check="true" />
-        <MoreInput name="侵财关注预警" :is-check="true" />
-        <MoreInput name="侵财盯控人数" :is-check="true" />
-        <MoreInput name="涉黑人数" :is-check="true" />
-        <MoreInput name="关爱回家" :is-check="true" />
-        <MoreInput name="临控人数" :is-check="true" />
-        <MoreInput name="临控车辆" :is-check="true" />
+        <MoreInput name="治安高危人员触网总人数" :is-check="true" :disabled="disabled" />
+        <MoreInput name="侵财关注预警" :is-check="true" :disabled="disabled" />
+        <MoreInput name="侵财盯控人数" :is-check="true" :disabled="disabled" />
+        <MoreInput name="涉黑人数" :is-check="true" :disabled="disabled" />
+        <MoreInput name="关爱回家" :is-check="true" :disabled="disabled" />
+        <MoreInput name="临控人数" :is-check="true" :disabled="disabled" />
+        <MoreInput name="临控车辆" :is-check="true" :disabled="disabled" />
       </div>
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary">保存</a-button>
+        <a-button type="primary" :disabled="disabled">保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-right">
@@ -41,7 +41,10 @@ import TopSelect from "../../components/top-select/topSelect";
 import Title from "../../components/two-title/twoTitle";
 import MoreInput from "../../components/more-input/index";
 
+import data from "../../mixin/data";
+
 export default {
+  mixins: [data],
   components: {
     TopSelect,
     Title,

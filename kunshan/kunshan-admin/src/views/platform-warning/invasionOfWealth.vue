@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 11:09:48
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 14:21:26
+ * @LastEditTime: 2019-10-12 11:33:42
  * @Description:  侵财关注人员维护、预警处置情况
  * @Email: UvDream@163.com
  -->
@@ -29,25 +29,25 @@
           </div>
           <div v-for="(item, index) in tableList" :key="index">
             <section>
-              <a-input v-model="item.qy" />
+              <a-input v-model="item.qy" :disabled="disabled" />
             </section>
             <section>
-              <a-input v-model="item.hq" />
+              <a-input v-model="item.hq" :disabled="disabled" />
             </section>
             <section>
-              <a-input v-model="item.cb" />
+              <a-input v-model="item.cb" :disabled="disabled" />
             </section>
             <section>
-              <a-input v-model="item.bx" />
+              <a-input v-model="item.bx" :disabled="disabled" />
             </section>
             <section>
-              <a-input v-model="item.other" />
+              <a-input v-model="item.other" :disabled="disabled" />
             </section>
           </div>
         </div>
       </div>
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary">保存</a-button>
+        <a-button type="primary" :disabled="disabled">保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-right">
@@ -65,7 +65,10 @@
 <script>
 import TopSelect from "../../components/top-select/topSelect";
 import Title from "../../components/two-title/twoTitle";
+import data from "../../mixin/data";
+
 export default {
+  mixins: [data],
   components: {
     TopSelect,
     Title

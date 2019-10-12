@@ -2,19 +2,19 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-12 09:47:36
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-12 10:19:35
+ * @LastEditTime: 2019-10-12 11:29:39
  * @Description: 巡逻盘查质态
  * @Email: UvDream@163.com
  -->
 <template>
   <div class="dashboard-bottom" style="height:100%">
     <div class="dashboard-bottom-left">
-      <Title title="巡逻盘查质态" :is-check="true" />
+      <Title title="巡逻盘查质态" :is-check="true" v-model="data" />
       <div class="control" style="margin-left:10px">
-        <MoreInput name="布控人数" :is-check="true" />
-        <MoreInput name="当天布控人数" :is-check="true" />
-        <MoreInput name="布控车辆" :is-check="true" />
-        <MoreInput name="当天布控车辆" :is-check="true" />
+        <MoreInput name="布控人数" :is-check="true" :disabled="disabled" />
+        <MoreInput name="当天布控人数" :is-check="true" :disabled="disabled" />
+        <MoreInput name="布控车辆" :is-check="true" :disabled="disabled" />
+        <MoreInput name="当天布控车辆" :is-check="true" :disabled="disabled" />
       </div>
       <div class="dashboard-bottom-left-title">
         <a-icon
@@ -31,10 +31,15 @@
         </div>
         <div class="table-row" v-for="(item,index) in tableList" :key="index">
           <section>
-            <Time v-model="item.time" />
+            <Time v-model="item.time" :disabled="disabled" />
           </section>
           <section>
-            <a-input placeholder="数值" style="width:160px" v-model="item.number" />
+            <a-input
+              placeholder="数值"
+              style="width:160px"
+              :disabled="disabled"
+              v-model="item.number"
+            />
           </section>
           <section>
             <a-icon type="plus-circle" v-if="index+1==tableList.length" @click="reduce(1,index)" />
@@ -43,7 +48,7 @@
         </div>
       </div>
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary">保存</a-button>
+        <a-button type="primary" :disabled="disabled">保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-right">
@@ -63,8 +68,10 @@ import TopSelect from "../../components/top-select/topSelect";
 import Title from "../../components/two-title/twoTitle";
 import MoreInput from "../../components/more-input/index";
 import Time from "../../components/time/time.vue";
+import data from "../../mixin/data";
 
 export default {
+  mixins: [data],
   components: {
     TopSelect,
     Title,
