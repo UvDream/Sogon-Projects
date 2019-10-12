@@ -2,33 +2,33 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 10:24:15
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-10 17:36:31
+ * @LastEditTime: 2019-10-12 10:58:11
  * @Description: 警情质态分析
  * @Email: UvDream@163.com
  -->
 <template>
   <div class="dashboard-bottom">
     <div class="dashboard-bottom-left">
-      <Title title="警情质态分析" />
+      <Title title="警情质态分析" v-model="data" />
       <div class="dashboard-bottom-left-content">
         <div class="dashboard-bottom-left-content-block">
           <div>
             <section>问题总数:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
           <div>
             <section>接警问题:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
         </div>
         <div class="dashboard-bottom-left-content-block">
           <div>
             <section>处警问题数据:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
           <div>
             <section>协警问题数:</section>
-            <a-input placeholder="数量" />
+            <a-input placeholder="数量" :disabled="disabled" />
           </div>
         </div>
       </div>
@@ -60,33 +60,30 @@
           </div>
           <div v-for="(item, index) in tableList" :key="index">
             <section>
-              <a-input v-model="item.qy" />
+              <a-input v-model="item.qy" :disabled="disabled" />
             </section>
             <section>
-              <a-input v-model="item.hq" />
+              <a-input v-model="item.hq" :disabled="disabled" />
             </section>
             <section>
-              <a-input v-model="item.cb" />
+              <a-input v-model="item.cb" :disabled="disabled" />
             </section>
             <section>
-              <a-input v-model="item.bx" />
+              <a-input v-model="item.bx" :disabled="disabled" />
             </section>
             <section>
-              <a-input v-model="item.other" />
+              <a-input v-model="item.other" :disabled="disabled" />
             </section>
           </div>
         </div>
       </div>
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary">保存</a-button>
+        <a-button type="primary" :disabled="disabled">保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-right">
       <div class="dashboard-bottom-right-title">
-        <a-icon
-          type="exception"
-          style="margin:0 10px;font-size:22px;position:relative;top:3px;"
-        />
+        <a-icon type="exception" style="margin:0 10px;font-size:22px;position:relative;top:3px;" />
         <span>可视化样例</span>
       </div>
       <div class="dashboard-bottom-right-content">
@@ -98,8 +95,10 @@
 
 <script>
 import Title from "../../components/two-title/twoTitle";
+import data from "../../mixin/data";
 
 export default {
+  mixins: [data],
   components: {
     Title
   },

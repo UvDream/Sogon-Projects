@@ -2,14 +2,13 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-12 10:49:06
+ * @LastEditTime: 2019-10-12 10:53:40
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
 <template>
   <div class="dashboard">
     <TopSelect :select-val="selectVal" :tab-val="tab" />
-
     <div class="dashboard-bottom">
       <div class="dashboard-bottom-left">
         <Title title="今日值班情况" v-model="data" />
@@ -59,7 +58,7 @@
             </section>
           </div>
           <div class="dashboard-bottom-left-content-btn">
-            <a-button type="primary">保存</a-button>
+            <a-button type="primary" :disabled="disabled">保存</a-button>
           </div>
         </div>
       </div>

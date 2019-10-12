@@ -2,14 +2,14 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 11:43:39
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 13:43:41
+ * @LastEditTime: 2019-10-12 11:04:43
  * @Description: 重大警情
  * @Email: UvDream@163.com
  -->
 <template>
   <div class="dashboard-bottom">
     <div class="dashboard-bottom-left">
-      <Title title="重大警情" />
+      <Title title="重大警情" v-model="data" />
       <div class="dashboard-bottom-left-content">
         <div class="dashboard-bottom-left-content-great">
           <section>事件时间</section>
@@ -24,33 +24,48 @@
           :key="index"
         >
           <section>
-            <Time v-model="item.time" />
+            <Time v-model="item.time" :disabled="disabled" />
           </section>
           <section>
-            <a-select style="width: 120px" @change="selectChange" v-model="item.type">
+            <a-select
+              style="width: 120px"
+              @change="selectChange"
+              :disabled="disabled"
+              v-model="item.type"
+            >
               <a-select-option value="jack">Jack</a-select-option>
               <a-select-option value="lucy">Lucy</a-select-option>
               <a-select-option value="Yiminghe">yiminghe</a-select-option>
             </a-select>
           </section>
           <section>
-            <a-input placeholder="所属派出所" style="width: 120px" v-model="item.from" />
+            <a-input
+              placeholder="所属派出所"
+              style="width: 120px"
+              :disabled="disabled"
+              v-model="item.from"
+            />
           </section>
           <section>
-            <a-input placeholder="详情" style="width: 120px" v-model="item.more" />
+            <a-input
+              placeholder="详情"
+              style="width: 120px"
+              :disabled="disabled"
+              v-model="item.more"
+            />
           </section>
           <section>
             <a-icon
               type="plus-circle"
               style="font-size:20px"
-              v-if="greatList.length == index + 1"
+              v-if="greatList.length == index + 1 && disabled==false"
               @click="addList"
             />
           </section>
         </div>
       </div>
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary" @click="saveFunc">保存</a-button>
+        <a-button type="primary" @click="saveFunc" :disabled="disabled">保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-right">
@@ -68,8 +83,10 @@
 <script>
 import Time from "../../components/time/time.vue";
 import Title from "../../components/two-title/twoTitle";
+import data from "../../mixin/data";
 
 export default {
+  mixins: [data],
   components: {
     Time,
     Title

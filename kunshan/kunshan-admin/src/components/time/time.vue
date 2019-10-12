@@ -6,6 +6,7 @@
       showTime
       format="YYYY-MM-DD HH:mm:ss"
       placeholder="请选择时间"
+      :disabled="disabled"
       @change="onChange"
       @ok="onOk"
     />
@@ -19,6 +20,10 @@ export default {
   props: {
     value: {
       default: ""
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
