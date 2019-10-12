@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 17:25:49
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-12 16:53:33
+ * @LastEditTime: 2019-10-12 17:01:27
  * @Description: 小头部
  * @Email: UvDream@163.com
  -->
@@ -45,30 +45,31 @@ export default {
   },
   data() {
     return {
-      radioVal: 1,
+      radioVal: 0,
       checkAll: false,
       indeterminate: false
     };
   },
   watch: {
     checkStatus: function(newVal) {
-      alert("xxx");
       if (newVal == 0) {
-        // 全选
+        // 未选
         this.checkAll = false;
       } else if (newVal == 1) {
         // 部分选中
         this.indeterminate = true;
       } else {
-        // 未选
+        // 全选
         this.checkAll = true;
       }
     }
   },
-  create() {
+  mounted() {
     this.radioVal = this.value;
     if (this.checkStatus == 0) {
       this.checkAll = false;
+    } else if (this.checkStatus == 1) {
+      this.indeterminate = true;
     } else {
       this.checkAll = true;
     }

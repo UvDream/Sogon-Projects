@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 09:30:47
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-12 16:55:03
+ * @LastEditTime: 2019-10-12 17:21:10
  * @Description: 两个输入框并列
  * @Email: UvDream@163.com
  -->
@@ -25,6 +25,7 @@
 <script>
 export default {
   props: {
+    index: "",
     checkStatus: {
       type: Boolean,
       default: false
@@ -59,6 +60,7 @@ export default {
   methods: {
     checkChange() {
       this.check = !this.check;
+      this.$emit("checkChange", this.check, this.index);
     },
     inputChange() {
       this.$emit("input", this.inputVal);
