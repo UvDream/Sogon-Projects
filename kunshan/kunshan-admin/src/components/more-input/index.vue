@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 09:30:47
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 15:51:22
+ * @LastEditTime: 2019-10-12 11:20:20
  * @Description: 两个输入框并列
  * @Email: UvDream@163.com
  -->
@@ -12,7 +12,13 @@
       <a-checkbox></a-checkbox>
     </div>
     <div class="more-name">{{name}}:</div>
-    <a-input placeholder="数量" v-model="value" style="width:75px" @change="inputChange" />
+    <a-input
+      placeholder="数量"
+      v-model="value"
+      style="width:75px"
+      :disabled="disabled"
+      @change="inputChange"
+    />
   </div>
 </template>
 
@@ -20,6 +26,10 @@
 export default {
   props: {
     isCheck: {
+      default: false
+    },
+    disabled: {
+      type: Boolean,
       default: false
     },
     name: "",
