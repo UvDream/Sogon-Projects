@@ -1,7 +1,7 @@
 <template>
   <a-menu
     mode="inline"
-    :defaultSelectedKeys="['1']"
+    :defaultSelectedKeys="[selectKey]"
     theme="dark"
     :style="{ height: '100%', borderRight: 0 }"
     @click="menusClick"
@@ -16,6 +16,7 @@
 export default {
   data() {
     return {
+      selectKey: 1,
       menusList: [
         {
           id: 1,
@@ -93,6 +94,13 @@ export default {
         "/other"
       ]
     };
+  },
+  created() {
+    this.routes.forEach((item, index) => {
+      if (this.$route.path == item) {
+        this.selectKey = index;
+      }
+    });
   },
   methods: {
     menusClick(e) {

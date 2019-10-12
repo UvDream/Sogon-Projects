@@ -2,19 +2,49 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-12 09:47:36
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-12 11:29:39
+ * @LastEditTime: 2019-10-12 16:56:32
  * @Description: 巡逻盘查质态
  * @Email: UvDream@163.com
  -->
 <template>
   <div class="dashboard-bottom" style="height:100%">
     <div class="dashboard-bottom-left">
-      <Title title="巡逻盘查质态" :is-check="true" v-model="data" />
+      <Title
+        title="巡逻盘查质态"
+        :is-check="true"
+        :check-status="checkStatus"
+        v-model="data"
+        @checkStatus="checkStatusFunc"
+      />
       <div class="control" style="margin-left:10px">
-        <MoreInput name="布控人数" :is-check="true" :disabled="disabled" />
-        <MoreInput name="当天布控人数" :is-check="true" :disabled="disabled" />
-        <MoreInput name="布控车辆" :is-check="true" :disabled="disabled" />
-        <MoreInput name="当天布控车辆" :is-check="true" :disabled="disabled" />
+        <!-- <MoreInput name="布控人数" :is-check="true" :check-status="checkList.one" :disabled="disabled" />
+        <MoreInput
+          name="当天布控人数"
+          :is-check="true"
+          :check-status="checkList.two"
+          :disabled="disabled"
+        />
+        <MoreInput
+          name="布控车辆"
+          :is-check="true"
+          :check-status="checkList.three"
+          :disabled="disabled"
+        />
+        <MoreInput
+          name="当天布控车辆"
+          :is-check="true"
+          :check-status="checkList.four"
+          :disabled="disabled"
+        />-->
+        <MoreInput
+          v-for="(item,index) in numberList"
+          :key="index"
+          :disabled="disabled"
+          :name="item.name"
+          :is-check="true"
+          :check-status="item.check"
+          v-model="item.number"
+        ></MoreInput>
       </div>
       <div class="dashboard-bottom-left-title">
         <a-icon
@@ -42,8 +72,16 @@
             />
           </section>
           <section>
-            <a-icon type="plus-circle" v-if="index+1==tableList.length" @click="reduce(1,index)" />
-            <a-icon type="minus-circle" v-if="index+1!=tableList.length" @click="reduce(2,index)" />
+            <a-icon
+              type="plus-circle"
+              v-if="index+1==tableList.length &&disabled==false"
+              @click="reduce(1,index)"
+            />
+            <a-icon
+              type="minus-circle"
+              v-if="index+1!=tableList.length &&disabled==false"
+              @click="reduce(2,index)"
+            />
           </section>
         </div>
       </div>
@@ -80,10 +118,25 @@ export default {
   },
   data() {
     return {
+      checkStatus: 2,
+      checkList: { one: true, two: false, three: false, four: false },
+      numberList: [
+        { name: "布控人数", number: "11", check: true },
+        { name: "当天布控车辆", number: "22", check: false },
+        { name: "布控车辆", number: "22", check: false },
+        { name: "布控车辆", number: "22", check: false }
+      ],
       tableList: [{ time: new Date(), number: "" }]
     };
   },
   methods: {
+    // 全选状态获取
+    checkStatusFunc(val) {
+      this.numberList.forEach(item => {
+        item.check = val;
+      });
+    },
+    // 表格添加删除
     reduce(id, index) {
       if (id == 1) {
         let obj = { time: new Date(), number: "" };
@@ -115,8 +168,6 @@ export default {
 .table {
   width: 380px;
   margin: 0 auto;
-  //   border-top: solid 1px #cbcbcb;
-  //   border-right: solid 1px #cbcbcb;
   &-row {
     display: flex;
     & > section:nth-child(1) {
@@ -140,8 +191,6 @@ export default {
       width: 20px;
       line-height: 40px;
       text-align: center;
-      //   border-bottom: solid 1px #cbcbcb;
-      //   border-left: solid 1px #cbcbcb;
     }
   }
 }
