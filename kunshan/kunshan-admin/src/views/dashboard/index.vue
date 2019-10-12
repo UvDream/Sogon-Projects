@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-12 10:35:02
+ * @LastEditTime: 2019-10-12 10:49:06
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
@@ -79,26 +79,20 @@
 <script>
 import Title from "../../components/two-title/twoTitle.vue";
 import TopSelect from "../../components/top-select/topSelect";
+import data from "../../mixin/data";
 export default {
   components: {
     Title,
     TopSelect
   },
+  mixins: [data],
   data() {
     return {
       radioVal: 1,
       selectVal: "",
-      tab: 1,
-      data: 0,
-      disabled: true
+      tab: 1
     };
   },
-  watch: {
-    data: function(val) {
-      val == 0 ? (this.disabled = true) : (this.disabled = false);
-    }
-  },
-
   methods: {
     radioChange(e) {},
     selectChange(value) {
