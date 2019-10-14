@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-12 10:53:40
+ * @LastEditTime: 2019-10-14 14:43:12
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
@@ -79,6 +79,7 @@
 import Title from "../../components/two-title/twoTitle.vue";
 import TopSelect from "../../components/top-select/topSelect";
 import data from "../../mixin/data";
+import { dataList } from "../../api/on-duty/index";
 export default {
   components: {
     Title,
@@ -91,6 +92,9 @@ export default {
       selectVal: "",
       tab: 1
     };
+  },
+  mounted() {
+    dataList();
   },
   methods: {
     radioChange(e) {},

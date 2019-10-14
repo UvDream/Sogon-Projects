@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-12 09:47:36
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-12 17:23:37
+ * @LastEditTime: 2019-10-14 15:20:03
  * @Description: 巡逻盘查质态
  * @Email: UvDream@163.com
  -->
@@ -90,6 +90,9 @@ import Title from "../../components/two-title/twoTitle";
 import MoreInput from "../../components/more-input/index";
 import Time from "../../components/time/time.vue";
 import data from "../../mixin/data";
+import { checkPatrol } from "../../api/patrol-check/index";
+import axios from "axios";
+import qs from "qs";
 
 export default {
   mixins: [data],
@@ -104,19 +107,33 @@ export default {
       // 全选状态 0未选 1部分选 2全选
       checkStatus: 0,
       numberList: [
-        { name: "布控人数", number: "11", check: false },
-        { name: "当天布控车辆", number: "22", check: false },
-        { name: "布控车辆", number: "22", check: false },
-        { name: "布控车辆", number: "22", check: false }
+        { name: "盘查总数", number: "11", check: false },
+        { name: "物品数", number: "22", check: false },
+        { name: "盘查人员数", number: "22", check: false },
+        { name: "盘查重点人员数", number: "22", check: false },
+        { name: "盘查车辆数", number: "22", check: false },
+        { name: "采集照片数", number: "22", check: false }
       ],
-      tableList: [{ time: new Date(), number: "" }]
+      tableList: [{ time: new Date(), number: "" }],
+      formdata: {
+        type: 2,
+        dateType: "日",
+        pcs: "昆山"
+      }
     };
   },
   mounted() {
     // 检测全选状态
     this.findCheck();
+    this.searchFunc(this.formdata);
   },
   methods: {
+    // 查询盘查质态
+    searchFunc(data) {
+      checkPatrol(data).then(res => {
+        console.log(res);
+      });
+    },
     // 单选按钮状态改变
     checkChangeFunc(val, index) {
       this.numberList[index].check = val;

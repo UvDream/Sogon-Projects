@@ -1,10 +1,8 @@
 import axios from "axios";
 import config from "./config.js"; // 倒入默认配置
-import router from "../routers/router";
-
 export default function fetch(options) {
   return new Promise((reslove, reject) => {
-    const service = axios.create({
+    var service = axios.create({
       baseURL: config.baseURL,
       timeout: config.timeout,
       headers: config.headers,
@@ -12,8 +10,12 @@ export default function fetch(options) {
     });
     // request拦截器
     service.interceptors.request.use(
-      config => config,
-      error => Promise.reject(error)
+      config => {
+        return config;
+      },
+      error => {
+        return Promise.reject(error);
+      }
     );
     // response拦截器
     service.interceptors.response.use(
@@ -40,27 +42,19 @@ export default function fetch(options) {
               break;
             case 401:
               err.message = "未授权，请登录";
-              router.push({
-                path: "/login"
-              });
               break;
             case 403:
               err.message = "拒绝访问";
-              router.push({
-                path: "/403"
-              });
               break;
             case 404:
               err.message = `请求地址出错: ${err.response.config.url}`;
-              router.push({
-                path: "/404"
-              });
               break;
             case 408:
               err.message = "请求超时";
               break;
             case 500:
               err.message = "服务器内部错误";
+
               break;
             case 501:
               err.message = "服务未实现";
@@ -80,10 +74,9 @@ export default function fetch(options) {
             default:
           }
         }
-        return Promise.reject(err); // 返回错误信息
+        return Promise.reject(err); //返回错误信息
       }
     );
-
     service(options)
       .then(res => {
         reslove(res);
