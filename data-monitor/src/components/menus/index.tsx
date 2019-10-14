@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-09-17 17:06:35
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-14 20:59:39
+ * @LastEditTime: 2019-10-14 22:35:18
  * @Description: 菜单
  * @Email: UvDream@163.com
  */
@@ -24,7 +24,12 @@ export default class Menus extends Component {
             {
                 id: "1", name: "日常办公", children: [
                     { id: "1-1", name: "工作台", url: "/main/dashboard/" },
-                    { id: "1-2", name: "通知", url: "/main/notice" },
+                    {
+                        id: "1-2", name: "通知", url: "", children: [
+                            { id: "1-2-1", name: "收到的通知", url: "/main/notice" },
+                            { id: "1-2-2", name: "发送的通知", url: "/main/notice" }
+                        ]
+                    },
                     { id: "1-3", name: "工作汇报", url: "/main/workReport" },
                 ]
             },
@@ -72,17 +77,41 @@ export default class Menus extends Component {
                                         </span>
                                     }
                                 >
+
                                     {
                                         item.children.map((list) => {
                                             return (
-                                                <Menu.Item key={list.id}>
-                                                    <Link to={list.url}>
-                                                        {list.name}
-                                                    </Link>
-                                                </Menu.Item>
+                                                ((index) => {
+                                                    if (index.children) {
+                                                        return (
+                                                            <SubMenu key={index.id} title={index.name}>
+                                                                {
+                                                                    index.children.map((arr) => {
+                                                                        return (
+                                                                            <Menu.Item key={arr.id}><Link to={arr.url}>
+                                                                                {arr.name}
+                                                                            </Link></Menu.Item>
+                                                                        )
+                                                                    })
+                                                                }
+                                                            </SubMenu>
+                                                        )
+                                                    } else {
+                                                        return (
+                                                            < Menu.Item key={list.id} >
+                                                                <Link to={list.url}>
+                                                                    {list.name}
+                                                                </Link>
+                                                            </Menu.Item>
+                                                        )
+                                                    }
+                                                })(list)
                                             )
                                         })
                                     }
+
+
+
                                 </SubMenu>
                             )
                         })
