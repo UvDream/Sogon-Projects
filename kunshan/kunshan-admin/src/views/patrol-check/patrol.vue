@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-12 09:47:36
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-14 17:42:42
+ * @LastEditTime: 2019-10-14 18:09:52
  * @Description: 巡逻盘查质态
  * @Email: UvDream@163.com
  -->
@@ -91,7 +91,7 @@ import data from "../../mixin/data";
 import { checkPatrol } from "../../api/patrol-check/index";
 import axios from "axios";
 import qs from "qs";
-import { EmptyObjVal } from "../../util/util";
+import { EmptyObjVal, DeleteEmptyArray } from "../../util/util";
 
 export default {
   mixins: [data],
@@ -143,6 +143,7 @@ export default {
     },
     // 日,周,月变化
     topDate: function(val) {
+      console.log("取出部分数值", DeleteEmptyArray(this.numberList, "num", ""));
       let obj = {
         1: "日",
         2: "周",
