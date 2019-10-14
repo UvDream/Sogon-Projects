@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 11:11:20
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-12 11:35:04
+ * @LastEditTime: 2019-10-14 09:04:41
  * @Description: 重点人员情况
  * @Email: UvDream@163.com
  -->
@@ -10,15 +10,32 @@
 <template>
   <div class="dashboard-bottom" style="height:340px">
     <div class="dashboard-bottom-left">
-      <Title title="重点人员情况" :is-check="true" v-model="data" />
+      <Title
+        title="重点人员情况"
+        :is-check="true"
+        :check-status="checkStatus"
+        v-model="data"
+        @checkStatus="checkStatusFunc"
+      />
       <div class="control" style="margin-left:10px">
-        <MoreInput name="治安高危人员触网总人数" :is-check="true" :disabled="disabled" />
+        <!-- <MoreInput name="治安高危人员触网总人数" :is-check="true" :disabled="disabled" />
         <MoreInput name="侵财关注预警" :is-check="true" :disabled="disabled" />
         <MoreInput name="侵财盯控人数" :is-check="true" :disabled="disabled" />
         <MoreInput name="涉黑人数" :is-check="true" :disabled="disabled" />
         <MoreInput name="关爱回家" :is-check="true" :disabled="disabled" />
         <MoreInput name="临控人数" :is-check="true" :disabled="disabled" />
-        <MoreInput name="临控车辆" :is-check="true" :disabled="disabled" />
+        <MoreInput name="临控车辆" :is-check="true" :disabled="disabled" />-->
+        <MoreInput
+          v-for="(item,index) in numberList"
+          :key="index"
+          :index="index"
+          :disabled="disabled"
+          :name="item.name"
+          :is-check="true"
+          :check-status="item.check"
+          v-model="item.number"
+          @checkChange="checkChangeFunc"
+        ></MoreInput>
       </div>
       <div class="dashboard-bottom-left-content-btn">
         <a-button type="primary" :disabled="disabled">保存</a-button>
@@ -49,6 +66,47 @@ export default {
     TopSelect,
     Title,
     MoreInput
+  },
+  data() {
+    return {
+      // 全选状态 0未选 1部分选 2全选
+      checkStatus: 0,
+      numberList: [
+        { name: "治安高危人员触网总人数", number: "11", check: false },
+        { name: "侵财关注预警", number: "22", check: false },
+        { name: "侵财盯控人数", number: "22", check: false },
+        { name: "涉黑人数", number: "22", check: false },
+        { name: "关爱回家", number: "22", check: false },
+        { name: "临控人数", number: "22", check: false },
+        { name: "临控车辆", number: "22", check: false }
+      ]
+    };
+  },
+  methods: {
+    // 单选按钮状态改变
+    checkChangeFunc(val, index) {
+      this.numberList[index].check = val;
+      this.findCheck();
+    },
+    // 检测全选状态
+    findCheck() {
+      this.numberList.every(item => {
+        return !item.check;
+      })
+        ? (this.checkStatus = 0)
+        : "";
+      this.numberList.every(item => {
+        return item.check;
+      })
+        ? (this.checkStatus = 2)
+        : "";
+    },
+    // 全选状态获取
+    checkStatusFunc(val) {
+      this.numberList.forEach(item => {
+        item.check = val;
+      });
+    }
   }
 };
 </script>

@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 11:07:08
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-12 11:32:37
+ * @LastEditTime: 2019-10-14 08:58:34
  * @Description: 布控
  * @Email: UvDream@163.com
  -->
@@ -10,12 +10,29 @@
 <template>
   <div class="dashboard-bottom" style="height:275px">
     <div class="dashboard-bottom-left">
-      <Title title="布控情况" :is-check="true" v-model="data" />
+      <Title
+        title="布控情况"
+        :is-check="true"
+        :check-status="checkStatus"
+        v-model="data"
+        @checkStatus="checkStatusFunc"
+      />
       <div class="control" style="margin-left:10px">
-        <MoreInput name="布控人数" :is-check="true" :disabled="disabled" />
+        <!-- <MoreInput name="布控人数" :is-check="true" :disabled="disabled" />
         <MoreInput name="当天布控人数" :is-check="true" :disabled="disabled" />
         <MoreInput name="布控车辆" :is-check="true" :disabled="disabled" />
-        <MoreInput name="当天布控车辆" :is-check="true" :disabled="disabled" />
+        <MoreInput name="当天布控车辆" :is-check="true" :disabled="disabled" />-->
+        <MoreInput
+          v-for="(item,index) in numberList"
+          :key="index"
+          :index="index"
+          :disabled="disabled"
+          :name="item.name"
+          :is-check="true"
+          :check-status="item.check"
+          v-model="item.number"
+          @checkChange="checkChangeFunc"
+        ></MoreInput>
       </div>
       <div class="dashboard-bottom-left-content-btn">
         <a-button type="primary" :disabled="disabled">保存</a-button>
@@ -45,6 +62,44 @@ export default {
     TopSelect,
     Title,
     MoreInput
+  },
+  data() {
+    return {
+      // 全选状态 0未选 1部分选 2全选
+      checkStatus: 0,
+      numberList: [
+        { name: "布控人数", number: "11", check: false },
+        { name: "当天布控车辆", number: "22", check: false },
+        { name: "布控车辆", number: "22", check: false },
+        { name: "布控车辆", number: "22", check: false }
+      ]
+    };
+  },
+  methods: {
+    // 单选按钮状态改变
+    checkChangeFunc(val, index) {
+      this.numberList[index].check = val;
+      this.findCheck();
+    },
+    // 检测全选状态
+    findCheck() {
+      this.numberList.every(item => {
+        return !item.check;
+      })
+        ? (this.checkStatus = 0)
+        : "";
+      this.numberList.every(item => {
+        return item.check;
+      })
+        ? (this.checkStatus = 2)
+        : "";
+    },
+    // 全选状态获取
+    checkStatusFunc(val) {
+      this.numberList.forEach(item => {
+        item.check = val;
+      });
+    }
   }
 };
 </script>
