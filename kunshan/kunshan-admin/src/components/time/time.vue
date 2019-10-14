@@ -4,7 +4,7 @@
       style="width: 180px"
       :defaultValue="moment(value, dateFormat)"
       showTime
-      format="YYYY-MM-DD HH:mm:ss"
+      :format="format"
       placeholder="请选择时间"
       :disabled="disabled"
       @change="onChange"
@@ -21,6 +21,10 @@ export default {
     value: {
       default: ""
     },
+    format: {
+      type: String,
+      default: "YYYY-MM-DD HH:mm:ss"
+    },
     disabled: {
       type: Boolean,
       default: false
@@ -30,9 +34,7 @@ export default {
     this.dateFormat = "YYYY-MM-DD HH:mm:ss";
     return {};
   },
-  mounted() {
-    console.log(this.value);
-  },
+  mounted() {},
   methods: {
     moment,
     onChange(value, dateString) {

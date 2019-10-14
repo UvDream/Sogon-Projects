@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 09:30:47
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-12 17:21:10
+ * @LastEditTime: 2019-10-14 16:08:33
  * @Description: 两个输入框并列
  * @Email: UvDream@163.com
  -->
@@ -47,6 +47,9 @@ export default {
     };
   },
   watch: {
+    value: function(val) {
+      this.inputVal = val;
+    },
     checkStatus: {
       handler(newVal, oldVal) {
         this.check = newVal;

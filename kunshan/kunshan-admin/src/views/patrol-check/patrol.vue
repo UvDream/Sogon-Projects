@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-12 09:47:36
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-14 15:20:03
+ * @LastEditTime: 2019-10-14 16:53:05
  * @Description: 巡逻盘查质态
  * @Email: UvDream@163.com
  -->
@@ -25,10 +25,11 @@
           :name="item.name"
           :is-check="true"
           :check-status="item.check"
-          v-model="item.number"
+          v-model="item.num"
           @checkChange="checkChangeFunc"
         ></MoreInput>
       </div>
+      <!-- 盘查人员 -->
       <div class="dashboard-bottom-left-title">
         <a-icon
           type="file-text"
@@ -44,15 +45,10 @@
         </div>
         <div class="table-row" v-for="(item,index) in tableList" :key="index">
           <section>
-            <Time v-model="item.time" :disabled="disabled" />
+            <Time v-model="item.hour" :disabled="disabled" :format="'YYYY-MM-DD'" />
           </section>
           <section>
-            <a-input
-              placeholder="数值"
-              style="width:160px"
-              :disabled="disabled"
-              v-model="item.number"
-            />
+            <a-input placeholder="数值" style="width:160px" :disabled="disabled" v-model="item.num" />
           </section>
           <section>
             <a-icon
@@ -68,10 +64,12 @@
           </section>
         </div>
       </div>
+      <!-- 保存 -->
       <div class="dashboard-bottom-left-content-btn">
         <a-button type="primary" :disabled="disabled">保存</a-button>
       </div>
     </div>
+    <div class="dashboard-bottom-center"></div>
     <div class="dashboard-bottom-right">
       <div class="dashboard-bottom-right-title">
         <a-icon type="exception" style="margin:0 10px;font-size:22px;position:relative;top:3px;" />
@@ -93,6 +91,7 @@ import data from "../../mixin/data";
 import { checkPatrol } from "../../api/patrol-check/index";
 import axios from "axios";
 import qs from "qs";
+import { EmptyObjVal } from "../../util/util";
 
 export default {
   mixins: [data],
@@ -106,15 +105,9 @@ export default {
     return {
       // 全选状态 0未选 1部分选 2全选
       checkStatus: 0,
-      numberList: [
-        { name: "盘查总数", number: "11", check: false },
-        { name: "物品数", number: "22", check: false },
-        { name: "盘查人员数", number: "22", check: false },
-        { name: "盘查重点人员数", number: "22", check: false },
-        { name: "盘查车辆数", number: "22", check: false },
-        { name: "采集照片数", number: "22", check: false }
-      ],
+      numberList: [],
       tableList: [{ time: new Date(), number: "" }],
+      pczdrynum: [],
       formdata: {
         type: 2,
         dateType: "日",
@@ -122,16 +115,33 @@ export default {
       }
     };
   },
+  watch: {
+    data: function(val) {
+      if (val == 1) {
+        EmptyObjVal(this.numberList, "num");
+        EmptyObjVal(this.tableList, "num");
+        EmptyObjVal(this.pczdrynum, "num");
+      } else if (val == 0) {
+        this.formdata.type = val;
+        this.searchFunc(this.formdata);
+      }
+    }
+  },
   mounted() {
     // 检测全选状态
-    this.findCheck();
+    // this.findCheck();
     this.searchFunc(this.formdata);
   },
   methods: {
     // 查询盘查质态
     searchFunc(data) {
       checkPatrol(data).then(res => {
-        console.log(res);
+        this.numberList = res.data.pcnum;
+        this.numberList.forEach(item => {
+          item.check == "true" ? (item.check = true) : (item.check = false);
+        });
+        this.tableList = res.data.pcrynum;
+        this.pczdrynum = res.data.pczdrynum;
       });
     },
     // 单选按钮状态改变
@@ -173,16 +183,16 @@ export default {
 
 <style lang="less" scoped>
 @import url("../police-quality/policeQuality");
-.dashboard-bottom-right {
-  &::before {
-    content: "";
-    position: absolute;
-    top: 70px;
-    width: 1px;
-    height: 160px;
-    background-color: #b3b3b3;
-  }
-}
+// .dashboard-bottom-right {
+//   &::before {
+//     content: "";
+//     position: absolute;
+//     top: 70px;
+//     width: 1px;
+//     height: 80%;
+//     background-color: #b3b3b3;
+//   }
+// }
 .control {
   display: flex;
   flex-wrap: wrap;
