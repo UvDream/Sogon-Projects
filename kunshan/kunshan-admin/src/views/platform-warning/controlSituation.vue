@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 11:07:08
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-14 08:58:34
+ * @LastEditTime: 2019-10-14 09:15:14
  * @Description: 布控
  * @Email: UvDream@163.com
  -->
@@ -75,32 +75,7 @@ export default {
       ]
     };
   },
-  methods: {
-    // 单选按钮状态改变
-    checkChangeFunc(val, index) {
-      this.numberList[index].check = val;
-      this.findCheck();
-    },
-    // 检测全选状态
-    findCheck() {
-      this.numberList.every(item => {
-        return !item.check;
-      })
-        ? (this.checkStatus = 0)
-        : "";
-      this.numberList.every(item => {
-        return item.check;
-      })
-        ? (this.checkStatus = 2)
-        : "";
-    },
-    // 全选状态获取
-    checkStatusFunc(val) {
-      this.numberList.forEach(item => {
-        item.check = val;
-      });
-    }
-  }
+  methods: {}
 };
 </script>
 
