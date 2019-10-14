@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-12 09:47:36
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-14 16:53:05
+ * @LastEditTime: 2019-10-14 17:42:42
  * @Description: 巡逻盘查质态
  * @Email: UvDream@163.com
  -->
@@ -111,9 +111,19 @@ export default {
       formdata: {
         type: 2,
         dateType: "日",
-        pcs: "昆山"
+        pcs: this.$store.state.topSelect
       }
     };
+  },
+  computed: {
+    // 顶部派出所
+    policeStation: function() {
+      return this.$store.state.topSelect;
+    },
+    // 顶部星期
+    topDate: function() {
+      return this.$store.state.topDate;
+    }
   },
   watch: {
     data: function(val) {
@@ -125,6 +135,21 @@ export default {
         this.formdata.type = val;
         this.searchFunc(this.formdata);
       }
+    },
+    // 警局下拉框变化
+    policeStation: function(val) {
+      this.formdata.pcs = val;
+      this.searchFunc(this.formdata);
+    },
+    // 日,周,月变化
+    topDate: function(val) {
+      let obj = {
+        1: "日",
+        2: "周",
+        3: "月"
+      };
+      this.formdata.dateType = obj[val];
+      this.searchFunc(this.formdata);
     }
   },
   mounted() {
