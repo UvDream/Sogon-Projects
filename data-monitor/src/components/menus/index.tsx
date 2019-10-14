@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-09-17 17:06:35
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 22:46:02
+ * @LastEditTime: 2019-10-14 20:59:39
  * @Description: 菜单
  * @Email: UvDream@163.com
  */
@@ -23,43 +23,43 @@ export default class Menus extends Component {
         const list = [
             {
                 id: "1", name: "日常办公", children: [
-                    { id: "1-1", name: "工作台", url: "/" },
-                    { id: "1-2", name: "通知", url: "/notice" },
-                    { id: "1-3", name: "工作汇报", url: "/workReport" },
+                    { id: "1-1", name: "工作台", url: "/main/dashboard/" },
+                    { id: "1-2", name: "通知", url: "/main/notice" },
+                    { id: "1-3", name: "工作汇报", url: "/main/workReport" },
                 ]
             },
             {
                 id: "2", name: "积分制管理", children: [
-                    { id: "2-1", name: "我的积分", url: "/myScores" },
-                    { id: "2-2", name: "积分奖扣", url: "/pointBonus" },
-                    { id: "2-3", name: "积分任务", url: "/integrationTask" },
-                    { id: "2-4", name: "积分审批", url: "/pointApproval" },
-                    { id: "2-5", name: "管理任务", url: "/managementTask" },
-                    { id: "2-6", name: "积分排名", url: "/pointRanking" },
-                    { id: "2-7", name: "积分查询", url: "/pointQuery" },
-                    { id: "2-8", name: "积分奖票", url: "/pointTicket" },
-                    { id: "2-9", name: "核查结算", url: "/checkSettlement" },
-                    { id: "2-10", name: "事件库", url: "/eventLibrary" },
+                    { id: "2-1", name: "我的积分", url: "/main/myScores" },
+                    { id: "2-2", name: "积分奖扣", url: "/main/pointBonus" },
+                    { id: "2-3", name: "积分任务", url: "/main/integrationTask" },
+                    { id: "2-4", name: "积分审批", url: "/main/pointApproval" },
+                    { id: "2-5", name: "管理任务", url: "/main/managementTask" },
+                    { id: "2-6", name: "积分排名", url: "/main/pointRanking" },
+                    { id: "2-7", name: "积分查询", url: "/main/pointQuery" },
+                    { id: "2-8", name: "积分奖票", url: "/main/pointTicket" },
+                    { id: "2-9", name: "核查结算", url: "/main/checkSettlement" },
+                    { id: "2-10", name: "事件库", url: "/main/eventLibrary" },
                 ]
             },
             {
                 id: "3", name: "移动考勤", children: [
-                    { id: "3-1", name: "考勤", url: "/attendance" },
-                    { id: "3-2", name: "排班打卡", url: "/scheduling" },
+                    { id: "3-1", name: "考勤", url: "/main/attendance" },
+                    { id: "3-2", name: "排班打卡", url: "/main/scheduling" },
                 ]
             },
             {
                 id: "4", name: "系统管理", children: [
-                    { id: "4-1", name: "成员管理", url: "/memberManagement" },
-                    { id: "4-2", name: "积分配制", url: "/pointPreparation" },
-                    { id: "4-3", name: "角色权限配置", url: "/rolePermissionSetting" },
-                    { id: "4-4", name: "奖扣权限配置", url: "/bonusPermissionSetting" },
+                    { id: "4-1", name: "成员管理", url: "/main/memberManagement" },
+                    { id: "4-2", name: "积分配制", url: "/main/pointPreparation" },
+                    { id: "4-3", name: "角色权限配置", url: "/main/rolePermissionSetting" },
+                    { id: "4-4", name: "奖扣权限配置", url: "/main/bonusPermissionSetting" },
                 ]
             },
         ]
         return (
             <Fragment>
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1-1']} onClick={this.menusCLick}>
+                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1-1']} defaultOpenKeys={['1']} onClick={this.menusCLick}>
                     {
                         list.map((item) => {
                             return (

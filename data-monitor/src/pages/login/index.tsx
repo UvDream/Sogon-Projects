@@ -1,9 +1,9 @@
 import React from 'react';
 
 const Login: React.FC = () => {
-    return(
+    return (
         <div>
-        登陆界面
+            登陆界面
         </div>
     );
 }

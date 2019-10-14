@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-09-17 16:40:41
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 22:45:03
+ * @LastEditTime: 2019-10-14 20:59:05
  * @Description: 主界面
  * @Email: UvDream@163.com
  */
@@ -108,26 +108,26 @@ export default class Home extends Component {
                             }}
                         >
                             <div style={{ height: "100%" }}>
-                                <Route path="/" exact component={DashBoard}></Route>
-                                <Route path="/operationLog/" component={OperationLog}></Route>
-                                <Route path="/notice/" component={Notice}></Route>
-                                <Route path="/workReport/" component={WorkReport}></Route>
-                                <Route path="/myScores/" component={MyScores}></Route>
-                                <Route path="/pointBonus/" component={PointBonus}></Route>
-                                <Route path="/integrationTask/" component={IntegrationTask}></Route>
-                                <Route path="/pointApproval/" component={PointApproval}></Route>
-                                <Route path="/managementTask/" component={ManagementTask}></Route>
-                                <Route path="/pointRanking/" component={PointRanking}></Route>
-                                <Route path="/pointQuery/" component={PointQuery}></Route>
-                                <Route path="/pointTicket/" component={PointTicket}></Route>
-                                <Route path="/checkSettlement/" component={CheckSettlement}></Route>
-                                <Route path="/eventLibrary/" component={EventLibrary}></Route>
-                                <Route path="/attendance/" component={Attendance}></Route>
-                                <Route path="/scheduling/" component={Scheduling}></Route>
-                                <Route path="/memberManagement/" component={MemberManagement}></Route>
-                                <Route path="/pointPreparation/" component={PointPreparation}></Route>
-                                <Route path="/rolePermissionSetting/" component={RolePermissionSetting}></Route>
-                                <Route path="/bonusPermissionSetting/" component={BonusPermissionSetting}></Route>
+                                <Route path="/main/dashboard/" component={DashBoard}></Route>
+                                <Route path="/main/notice/" component={Notice}></Route>
+                                <Route path="/main/workReport/" component={WorkReport}></Route>
+                                <Route path="/main/myScores/" component={MyScores}></Route>
+                                <Route path="/main/pointBonus/" component={PointBonus}></Route>
+                                <Route path="/main/integrationTask/" component={IntegrationTask}></Route>
+                                <Route path="/main/pointApproval/" component={PointApproval}></Route>
+                                <Route path="/main/managementTask/" component={ManagementTask}></Route>
+                                <Route path="/main/pointRanking/" component={PointRanking}></Route>
+                                <Route path="/main/pointQuery/" component={PointQuery}></Route>
+                                <Route path="/main/pointTicket/" component={PointTicket}></Route>
+                                <Route path="/main/checkSettlement/" component={CheckSettlement}></Route>
+                                <Route path="/main/eventLibrary/" component={EventLibrary}></Route>
+                                <Route path="/main/attendance/" component={Attendance}></Route>
+                                <Route path="/main/scheduling/" component={Scheduling}></Route>
+                                <Route path="/main/memberManagement/" component={MemberManagement}></Route>
+                                <Route path="/main/pointPreparation/" component={PointPreparation}></Route>
+                                <Route path="/main/rolePermissionSetting/" component={RolePermissionSetting}></Route>
+                                <Route path="/main/bonusPermissionSetting/" component={BonusPermissionSetting}></Route>
+                                <Route path="/main/operationLog/" component={OperationLog}></Route>
                             </div>
                         </Content>
                     </Layout>
