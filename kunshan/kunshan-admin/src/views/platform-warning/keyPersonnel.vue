@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 11:11:20
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-14 09:04:41
+ * @LastEditTime: 2019-10-14 09:12:10
  * @Description: 重点人员情况
  * @Email: UvDream@163.com
  -->
@@ -57,7 +57,6 @@
 import TopSelect from "../../components/top-select/topSelect";
 import Title from "../../components/two-title/twoTitle";
 import MoreInput from "../../components/more-input/index";
-
 import data from "../../mixin/data";
 
 export default {
@@ -82,32 +81,7 @@ export default {
       ]
     };
   },
-  methods: {
-    // 单选按钮状态改变
-    checkChangeFunc(val, index) {
-      this.numberList[index].check = val;
-      this.findCheck();
-    },
-    // 检测全选状态
-    findCheck() {
-      this.numberList.every(item => {
-        return !item.check;
-      })
-        ? (this.checkStatus = 0)
-        : "";
-      this.numberList.every(item => {
-        return item.check;
-      })
-        ? (this.checkStatus = 2)
-        : "";
-    },
-    // 全选状态获取
-    checkStatusFunc(val) {
-      this.numberList.forEach(item => {
-        item.check = val;
-      });
-    }
-  }
+  methods: {}
 };
 </script>
 
