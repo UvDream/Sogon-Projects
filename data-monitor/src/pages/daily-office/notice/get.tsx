@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 21:27:43
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-15 21:47:48
+ * @LastEditTime: 2019-10-15 21:57:53
  * @Description:通知
  * @Email: UvDream@163.com
  */
@@ -25,6 +25,11 @@ class Notice extends React.Component<NoticeProps, NoticeState> {
     render() {
         return (
             <div className="notice">
+                <div className="header">
+                    <span className="header-title">发送的通知</span>
+
+                </div>
+
                 <div className="notice-block">
                     <div className="notice-block-top">
                         <Row>

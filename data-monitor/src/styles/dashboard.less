@@ -1,37 +1,40 @@
-.dashboard {
-    display: flex;
-    height : 100%;
-    outline: 1px solid green;
-    padding: 10px 10px;
+.main {
+    height: calc(~"100%-50px");
 
-    &-left {
-        width: 100%;
+    .dashboard {
+        display: flex;
+        height : 100%;
+        padding: 10px 10px;
 
-        &-card {
-            display  : flex;
-            flex-wrap: wrap;
-        }
+        &-left {
+            width: 100%;
 
-        &-chart {
-            margin          : 8px;
-            background-color: #fff;
-
-            &-title {
-                height       : 40px;
-                border-bottom: 1px solid rgba(245, 245, 245, 1);
-                line-height  : 40px;
-                padding-left : 10px;
+            &-card {
+                display  : flex;
+                flex-wrap: wrap;
             }
 
-            &-content {
-                height : 270px;
-                display: flex;
+            &-chart {
+                margin          : 8px;
+                background-color: #fff;
+
+                &-title {
+                    height       : 40px;
+                    border-bottom: 1px solid rgba(245, 245, 245, 1);
+                    line-height  : 40px;
+                    padding-left : 10px;
+                }
+
+                &-content {
+                    height : 270px;
+                    display: flex;
+                }
             }
         }
-    }
 
-    &-right {
-        background: rgba(255, 255, 255, 1);
-        width     : 340px;
+        &-right {
+            background: rgba(255, 255, 255, 1);
+            width     : 340px;
+        }
     }
 }
