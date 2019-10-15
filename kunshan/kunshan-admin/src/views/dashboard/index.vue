@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-14 14:43:12
+ * @LastEditTime: 2019-10-15 17:28:55
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
@@ -13,25 +13,37 @@
       <div class="dashboard-bottom-left">
         <Title title="今日值班情况" v-model="data" />
         <div class="dashboard-bottom-left-content">
-          <div class="dashboard-bottom-left-content-block">
-            <section>周领导:</section>
+          <div
+            class="dashboard-bottom-left-content-block"
+            v-for="(item,index) in list.jld"
+            :key="index"
+          >
+            <section v-if="index+1==list.jld.length">周领导:</section>
             <section>
-              <a-input placeholder="姓名" :disabled="disabled" style="margin:0 15px" />
-              <a-input placeholder="号码" :disabled="disabled" />
+              <a-input
+                placeholder="姓名"
+                v-model="item.name"
+                :disabled="disabled"
+                style="margin:0 15px"
+              />
+              <a-input placeholder="号码" v-model="item.phone" :disabled="disabled" />
             </section>
           </div>
-          <div class="dashboard-bottom-left-content-block">
-            <section></section>
+
+          <div
+            class="dashboard-bottom-left-content-block"
+            v-for="(item,index) in list.zzbz"
+            :key="index"
+          >
+            <section v-if="index+1==list.zzbz.length">总值班长:</section>
             <section>
-              <a-input placeholder="姓名" :disabled="disabled" style="margin:0 15px" />
-              <a-input placeholder="号码" :disabled="disabled" />
-            </section>
-          </div>
-          <div class="dashboard-bottom-left-content-block">
-            <section>总值班长:</section>
-            <section>
-              <a-input placeholder="姓名" :disabled="disabled" style="margin:0 15px" />
-              <a-input placeholder="号码" :disabled="disabled" />
+              <a-input
+                placeholder="姓名"
+                v-model="item.name"
+                :disabled="disabled"
+                style="margin:0 15px"
+              />
+              <a-input placeholder="号码" v-model="item.phone" :disabled="disabled" />
             </section>
           </div>
           <div class="dashboard-bottom-left-content-block">
@@ -41,20 +53,47 @@
               <a-input placeholder="号码" :disabled="disabled" />
             </section>
           </div>
-          <div class="dashboard-bottom-left-content-block">
-            <section>联指长:</section>
+          <div
+            class="dashboard-bottom-left-content-block"
+            v-for="(item,index) in list.lzz"
+            :key="index"
+          >
+            <section v-if="index+1==list.lzz.length">联指长:</section>
             <section>
-              <a-input placeholder="姓名" :disabled="disabled" style="margin:0 15px" />
-              <a-input placeholder="号码" :disabled="disabled" />
+              <a-input
+                placeholder="姓名"
+                v-model="item.name"
+                :disabled="disabled"
+                style="margin:0 15px"
+              />
+              <a-input placeholder="号码" v-model="item.phone" :disabled="disabled" />
             </section>
           </div>
           <div class="dashboard-bottom-left-content-block">
             <section>值班力量:</section>
             <section>
-              <span style="margin:0 12px">民警</span>
-              <a-input placeholder="人数" :disabled="disabled" style="width:100px;" />
-              <span style="margin:0 13px">辅警</span>
-              <a-input placeholder="人数" :disabled="disabled" style="width:100px;" />
+              <span style="margin:0 12px">民&#x3000;&#x3000;警</span>
+              <a-input placeholder="人数" :disabled="disabled" style="width:80px;" />
+              <span style="margin:0 13px">辅&#x3000;&#x3000;警</span>
+              <a-input placeholder="人数" :disabled="disabled" style="width:80px;" />
+            </section>
+          </div>
+          <div class="dashboard-bottom-left-content-block">
+            <section></section>
+            <section>
+              <span style="margin:0 12px">武装警车</span>
+              <a-input placeholder="人数" :disabled="disabled" style="width:80px;" />
+              <span style="margin:0 13px">警&#x3000;&#x3000;车</span>
+              <a-input placeholder="人数" :disabled="disabled" style="width:80px;" />
+            </section>
+          </div>
+          <div class="dashboard-bottom-left-content-block">
+            <section></section>
+            <section>
+              <span style="margin:0 12px">武&#x3000;&#x3000;器</span>
+              <a-input placeholder="人数" :disabled="disabled" style="width:80px;" />
+              <span style="margin:0 13px">备勤力量</span>
+              <a-input placeholder="人数" :disabled="disabled" style="width:80px;" />
             </section>
           </div>
           <div class="dashboard-bottom-left-content-btn">
@@ -79,7 +118,7 @@
 import Title from "../../components/two-title/twoTitle.vue";
 import TopSelect from "../../components/top-select/topSelect";
 import data from "../../mixin/data";
-import { dataList } from "../../api/on-duty/index";
+import { checkOnDuty } from "../../api/on-duty/index";
 export default {
   components: {
     Title,
@@ -90,13 +129,49 @@ export default {
     return {
       radioVal: 1,
       selectVal: "",
-      tab: 1
+      tab: 1,
+      formdata: {
+        type: 2,
+        dateType: "日",
+        pcs: this.$store.state.topSelect
+      },
+      list: {}
     };
   },
+  watch: {
+    data: function(val) {
+      if (val == 1) {
+      } else if (val == 0) {
+        this.formdata.type = val;
+        this.searchFunc(this.formdata);
+      }
+    },
+    // 警局下拉框变化
+    policeStation: function(val) {
+      this.formdata.pcs = val;
+      this.searchFunc(this.formdata);
+    },
+    // 日,周,月变化
+    topDate: function(val) {
+      let obj = {
+        1: "日",
+        2: "周",
+        3: "月"
+      };
+      this.formdata.dateType = obj[val];
+      this.searchFunc(this.formdata);
+    }
+  },
   mounted() {
-    dataList();
+    this.searchFunc(this.formdata);
   },
   methods: {
+    searchFunc(data) {
+      checkOnDuty(data).then(res => {
+        console.log(res);
+        this.list = res.data;
+      });
+    },
     radioChange(e) {},
     selectChange(value) {
       this.selectVal = value;
@@ -148,8 +223,8 @@ export default {
     width: 100%;
     background-color: #fff;
     box-shadow: 0px 2px 8px 0px rgba(77, 119, 158, 0.2);
-    height: 420px;
     margin-top: 10px;
+    padding-bottom: 20px;
     display: flex;
     &-left {
       width: 50%;
@@ -205,14 +280,14 @@ export default {
         align-items: center;
         height: 80%;
       }
-      &::before {
-        content: "";
-        position: absolute;
-        top: 50px;
-        width: 1px;
-        height: 315px;
-        background-color: #b3b3b3;
-      }
+      // &::before {
+      //   content: "";
+      //   position: absolute;
+      //   top: 50px;
+      //   width: 1px;
+      //   height: 315px;
+      //   background-color: #b3b3b3;
+      // }
     }
   }
 }
