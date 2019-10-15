@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-12 09:47:36
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-14 18:09:52
+ * @LastEditTime: 2019-10-15 15:09:16
  * @Description: 巡逻盘查质态
  * @Email: UvDream@163.com
  -->
@@ -11,7 +11,6 @@
     <div class="dashboard-bottom-left">
       <Title
         title="巡逻盘查质态"
-        :is-check="true"
         :check-status="checkStatus"
         v-model="data"
         @checkStatus="checkStatusFunc"
@@ -23,8 +22,6 @@
           :index="index"
           :disabled="disabled"
           :name="item.name"
-          :is-check="true"
-          :check-status="item.check"
           v-model="item.num"
           @checkChange="checkChangeFunc"
         ></MoreInput>
@@ -40,7 +37,8 @@
       <div class="table">
         <div class="table-row">
           <section style="border-top: solid 1px #cbcbcb;color:#999;">时间</section>
-          <section style="border-top: solid 1px #cbcbcb;color:#999;">数值</section>
+          <section style="border-top: solid 1px #cbcbcb;color:#999;">盘查人员</section>
+          <section style="border-top: solid 1px #cbcbcb;color:#999;">盘查重点人员</section>
           <section></section>
         </div>
         <div class="table-row" v-for="(item,index) in tableList" :key="index">
@@ -48,7 +46,20 @@
             <Time v-model="item.hour" :disabled="disabled" :format="'YYYY-MM-DD'" />
           </section>
           <section>
-            <a-input placeholder="数值" style="width:160px" :disabled="disabled" v-model="item.num" />
+            <a-input
+              placeholder="数值"
+              style="width:160px"
+              :disabled="disabled"
+              v-model="item.pcrynum"
+            />
+          </section>
+          <section>
+            <a-input
+              placeholder="数值"
+              style="width:160px"
+              :disabled="disabled"
+              v-model="item.pczdrynum"
+            />
           </section>
           <section>
             <a-icon
@@ -66,7 +77,7 @@
       </div>
       <!-- 保存 -->
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary" :disabled="disabled">保存</a-button>
+        <a-button type="primary" :disabled="disabled" @click="saveFunc">保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-center"></div>
@@ -88,10 +99,10 @@ import Title from "../../components/two-title/twoTitle";
 import MoreInput from "../../components/more-input/index";
 import Time from "../../components/time/time.vue";
 import data from "../../mixin/data";
-import { checkPatrol } from "../../api/patrol-check/index";
+import { checkPatrol, saveList } from "../../api/patrol-check/index";
 import axios from "axios";
 import qs from "qs";
-import { EmptyObjVal, DeleteEmptyArray } from "../../util/util";
+import { EmptyObjVal, EmptyArray } from "../../util/util";
 
 export default {
   mixins: [data],
@@ -106,7 +117,7 @@ export default {
       // 全选状态 0未选 1部分选 2全选
       checkStatus: 0,
       numberList: [],
-      tableList: [{ time: new Date(), number: "" }],
+      tableList: [{ time: new Date(), pcrynum: "", pczdrynum: "" }],
       pczdrynum: [],
       formdata: {
         type: 2,
@@ -129,8 +140,8 @@ export default {
     data: function(val) {
       if (val == 1) {
         EmptyObjVal(this.numberList, "num");
-        EmptyObjVal(this.tableList, "num");
-        EmptyObjVal(this.pczdrynum, "num");
+        EmptyObjVal(this.tableList, "pcrynum");
+        EmptyObjVal(this.tableList, "pczdrynum");
       } else if (val == 0) {
         this.formdata.type = val;
         this.searchFunc(this.formdata);
@@ -143,7 +154,6 @@ export default {
     },
     // 日,周,月变化
     topDate: function(val) {
-      console.log("取出部分数值", DeleteEmptyArray(this.numberList, "num", ""));
       let obj = {
         1: "日",
         2: "周",
@@ -159,6 +169,30 @@ export default {
     this.searchFunc(this.formdata);
   },
   methods: {
+    // 保存
+    saveFunc() {
+      let obj = {
+        type: this.data,
+        dateType: this.topDate,
+        pcs: this.policeStation,
+        pcnum: this.numberList,
+        pcryhpczdrynum: this.tableList
+      };
+
+      // console.log("检测是否为空", EmptyArray(this.numberList, "num"));
+      if (
+        EmptyArray(this.numberList, "num") ||
+        EmptyArray(this.tableList, "pcrynum") ||
+        EmptyArray(this.tableList, "pczdrynum")
+      ) {
+        this.$message.error("请将数据填写完整!");
+      } else {
+        saveList(obj).then(res => {
+          console.log("保存");
+          console.log(res);
+        });
+      }
+    },
     // 查询盘查质态
     searchFunc(data) {
       checkPatrol(data).then(res => {
@@ -166,8 +200,7 @@ export default {
         this.numberList.forEach(item => {
           item.check == "true" ? (item.check = true) : (item.check = false);
         });
-        this.tableList = res.data.pcrynum;
-        this.pczdrynum = res.data.pczdrynum;
+        this.tableList = res.data.pcryhpczdrynum;
       });
     },
     // 单选按钮状态改变
@@ -197,7 +230,7 @@ export default {
     // 表格添加删除
     reduce(id, index) {
       if (id == 1) {
-        let obj = { time: new Date(), number: "" };
+        let obj = { time: new Date(), pcrynum: "", pczdrynum: "" };
         this.tableList.push(obj);
       } else {
         this.tableList.splice(index, 1);
@@ -224,7 +257,7 @@ export default {
   flex-wrap: wrap;
 }
 .table {
-  width: 380px;
+  width: 550px;
   margin: 0 auto;
   &-row {
     display: flex;
@@ -246,6 +279,15 @@ export default {
       border-right: solid 1px #cbcbcb;
     }
     & > section:nth-child(3) {
+      text-align: center;
+      width: 170px;
+      height: 40px;
+      line-height: 40px;
+      border-bottom: solid 1px #cbcbcb;
+      border-left: solid 1px #cbcbcb;
+      border-right: solid 1px #cbcbcb;
+    }
+    & > section:nth-child(4) {
       width: 20px;
       line-height: 40px;
       text-align: center;

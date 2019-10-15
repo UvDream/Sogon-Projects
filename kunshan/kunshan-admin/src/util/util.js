@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-14 16:17:33
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-14 18:10:36
+ * @LastEditTime: 2019-10-15 14:55:10
  * @Description:公用方法
  * @Email: UvDream@163.com
  */
@@ -22,4 +22,10 @@ export const DeleteEmptyArray = (array, obj, val) => {
     }
   });
   return arr;
+};
+// 判断键值对是否为空
+export const EmptyArray = (array, obj) => {
+  return array.every(item => {
+    return item[obj] == "";
+  });
 };
