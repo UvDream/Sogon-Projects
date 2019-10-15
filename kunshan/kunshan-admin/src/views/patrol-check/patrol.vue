@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-12 09:47:36
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-15 15:09:16
+ * @LastEditTime: 2019-10-15 15:51:44
  * @Description: 巡逻盘查质态
  * @Email: UvDream@163.com
  -->
@@ -139,9 +139,9 @@ export default {
   watch: {
     data: function(val) {
       if (val == 1) {
-        EmptyObjVal(this.numberList, "num");
-        EmptyObjVal(this.tableList, "pcrynum");
-        EmptyObjVal(this.tableList, "pczdrynum");
+        // EmptyObjVal(this.numberList, "num");
+        // EmptyObjVal(this.tableList, "pcrynum");
+        // EmptyObjVal(this.tableList, "pczdrynum");
       } else if (val == 0) {
         this.formdata.type = val;
         this.searchFunc(this.formdata);
@@ -187,6 +187,7 @@ export default {
       ) {
         this.$message.error("请将数据填写完整!");
       } else {
+        console.log(obj);
         saveList(obj).then(res => {
           console.log("保存");
           console.log(res);

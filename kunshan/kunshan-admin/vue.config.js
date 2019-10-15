@@ -1,6 +1,6 @@
 module.exports = {
   devServer: {
-    port: "8081",
+    port: "8080",
     proxy: {
       // 配置跨域
       "/api": {
