@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 21:27:43
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-15 21:47:22
+ * @LastEditTime: 2019-10-15 21:47:48
  * @Description:通知
  * @Email: UvDream@163.com
  */
@@ -31,7 +31,7 @@ class Notice extends React.Component<NoticeProps, NoticeState> {
 
                             <Col span={2}>
                                 <div className="notice-block-top-avatar">
-                                    天然
+                                    天然2
                                 </div>
                             </Col>
                             <Col span={19} style={{ paddingTop: "5px" }}>

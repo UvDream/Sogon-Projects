@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-09-17 17:06:35
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-14 22:35:18
+ * @LastEditTime: 2019-10-15 21:44:41
  * @Description: 菜单
  * @Email: UvDream@163.com
  */
@@ -27,7 +27,7 @@ export default class Menus extends Component {
                     {
                         id: "1-2", name: "通知", url: "", children: [
                             { id: "1-2-1", name: "收到的通知", url: "/main/notice" },
-                            { id: "1-2-2", name: "发送的通知", url: "/main/notice" }
+                            { id: "1-2-2", name: "发送的通知", url: "/main/getNotice" }
                         ]
                     },
                     { id: "1-3", name: "工作汇报", url: "/main/workReport" },
