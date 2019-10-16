@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-16 10:02:06
+ * @LastEditTime: 2019-10-16 14:26:08
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
@@ -11,7 +11,7 @@
     <TopSelect :select-val="selectVal" :tab-val="tab" />
     <div class="dashboard-bottom">
       <div class="dashboard-bottom-left">
-        <Title title="今日值班情况" v-model="data" />
+        <Title title="市局今日值班情况" v-model="data" />
         <div class="dashboard-bottom-left-content">
           <div
             class="dashboard-bottom-left-content-block"

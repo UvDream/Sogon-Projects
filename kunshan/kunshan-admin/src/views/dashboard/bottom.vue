@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-16 10:05:16
+ * @LastEditTime: 2019-10-16 14:03:00
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
@@ -10,7 +10,7 @@
   <div class="dashboard">
     <div class="dashboard-bottom">
       <div class="dashboard-bottom-left">
-        <Title title="今日值班情况" v-model="data" />
+        <Title title="派出所今日值班情况" v-model="data" />
         <div class="dashboard-bottom-left-content">
           <div
             class="dashboard-bottom-left-content-block"
