@@ -66,11 +66,13 @@ class DashBoardLeft extends React.Component<DashBoardLeftProps, DashBoardLeftSta
                 <div className="dashboard-left-card">
 
                     {
-                        this.state.list.map((item) => {
+                        this.state.list.map((item, index) => {
                             return (
-                                ((index) => {
-                                    return index.check ? (<Card number={item.number} contrast={item.contrast} title={item.name} total={item.total} />) : ""
-                                })(item)
+                                ((index, num) => {
+                                    return index.check ? (<div key={num}>
+                                        <Card number={item.number} contrast={item.contrast} title={item.name} total={item.total} />
+                                    </div>) : ""
+                                })(item, index)
                             )
                         })
                     }
