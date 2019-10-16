@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 11:43:39
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-12 11:04:43
+ * @LastEditTime: 2019-10-16 16:22:15
  * @Description: 重大警情
  * @Email: UvDream@163.com
  -->
@@ -10,7 +10,7 @@
   <div class="dashboard-bottom">
     <div class="dashboard-bottom-left">
       <Title title="重大警情" v-model="data" />
-      <div class="dashboard-bottom-left-content">
+      <div class="dashboard-bottom-left-content" style="margin-left:10px">
         <div class="dashboard-bottom-left-content-great">
           <section>事件时间</section>
           <section>事件类型</section>
@@ -24,7 +24,7 @@
           :key="index"
         >
           <section>
-            <Time v-model="item.time" :disabled="disabled" />
+            <Time v-model="item.sjtime" :disabled="disabled" :format="'YYYY-MM-DD'" />
           </section>
           <section>
             <a-select
@@ -43,7 +43,7 @@
               placeholder="所属派出所"
               style="width: 120px"
               :disabled="disabled"
-              v-model="item.from"
+              v-model="item.pcs"
             />
           </section>
           <section>
@@ -51,7 +51,7 @@
               placeholder="详情"
               style="width: 120px"
               :disabled="disabled"
-              v-model="item.more"
+              v-model="item.content"
             />
           </section>
           <section>
@@ -84,7 +84,7 @@
 import Time from "../../components/time/time.vue";
 import Title from "../../components/two-title/twoTitle";
 import data from "../../mixin/data";
-
+import { checkGreat } from "../../api/police-quality/great";
 export default {
   mixins: [data],
   components: {
@@ -97,7 +97,7 @@ export default {
       radioVal: 1,
       greatList: [
         {
-          time: "2019-10-12 10:10:10",
+          sjtime: "2019-10-12",
           type: "",
           form: "",
           more: ""
@@ -105,7 +105,17 @@ export default {
       ]
     };
   },
+  mounted() {
+    this.searchFunc(this.formdata);
+  },
   methods: {
+    searchFunc(data) {
+      checkGreat(data).then(res => {
+        if (res.code == 0) {
+          this.greatList = res.data.zdjqxq;
+        }
+      });
+    },
     addList() {
       let list = { time: new Date(), type: "", form: "", more: "" };
       this.greatList.push(list);

@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 10:24:15
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-16 14:33:20
+ * @LastEditTime: 2019-10-16 16:05:56
  * @Description: 警情质态分析
  * @Email: UvDream@163.com
  -->
@@ -12,24 +12,15 @@
       <Title title="警情质态分析" v-model="data" />
       <div class="dashboard-bottom-left-content">
         <div class="dashboard-bottom-left-content-block">
-          <div>
-            <section>问题总数:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-          <div>
-            <section>接警问题:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-        </div>
-        <div class="dashboard-bottom-left-content-block">
-          <div>
-            <section>处警问题数据:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-          <div>
-            <section>协警问题数:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
+          <MoreInput
+            v-for="(item,index) in numberList"
+            :key="index"
+            :index="index"
+            :disabled="disabled"
+            :name="item.name"
+            v-model="item.num"
+            @checkChange="checkChangeFunc"
+          ></MoreInput>
         </div>
       </div>
       <div class="dashboard-bottom-left-title">
@@ -98,28 +89,84 @@
 <script>
 import Title from "../../components/two-title/twoTitle";
 import data from "../../mixin/data";
+import { checkPolice } from "../../api/police-quality/index";
+import MoreInput from "../../components/more-input/index";
 
 export default {
   mixins: [data],
   components: {
-    Title
+    Title,
+    MoreInput
   },
   data() {
     return {
+      formdata: {
+        type: 2,
+        dateType: "日",
+        pcs: this.$store.state.topSelect
+      },
       radioVal: 1,
+      numberList: [],
       tableList: [
         { name: "区域不一致", qy: 200, hq: 300, cb: 100, bx: 30, other: 100 },
-        { name: "区域不一致", qy: 200, hq: 300, cb: 100, bx: 30, other: 100 },
-        { name: "区域不一致", qy: 200, hq: 300, cb: 100, bx: 30, other: 100 },
-        { name: "区域不一致", qy: 200, hq: 300, cb: 100, bx: 30, other: 100 },
-        { name: "区域不一致", qy: 200, hq: 300, cb: 100, bx: 30, other: 100 },
-        { name: "区域不一致", qy: 200, hq: 300, cb: 100, bx: 30, other: 100 },
-        { name: "区域不一致", qy: 200, hq: 300, cb: 100, bx: 30, other: 100 }
+        { name: "与类别不一致", qy: 200, hq: 300, cb: 100, bx: 30, other: 100 },
+        { name: "警情不完整", qy: 200, hq: 300, cb: 100, bx: 30, other: 100 },
+        { name: "物品未输入", qy: 200, hq: 300, cb: 100, bx: 30, other: 100 },
+        { name: "标注退回", qy: 200, hq: 300, cb: 100, bx: 30, other: 100 },
+        { name: "人员未输入", qy: 200, hq: 300, cb: 100, bx: 30, other: 100 },
+        { name: "类别不恰当", qy: 200, hq: 300, cb: 100, bx: 30, other: 100 }
       ]
     };
   },
+  computed: {
+    // 顶部派出所
+    policeStation: function() {
+      return this.$store.state.topSelect;
+    },
+    // 顶部星期
+    topDate: function() {
+      return this.$store.state.topDate;
+    }
+  },
+  watch: {
+    data: function(val) {
+      if (val == 1) {
+        // EmptyObjVal(this.numberList, "num");
+        // EmptyObjVal(this.tableList, "pcrynum");
+      } else if (val == 0) {
+        this.formdata.type = val;
+        this.searchFunc(this.formdata);
+      }
+    },
+    // 警局下拉框变化
+    policeStation: function(val) {
+      this.formdata.pcs = val;
+      this.searchFunc(this.formdata);
+    },
+    // 日,周,月变化
+    topDate: function(val) {
+      let obj = {
+        1: "日",
+        2: "周",
+        3: "月"
+      };
+      this.formdata.dateType = obj[val];
+      this.searchFunc(this.formdata);
+    }
+  },
+  mounted() {
+    this.searchFunc(this.formdata);
+  },
   methods: {
-    radioChange(e) {}
+    radioChange(e) {},
+    searchFunc(data) {
+      checkPolice(data).then(res => {
+        if (res.code == 0) {
+          this.tableList = res.data.jqsjzl;
+          this.numberList = res.data.jqztfx;
+        }
+      });
+    }
   }
 };
 </script>
