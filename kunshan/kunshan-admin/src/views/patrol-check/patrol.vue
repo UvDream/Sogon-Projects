@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-12 09:47:36
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-15 16:03:11
+ * @LastEditTime: 2019-10-16 09:05:51
  * @Description: 巡逻盘查质态
  * @Email: UvDream@163.com
  -->
@@ -123,6 +123,11 @@ export default {
         type: 2,
         dateType: "日",
         pcs: this.$store.state.topSelect
+      },
+      obj: {
+        1: "日",
+        2: "周",
+        3: "月"
       }
     };
   },
@@ -139,9 +144,9 @@ export default {
   watch: {
     data: function(val) {
       if (val == 1) {
-        EmptyObjVal(this.numberList, "num");
-        EmptyObjVal(this.tableList, "pcrynum");
-        EmptyObjVal(this.tableList, "pczdrynum");
+        // EmptyObjVal(this.numberList, "num");
+        // EmptyObjVal(this.tableList, "pcrynum");
+        // EmptyObjVal(this.tableList, "pczdrynum");
       } else if (val == 0) {
         this.formdata.type = val;
         this.searchFunc(this.formdata);
@@ -173,12 +178,13 @@ export default {
     saveFunc() {
       let obj = {
         type: this.data,
-        dateType: this.topDate,
+        dateType: this.obj[this.topDate],
         pcs: this.policeStation,
-        pcnum: this.numberList,
-        pcryhpczdrynum: this.tableList
+        patrolInvestigationDo: {
+          pcnum: this.numberList,
+          pcryhpczdrynum: this.tableList
+        }
       };
-
       // console.log("检测是否为空", EmptyArray(this.numberList, "num"));
       if (
         EmptyArray(this.numberList, "num") ||
@@ -187,10 +193,13 @@ export default {
       ) {
         this.$message.error("请将数据填写完整!");
       } else {
-        console.log(obj);
+        // console.log(obj);
         saveList(obj).then(res => {
-          console.log("保存");
-          console.log(res);
+          // console.log("保存");
+          // console.log(res);
+          if (res.code == 0) {
+            this.$message.success("保存成功!");
+          }
         });
       }
     },
