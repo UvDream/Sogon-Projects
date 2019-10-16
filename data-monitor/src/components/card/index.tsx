@@ -3,7 +3,7 @@ import "./card.less"
 
 export interface CardProps {
     number: number,
-    contrast: boolean,
+    contrast?: boolean,
     title: String,
     total: number
 }

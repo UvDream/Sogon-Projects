@@ -3,6 +3,7 @@
 
 
 
+
     .dashboard {
         display: flex;
         height : 100%;
@@ -10,6 +11,8 @@
 
         &-left {
             width: 100%;
+
+
 
             &-setting {
                 width        : 100%;
@@ -44,11 +47,50 @@
                     display: flex;
                 }
             }
+
+
         }
 
         &-right {
             background: rgba(255, 255, 255, 1);
             width     : 340px;
         }
+    }
+
+
+}
+
+.modal-foot {
+    display    : flex;
+    align-items: center;
+    position   : relative;
+    height     : 32px;
+    text-align : left;
+
+    &>div:nth-child(1) {
+        color    : #2B44FF;
+        font-size: 12px;
+    }
+
+    &>div:nth-child(2) {
+        position: absolute;
+        right   : 0;
+    }
+}
+
+.modal-content {
+    width          : 100%;
+    display        : flex;
+    justify-content: space-between;
+    line-height    : 16px;
+    margin-top     : 15px;
+
+    &>span {
+        font-size: 16px;
+        color    : rgba(0, 0, 0, 1);
+    }
+
+    .ant-switch-checked {
+        background-color: #00BD66;
     }
 }

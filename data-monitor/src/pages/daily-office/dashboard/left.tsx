@@ -2,7 +2,7 @@ import React from 'react';
 import Card from "../../../components/card/index";
 import "../../../styles/dashboard.less"
 import RingChart from '../../../components/ring-chart/ringChart'
-import { Icon, Modal } from 'antd';
+import { Icon, Modal, Switch, Button } from 'antd';
 
 export interface DashBoardLeftProps {
 
@@ -13,7 +13,18 @@ export interface DashBoardLeftState {
 }
 
 class DashBoardLeft extends React.Component<DashBoardLeftProps, DashBoardLeftState> {
-    state = { visible: false };
+    state = {
+        visible: false,
+        list: [
+            { name: "我的积分", check: true, number: 12, total: 20, contrast: false },
+            { name: "我的排名", check: true, number: 12, total: 20, contrast: false },
+            { name: "我的奖扣", check: true, number: 12, total: 20, contrast: false },
+            { name: "我的审核", check: true, number: 12, total: 20, contrast: true },
+            { name: "我的任务", check: true, number: 12, total: 20, contrast: false },
+            { name: "我的消息", check: false, number: 12, total: 20, contrast: false },
+            { name: "管理任务", check: false, number: 12, total: 20, contrast: false }
+        ]
+    };
     showModal = () => {
         this.setState({
             visible: true,
@@ -41,10 +52,16 @@ class DashBoardLeft extends React.Component<DashBoardLeftProps, DashBoardLeftSta
                 </div>
                 </div>
                 <div className="dashboard-left-card">
-                    <Card number={11} contrast={false} title={'我的积分'} total={0} />
-                    <Card number={12} contrast={false} title={'我的排名(部门排名)'} total={0} />
-                    <Card number={12} contrast={true} title={'我的审核'} total={20} />
-                    <Card number={12} contrast={false} title={'我的消息'} total={0} />
+
+                    {
+                        this.state.list.map((item) => {
+                            return (
+                                ((index) => {
+                                    return index.check ? (<Card number={item.number} contrast={item.contrast} title={item.name} total={item.total} />) : ""
+                                })(item)
+                            )
+                        })
+                    }
                 </div>
                 <div className="dashboard-left-chart">
                     <div className="dashboard-left-chart-title">
@@ -61,13 +78,34 @@ class DashBoardLeft extends React.Component<DashBoardLeftProps, DashBoardLeftSta
                 {/* 弹框 */}
                 <Modal
                     title="工作台模块显示设置"
+                    width={400}
                     visible={this.state.visible}
                     onOk={this.handleOk.bind(this)}
                     onCancel={this.handleCancel.bind(this)}
+                    footer={[
+                        <div className="modal-foot">
+                            <div>恢复默认设置</div>
+                            <div>
+                                <Button key="submit" type="primary" onClick={this.handleOk.bind(this)}>
+                                    确定
+                                </Button>
+                                <Button key="back" onClick={this.handleCancel.bind(this)}>
+                                    取消
+                                </Button>
+                            </div>
+                        </div>
+                    ]}
                 >
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
+                    {
+                        this.state.list.map((item) => {
+                            return (
+                                <div className="modal-content">
+                                    <span>{item.name}</span>
+                                    <Switch defaultChecked={item.check} />
+                                </div>
+                            )
+                        })
+                    }
                 </Modal>
             </div>
         );
