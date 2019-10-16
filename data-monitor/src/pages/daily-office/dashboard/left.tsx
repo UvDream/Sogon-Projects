@@ -95,7 +95,7 @@ class DashBoardLeft extends React.Component<DashBoardLeftProps, DashBoardLeftSta
                     onOk={this.handleOk.bind(this)}
                     onCancel={this.handleCancel.bind(this)}
                     footer={[
-                        <div className="modal-foot">
+                        <div className="modal-foot" key={1}>
                             <div>恢复默认设置</div>
                             <div>
                                 <Button key="submit" type="primary" onClick={this.handleOk.bind(this)}>
