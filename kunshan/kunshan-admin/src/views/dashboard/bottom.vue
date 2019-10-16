@@ -2,13 +2,12 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-16 10:02:06
+ * @LastEditTime: 2019-10-16 10:03:51
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
 <template>
   <div class="dashboard">
-    <TopSelect :select-val="selectVal" :tab-val="tab" />
     <div class="dashboard-bottom">
       <div class="dashboard-bottom-left">
         <Title title="今日值班情况" v-model="data" />
@@ -18,7 +17,7 @@
             v-for="(item,index) in list.jld"
             :key="'info1-'+index"
           >
-            <section v-if="index+1==list.jld.length">局领导:</section>
+            <section v-if="index+1==list.jld.length">值班局领导:</section>
             <section>
               <a-input
                 placeholder="姓名"
@@ -47,7 +46,7 @@
             </section>
           </div>
           <div class="dashboard-bottom-left-content-block">
-            <section>值班指挥长:</section>
+            <section>值班所领导:</section>
             <section>
               <a-input placeholder="姓名" :disabled="disabled" style="margin:0 15px" />
               <a-input placeholder="号码" :disabled="disabled" />
@@ -58,7 +57,7 @@
             v-for="(item,index) in list.lzz"
             :key="index"
           >
-            <section v-if="index+1==list.lzz.length">联指长:</section>
+            <section v-if="index+1==list.lzz.length">值班民警:</section>
             <section>
               <a-input
                 placeholder="姓名"
@@ -70,7 +69,7 @@
             </section>
           </div>
           <div class="dashboard-bottom-left-content-block">
-            <section>值班力量:</section>
+            <section>当日勤务力量:</section>
             <section>
               <span style="margin:0 12px">民&#x3000;&#x3000;警</span>
               <a-input placeholder="人数" :disabled="disabled" style="width:80px;" />
@@ -79,23 +78,15 @@
             </section>
           </div>
           <div class="dashboard-bottom-left-content-block">
-            <section></section>
+            <section>备勤力量:</section>
             <section>
-              <span style="margin:0 12px">武装警车</span>
+              <span style="margin:0 12px">民&#x3000;&#x3000;警</span>
               <a-input placeholder="人数" :disabled="disabled" style="width:80px;" />
-              <span style="margin:0 13px">警&#x3000;&#x3000;车</span>
+              <span style="margin:0 13px">辅&#x3000;&#x3000;警</span>
               <a-input placeholder="人数" :disabled="disabled" style="width:80px;" />
             </section>
           </div>
-          <div class="dashboard-bottom-left-content-block">
-            <section></section>
-            <section>
-              <span style="margin:0 12px">武&#x3000;&#x3000;器</span>
-              <a-input placeholder="人数" :disabled="disabled" style="width:80px;" />
-              <span style="margin:0 13px">备勤力量</span>
-              <a-input placeholder="人数" :disabled="disabled" style="width:80px;" />
-            </section>
-          </div>
+
           <div class="dashboard-bottom-left-content-btn">
             <a-button type="primary" :disabled="disabled">保存</a-button>
           </div>
@@ -111,7 +102,6 @@
         </div>
       </div>
     </div>
-    <Bottom />
   </div>
 </template>
 
@@ -119,13 +109,11 @@
 import Title from "../../components/two-title/twoTitle.vue";
 import TopSelect from "../../components/top-select/topSelect";
 import data from "../../mixin/data";
-import Bottom from "./bottom";
 import { checkOnDuty } from "../../api/on-duty/index";
 export default {
   components: {
     Title,
-    TopSelect,
-    Bottom
+    TopSelect
   },
   mixins: [data],
   data() {
