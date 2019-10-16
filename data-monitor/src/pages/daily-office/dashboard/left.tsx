@@ -43,6 +43,13 @@ class DashBoardLeft extends React.Component<DashBoardLeftProps, DashBoardLeftSta
             visible: false,
         });
     };
+    switchChange = (e: any, event: any) => {
+        let arr = this.state.list;
+        arr[e].check = event;
+        this.setState({
+            list: arr
+        })
+    }
     render() {
         return (
             <div className="dashboard-left">
@@ -97,11 +104,11 @@ class DashBoardLeft extends React.Component<DashBoardLeftProps, DashBoardLeftSta
                     ]}
                 >
                     {
-                        this.state.list.map((item) => {
+                        this.state.list.map((item, index) => {
                             return (
-                                <div className="modal-content">
+                                <div className="modal-content" key={index}>
                                     <span>{item.name}</span>
-                                    <Switch defaultChecked={item.check} />
+                                    <Switch defaultChecked={item.check} onChange={this.switchChange.bind(this, index)} />
                                 </div>
                             )
                         })
