@@ -8,6 +8,7 @@ const DashBoard = (props: any) => {
             <div className="header">
                 <span className="header-title">工作台</span>
             </div>
+
             <div className="dashboard">
                 <DashBoardLeft />
                 <DashBoardRight />
