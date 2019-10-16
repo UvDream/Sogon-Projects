@@ -23,8 +23,11 @@ class DashBoardLeft extends React.Component<DashBoardLeftProps, DashBoardLeftSta
             { name: "我的任务", check: true, number: 12, total: 20, contrast: false },
             { name: "我的消息", check: false, number: 12, total: 20, contrast: false },
             { name: "管理任务", check: false, number: 12, total: 20, contrast: false }
-        ]
+        ],
+        arr: []
     };
+
+    // 弹出框
     showModal = () => {
         this.setState({
             visible: true,
@@ -34,6 +37,7 @@ class DashBoardLeft extends React.Component<DashBoardLeftProps, DashBoardLeftSta
         console.log(e);
         this.setState({
             visible: false,
+            list: this.state.arr
         });
     };
 
@@ -43,11 +47,12 @@ class DashBoardLeft extends React.Component<DashBoardLeftProps, DashBoardLeftSta
             visible: false,
         });
     };
+    // 切换按钮
     switchChange = (e: any, event: any) => {
-        let arr = this.state.list;
+        let arr = JSON.parse(JSON.stringify(this.state.list));
         arr[e].check = event;
         this.setState({
-            list: arr
+            arr: arr
         })
     }
     render() {
