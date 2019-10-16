@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-15 17:28:55
+ * @LastEditTime: 2019-10-16 09:23:20
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
@@ -16,7 +16,7 @@
           <div
             class="dashboard-bottom-left-content-block"
             v-for="(item,index) in list.jld"
-            :key="index"
+            :key="'info1-'+index"
           >
             <section v-if="index+1==list.jld.length">周领导:</section>
             <section>
@@ -33,7 +33,7 @@
           <div
             class="dashboard-bottom-left-content-block"
             v-for="(item,index) in list.zzbz"
-            :key="index"
+            :key="'info-'+index"
           >
             <section v-if="index+1==list.zzbz.length">总值班长:</section>
             <section>
