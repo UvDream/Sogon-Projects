@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-16 15:20:18
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-16 15:58:12
+ * @LastEditTime: 2019-10-17 17:13:05
  * @Description:警情质态
  * @Email: UvDream@163.com
  */
@@ -11,10 +11,10 @@ import qs from "qs";
 // 巡逻盘查
 export const checkPolice = data => {
   return fetch({
-    // url: "/manager/quality/policeQualityAna",
-    url: "index.json",
-    method: "GET",
-    // method: "POST",
+    url: "/manager/quality/policeQualityAna",
+    // url: "index.json",
+    // method: "GET",
+    method: "POST",
     data: qs.stringify(data)
   });
 };

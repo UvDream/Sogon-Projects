@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 10:24:15
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-17 16:19:08
+ * @LastEditTime: 2019-10-17 17:52:57
  * @Description: 警情质态分析
  * @Email: UvDream@163.com
  -->
@@ -18,7 +18,7 @@
             :index="index"
             :disabled="disabled"
             :name="item.name"
-            v-model="item.val"
+            v-model="item.num"
             @checkChange="checkChangeFunc"
           ></MoreInput>
         </div>
@@ -30,8 +30,8 @@
         />
         <span style="font-size:12px">警情数据质量</span>
       </div>
-      <div class="dashboard-bottom-left-table">
-        <!-- <div class="dashboard-bottom-left-table-left">
+      <div class="table">
+        <div class="table-left">
           <div>/</div>
           <div>区域评估错误</div>
           <div>与类别不一致</div>
@@ -40,33 +40,17 @@
           <div>标注退回</div>
           <div>人员未输入</div>
           <div>类别不恰当</div>
-        </div>-->
-        <div class="dashboard-bottom-left-table-right">
-          <div>
-            <section>/</section>
-            <section>青阳</section>
-            <section>花桥</section>
-            <section>城北</section>
-            <section>兵希</section>
-            <section>其他</section>
-          </div>
-          <div v-for="(item, index) in tableList" :key="index">
-            <section>{{item.name}}</section>
-            <section>
-              <a-input v-model="item.qy" :disabled="disabled" />
-            </section>
-            <section>
-              <a-input v-model="item.hq" :disabled="disabled" />
-            </section>
-            <section>
-              <a-input v-model="item.cb" :disabled="disabled" />
-            </section>
-            <section>
-              <a-input v-model="item.bx" :disabled="disabled" />
-            </section>
-            <section>
-              <a-input v-model="item.other" :disabled="disabled" />
-            </section>
+        </div>
+        <div class="table-right">
+          <div v-for="(item,index) in  tableList" :key="index">
+            <div>{{item.name}}</div>
+            <div>{{item.qypgcw}}</div>
+            <div>{{item.ylbbyz}}</div>
+            <div>{{item.jqbws}}</div>
+            <div>{{item.wpwsr}}</div>
+            <div>{{item.bzth}}</div>
+            <div>{{item.rywsr}}</div>
+            <div>{{item.lbbqd}}</div>
           </div>
         </div>
       </div>
@@ -110,13 +94,56 @@ export default {
       radioVal: 1,
       numberList: [],
       tableList: [
-        { name: "区域不一致", qy: 200, hq: 300, cb: 100, bx: 30, other: 100 },
-        { name: "与类别不一致", qy: 200, hq: 300, cb: 100, bx: 30, other: 100 },
-        { name: "警情不完整", qy: 200, hq: 300, cb: 100, bx: 30, other: 100 },
-        { name: "物品未输入", qy: 200, hq: 300, cb: 100, bx: 30, other: 100 },
-        { name: "标注退回", qy: 200, hq: 300, cb: 100, bx: 30, other: 100 },
-        { name: "人员未输入", qy: 200, hq: 300, cb: 100, bx: 30, other: 100 },
-        { name: "类别不恰当", qy: 200, hq: 300, cb: 100, bx: 30, other: 100 }
+        {
+          name: "青阳",
+          qypgcw: "12",
+          ylbbyz: "13",
+          jqbws: "22",
+          wpwsr: "44",
+          bzth: "55",
+          rywsr: "33",
+          lbbqd: "66"
+        },
+        {
+          name: "青阳",
+          qypgcw: "12",
+          ylbbyz: "13",
+          jqbws: "22",
+          wpwsr: "44",
+          bzth: "55",
+          rywsr: "33",
+          lbbqd: "66"
+        },
+        {
+          name: "青阳",
+          qypgcw: "12",
+          ylbbyz: "13",
+          jqbws: "22",
+          wpwsr: "44",
+          bzth: "55",
+          rywsr: "33",
+          lbbqd: "66"
+        },
+        {
+          name: "青阳",
+          qypgcw: "12",
+          ylbbyz: "13",
+          jqbws: "22",
+          wpwsr: "44",
+          bzth: "55",
+          rywsr: "33",
+          lbbqd: "66"
+        },
+        {
+          name: "青阳",
+          qypgcw: "12",
+          ylbbyz: "13",
+          jqbws: "22",
+          wpwsr: "44",
+          bzth: "55",
+          rywsr: "33",
+          lbbqd: "66"
+        }
       ]
     };
   },
@@ -168,9 +195,11 @@ export default {
     radioChange(e) {},
     searchFunc(data) {
       checkPolice(data).then(res => {
+        console.log("警情质态分析");
+        console.log(res);
         if (res.code == 0) {
-          this.tableList = res.data.jqsjzl;
-          this.numberList = res.data.jqztfx;
+          // this.tableList = res.data.jqsjzl;
+          this.numberList = res.data.jqzt;
         }
       });
     }
@@ -180,4 +209,33 @@ export default {
 
 <style lang="less" scoped>
 @import url("./policeQuality.less");
+.table {
+  display: flex;
+  padding-left: 20px;
+  &-left {
+    border-top: 1px solid #cbcbcb;
+    width: 113px;
+
+    & > div {
+      height: 40px;
+      line-height: 40px;
+      border-left: 1px solid #cbcbcb;
+      border-bottom: 1px solid #cbcbcb;
+    }
+  }
+  &-right {
+    border-top: 1px solid #cbcbcb;
+    border-right: 1px solid #cbcbcb;
+    display: flex;
+
+    & > div > div {
+      width: 60px;
+      height: 40px;
+      line-height: 40px;
+      border-left: 1px solid #cbcbcb;
+      border-bottom: 1px solid #cbcbcb;
+      text-align: center;
+    }
+  }
+}
 </style>
