@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-16 14:26:08
+ * @LastEditTime: 2019-10-17 14:32:14
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
@@ -18,10 +18,12 @@
             v-for="(item,index) in list.jld"
             :key="'info1-'+index"
           >
-            <section v-if="index+1==list.jld.length">局领导:</section>
+            <section>
+              <span v-show="index+1!=list.jld.length">局领导:</span>
+            </section>
             <section>
               <a-input
-                placeholder="姓名"
+                placeholder="姓名11"
                 v-model="item.name"
                 :disabled="disabled"
                 style="margin:0 15px"
@@ -35,7 +37,9 @@
             v-for="(item,index) in list.zzbz"
             :key="'info-'+index"
           >
-            <section v-if="index+1==list.zzbz.length">总值班长:</section>
+            <section>
+              <span v-if="index+1!=list.zzbz.length">总值班长:</span>
+            </section>
             <section>
               <a-input
                 placeholder="姓名"
@@ -101,6 +105,8 @@
           </div>
         </div>
       </div>
+      <div class="dashboard-bottom-center"></div>
+
       <div class="dashboard-bottom-right">
         <div class="dashboard-bottom-right-title">
           <a-icon type="exception" style="margin:0 10px;font-size:22px;position:relative;top:3px;" />
@@ -189,109 +195,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.dashboard {
-  &-top {
-    width: 100%;
-    height: 40px;
-    background-color: #fff;
-    box-shadow: 0px 2px 8px 0px rgba(77, 119, 158, 0.2);
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 4px;
-    &-week {
-      &-click {
-        background-color: #fff !important;
-        color: #b3b3b3 !important;
-      }
-      display: flex;
-      & > section {
-        &:hover {
-          cursor: pointer;
-        }
-        width: 26px;
-        height: 26px;
-        line-height: 26px;
-        text-align: center;
-        border-radius: 4px;
-        border: 1px solid #b3b3b3;
-        background-color: #b3b3b3;
-        color: #fff;
-      }
-    }
-  }
-  &-bottom {
-    border-radius: 4px;
-    width: 100%;
-    background-color: #fff;
-    box-shadow: 0px 2px 8px 0px rgba(77, 119, 158, 0.2);
-    margin-top: 10px;
-    padding-bottom: 20px;
-    display: flex;
-    &-left {
-      width: 50%;
-      height: 100%;
-      &-title {
-        height: 45px;
-        line-height: 45px;
-        & > span {
-          font-size: 16px;
-          color: #333;
-        }
-      }
-      &-content {
-        &-btn {
-          padding-left: 210px;
-          margin-top: 20px;
-        }
-        &-block {
-          display: flex;
-          align-items: center;
-          margin-top: 15px;
-          color: #999999;
-
-          .ant-input {
-            width: 138px;
-          }
-          & > section:nth-child(1) {
-            width: 130px;
-            text-align: right;
-          }
-          & > section:nth-child(2) {
-            display: flex;
-            align-items: center;
-          }
-        }
-      }
-    }
-    &-right {
-      width: 50%;
-      height: 100%;
-      position: relative;
-      &-title {
-        height: 45px;
-        line-height: 45px;
-        & > span {
-          font-size: 16px;
-          color: #333;
-        }
-      }
-      &-content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 80%;
-      }
-      // &::before {
-      //   content: "";
-      //   position: absolute;
-      //   top: 50px;
-      //   width: 1px;
-      //   height: 315px;
-      //   background-color: #b3b3b3;
-      // }
-    }
-  }
-}
+@import url("./index.less");
+@import url("../police-quality/policeQuality");
 </style>

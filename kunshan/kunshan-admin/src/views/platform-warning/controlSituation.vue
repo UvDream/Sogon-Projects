@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 11:07:08
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-14 09:15:14
+ * @LastEditTime: 2019-10-17 14:14:22
  * @Description: 布控
  * @Email: UvDream@163.com
  -->
@@ -10,13 +10,7 @@
 <template>
   <div class="dashboard-bottom" style="height:275px">
     <div class="dashboard-bottom-left">
-      <Title
-        title="布控情况"
-        :is-check="true"
-        :check-status="checkStatus"
-        v-model="data"
-        @checkStatus="checkStatusFunc"
-      />
+      <Title title="布控情况" v-model="data" @checkStatus="checkStatusFunc" />
       <div class="control" style="margin-left:10px">
         <!-- <MoreInput name="布控人数" :is-check="true" :disabled="disabled" />
         <MoreInput name="当天布控人数" :is-check="true" :disabled="disabled" />
@@ -28,7 +22,6 @@
           :index="index"
           :disabled="disabled"
           :name="item.name"
-          :is-check="true"
           :check-status="item.check"
           v-model="item.number"
           @checkChange="checkChangeFunc"

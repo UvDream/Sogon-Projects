@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 15:34:11
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-12 11:06:09
+ * @LastEditTime: 2019-10-17 14:22:34
  * @Description: 警情情况
  * @Email: UvDream@163.com
  -->
@@ -56,6 +56,7 @@
         <a-button type="primary" :disabled="disabled">保存</a-button>
       </div>
     </div>
+    <div class="dashboard-bottom-center"></div>
     <div class="dashboard-bottom-right">
       <div class="dashboard-bottom-right-title">
         <a-icon type="exception" style="margin:0 10px;font-size:22px;position:relative;top:3px;" />
@@ -90,14 +91,4 @@ export default {
 
 <style lang="less" scoped>
 @import url("./policeQuality.less");
-.dashboard-bottom-right {
-  &::before {
-    content: "";
-    position: absolute;
-    top: 50px;
-    width: 1px;
-    height: 200px;
-    background-color: #b3b3b3;
-  }
-}
 </style>

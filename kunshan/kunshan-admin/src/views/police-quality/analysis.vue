@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 10:24:15
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-16 16:05:56
+ * @LastEditTime: 2019-10-17 14:22:58
  * @Description: 警情质态分析
  * @Email: UvDream@163.com
  -->
@@ -74,6 +74,8 @@
         <a-button type="primary" :disabled="disabled">保存</a-button>
       </div>
     </div>
+    <div class="dashboard-bottom-center"></div>
+
     <div class="dashboard-bottom-right">
       <div class="dashboard-bottom-right-title">
         <a-icon type="exception" style="margin:0 10px;font-size:22px;position:relative;top:3px;" />

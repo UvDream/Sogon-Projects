@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 11:11:20
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-14 09:12:10
+ * @LastEditTime: 2019-10-17 14:14:47
  * @Description: 重点人员情况
  * @Email: UvDream@163.com
  -->
@@ -12,7 +12,6 @@
     <div class="dashboard-bottom-left">
       <Title
         title="重点人员情况"
-        :is-check="true"
         :check-status="checkStatus"
         v-model="data"
         @checkStatus="checkStatusFunc"
@@ -31,7 +30,6 @@
           :index="index"
           :disabled="disabled"
           :name="item.name"
-          :is-check="true"
           :check-status="item.check"
           v-model="item.number"
           @checkChange="checkChangeFunc"
