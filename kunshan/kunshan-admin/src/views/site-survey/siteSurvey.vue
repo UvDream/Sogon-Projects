@@ -7,5 +7,40 @@
  * @Email: UvDream@163.com
  -->
 <template>
-  <div>现场勘查</div>
+  <div class="platform" style="padding-bottom:20px">
+    <TopSelect :select-val="selectVal" :tab-val="tab" />
+    <!-- 2 -->
+    <Quality />
+    <Infomation />
+  </div>
 </template>
+
+<script>
+import TopSelect from "../../components/top-select/topSelect";
+import Title from "../../components/two-title/twoTitle.vue";
+
+// 布控情况
+import Quality from "./quality";
+import Infomation from "./infomation";
+
+export default {
+  components: {
+    TopSelect,
+    Title,
+    Quality,
+    Infomation
+  },
+  data() {
+    return {
+      selectVal: "",
+      tab: 1
+    };
+  }
+};
+</script>
+
+<style lang="less" scopes>
+@import url("../police-quality/policeQuality");
+</style>
+
+
