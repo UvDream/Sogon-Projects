@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 15:34:11
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-17 14:22:34
+ * @LastEditTime: 2019-10-17 19:03:53
  * @Description: 警情情况
  * @Email: UvDream@163.com
  -->
@@ -12,43 +12,9 @@
       <Title title="警情情况" v-model="data" />
       <div class="dashboard-bottom-left-content">
         <div class="dashboard-bottom-left-content-block">
-          <div>
-            <section>呼入量:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-          <div>
-            <section>有效报警:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-        </div>
-        <div class="dashboard-bottom-left-content-block">
-          <div>
-            <section>违法犯罪警情:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-          <div>
-            <section>重大警情:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-        </div>
-        <div class="dashboard-bottom-left-content-block">
-          <div>
-            <section>涉娼警情:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-          <div>
-            <section>涉毒警情:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-        </div>
-        <div class="dashboard-bottom-left-content-block">
-          <div>
-            <section>涉黑警情:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-          <div>
-            <section>涉财警情:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
+          <div v-for="(item,index) in greatList" :key="index">
+            <section>{{item.name}}:</section>
+            <a-input placeholder="数量" v-model="item.num" :disabled="disabled" />
           </div>
         </div>
       </div>
@@ -72,7 +38,7 @@
 <script>
 import Title from "../../components/two-title/twoTitle";
 import data from "../../mixin/data";
-
+import { checkHappen } from "../../api/police-quality/index";
 export default {
   mixins: [data],
   components: {
@@ -80,10 +46,28 @@ export default {
   },
   data() {
     return {
-      radioVal: 1
+      radioVal: 1,
+      formdata: {
+        type: 2,
+        dateType: "日",
+        pcs: this.$store.state.topSelect
+      },
+      greatList: []
     };
   },
+  mounted() {
+    this.searchFunc(this.formdata);
+  },
   methods: {
+    searchFunc(data) {
+      checkHappen(data).then(res => {
+        if (res.code == 0) {
+          console.log("警情情况");
+          console.log(res);
+          this.greatList = res.data.jqqk;
+        }
+      });
+    },
     radioChange(e) {}
   }
 };
