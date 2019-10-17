@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 11:43:39
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-17 14:21:59
+ * @LastEditTime: 2019-10-17 18:55:18
  * @Description: 重大警情
  * @Email: UvDream@163.com
  -->
@@ -31,11 +31,13 @@
               style="width: 120px"
               @change="selectChange"
               :disabled="disabled"
-              v-model="item.type"
+              v-model="item.sjtype"
             >
-              <a-select-option value="jack">Jack</a-select-option>
-              <a-select-option value="lucy">Lucy</a-select-option>
-              <a-select-option value="Yiminghe">yiminghe</a-select-option>
+              <a-select-option
+                v-for="(item,index) in dataL"
+                :key="index"
+                :value="item.name"
+              >{{item.name}}</a-select-option>
             </a-select>
           </section>
           <section>
@@ -87,6 +89,7 @@ import Time from "../../components/time/time.vue";
 import Title from "../../components/two-title/twoTitle";
 import data from "../../mixin/data";
 import { checkGreat } from "../../api/police-quality/great";
+import { list } from "./index";
 export default {
   mixins: [data],
   components: {
@@ -97,6 +100,7 @@ export default {
     this.dateFormat = "YYYY-MM-DD";
     return {
       radioVal: 1,
+      dataL: list,
       greatList: [
         {
           sjtime: "2019-10-12",
@@ -114,7 +118,9 @@ export default {
     searchFunc(data) {
       checkGreat(data).then(res => {
         if (res.code == 0) {
-          this.greatList = res.data.zdjqxq;
+          console.log("查询重大警情");
+          console.log(res);
+          this.greatList = res.data.zdjq;
         }
       });
     },
