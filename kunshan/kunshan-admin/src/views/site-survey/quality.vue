@@ -27,6 +27,7 @@
         <a-button type="primary" :disabled="disabled" @click="saveFunc">保存</a-button>
       </div>
     </div>
+    <div class="dashboard-bottom-center"></div>
     <div class="dashboard-bottom-right">
       <div class="dashboard-bottom-right-title">
         <a-icon
