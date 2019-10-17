@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-16 15:20:18
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-17 18:58:30
+ * @LastEditTime: 2019-10-17 19:47:51
  * @Description:警情质态
  * @Email: UvDream@163.com
  */
@@ -31,6 +31,16 @@ export const savePolice = data => {
 export const checkHappen = data => {
   return fetch({
     url: "/manager/quality/warningSituation",
+    method: "POST",
+    data: qs.stringify(data)
+  });
+};
+
+// 异常报警
+
+export const checkAbnormal = data => {
+  return fetch({
+    url: "/manager/quality/errorCall",
     method: "POST",
     data: qs.stringify(data)
   });
