@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-17 14:31:47
+ * @LastEditTime: 2019-10-17 17:04:50
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
@@ -14,15 +14,15 @@
         <div class="dashboard-bottom-left-content">
           <div
             class="dashboard-bottom-left-content-block"
-            v-for="(item,index) in list.jld"
+            v-for="(item,index) in list.zbsld"
             :key="'info1-'+index"
           >
             <section>
-              <span v-show="index+1!=list.jld.length">局领导:</span>
+              <span v-show="index+1!=list.jld.length">值班局领导:</span>
             </section>
             <section>
               <a-input
-                placeholder="姓名11"
+                placeholder="姓名"
                 v-model="item.name"
                 :disabled="disabled"
                 style="margin:0 15px"
@@ -49,11 +49,23 @@
               <a-input placeholder="号码" v-model="item.phone" :disabled="disabled" />
             </section>
           </div>
-          <div class="dashboard-bottom-left-content-block">
-            <section>值班指挥长:</section>
+
+          <div
+            class="dashboard-bottom-left-content-block"
+            v-for="(item,index) in list.zbsld"
+            :key="'info1-'+index"
+          >
             <section>
-              <a-input placeholder="姓名" :disabled="disabled" style="margin:0 15px" />
-              <a-input placeholder="号码" :disabled="disabled" />
+              <span v-show="index+1!=list.jld.length">值班所领导:</span>
+            </section>
+            <section>
+              <a-input
+                placeholder="姓名"
+                v-model="item.name"
+                :disabled="disabled"
+                style="margin:0 15px"
+              />
+              <a-input placeholder="号码" v-model="item.phone" :disabled="disabled" />
             </section>
           </div>
           <div
@@ -61,7 +73,7 @@
             v-for="(item,index) in list.lzz"
             :key="index"
           >
-            <section v-if="index+1==list.lzz.length">联指长:</section>
+            <section v-if="index+1==list.lzz.length">值班民警:</section>
             <section>
               <a-input
                 placeholder="姓名"
@@ -73,30 +85,43 @@
             </section>
           </div>
           <div class="dashboard-bottom-left-content-block">
-            <section>值班力量:</section>
+            <section>当日勤务力量:</section>
             <section>
               <span style="margin:0 12px">民&#x3000;&#x3000;警</span>
-              <a-input placeholder="人数" :disabled="disabled" style="width:80px;" />
+              <a-input
+                placeholder="人数"
+                v-model="list.drqwll.mj"
+                :disabled="disabled"
+                style="width:80px;"
+              />
               <span style="margin:0 13px">辅&#x3000;&#x3000;警</span>
-              <a-input placeholder="人数" :disabled="disabled" style="width:80px;" />
+
+              <a-input
+                placeholder="人数"
+                v-model="list.drqwll.fj"
+                :disabled="disabled"
+                style="width:80px;"
+              />
             </section>
           </div>
+
           <div class="dashboard-bottom-left-content-block">
-            <section></section>
+            <section>备勤力量:</section>
             <section>
-              <span style="margin:0 12px">武装警车</span>
-              <a-input placeholder="人数" :disabled="disabled" style="width:80px;" />
-              <span style="margin:0 13px">警&#x3000;&#x3000;车</span>
-              <a-input placeholder="人数" :disabled="disabled" style="width:80px;" />
-            </section>
-          </div>
-          <div class="dashboard-bottom-left-content-block">
-            <section></section>
-            <section>
-              <span style="margin:0 12px">武&#x3000;&#x3000;器</span>
-              <a-input placeholder="人数" :disabled="disabled" style="width:80px;" />
-              <span style="margin:0 13px">备勤力量</span>
-              <a-input placeholder="人数" :disabled="disabled" style="width:80px;" />
+              <span style="margin:0 12px">民&#x3000;&#x3000;警</span>
+              <a-input
+                placeholder="人数"
+                v-model="list.bqll.mj"
+                :disabled="disabled"
+                style="width:80px;"
+              />
+              <span style="margin:0 13px">辅&#x3000;&#x3000;警</span>
+              <a-input
+                placeholder="人数"
+                v-model="list.bqll.fj"
+                :disabled="disabled"
+                style="width:80px;"
+              />
             </section>
           </div>
           <div class="dashboard-bottom-left-content-btn">
@@ -112,11 +137,10 @@
           <span>可视化样例</span>
         </div>
         <div class="dashboard-bottom-right-content">
-          <img src="../../assets/images/u186.png" alt />
+          <img src="../../assets/images/u233.png" alt />
         </div>
       </div>
     </div>
-    <Bottom />
   </div>
 </template>
 
@@ -124,13 +148,11 @@
 import Title from "../../components/two-title/twoTitle.vue";
 import TopSelect from "../../components/top-select/topSelect";
 import data from "../../mixin/data";
-import Bottom from "./bottom";
 import { checkOnDuty } from "../../api/on-duty/index";
 export default {
   components: {
     Title,
-    TopSelect,
-    Bottom
+    TopSelect
   },
   mixins: [data],
   data() {

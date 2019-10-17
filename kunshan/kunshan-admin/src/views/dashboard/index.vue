@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-17 14:32:14
+ * @LastEditTime: 2019-10-17 16:54:58
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
@@ -50,13 +50,7 @@
               <a-input placeholder="号码" v-model="item.phone" :disabled="disabled" />
             </section>
           </div>
-          <div class="dashboard-bottom-left-content-block">
-            <section>值班指挥长:</section>
-            <section>
-              <a-input placeholder="姓名" :disabled="disabled" style="margin:0 15px" />
-              <a-input placeholder="号码" :disabled="disabled" />
-            </section>
-          </div>
+
           <div
             class="dashboard-bottom-left-content-block"
             v-for="(item,index) in list.lzz"
@@ -74,30 +68,61 @@
             </section>
           </div>
           <div class="dashboard-bottom-left-content-block">
-            <section>值班力量:</section>
+            <section>巡逻处警:</section>
             <section>
               <span style="margin:0 12px">民&#x3000;&#x3000;警</span>
-              <a-input placeholder="人数" :disabled="disabled" style="width:80px;" />
+              <a-input
+                placeholder="人数"
+                v-model="list.zbll.mj"
+                :disabled="disabled"
+                style="width:80px;"
+              />
               <span style="margin:0 13px">辅&#x3000;&#x3000;警</span>
-              <a-input placeholder="人数" :disabled="disabled" style="width:80px;" />
+
+              <a-input
+                placeholder="人数"
+                v-model="list.zbll.fj"
+                :disabled="disabled"
+                style="width:80px;"
+              />
             </section>
           </div>
           <div class="dashboard-bottom-left-content-block">
             <section></section>
             <section>
               <span style="margin:0 12px">武装警车</span>
-              <a-input placeholder="人数" :disabled="disabled" style="width:80px;" />
+              <a-input
+                placeholder="人数"
+                v-model="list.zbll.wzjc"
+                :disabled="disabled"
+                style="width:80px;"
+              />
               <span style="margin:0 13px">警&#x3000;&#x3000;车</span>
-              <a-input placeholder="人数" :disabled="disabled" style="width:80px;" />
+              <a-input
+                placeholder="人数"
+                v-model="list.zbll.jc"
+                :disabled="disabled"
+                style="width:80px;"
+              />
             </section>
           </div>
           <div class="dashboard-bottom-left-content-block">
             <section></section>
             <section>
               <span style="margin:0 12px">武&#x3000;&#x3000;器</span>
-              <a-input placeholder="人数" :disabled="disabled" style="width:80px;" />
+              <a-input
+                placeholder="人数"
+                :disabled="disabled"
+                v-model="list.zbll.wq"
+                style="width:80px;"
+              />
               <span style="margin:0 13px">备勤力量</span>
-              <a-input placeholder="人数" :disabled="disabled" style="width:80px;" />
+              <a-input
+                placeholder="人数"
+                v-model="list.zbll.bqll"
+                :disabled="disabled"
+                style="width:80px;"
+              />
             </section>
           </div>
           <div class="dashboard-bottom-left-content-btn">

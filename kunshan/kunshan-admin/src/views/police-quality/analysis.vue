@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 10:24:15
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-17 14:22:58
+ * @LastEditTime: 2019-10-17 16:19:08
  * @Description: 警情质态分析
  * @Email: UvDream@163.com
  -->
@@ -18,7 +18,7 @@
             :index="index"
             :disabled="disabled"
             :name="item.name"
-            v-model="item.num"
+            v-model="item.val"
             @checkChange="checkChangeFunc"
           ></MoreInput>
         </div>
@@ -71,7 +71,7 @@
         </div>
       </div>
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary" :disabled="disabled">保存</a-button>
+        <a-button type="primary" :disabled="disabled" @click="saveFunc">保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-center"></div>
@@ -93,7 +93,7 @@ import Title from "../../components/two-title/twoTitle";
 import data from "../../mixin/data";
 import { checkPolice } from "../../api/police-quality/index";
 import MoreInput from "../../components/more-input/index";
-
+import { EmptyObjVal } from "../../util/util";
 export default {
   mixins: [data],
   components: {
@@ -133,8 +133,12 @@ export default {
   watch: {
     data: function(val) {
       if (val == 1) {
-        // EmptyObjVal(this.numberList, "num");
-        // EmptyObjVal(this.tableList, "pcrynum");
+        EmptyObjVal(this.numberList, "val");
+        EmptyObjVal(this.tableList, "qy");
+        EmptyObjVal(this.tableList, "hq");
+        EmptyObjVal(this.tableList, "cb");
+        EmptyObjVal(this.tableList, "bx");
+        EmptyObjVal(this.tableList, "other");
       } else if (val == 0) {
         this.formdata.type = val;
         this.searchFunc(this.formdata);
@@ -160,6 +164,7 @@ export default {
     this.searchFunc(this.formdata);
   },
   methods: {
+    saveFunc() {},
     radioChange(e) {},
     searchFunc(data) {
       checkPolice(data).then(res => {
