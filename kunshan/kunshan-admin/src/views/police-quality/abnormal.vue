@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 09:02:22
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-17 19:57:23
+ * @LastEditTime: 2019-10-18 14:40:19
  * @Description: 异常报警分析
  * @Email: UvDream@163.com
  -->
@@ -17,6 +17,8 @@
         <a-button type="primary" :disabled="disabled">保存</a-button>
       </div>
     </div>
+    <div class="dashboard-bottom-center"></div>
+
     <div class="dashboard-bottom-right">
       <div class="dashboard-bottom-right-title">
         <a-icon type="exception" style="margin:0 10px;font-size:22px;position:relative;top:3px;" />
@@ -55,6 +57,41 @@ export default {
       }
     };
   },
+
+  computed: {
+    // 顶部派出所
+    policeStation: function() {
+      return this.$store.state.topSelect;
+    },
+    // 顶部星期
+    topDate: function() {
+      return this.$store.state.topDate;
+    }
+  },
+  watch: {
+    data: function(val) {
+      if (val == 1) {
+      } else if (val == 0) {
+        this.formdata.type = val;
+        this.searchFunc(this.formdata);
+      }
+    },
+    // 警局下拉框变化
+    policeStation: function(val) {
+      this.formdata.pcs = val;
+      this.searchFunc(this.formdata);
+    },
+    // 日,周,月变化
+    topDate: function(val) {
+      let obj = {
+        1: "日",
+        2: "周",
+        3: "月"
+      };
+      this.formdata.dateType = obj[val];
+      this.searchFunc(this.formdata);
+    }
+  },
   mounted() {
     this.searchFunc(this.formdata);
   },
@@ -77,14 +114,4 @@ export default {
 
 <style lang="less" scoped>
 @import url("./policeQuality.less");
-.dashboard-bottom-right {
-  &::before {
-    content: "";
-    position: absolute;
-    top: 80px;
-    width: 1px;
-    height: 880px;
-    background-color: #b3b3b3;
-  }
-}
 </style>

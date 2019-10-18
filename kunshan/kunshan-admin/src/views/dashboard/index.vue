@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-18 09:08:02
+ * @LastEditTime: 2019-10-18 15:24:39
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
@@ -204,11 +204,10 @@ export default {
       let obj = {
         type: this.formdata.type,
         dateType: this.formdata.dateType,
-        pcs: this.formdata.pcs,
-        list: this.list
+        pcs: this.formdata.pcs
       };
-      console.log(obj);
-      saveDuty(data).then(res => {
+      Object.assign(obj, this.list);
+      saveDuty(obj).then(res => {
         console.log(res);
       });
     },

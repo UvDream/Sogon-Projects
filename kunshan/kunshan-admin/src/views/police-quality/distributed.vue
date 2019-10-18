@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 15:46:06
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-18 11:49:26
+ * @LastEditTime: 2019-10-18 14:40:07
  * @Description: 警情分布
  * @Email: UvDream@163.com
  -->
@@ -129,6 +129,41 @@ export default {
       },
       num: 0
     };
+  },
+
+  computed: {
+    // 顶部派出所
+    policeStation: function() {
+      return this.$store.state.topSelect;
+    },
+    // 顶部星期
+    topDate: function() {
+      return this.$store.state.topDate;
+    }
+  },
+  watch: {
+    data: function(val) {
+      if (val == 1) {
+      } else if (val == 0) {
+        this.formdata.type = val;
+        this.searchFunc(this.formdata);
+      }
+    },
+    // 警局下拉框变化
+    policeStation: function(val) {
+      this.formdata.pcs = val;
+      this.searchFunc(this.formdata);
+    },
+    // 日,周,月变化
+    topDate: function(val) {
+      let obj = {
+        1: "日",
+        2: "周",
+        3: "月"
+      };
+      this.formdata.dateType = obj[val];
+      this.searchFunc(this.formdata);
+    }
   },
   mounted() {
     this.sarchFunc(this.formdata);

@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 15:34:11
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-17 19:03:53
+ * @LastEditTime: 2019-10-18 14:24:31
  * @Description: 警情情况
  * @Email: UvDream@163.com
  -->
@@ -12,7 +12,7 @@
       <Title title="警情情况" v-model="data" />
       <div class="dashboard-bottom-left-content">
         <div class="dashboard-bottom-left-content-block">
-          <div v-for="(item,index) in greatList" :key="index">
+          <div v-for="(item,index) in greatList" :key="index" style="margin-top:10px">
             <section>{{item.name}}:</section>
             <a-input placeholder="数量" v-model="item.num" :disabled="disabled" />
           </div>
@@ -29,7 +29,7 @@
         <span>可视化样例</span>
       </div>
       <div class="dashboard-bottom-right-content">
-        <img src="../../assets/images/u363.png" />
+        <img src="../../assets/images/u362.png" />
       </div>
     </div>
   </div>

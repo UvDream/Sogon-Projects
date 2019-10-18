@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    topSelect: 2,
+    topSelect: "1",
     topDate: 1
   },
   mutations: {},
