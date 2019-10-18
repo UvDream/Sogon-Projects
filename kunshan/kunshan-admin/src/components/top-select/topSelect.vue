@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 08:47:45
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-14 17:27:45
+ * @LastEditTime: 2019-10-18 10:22:24
  * @Description: 顶部下拉选择框
  * @Email: UvDream@163.com
  -->
@@ -14,8 +14,6 @@
         :key="index"
         :value="item.value"
       >{{item.value}}</a-select-option>
-      <a-select-option value="lucy">Lucy</a-select-option>
-      <a-select-option value="Yiminghe">yiminghe</a-select-option>
     </a-select>
     <div style="padding-right:14px" class="dashboard-top-week">
       <section @click="tabCLick(1)" :class="{ 'dashboard-top-week-click': tab === 1 }">日</section>

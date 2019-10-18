@@ -11,7 +11,7 @@ export const checkOnDuty = data => {
 // 保存
 export const saveDuty = data => {
   return fetch({
-    url: "/manager/pi/xlpczt",
+    url: "/manager/onDuty/savePersonnalList",
     method: "POST",
     data: qs.stringify(data)
   });

@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 15:46:06
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-12 11:13:08
+ * @LastEditTime: 2019-10-18 11:49:26
  * @Description: 警情分布
  * @Email: UvDream@163.com
  -->
@@ -16,68 +16,36 @@
           type="file-text"
           style="margin:0 10px 0px 20px;font-size:18px;position:relative;top:3px;"
         />
-        <span style="font-size:12px">派出所违法警情</span>
+        <span style="font-size:12px">派出所违法警情Top5</span>
       </div>
-      <div class="dashboard-bottom-left-table" style="width:450px">
-        <div>
-          <div class="dashboard-bottom-left-table-row">
-            <section>派出所</section>
-            <section>打架斗殴</section>
-            <section>盗窃</section>
-            <section>损害公共安全</section>
-            <section>诈骗</section>
-            <section>其他</section>
-          </div>
-          <div
-            class="dashboard-bottom-left-table-row"
-            v-for="(item, index) in tableList"
-            :key="index"
-          >
-            <section>{{ item.name }}</section>
-            <section>
-              <!-- {{ item.dj }} -->
-              <a-input
-                placeholder="数量"
-                style="width:50px;height:28px"
-                v-model="item.dj"
-                :disabled="disabled"
-              />
-            </section>
-            <section>
-              <a-input
-                placeholder="数量"
-                style="width:50px;height:28px"
-                v-model="item.dq"
-                :disabled="disabled"
-              />
-            </section>
-            <section>
-              <a-input
-                placeholder="数量"
-                style="width:50px;height:28px"
-                v-model="item.sh"
-                :disabled="disabled"
-              />
-            </section>
-            <section>
-              <a-input
-                placeholder="数量"
-                style="width:50px;height:28px"
-                v-model="item.zp"
-                :disabled="disabled"
-              />
-            </section>
-            <section>
-              <a-input
-                placeholder="数量"
-                style="width:50px;height:28px"
-                v-model="item.other"
-                :disabled="disabled"
-              />
-            </section>
-          </div>
-        </div>
+      <div class="dashboard-bottom-left-content-block">
+        <MoreInput
+          v-for="(item,index) in top"
+          :key="index"
+          :index="index"
+          :disabled="disabled"
+          :name="item.pcsname"
+          v-model="item.num"
+        />
       </div>
+      <div class="dashboard-bottom-left-title">
+        <a-icon
+          type="file-text"
+          style="margin:0 10px 0px 20px;font-size:18px;position:relative;top:3px;"
+        />
+        <span style="font-size:12px">违法警情分布</span>
+      </div>
+      <div class="dashboard-bottom-left-content-block">
+        <MoreInput
+          v-for="(item,index) in jqfb"
+          :key="index"
+          :index="index"
+          :disabled="disabled"
+          :name="item.name"
+          v-model="item.num"
+        />
+      </div>
+
       <div class="dashboard-bottom-left-title">
         <a-icon
           type="file-text"
@@ -85,56 +53,19 @@
         />
         <span style="font-size:12px">
           本所共受理违法犯罪警情
-          <a-input placeholder="数量" :disabled="disabled" style="width:80px" />起
+          <a-input placeholder="数量" v-model="num" :disabled="disabled" style="width:80px" />起
         </span>
       </div>
       <div class="dashboard-bottom-left-content">
         <div class="dashboard-bottom-left-content-block">
-          <div>
-            <section>违法警情:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-          <div>
-            <section>群众报警:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-        </div>
-        <div class="dashboard-bottom-left-content-block">
-          <div>
-            <section>举报投诉:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-          <div>
-            <section>纠纷:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-        </div>
-        <div class="dashboard-bottom-left-content-block">
-          <div>
-            <section>交通类警情:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-          <div>
-            <section>火灾事故:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-        </div>
-        <div class="dashboard-bottom-left-content-block">
-          <div>
-            <section>经济类警情:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-          <div>
-            <section>其他行政违法:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-        </div>
-        <div class="dashboard-bottom-left-content-block">
-          <div>
-            <section>其他警情:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-          <div></div>
+          <MoreInput
+            v-for="(item,index) in wfjq"
+            :key="index"
+            :index="index"
+            :disabled="disabled"
+            :name="item.name"
+            v-model="item.num"
+          />
         </div>
       </div>
       <div class="dashboard-bottom-left-title">
@@ -142,68 +73,18 @@
           type="file-text"
           style="margin:0 10px 0px 20px;font-size:18px;position:relative;top:3px;"
         />
-        <span style="font-size:12px">非法警情分布</span>
+        <span style="font-size:12px">有效报警分布</span>
       </div>
       <div class="dashboard-bottom-left-content">
         <div class="dashboard-bottom-left-content-block">
-          <div>
-            <section>非法盗窃:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-          <div>
-            <section>电话诈骗:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-        </div>
-        <div class="dashboard-bottom-left-content-block">
-          <div>
-            <section>盗窃电动车电瓶:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-          <div>
-            <section>打架斗殴:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-        </div>
-        <div class="dashboard-bottom-left-content-block">
-          <div>
-            <section>扒窃:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-          <div>
-            <section>嫖娼:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-        </div>
-        <div class="dashboard-bottom-left-content-block">
-          <div>
-            <section>盗窃车内财物:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-          <div>
-            <section>网络诈骗:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-        </div>
-        <div class="dashboard-bottom-left-content-block">
-          <div>
-            <section>盗窃电动车:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-          <div>
-            <section>赌博:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-        </div>
-        <div class="dashboard-bottom-left-content-block">
-          <div>
-            <section>损坏公共财物:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
-          <div>
-            <section>其他违法警情:</section>
-            <a-input placeholder="数量" :disabled="disabled" />
-          </div>
+          <MoreInput
+            v-for="(item,index) in slbj"
+            :key="index"
+            :index="index"
+            :disabled="disabled"
+            :name="item.name"
+            v-model="item.num"
+          />
         </div>
       </div>
 
@@ -226,24 +107,49 @@
 <script>
 import Title from "../../components/two-title/twoTitle";
 import data from "../../mixin/data";
-
+import MoreInput from "../../components/more-input/index";
+import { checkDis } from "../../api/police-quality/index";
 export default {
   mixins: [data],
   components: {
-    Title
+    Title,
+    MoreInput
   },
   data() {
     return {
       radioVal: 1,
-      tableList: [
-        { name: "派出所1", dj: 10, dq: 20, sh: 13, zp: 90, other: 10 },
-        { name: "派出所2", dj: 10, dq: 20, sh: 13, zp: 90, other: 10 },
-        { name: "派出所3", dj: 10, dq: 20, sh: 13, zp: 90, other: 10 }
-      ]
+      top: [],
+      wfjq: [],
+      jqfb: [],
+      slbj: [],
+      formdata: {
+        type: 2,
+        dateType: "日",
+        pcs: this.$store.state.topSelect
+      },
+      num: 0
     };
   },
+  mounted() {
+    this.sarchFunc(this.formdata);
+  },
   methods: {
-    radioChange(e) {}
+    radioChange(e) {},
+    sarchFunc(data) {
+      checkDis(data).then(res => {
+        console.log("警情分布11111111111");
+        console.log(res);
+        if (res.code == 0) {
+          this.top = res.data.top;
+          this.wfjq = res.data.wfjq;
+          this.slbj = res.data.slbj;
+          this.jqfb = res.data.jqfb;
+          this.wfjq.forEach(item => {
+            this.num = this.num + item.num;
+          });
+        }
+      });
+    }
   }
 };
 </script>

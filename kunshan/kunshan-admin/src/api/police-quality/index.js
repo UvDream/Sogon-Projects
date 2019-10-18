@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-16 15:20:18
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-17 19:47:51
+ * @LastEditTime: 2019-10-18 10:48:14
  * @Description:警情质态
  * @Email: UvDream@163.com
  */
@@ -41,6 +41,15 @@ export const checkHappen = data => {
 export const checkAbnormal = data => {
   return fetch({
     url: "/manager/quality/errorCall",
+    method: "POST",
+    data: qs.stringify(data)
+  });
+};
+
+// 警情分布
+export const checkDis = data => {
+  return fetch({
+    url: "/manager/quality/warningDistribution",
     method: "POST",
     data: qs.stringify(data)
   });

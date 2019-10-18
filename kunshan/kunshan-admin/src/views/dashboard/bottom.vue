@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-17 17:04:50
+ * @LastEditTime: 2019-10-18 09:08:56
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
@@ -10,7 +10,7 @@
   <div class="dashboard">
     <div class="dashboard-bottom">
       <div class="dashboard-bottom-left">
-        <Title title="市局今日值班情况" v-model="data" />
+        <Title title="派出所今日值班情况" v-model="data" />
         <div class="dashboard-bottom-left-content">
           <div
             class="dashboard-bottom-left-content-block"
@@ -125,7 +125,7 @@
             </section>
           </div>
           <div class="dashboard-bottom-left-content-btn">
-            <a-button type="primary" :disabled="disabled">保存</a-button>
+            <a-button type="primary" :disabled="disabled" @click="saveFunc">保存</a-button>
           </div>
         </div>
       </div>
@@ -196,6 +196,18 @@ export default {
     this.searchFunc(this.formdata);
   },
   methods: {
+    saveFunc() {
+      let obj = {
+        type: this.formdata.type,
+        dateType: this.formdata.dateType,
+        pcs: this.formdata.pcs,
+        list: this.list
+      };
+      console.log(obj);
+      saveDuty(data).then(res => {
+        console.log(res);
+      });
+    },
     searchFunc(data) {
       checkOnDuty(data).then(res => {
         console.log(res);

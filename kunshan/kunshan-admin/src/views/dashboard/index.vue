@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-17 16:54:58
+ * @LastEditTime: 2019-10-18 09:08:02
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
@@ -126,7 +126,7 @@
             </section>
           </div>
           <div class="dashboard-bottom-left-content-btn">
-            <a-button type="primary" :disabled="disabled">保存</a-button>
+            <a-button type="primary" :disabled="disabled" @click="saveFunc">保存</a-button>
           </div>
         </div>
       </div>
@@ -151,7 +151,7 @@ import Title from "../../components/two-title/twoTitle.vue";
 import TopSelect from "../../components/top-select/topSelect";
 import data from "../../mixin/data";
 import Bottom from "./bottom";
-import { checkOnDuty } from "../../api/on-duty/index";
+import { checkOnDuty, saveDuty } from "../../api/on-duty/index";
 export default {
   components: {
     Title,
@@ -200,6 +200,18 @@ export default {
     this.searchFunc(this.formdata);
   },
   methods: {
+    saveFunc() {
+      let obj = {
+        type: this.formdata.type,
+        dateType: this.formdata.dateType,
+        pcs: this.formdata.pcs,
+        list: this.list
+      };
+      console.log(obj);
+      saveDuty(data).then(res => {
+        console.log(res);
+      });
+    },
     searchFunc(data) {
       checkOnDuty(data).then(res => {
         console.log(res);

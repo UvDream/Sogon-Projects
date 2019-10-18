@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 10:24:15
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-17 17:52:57
+ * @LastEditTime: 2019-10-18 09:57:52
  * @Description: 警情质态分析
  * @Email: UvDream@163.com
  -->
@@ -103,46 +103,6 @@ export default {
           bzth: "55",
           rywsr: "33",
           lbbqd: "66"
-        },
-        {
-          name: "青阳",
-          qypgcw: "12",
-          ylbbyz: "13",
-          jqbws: "22",
-          wpwsr: "44",
-          bzth: "55",
-          rywsr: "33",
-          lbbqd: "66"
-        },
-        {
-          name: "青阳",
-          qypgcw: "12",
-          ylbbyz: "13",
-          jqbws: "22",
-          wpwsr: "44",
-          bzth: "55",
-          rywsr: "33",
-          lbbqd: "66"
-        },
-        {
-          name: "青阳",
-          qypgcw: "12",
-          ylbbyz: "13",
-          jqbws: "22",
-          wpwsr: "44",
-          bzth: "55",
-          rywsr: "33",
-          lbbqd: "66"
-        },
-        {
-          name: "青阳",
-          qypgcw: "12",
-          ylbbyz: "13",
-          jqbws: "22",
-          wpwsr: "44",
-          bzth: "55",
-          rywsr: "33",
-          lbbqd: "66"
         }
       ]
     };
@@ -198,7 +158,7 @@ export default {
         console.log("警情质态分析");
         console.log(res);
         if (res.code == 0) {
-          // this.tableList = res.data.jqsjzl;
+          this.tableList = res.data.jqzl;
           this.numberList = res.data.jqzt;
         }
       });
