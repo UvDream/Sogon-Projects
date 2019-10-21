@@ -1,11 +1,11 @@
 import fetch from "../request";
-import qs from "qs";
+ 
 // 查询社会面信息采集
 export const checkDataSic = data => {
   return fetch({
     url: "/manager/sic/shmxxcjqk",
     method: "POST",
-    data: qs.stringify(data)
+    data
   });
 };
 // 保存社会
@@ -23,7 +23,7 @@ export const checkDataPic = data => {
   return fetch({
     url: "/manager/pctic/rzhyxxcjqk",
     method: "POST",
-    data: qs.stringify(data)
+    data
   });
 };
 // 保存人像

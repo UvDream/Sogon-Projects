@@ -7,13 +7,13 @@
  * @Email: UvDream@163.com
  */
 import fetch from "../request";
-import qs from "qs";
+ 
 // 巡逻盘查
 export const checkGreat = data => {
   return fetch({
     url: "/manager/quality/majorWarning",
     method: "POST",
-    data: qs.stringify(data)
+    data
   });
 };
 // 保存
@@ -21,6 +21,6 @@ export const savePolice = data => {
   return fetch({
     url: "/manager/pi/xlpczt",
     method: "POST",
-    data: qs.stringify(data)
+    data
   });
 };

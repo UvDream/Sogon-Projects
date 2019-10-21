@@ -101,7 +101,7 @@ import Time from "../../components/time/time.vue";
 import data from "../../mixin/data";
 import { checkPatrol, saveList } from "../../api/patrol-check/index";
 import axios from "axios";
-import qs from "qs";
+ 
 import { EmptyObjVal, EmptyArray } from "../../util/util";
 
 export default {

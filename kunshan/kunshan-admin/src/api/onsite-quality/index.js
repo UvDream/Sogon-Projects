@@ -1,11 +1,11 @@
 import fetch from "../request";
-import qs from "qs";
+
 // 查询现场勘测质态
 export const checkData = data => {
   return fetch({
     url: "/manager/is/kyxczt",
     method: "POST",
-    data: qs.stringify(data)
+    data
   });
 };
 // 保存
@@ -13,6 +13,6 @@ export const saveList = data => {
   return fetch({
     url: "/manager/is/savekyxczt",
     method: "POST",
-    data: qs.stringify(data),
+    data
   });
 };

@@ -104,7 +104,7 @@ import MoreInput from "../../components/more-input/index";
 import data from "../../mixin/data";
 import { checkData, saveList } from "../../api/case-study/index";
 import axios from "axios";
-import qs from "qs";
+ 
 import { EmptyObjVal, EmptyArray } from "../../util/util";
 export default {
   mixins: [data],

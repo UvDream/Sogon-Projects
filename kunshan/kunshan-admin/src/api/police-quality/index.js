@@ -7,7 +7,7 @@
  * @Email: UvDream@163.com
  */
 import fetch from "../request";
-import qs from "qs";
+ 
 // 巡逻盘查
 export const checkPolice = data => {
   return fetch({
@@ -15,7 +15,7 @@ export const checkPolice = data => {
     // url: "index.json",
     // method: "GET",
     method: "POST",
-    data: qs.stringify(data)
+    data
   });
 };
 // 保存
@@ -23,7 +23,7 @@ export const savePolice = data => {
   return fetch({
     url: "/manager/pi/xlpczt",
     method: "POST",
-    data: qs.stringify(data)
+    data
   });
 };
 
@@ -32,7 +32,7 @@ export const checkHappen = data => {
   return fetch({
     url: "/manager/quality/warningSituation",
     method: "POST",
-    data: qs.stringify(data)
+    data
   });
 };
 
@@ -42,7 +42,7 @@ export const checkAbnormal = data => {
   return fetch({
     url: "/manager/quality/errorCall",
     method: "POST",
-    data: qs.stringify(data)
+    data
   });
 };
 
@@ -51,6 +51,6 @@ export const checkDis = data => {
   return fetch({
     url: "/manager/quality/warningDistribution",
     method: "POST",
-    data: qs.stringify(data)
+    data
   });
 };

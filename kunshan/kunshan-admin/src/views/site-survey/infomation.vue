@@ -121,7 +121,7 @@ import Title from "../../components/two-title/twoTitle";
 import data from "../../mixin/data";
 import { checkDataSic, saveListSic, checkDataPic, saveListPic } from "../../api/onsite-quality/infomation-collect";
 import axios from "axios";
-import qs from "qs";
+ 
 import { EmptyObjVal, EmptyArray } from "../../util/util";
 export default {
   mixins: [data],
