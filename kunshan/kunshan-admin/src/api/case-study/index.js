@@ -13,7 +13,6 @@ export const saveList = data => {
   return fetch({
     url: "/manager/ocof/saveyaydyyp",
     method: "POST",
-    data: qs.parse(data),
-    headers: {"Content-Type":"application/json"}
+    data
   });
 };

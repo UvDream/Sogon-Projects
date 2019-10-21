@@ -31,35 +31,35 @@
             </section>
             <section>
               <a-input
-                placeholder="数值"
+                placeholder="不合格退回数"
                 :disabled="disabled"
                 v-model="item.wfjqnum"
               />
             </section>
             <section>
               <a-input
-                placeholder="数值"
+                placeholder="一案一档数"
                 :disabled="disabled"
                 v-model="item.yaydnum"
               />
             </section>
             <section>
               <a-input
-                placeholder="数值"
+                placeholder="线索上报数"
                 :disabled="disabled"
                 v-model="item.xssbnum"
               />
             </section>
             <section>
               <a-input
-                placeholder="数值"
+                placeholder="办结数"
                 :disabled="disabled"
                 v-model="item.bjnum"
               />
             </section>
             <section>
               <a-input
-                placeholder="数值"
+                placeholder="不合格返回数"
                 :disabled="disabled"
                 v-model="item.bhgfhnum"
               />
@@ -170,13 +170,8 @@ export default {
         type: this.data,
         pcs: this.policeStation,
         dateType: this.formdata.dateType,
-        oneCaseOneFileDo: {
-          wlznum:this.numberList[0].num, 
-          wpgnum:this.numberList[1].num,
-          wypnum:this.numberList[2].num,
-          wbjnum:this.numberList[3].num,
-          yaydyypnumList:this.tableList
-        }
+        onecaseonefilenum: this.numberList,
+        onecaseonefilepicnum: this.tableList
       };
       saveList(obj).then(res => {
         // console.log("保存");

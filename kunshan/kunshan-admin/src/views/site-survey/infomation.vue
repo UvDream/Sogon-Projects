@@ -2,7 +2,7 @@
  * @Author: xiahongxiu
  * @Date: 2019-10-11 15:55:15
  * @LastEditors: xiahongxiu
- * @LastEditTime: 2019-10-17 11:17:15
+ * @LastEditTime: 2019-10-21 17:38:22
  * @Description: 社会面信息采集情况
  * @Email: UvDream@163.com
  -->
@@ -62,7 +62,7 @@
         />
         <span style="font-size:12px">人像核验信息采集</span>
       </div>
-      <div class="table">
+      <div class="table table2">
         <div class="table-row">
           <section style="border-top: solid 1px #cbcbcb;color:#999;">类型\派出所</section>
           <section style="border-top: solid 1px #cbcbcb;color:#999;">安装认证店位数</section>
@@ -223,7 +223,7 @@ export default {
     display: flex;
     & > section{
       text-align: center;
-      width: 16%;
+      width: 20%;
       height: 40px;
       line-height: 40px;
       border-bottom: solid 1px #cbcbcb;
@@ -235,6 +235,11 @@ export default {
     & > section:last-child {
       border-right: solid 1px #cbcbcb;
     }
+  }
+}
+.table2{
+  section{
+    width: 25%;
   }
 }
 </style>

@@ -13,8 +13,7 @@ export const saveListSic = data => {
   return fetch({
     url: "/manager/sic/saveshmxxcjqk",
     method: "POST",
-    data: qs.parse(data),
-    headers: {"Content-Type":"application/json"}
+    data
   });
 };
 
@@ -31,7 +30,6 @@ export const saveListPic = data => {
   return fetch({
     url: "/manager/pctic/saverzhyxxcjqk",
     method: "POST",
-    data: qs.parse(data),
-    headers: {"Content-Type":"application/json"}
+    data
   });
 };
