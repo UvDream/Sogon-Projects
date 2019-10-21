@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-18 15:24:39
+ * @LastEditTime: 2019-10-21 10:29:29
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
@@ -171,6 +171,16 @@ export default {
       },
       list: {}
     };
+  },
+  computed: {
+    // 顶部派出所
+    policeStation: function() {
+      return this.$store.state.topSelect;
+    },
+    // 顶部星期
+    topDate: function() {
+      return this.$store.state.topDate;
+    }
   },
   watch: {
     data: function(val) {

@@ -1,5 +1,5 @@
 import fetch from "../request";
- 
+
 // 查询扫黑专项斗争数据
 export const checkData = data => {
   return fetch({
@@ -14,6 +14,6 @@ export const saveList = data => {
     url: "/manager/againstCrime/saveSituation",
     method: "POST",
     data: qs.parse(data),
-    headers: {"Content-Type":"application/json"}
+    headers: { "Content-Type": "application/json" }
   });
 };
