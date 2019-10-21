@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 21:27:43
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-21 20:32:50
+ * @LastEditTime: 2019-10-21 20:45:36
  * @Description:通知
  * @Email: UvDream@163.com
  */
@@ -28,7 +28,6 @@ class Notice extends React.Component<NoticeProps, NoticeState> {
                 <div className="header">
                     <span className="header-title">发送的通知</span>
                     <Button type="primary" style={{ float: "right", marginTop: "15px", marginRight: "20px" }}>发通知</Button>
-
                 </div>
 
                 <div className="notice-block">

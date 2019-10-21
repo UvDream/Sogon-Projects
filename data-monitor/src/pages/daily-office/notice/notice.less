@@ -39,3 +39,48 @@
         }
     }
 }
+
+// 收到的通知详情
+.get-notice {
+    .header>div {
+        cursor: pointer;
+    }
+
+    &-main {
+        width           : 800px;
+        margin          : 0 auto;
+        background-color: #fff;
+        border-radius   : 8px;
+
+        .title {
+            font-size  : 16px;
+            padding-top: 15px;
+            margin     : 0px 0 5px 20px;
+            color      : rgba(48, 48, 48, 1);
+        }
+
+        .auth {
+            color         : rgba(161, 161, 161, 1);
+            margin        : 0 20px;
+            padding-bottom: 10px;
+            font-size     : 12px;
+            border-bottom : 1px solid rgba(238, 238, 238, 1);
+            display       : flex;
+            align-items   : center;
+
+            div {
+                width           : 1px;
+                height          : 12px;
+                background-color: rgb(227, 227, 227);
+                margin          : 0 10px;
+            }
+        }
+
+        &-content {
+            color         : rgba(48, 48, 48, 1);
+            border-bottom : 1px solid rgba(238, 238, 238, 1);
+            margin        : 10px 20px;
+            padding-bottom: 20px;
+        }
+    }
+}
