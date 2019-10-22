@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 11:53:46
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-22 17:48:17
+ * @LastEditTime: 2019-10-22 17:54:36
  * @Description: 主界面
  * @Email: UvDream@163.com
  -->
@@ -77,7 +77,8 @@ export default {
   },
   methods: {
     collapsedSider() {
-      this.$refs.side1.toggleCollapse();
+      //   this.$refs.side1.toggleCollapse();
+      this.$store.state.isCollapsed = !this.$store.state.isCollapsed;
     }
   }
 };
