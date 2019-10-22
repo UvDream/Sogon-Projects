@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 10:24:15
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-21 11:38:56
+ * @LastEditTime: 2019-10-22 10:00:03
  * @Description: 警情质态分析
  * @Email: UvDream@163.com
  -->
@@ -162,6 +162,9 @@ export default {
       console.log(obj);
       savePolice(obj).then(res => {
         console.log(res);
+        if (res.code == 0) {
+          this.$message.success("保存成功!");
+        }
       });
     },
     radioChange(e) {},

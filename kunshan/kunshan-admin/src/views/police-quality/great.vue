@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 11:43:39
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-22 09:39:12
+ * @LastEditTime: 2019-10-22 09:51:06
  * @Description: 重大警情
  * @Email: UvDream@163.com
  -->
@@ -39,15 +39,6 @@
             </a-select>
           </section>
           <section></section>
-
-          <!-- <section>
-            <a-icon
-              type="plus-circle"
-              style="font-size:20px"
-              v-if="greatList.length == index + 1 && disabled==false"
-              @click="addList"
-            />
-          </section>-->
         </div>
       </div>
       <div class="dashboard-bottom-left-title">
