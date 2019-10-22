@@ -2,7 +2,7 @@
  * @Author: xiahongxiu
  * @Date: 2019-10-11 15:55:15
  * @LastEditors: xiahongxiu
- * @LastEditTime: 2019-10-11 15:55:15
+ * @LastEditTime: 2019-10-21 17:39:22
  * @Description: 现场勘测质态
  * @Email: UvDream@163.com
  -->
@@ -113,18 +113,13 @@ export default {
         type: this.data,
         dateType: this.obj[this.topDate],
         pcs: this.policeStation,
-        kyxcnum: this.numberList[0].num,
-        cjhjnum: this.numberList[1].num
+        kyxczt: this.numberList
       };
-      if ( EmptyArray(this.numberList, "num") ) {
-        this.$message.error("请将数据填写完整!");
-      } else {
-        saveList(obj).then(res => {
-          if (res.code == 0) {
-            this.$message.success("保存成功!");
-          }
-        });
-      }
+      saveList(obj).then(res => {
+        if (res.code == 0) {
+          this.$message.success("保存成功!");
+        }
+      });
     },
     // 查询现场勘验质态
     searchFunc(data) {

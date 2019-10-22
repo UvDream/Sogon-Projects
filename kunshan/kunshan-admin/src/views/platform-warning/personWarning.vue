@@ -1,54 +1,67 @@
 <!--
  * @Author: wangzhongjie
- * @Date: 2019-10-11 11:09:48
+ * @Date: 2019-10-11 11:03:51
  * @LastEditors: xiahongxiu
- * @LastEditTime: 2019-10-21 15:43:42
- * @Description:  侵财关注人员维护、预警处置情况
+ * @LastEditTime: 2019-10-21 17:38:22
+ * @Description: 车辆卡扣预警
  * @Email: UvDream@163.com
  -->
-
 <template>
-  <div class="dashboard-bottom" style="height:360px" v-if="formdata.pcs=='昆山市公安局'">
+  <div class="dashboard-bottom" style="height:340px" v-if="formdata.pcs=='昆山市公安局'">
     <div class="dashboard-bottom-left">
-      <Title 
-      title="侵财关注人员维护、预警处置情况" 
-      v-model="data"/>
-      <div class="table">
-        <div class="table-row">
-          <section style="border-top: solid 1px #cbcbcb;color:#999;">类型\派出所</section>
-          <section style="border-top: solid 1px #cbcbcb;color:#999;">维护任务数</section>
-          <section style="border-top: solid 1px #cbcbcb;color:#999;">完成数</section>
-          <section style="border-top: solid 1px #cbcbcb;color:#999;">侵财预警数</section>
-          <section style="border-top: solid 1px #cbcbcb;color:#999;">处置反馈</section>
+      <Title title=" 人像卡口预警情况" v-model="data" />
+      <div class="person-one">
+        <div class="person-one-table">
+          <section>姓名</section>
+          <section style="width:250px;">预警时间</section>
+          <section>预警地点</section>
+          <section></section>
         </div>
-        <div class="table-row" v-for="(item, index) in tableList" :key="index">
-          <section>{{item.pcsname}}</section>
+        <div class="person-one-table" v-for="(item,index) in numberList" :key="index">
           <section>
-            <a-input v-model="item.whrwsnum" :disabled="disabled" />
+            <a-input
+              placeholder="姓名"
+              :disabled="disabled"
+              v-model="item.xm"
+            />
+            </a-select>
+          </section>
+          <section style="width:250px;">
+            <Time v-model="item.yjsj" :disabled="disabled" :format="'YYYY-MM-DD'" />
           </section>
           <section>
-            <a-input v-model="item.wcsnum" :disabled="disabled" />
+            <a-input
+              placeholder="预警地点"
+              :disabled="disabled"
+              v-model="item.yjdd"
+            />
           </section>
           <section>
-            <a-input v-model="item.qcyjsnum" :disabled="disabled" />
+            <a-icon
+              type="minus-circle"
+              v-if="index+1!=numberList.length &&disabled==false "
+              @click="reduce(index,1)"
+            />
+            <a-icon
+              type="plus-circle"
+              v-if="index+1==numberList.length && disabled==false"
+              @click="reduce(index,2)"
+            />
           </section>
-          <section>
-            <a-input v-model="item.czfknum" :disabled="disabled" />
-          </section>
-          
         </div>
-      </div>
-      <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary" :disabled="disabled" @click="saveFunc">保存</a-button>
+        <div class="dashboard-bottom-left-content-btn">
+          <a-button type="primary" :disabled="disabled" @click="saveFunc">保存</a-button>
+        </div>
       </div>
     </div>
+
     <div class="dashboard-bottom-right">
       <div class="dashboard-bottom-right-title">
         <a-icon type="exception" style="margin:0 10px;font-size:22px;position:relative;top:3px;" />
         <span>可视化样例</span>
       </div>
       <div class="dashboard-bottom-right-content">
-        <img src="../../assets/images/u1509.png" />
+        <img src="../../assets/images/u1403.png" />
       </div>
     </div>
   </div>
@@ -57,27 +70,29 @@
 <script>
 import TopSelect from "../../components/top-select/topSelect";
 import Title from "../../components/two-title/twoTitle";
+import Time from "../../components/time/time.vue";
 import data from "../../mixin/data";
-import { checkData, saveList } from "../../api/platform-warning/invasion-ofwealth";
+import { checkData, saveList } from "../../api/platform-warning/person-warning";
 import axios from "axios";
 
 export default {
   mixins: [data],
   components: {
+    Time,
     TopSelect,
     Title
   },
   data() {
     return {
       radioVal: 1,
-      selectVal: "",
+      selectVal: "昆山市公安局",
       tab: 1,
       formdata: {
         type: 2,
         dateType: "日",
         pcs: this.$store.state.topSelect
       },
-      tableList: []
+      numberList: []
     };
   },
   computed: {
@@ -93,7 +108,7 @@ export default {
   watch: {
     data: function(val) {
       if (val == 1) {
-        // EmptyObjVal(this.tabList, "num");
+        // EmptyObjVal(this.numberList, "num");
         // EmptyObjVal(this.tableList, "pcrynum");
         // EmptyObjVal(this.tableList, "pczdrynum");
       } else if (val == 0) {
@@ -125,7 +140,7 @@ export default {
         type: this.data,
         dateType: this.formdata.dateType,
         pcs: this.policeStation,
-        qcgzrywhyjczqkList: this.tableList
+        peopleWarningList: this.numberList
       };
       saveList(obj).then(res => {
         if (res.code == 0) {
@@ -135,8 +150,16 @@ export default {
     },
     searchFunc(data) {
       checkData(data).then(res => {
-        this.tableList = res.data.qcgzrywhyjczqkListQuery;
+        this.numberList = res.data.peopleWarningListQuery;
       });
+    },
+    reduce(index, id) {
+      if (id == 1) {
+        this.numberList.splice(index, 1);
+      } else {
+        let obj = { type: "", number: "", color: "" };
+        this.numberList.push(obj);
+      }
     }
   }
 };
@@ -150,17 +173,20 @@ export default {
     position: absolute;
     top: 70px;
     width: 1px;
-    height: 250px;
+    height: 210px;
     background-color: #b3b3b3;
   }
 }
-.table {
+.person-one {
   margin: 0 20px;
-  &-row {
+  color: #666;
+  &-table {
     display: flex;
+    height: 40px;
+    align-items: center;
     & > section{
       text-align: center;
-      width: 20%;
+      width: 33%;
       height: 40px;
       line-height: 40px;
       border-bottom: solid 1px #cbcbcb;
@@ -169,8 +195,20 @@ export default {
         width:80%;
       }
     }
-    & > section:last-child {
+    & > section:nth-child(3) {
       border-right: solid 1px #cbcbcb;
+    }
+    & > section:last-child {
+      width: 50px;
+      border: none;
+    }
+  }
+  &-table:nth-child(1){
+    & > section{
+      border-top: solid 1px #cbcbcb;
+    }
+    & > section:last-child {
+      border-top: none;
     }
   }
 }

@@ -1,50 +1,54 @@
 <!--
  * @Author: wangzhongjie
  * @Date: 2019-10-11 11:03:51
- * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-12 11:31:29
+ * @LastEditors: xiahongxiu
+ * @LastEditTime: 2019-10-21 15:08:29
  * @Description: 车辆卡扣预警
  * @Email: UvDream@163.com
  -->
 <template>
-  <div class="dashboard-bottom" style="height:340px">
+  <div class="dashboard-bottom" style="height:340px" v-if="formdata.pcs=='昆山市公安局'">
     <div class="dashboard-bottom-left">
       <Title title=" 车辆卡口预警情况" v-model="data" />
       <div class="early-one">
-        <div class="early-one-table" style="border-bottom: 1px solid #ccc;">
+        <div class="early-one-table">
           <section>车辆类型</section>
           <section>车牌号码</section>
           <section>车身颜色</section>
+          <section style="width:250px;">预警时间</section>
+          <section>预警地点</section>
           <section></section>
         </div>
         <div class="early-one-table" v-for="(item,index) in tabList" :key="index">
           <section>
-            <a-select
-              defaultValue="lucy"
-              style="width: 110px"
+            <a-input
+              placeholder="车辆类型"
               :disabled="disabled"
-              v-model="item.type"
-            >
-              <a-select-option value="jack">Jack</a-select-option>
-              <a-select-option value="lucy">Lucy</a-select-option>
-              <a-select-option value="disabled" disabled>Disabled</a-select-option>
-              <a-select-option value="Yiminghe">yiminghe</a-select-option>
-            </a-select>
+              v-model="item.cx"
+            />
           </section>
           <section>
             <a-input
               placeholder="车牌号"
-              style="width: 130px"
               :disabled="disabled"
-              v-model="item.number"
+              v-model="item.cphm"
             />
           </section>
           <section>
             <a-input
               placeholder="车身颜色"
-              style="width: 130px"
               :disabled="disabled"
-              v-model="item.color"
+              v-model="item.ys"
+            />
+          </section>
+          <section style="width: 250px;">
+            <Time v-model="item.yjsj" :disabled="disabled" :format="'YYYY-MM-DD'" />
+          </section>
+          <section>
+            <a-input
+              placeholder="预警地点"
+              :disabled="disabled"
+              v-model="item.yjdd"
             />
           </section>
           <section>
@@ -61,7 +65,7 @@
           </section>
         </div>
         <div class="dashboard-bottom-left-content-btn">
-          <a-button type="primary" :disabled="disabled">保存</a-button>
+          <a-button type="primary" :disabled="disabled" @click="saveFunc">保存</a-button>
         </div>
       </div>
     </div>
@@ -81,23 +85,89 @@
 <script>
 import TopSelect from "../../components/top-select/topSelect";
 import Title from "../../components/two-title/twoTitle";
+import Time from "../../components/time/time.vue";
 import data from "../../mixin/data";
+import { checkData, saveList } from "../../api/platform-warning/early-warning";
+import axios from "axios";
 
 export default {
   mixins: [data],
   components: {
+    Time,
     TopSelect,
     Title
   },
   data() {
     return {
-      tabList: [
-        { type: "lucy", number: "", color: "" },
-        { type: "lucy", number: "", color: "" }
-      ]
+      radioVal: 1,
+      selectVal: "",
+      tab: 1,
+      formdata: {
+        type: 2,
+        dateType: "日",
+        pcs: this.$store.state.topSelect
+      },
+      tabList: []
     };
   },
+  computed: {
+    // 顶部派出所
+    policeStation: function() {
+      return this.$store.state.topSelect;
+    },
+    // 顶部星期
+    topDate: function() {
+      return this.$store.state.topDate;
+    }
+  },
+  watch: {
+    data: function(val) {
+      if (val == 1) {
+        // EmptyObjVal(this.tabList, "num");
+        // EmptyObjVal(this.tableList, "pcrynum");
+        // EmptyObjVal(this.tableList, "pczdrynum");
+      } else if (val == 0) {
+        this.searchFunc(this.formdata);
+      }
+    },
+    // 警局下拉框变化
+    policeStation: function(val) {
+      this.formdata.pcs = val;
+      this.searchFunc(this.formdata);
+    },
+    // 日,周,月变化
+    topDate: function(val) {
+      let obj = {
+        1: "日",
+        2: "周",
+        3: "月"
+      };
+      this.formdata.dateType = obj[val];
+      this.searchFunc(this.formdata);
+    }
+  },
+  mounted() {
+    this.searchFunc(this.formdata);
+  },
   methods: {
+    saveFunc() {
+      let obj = {
+        type: this.data,
+        dateType: this.formdata.dateType,
+        pcs: this.policeStation,
+        carWarningList:this.tabList
+      };
+      saveList(obj).then(res => {
+        if (res.code == 0) {
+          this.$message.success("保存成功!");
+        }
+      });
+    },
+    searchFunc(data) {
+      checkData(data).then(res => {
+        this.tabList = res.data.carWarningListQuery;
+      });
+    },
     reduce(index, id) {
       if (id == 1) {
         this.tabList.splice(index, 1);
@@ -112,6 +182,9 @@ export default {
 
 <style lang="less" scoped>
 @import url("../police-quality/policeQuality");
+.dashboard-bottom-left{
+  overflow:auto;
+}
 .dashboard-bottom-right {
   &::before {
     content: "";
@@ -123,24 +196,37 @@ export default {
   }
 }
 .early-one {
-  width: 420px;
-  margin: 0 auto;
+  margin: 0 20px;
   color: #666;
   &-table {
     display: flex;
     height: 40px;
     align-items: center;
-    & > section:nth-child(1) {
-      width: 120px;
+    & > section{
+      text-align: center;
+      width: 19%;
+      height: 40px;
+      line-height: 40px;
+      border-bottom: solid 1px #cbcbcb;
+      border-left: solid 1px #cbcbcb;
+      & > input{
+        width:80%;
+      }
     }
-    & > section:nth-child(2) {
-      width: 140px;
+    & > section:nth-child(5) {
+      border-right: solid 1px #cbcbcb;
     }
-    & > section:nth-child(3) {
-      width: 140px;
+    & > section:last-child {
+      width: 30px;
+      border: none;
     }
-    & > section:nth-child(4) {
-      width: 20px;
+  }
+  &-table:nth-child(1){
+    & > section{
+      border-top: solid 1px #cbcbcb;
+    }
+    & > section:last-child {
+      border-top: none;
     }
   }
 }

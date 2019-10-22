@@ -152,6 +152,7 @@ export default {
       let obj = {
         type: this.data,
         pcs: this.policeStation,
+        dateType: this.formdata.dateType,
         nineClassDo: {
           las:this.numberList1[0].num, 
           pas:this.numberList1[1].num,

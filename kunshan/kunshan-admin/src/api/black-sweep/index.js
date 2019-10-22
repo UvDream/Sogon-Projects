@@ -1,5 +1,5 @@
 import fetch from "../request";
-
+import qs from "qs";
 // 查询扫黑专项斗争数据
 export const checkData = data => {
   return fetch({

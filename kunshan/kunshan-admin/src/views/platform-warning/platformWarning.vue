@@ -1,8 +1,8 @@
 <!--
  * @Author: wangzhongjie
  * @Date: 2019-10-09 13:56:27
- * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-11 11:54:25
+* @LastEditors: xiahongxiu
+ * @LastEditTime: 2019-10-21 17:38:22
  * @Description: 平台预警
  * @Email: UvDream@163.com
  -->
@@ -12,10 +12,12 @@
     <!-- 1 -->
     <EarlyWarning />
     <!-- 2 -->
-    <ControlSituation />
+    <PersonWarning />
     <!-- 3 -->
-    <InvasionOfWealth />
+    <ControlSituation />
     <!-- 4 -->
+    <InvasionOfWealth />
+    <!-- 5 -->
     <KeyPersonnel />
   </div>
 </template>
@@ -23,8 +25,10 @@
 <script>
 import TopSelect from "../../components/top-select/topSelect";
 import Title from "../../components/two-title/twoTitle.vue";
-// 车辆卡扣预警
+// 车辆卡口预警
 import EarlyWarning from "./earlyWarning";
+// 人像卡口预警
+import PersonWarning from "./personWarning";
 // 布控情况
 import ControlSituation from "./controlSituation";
 // 侵财关注人员维护、预警处置情况
@@ -36,6 +40,7 @@ export default {
     TopSelect,
     Title,
     EarlyWarning,
+    PersonWarning,
     ControlSituation,
     InvasionOfWealth,
     KeyPersonnel

@@ -1,34 +1,24 @@
 <!--
  * @Author: wangzhongjie
  * @Date: 2019-10-11 11:07:08
- * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-17 14:14:22
+ * @LastEditors: xiahongxiu
+ * @LastEditTime: 2019-10-21 17:38:22
  * @Description: 布控
  * @Email: UvDream@163.com
  -->
 
 <template>
-  <div class="dashboard-bottom" style="height:275px">
+  <div class="dashboard-bottom" style="height:275px" v-if="formdata.pcs=='昆山市公安局'">
     <div class="dashboard-bottom-left">
       <Title title="布控情况" v-model="data" @checkStatus="checkStatusFunc" />
       <div class="control" style="margin-left:10px">
-        <!-- <MoreInput name="布控人数" :is-check="true" :disabled="disabled" />
-        <MoreInput name="当天布控人数" :is-check="true" :disabled="disabled" />
-        <MoreInput name="布控车辆" :is-check="true" :disabled="disabled" />
-        <MoreInput name="当天布控车辆" :is-check="true" :disabled="disabled" />-->
-        <MoreInput
-          v-for="(item,index) in numberList"
-          :key="index"
-          :index="index"
-          :disabled="disabled"
-          :name="item.name"
-          :check-status="item.check"
-          v-model="item.number"
-          @checkChange="checkChangeFunc"
-        ></MoreInput>
+        <MoreInput :disabled="disabled" name="布控人数" v-model="bkqkList.bkrsnum" />
+        <MoreInput :disabled="disabled" name="当天布控人数" v-model="bkqkList.dtbkrsnum" />
+        <MoreInput :disabled="disabled" name="布控车辆" v-model="bkqkList.bkclnum" />
+        <MoreInput :disabled="disabled" name="当天布控车辆" v-model="bkqkList.dtbkclnum" />
       </div>
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary" :disabled="disabled">保存</a-button>
+        <a-button type="primary" :disabled="disabled" @click="saveFunc">保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-right">
@@ -48,6 +38,8 @@ import TopSelect from "../../components/top-select/topSelect";
 import Title from "../../components/two-title/twoTitle";
 import MoreInput from "../../components/more-input/index";
 import data from "../../mixin/data";
+import { checkData, saveList } from "../../api/platform-warning/control-situation";
+import axios from "axios";
 
 export default {
   mixins: [data],
@@ -58,17 +50,80 @@ export default {
   },
   data() {
     return {
-      // 全选状态 0未选 1部分选 2全选
-      checkStatus: 0,
-      numberList: [
-        { name: "布控人数", number: "11", check: false },
-        { name: "当天布控车辆", number: "22", check: false },
-        { name: "布控车辆", number: "22", check: false },
-        { name: "布控车辆", number: "22", check: false }
-      ]
+      radioVal: 1,
+      selectVal: "",
+      tab: 1,
+      formdata: {
+        type: 2,
+        dateType: "日",
+        pcs: this.$store.state.topSelect
+      },
+      bkqkList: {
+         bkrsnum: "11",
+         dtbkclnum: "22", 
+         dtbkrsnum: "22", 
+         bkclnum: "22" 
+      }
     };
   },
-  methods: {}
+  computed: {
+    // 顶部派出所
+    policeStation: function() {
+      return this.$store.state.topSelect;
+    },
+    // 顶部星期
+    topDate: function() {
+      return this.$store.state.topDate;
+    }
+  },
+  watch: {
+    data: function(val) {
+      if (val == 1) {
+        // EmptyObjVal(this.bkqkList, "num");
+        // EmptyObjVal(this.tableList, "pcrynum");
+        // EmptyObjVal(this.tableList, "pczdrynum");
+      } else if (val == 0) {
+        this.searchFunc(this.formdata);
+      }
+    },
+    // 警局下拉框变化
+    policeStation: function(val) {
+      this.formdata.pcs = val;
+      this.searchFunc(this.formdata);
+    },
+    // 日,周,月变化
+    topDate: function(val) {
+      let obj = {
+        1: "日",
+        2: "周",
+        3: "月"
+      };
+      this.formdata.dateType = obj[val];
+      this.searchFunc(this.formdata);
+    }
+  },
+  mounted() {
+    this.searchFunc(this.formdata);
+  },
+  methods: {
+    saveFunc() {
+      let obj = {
+        type: this.data,
+        pcs: this.policeStation,
+        bkqkList: this.bkqkList
+      };
+      saveList(obj).then(res => {
+        if (res.code == 0) {
+          this.$message.success("保存成功!");
+        }
+      });
+    },
+    searchFunc(data) {
+      checkData(data).then(res => {
+        this.bkqkList = res.data.bkqkListQuery;
+      });
+    }
+  }
 };
 </script>
 

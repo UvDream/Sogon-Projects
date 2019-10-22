@@ -1,9 +1,9 @@
 import fetch from "../request";
  
-// 查询一案一档一研判数据
+// 查询侵财关注人员维护、预警处置情况
 export const checkData = data => {
   return fetch({
-    url: "/manager/ocof/yaydyyp",
+    url: "/manager/earlyWarning/searchqcgzrywhyjczqk",
     method: "POST",
     data
   });
@@ -11,7 +11,7 @@ export const checkData = data => {
 // 保存
 export const saveList = data => {
   return fetch({
-    url: "/manager/ocof/saveyaydyyp",
+    url: "/manager/earlyWarning/saveqcgzrywhyjczqk",
     method: "POST",
     data
   });
