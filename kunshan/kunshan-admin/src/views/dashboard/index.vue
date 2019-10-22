@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-21 10:29:29
+ * @LastEditTime: 2019-10-22 09:35:59
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
@@ -219,6 +219,9 @@ export default {
       Object.assign(obj, this.list);
       saveDuty(obj).then(res => {
         console.log(res);
+        if (res.code == 0) {
+          this.$message.success("保存成功!");
+        }
       });
     },
     searchFunc(data) {

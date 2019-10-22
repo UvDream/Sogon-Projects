@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-16 15:20:18
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-22 08:40:40
+ * @LastEditTime: 2019-10-22 09:33:14
  * @Description:警情质态
  * @Email: UvDream@163.com
  */
@@ -54,7 +54,7 @@ export const checkAbnormal = data => {
 };
 export const saveAbnormal = data => {
   return fetch({
-    url: "/manager/quality/errorCall",
+    url: "/manager/quality/saveErrorCall",
     method: "POST",
     data
   });
