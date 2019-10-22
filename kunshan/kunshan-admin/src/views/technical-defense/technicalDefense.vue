@@ -13,31 +13,34 @@
       <div class="dashboard-bottom-left">
         <Title title=" 科技技防运行质态" v-model="data" />
         <div class="mInput">
-          <MoreInput name="摄像头总数" v-model="number" :disabled="disabled" />
-          <MoreInput name="摄像机在线率" v-model="number" :disabled="disabled" />
-          <MoreInput name="在线4G巡逻车" v-model="number" :disabled="disabled" />
-          <MoreInput name="在线3G摩巡数" v-model="number" :disabled="disabled" />
-          <MoreInput name="在线执法仪数" v-model="number" :disabled="disabled" />
-          <MoreInput name="在线警务通数" v-model="number" :disabled="disabled" />
-          <MoreInput name="一机一档完成数" v-model="number" :disabled="disabled" />
-          <MoreInput name="人像卡口运行数" v-model="number" :disabled="disabled" />
+          <MoreInput
+            v-for="(item,index) in numberList1"
+            :key="index"
+            :index="index"
+            :disabled="disabled"
+            :name="item.name"
+            v-model="item.num"
+          ></MoreInput>
         </div>
         <div class="dashboard-bottom-left-title">
           <a-icon
             type="file-text"
             style="margin:0 10px 0px 20px;font-size:18px;position:relative;top:3px;"
           />
-          <span style="font-size:12px">派出所违法警情</span>
+          <span style="font-size:12px">警用设备损坏情况分布</span>
         </div>
         <div class="mInput">
-          <MoreInput name="4G执法仪" v-model="number" :disabled="disabled" />
-          <MoreInput name="4G车辆" v-model="number" :disabled="disabled" />
-          <MoreInput name="移动接处警设备" v-model="number" :disabled="disabled" />
-          <MoreInput name="摄像机" v-model="number" :disabled="disabled" />
-          <MoreInput name="其他设备" v-model="number" :disabled="disabled" />
+          <MoreInput
+            v-for="(item,index) in numberList2"
+            :key="index"
+            :index="index"
+            :disabled="disabled"
+            :name="item.name"
+            v-model="item.num"
+          ></MoreInput>
         </div>
         <div class="dashboard-bottom-left-content-btn">
-          <a-button type="primary" :disabled="disabled">保存</a-button>
+          <a-button type="primary" @click="saveFunc" :disabled="disabled">保存</a-button>
         </div>
       </div>
       <div class="dashboard-bottom-right">
@@ -60,21 +63,107 @@ import Title from "../../components/two-title/twoTitle";
 import MoreInput from "../../components/more-input/index";
 import data from "../../mixin/data";
 import BottomStatus from "./bottom-status";
-
+import api from "./api1"
 export default {
   mixins: [data],
   components: {
-    TopSelect,
     Title,
+    TopSelect,
     MoreInput,
     BottomStatus
   },
   data() {
     return {
-      number: "11",
       selectVal: "",
-      tab: 1
+      tab: 1,
+      formdata: {
+        type: 2,
+        dateType: "日",
+        pcs: this.$store.state.topSelect
+      },
+      obj: {
+        1: "日",
+        2: "周",
+        3: "月"
+      },
+      numberList1: [],
+      numberList2: [],
     };
+  },
+  computed: {
+    // 顶部派出所
+    policeStation: function() {
+      return this.$store.state.topSelect;
+    },
+    // 顶部星期
+    topDate: function() {
+      return this.$store.state.topDate;
+    }
+  },
+   watch: {
+    data: function(val) {
+      if (val == 1) {
+        // EmptyObjVal(this.numberList, "num");
+        // EmptyObjVal(this.tableList1, "pcrynum");
+        // EmptyObjVal(this.tableList1, "pczdrynum");
+        this.formdata.type = val;
+        this.searchFunc(this.formdata);
+      } else if (val == 0) {
+        this.formdata.type = val;
+        this.searchFunc(this.formdata);
+      }
+    },
+    // 警局下拉框变化
+    policeStation: function(val) {
+      this.formdata.pcs = val;
+      this.searchFunc(this.formdata);
+    },
+    // 日,周,月变化
+    topDate: function(val) {
+      let obj = {
+        1: "日",
+        2: "周",
+        3: "月"
+      };
+      this.formdata.dateType = obj[val];
+      this.searchFunc(this.formdata);
+    }
+  },
+  mounted() {
+    this.formdata.type = 0;
+    this.searchFunc(this.formdata);    
+  },
+  methods: {
+    searchFunc(data) {
+      console.log(data)
+      api.fetchTablePaiming(data).then(res=>{
+        console.log(res.data.penrecordnumpm)
+        this.numberList1 = res.data.kjjf;
+        this.numberList2 = res.data.jysb;
+      })
+    },
+    saveFunc() {
+      let param = {
+        type: 1,
+        dateType: this.formdata.dateType,
+        pcs: this.formdata.pcs,
+        kjjf: this.numberList1,
+        jysb: this.numberList2
+      };
+
+      console.log(FormData)
+      api.saveTablePaiming(param).then(res=>{
+    
+      })
+    }
+  },
+  // 顶部派出所
+  policeStation: function() {
+    return this.$store.state.topSelect;
+  },
+  // 顶部星期
+  topDate: function() {
+    return this.$store.state.topDate;
   }
 };
 </script>

@@ -7,13 +7,18 @@
  * @Email: UvDream@163.com
  -->
 <template>
-  <div class="dashboard-bottom" style="height:430px">
+  <div class="dashboard-bottom" style="height:auto">
     <div class="dashboard-bottom-left">
       <Title title="执法仪质态" v-model="data" />
       <div class="mInput">
-        <MoreInput name="上传总数" v-model="number" :disabled="disabled" />
-        <MoreInput name="关联数" v-model="number" :disabled="disabled" />
-        <MoreInput name="问题数" v-model="number" :disabled="disabled" />
+        <MoreInput
+          v-for="(item,index) in numberList1"
+          :key="index"
+          :index="index"
+          :disabled="disabled"
+          :name="item.name"
+          v-model="item.num"
+        ></MoreInput>
       </div>
       <div class="dashboard-bottom-left-title">
         <a-icon
@@ -23,14 +28,17 @@
         <span style="font-size:12px">分布图</span>
       </div>
       <div class="mInput">
-        <MoreInput name="4G执法仪" v-model="number" :disabled="disabled" />
-        <MoreInput name="4G车辆" v-model="number" :disabled="disabled" />
-        <MoreInput name="移动接处警设备" v-model="number" :disabled="disabled" />
-        <MoreInput name="摄像机" v-model="number" :disabled="disabled" />
-        <MoreInput name="其他设备" v-model="number" :disabled="disabled" />
+        <MoreInput
+          v-for="(item,index) in numberList1"
+          :key="index"
+          :index="index"
+          :disabled="disabled"
+          :name="item.name"
+          v-model="item.num"
+        ></MoreInput>
       </div>
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary" :disabled="disabled">保存</a-button>
+        <a-button type="primary" @click="saveFunc" :disabled="disabled">保存</a-button>
       </div>
     </div>
 
@@ -51,18 +59,106 @@ import TopSelect from "../../components/top-select/topSelect";
 import Title from "../../components/two-title/twoTitle";
 import MoreInput from "../../components/more-input/index";
 import data from "../../mixin/data";
-
+import api from "./api2"
 export default {
   mixins: [data],
   components: {
-    TopSelect,
     Title,
+    TopSelect,
     MoreInput
   },
   data() {
     return {
-      number: ""
+      selectVal: "",
+      tab: 1,
+      formdata: {
+        type: 2,
+        dateType: "日",
+        pcs: this.$store.state.topSelect
+      },
+      obj: {
+        1: "日",
+        2: "周",
+        3: "月"
+      },
+      numberList1: [],
+      numberList2: [],
     };
+  },
+  computed: {
+    // 顶部派出所
+    policeStation: function() {
+      return this.$store.state.topSelect;
+    },
+    // 顶部星期
+    topDate: function() {
+      return this.$store.state.topDate;
+    }
+  },
+   watch: {
+    data: function(val) {
+      if (val == 1) {
+        // EmptyObjVal(this.numberList, "num");
+        // EmptyObjVal(this.tableList1, "pcrynum");
+        // EmptyObjVal(this.tableList1, "pczdrynum");
+        this.formdata.type = val;
+        this.searchFunc(this.formdata);
+      } else if (val == 0) {
+        this.formdata.type = val;
+        this.searchFunc(this.formdata);
+      }
+    },
+    // 警局下拉框变化
+    policeStation: function(val) {
+      this.formdata.pcs = val;
+      this.searchFunc(this.formdata);
+    },
+    // 日,周,月变化
+    topDate: function(val) {
+      let obj = {
+        1: "日",
+        2: "周",
+        3: "月"
+      };
+      this.formdata.dateType = obj[val];
+      this.searchFunc(this.formdata);
+    }
+  },
+  mounted() {
+    this.formdata.type = 0;
+    this.searchFunc(this.formdata);    
+  },
+  methods: {
+    searchFunc(data) {
+      console.log(data)
+      api.fetchTablePaiming(data).then(res=>{
+        console.log(res.data.penrecordnumpm)
+        this.numberList1 = res.data.zfy;
+        this.numberList2 = res.data.zfyfb;
+      })
+    },
+    saveFunc() {
+      let param = {
+        type: 1,
+        dateType: this.formdata.dateType,
+        pcs: this.formdata.pcs,
+        zfy: this.numberList1,
+        zfyfb: this.numberList2
+      };
+
+      console.log(FormData)
+      api.saveTablePaiming(param).then(res=>{
+    
+      })
+    }
+  },
+  // 顶部派出所
+  policeStation: function() {
+    return this.$store.state.topSelect;
+  },
+  // 顶部星期
+  topDate: function() {
+    return this.$store.state.topDate;
   }
 };
 </script>

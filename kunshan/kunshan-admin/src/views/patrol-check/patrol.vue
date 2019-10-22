@@ -210,7 +210,7 @@ export default {
         this.numberList.forEach(item => {
           item.check == "true" ? (item.check = true) : (item.check = false);
         });
-        this.tableList = res.data.pcryhpczdrynum;
+        this.tableList = res.data.essxspcryhpczdrynumList;
       });
     },
     // 单选按钮状态改变

@@ -24,7 +24,6 @@
               :disabled="disabled"
               v-model="item.xm"
             />
-            </a-select>
           </section>
           <section style="width:250px;">
             <Time v-model="item.yjsj" :disabled="disabled" :format="'YYYY-MM-DD'" />
