@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 11:53:46
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-22 17:54:36
+ * @LastEditTime: 2019-10-22 18:20:33
  * @Description: 主界面
  * @Email: UvDream@163.com
  -->
@@ -44,7 +44,7 @@ export default {
       menusList: [
         {
           name: "病患分析",
-          icon: "ios-analytics",
+          icon: "ios-barcode-outline",
           id: "1",
           children: [
             { name: "档案管理", id: "1-1", url: "/fileManagement" },
@@ -53,7 +53,7 @@ export default {
         },
         {
           name: "个人中心",
-          icon: "ios-analytics",
+          icon: "md-person",
           id: "2",
           children: [
             { name: "个人账户", id: "2-1", url: "/personalAccount" },
