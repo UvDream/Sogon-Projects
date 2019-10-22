@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 11:43:39
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-22 08:25:27
+ * @LastEditTime: 2019-10-22 09:39:12
  * @Description: 重大警情
  * @Email: UvDream@163.com
  -->
@@ -202,10 +202,7 @@ export default {
       this.greatList.push(list);
     },
     radioChange(e) {},
-    selectChange(e) {},
-    saveFunc() {
-      console.log(this.greatList);
-    }
+    selectChange(e) {}
   }
 };
 </script>
