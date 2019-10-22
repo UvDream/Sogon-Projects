@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 10:24:15
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-18 09:57:52
+ * @LastEditTime: 2019-10-21 11:38:56
  * @Description: 警情质态分析
  * @Email: UvDream@163.com
  -->
@@ -75,7 +75,7 @@
 <script>
 import Title from "../../components/two-title/twoTitle";
 import data from "../../mixin/data";
-import { checkPolice } from "../../api/police-quality/index";
+import { checkPolice, savePolice } from "../../api/police-quality/index";
 import MoreInput from "../../components/more-input/index";
 import { EmptyObjVal } from "../../util/util";
 export default {
@@ -151,7 +151,19 @@ export default {
     this.searchFunc(this.formdata);
   },
   methods: {
-    saveFunc() {},
+    saveFunc() {
+      let obj = {
+        type: this.formdata.type,
+        dateType: this.formdata.dateType,
+        pcs: this.formdata.pcs,
+        jqzt: this.numberList,
+        jqzl: this.tableList
+      };
+      console.log(obj);
+      savePolice(obj).then(res => {
+        console.log(res);
+      });
+    },
     radioChange(e) {},
     searchFunc(data) {
       checkPolice(data).then(res => {

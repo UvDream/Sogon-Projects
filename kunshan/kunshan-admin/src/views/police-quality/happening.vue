@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 15:34:11
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-18 14:24:31
+ * @LastEditTime: 2019-10-22 08:33:45
  * @Description: 警情情况
  * @Email: UvDream@163.com
  -->
@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary" :disabled="disabled">保存</a-button>
+        <a-button type="primary" :disabled="disabled" @click="saveFunc">保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-center"></div>
@@ -38,7 +38,7 @@
 <script>
 import Title from "../../components/two-title/twoTitle";
 import data from "../../mixin/data";
-import { checkHappen } from "../../api/police-quality/index";
+import { checkHappen, saveHappen } from "../../api/police-quality/index";
 export default {
   mixins: [data],
   components: {
@@ -55,10 +55,58 @@ export default {
       greatList: []
     };
   },
+  computed: {
+    // 顶部派出所
+    policeStation: function() {
+      return this.$store.state.topSelect;
+    },
+    // 顶部星期
+    topDate: function() {
+      return this.$store.state.topDate;
+    }
+  },
+  watch: {
+    data: function(val) {
+      if (val == 1) {
+      } else if (val == 0) {
+        this.formdata.type = val;
+        this.searchFunc(this.formdata);
+      }
+    },
+    // 警局下拉框变化
+    policeStation: function(val) {
+      this.formdata.pcs = val;
+      this.searchFunc(this.formdata);
+    },
+    // 日,周,月变化
+    topDate: function(val) {
+      let obj = {
+        1: "日",
+        2: "周",
+        3: "月"
+      };
+      this.formdata.dateType = obj[val];
+      this.searchFunc(this.formdata);
+    }
+  },
   mounted() {
     this.searchFunc(this.formdata);
   },
   methods: {
+    saveFunc() {
+      let obj = {
+        type: this.formdata.type,
+        dateType: this.formdata.dateType,
+        pcs: this.formdata.pcs,
+        jqqk: this.greatList
+      };
+      saveHappen(obj).then(res => {
+        console.log(res);
+        if (res.code == 0) {
+          this.$message.success("保存成功!");
+        }
+      });
+    },
     searchFunc(data) {
       checkHappen(data).then(res => {
         if (res.code == 0) {

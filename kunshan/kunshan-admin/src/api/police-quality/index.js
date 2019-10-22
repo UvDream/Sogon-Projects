@@ -2,13 +2,13 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-16 15:20:18
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-18 10:48:14
+ * @LastEditTime: 2019-10-22 08:40:40
  * @Description:警情质态
  * @Email: UvDream@163.com
  */
 import fetch from "../request";
- 
-// 巡逻盘查
+
+//警情质态/警情质态分析
 export const checkPolice = data => {
   return fetch({
     url: "/manager/quality/policeQualityAna",
@@ -18,10 +18,10 @@ export const checkPolice = data => {
     data
   });
 };
-// 保存
+// 保存警情质态
 export const savePolice = data => {
   return fetch({
-    url: "/manager/pi/xlpczt",
+    url: "/manager/quality/savePoliceQualityAna",
     method: "POST",
     data
   });
@@ -31,6 +31,13 @@ export const savePolice = data => {
 export const checkHappen = data => {
   return fetch({
     url: "/manager/quality/warningSituation",
+    method: "POST",
+    data
+  });
+};
+export const saveHappen = data => {
+  return fetch({
+    url: "/manager/quality/saveWarningSituation",
     method: "POST",
     data
   });
@@ -45,9 +52,22 @@ export const checkAbnormal = data => {
     data
   });
 };
-
+export const saveAbnormal = data => {
+  return fetch({
+    url: "/manager/quality/errorCall",
+    method: "POST",
+    data
+  });
+};
 // 警情分布
 export const checkDis = data => {
+  return fetch({
+    url: "/manager/quality/warningDistribution",
+    method: "POST",
+    data
+  });
+};
+export const saveDis = data => {
   return fetch({
     url: "/manager/quality/warningDistribution",
     method: "POST",

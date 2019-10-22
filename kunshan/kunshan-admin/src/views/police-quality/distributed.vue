@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 15:46:06
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-18 14:40:07
+ * @LastEditTime: 2019-10-22 08:40:15
  * @Description: 警情分布
  * @Email: UvDream@163.com
  -->
@@ -89,7 +89,7 @@
       </div>
 
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary" :disabled="disabled">保存</a-button>
+        <a-button type="primary" :disabled="disabled" @click="saveFunc">保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-right">
@@ -108,7 +108,7 @@
 import Title from "../../components/two-title/twoTitle";
 import data from "../../mixin/data";
 import MoreInput from "../../components/more-input/index";
-import { checkDis } from "../../api/police-quality/index";
+import { checkDis, saveDis } from "../../api/police-quality/index";
 export default {
   mixins: [data],
   components: {
@@ -166,13 +166,29 @@ export default {
     }
   },
   mounted() {
-    this.sarchFunc(this.formdata);
+    this.searchFunc(this.formdata);
   },
   methods: {
-    radioChange(e) {},
-    sarchFunc(data) {
+    saveFunc() {
+      let obj = {
+        type: this.formdata.type,
+        dateType: this.formdata.dateType,
+        pcs: this.formdata.pcs,
+        top: this.top,
+        wfjq: this.wfjq,
+        jqfb: this.jqfb,
+        slbj: this.slbj
+      };
+      saveDis(obj).then(res => {
+        console.log(res);
+        if (res.code == 0) {
+          this.$message.success("保存成功!");
+        }
+      });
+    },
+    searchFunc(data) {
       checkDis(data).then(res => {
-        console.log("警情分布11111111111");
+        console.log("警情分布");
         console.log(res);
         if (res.code == 0) {
           this.top = res.data.top;

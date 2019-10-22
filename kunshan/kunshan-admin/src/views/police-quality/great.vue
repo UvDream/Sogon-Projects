@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 11:43:39
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-18 15:08:43
+ * @LastEditTime: 2019-10-22 08:25:27
  * @Description: 重大警情
  * @Email: UvDream@163.com
  -->
@@ -103,7 +103,7 @@
 import Time from "../../components/time/time.vue";
 import Title from "../../components/two-title/twoTitle";
 import data from "../../mixin/data";
-import { checkGreat } from "../../api/police-quality/great";
+import { checkGreat, saveGreat } from "../../api/police-quality/great";
 import { list } from "./index";
 export default {
   mixins: [data],
@@ -114,6 +114,11 @@ export default {
   data() {
     this.dateFormat = "YYYY-MM-DD";
     return {
+      formdata: {
+        type: 2,
+        dateType: "日",
+        pcs: this.$store.state.topSelect
+      },
       radioVal: 1,
       zyxtz: [],
       dataL: list,
@@ -166,6 +171,22 @@ export default {
     this.searchFunc(this.formdata);
   },
   methods: {
+    saveFunc() {
+      let obj = {
+        type: this.formdata.type,
+        dateType: this.formdata.dateType,
+        pcs: this.formdata.pcs,
+        zdjq: this.greatList,
+        zyxtz: this.zyxtz
+      };
+      saveGreat(obj).then(res => {
+        console.log("重大警情保存");
+        console.log(res);
+        if (res.code == 0) {
+          this.$message.success("保存成功!");
+        }
+      });
+    },
     searchFunc(data) {
       checkGreat(data).then(res => {
         if (res.code == 0) {
