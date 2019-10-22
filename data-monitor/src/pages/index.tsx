@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-09-17 16:40:41
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-15 22:00:02
+ * @LastEditTime: 2019-10-21 20:35:57
  * @Description: 主界面
  * @Email: UvDream@163.com
  */
@@ -17,6 +17,8 @@ import OperationLog from "./operation-log/index"
 // 通知
 import Notice from "./daily-office/notice/index"
 import GetNotice from "./daily-office/notice/get"
+//收到的通知
+import GetDetail from "./daily-office/notice/getDetail"
 
 // 工作汇报
 import WorkReport from "./daily-office/work-report/index"
@@ -113,6 +115,7 @@ export default class Home extends Component {
                                 <Route path="/main/dashboard/" component={DashBoard}></Route>
                                 <Route path="/main/notice/" component={Notice}></Route>
                                 <Route path="/main/getNotice/" component={GetNotice}></Route>
+                                <Route path="/main/getDetail/" component={GetDetail}></Route>
                                 <Route path="/main/workReport/" component={WorkReport}></Route>
                                 <Route path="/main/myScores/" component={MyScores}></Route>
                                 <Route path="/main/pointBonus/" component={PointBonus}></Route>
