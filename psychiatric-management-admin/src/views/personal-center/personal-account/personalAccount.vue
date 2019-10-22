@@ -1,13 +1,13 @@
 <!--
  * @Author: wangzhongjie
- * @Date: 2019-10-22 11:52:31
+ * @Date: 2019-10-22 17:30:34
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-22 11:52:39
- * @Description: 首页
+ * @LastEditTime: 2019-10-22 17:49:45
+ * @Description: 个人账户
  * @Email: UvDream@163.com
  -->
 <template>
-  <div>首页</div>
+  <div>个人账户</div>
 </template>
 
 <script>

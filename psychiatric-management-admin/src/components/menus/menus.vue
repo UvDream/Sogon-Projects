@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 13:52:01
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-22 16:34:14
+ * @LastEditTime: 2019-10-22 17:17:15
  * @Description: 菜单
  * @Email: UvDream@163.com
  -->
@@ -13,7 +13,12 @@
         <Icon :type="item.icon" />
         {{item.name}}
       </template>
-      <MenuItem v-for="(items,index) in item.children" :key="index" :name="items.id">{{items.name}}</MenuItem>
+      <MenuItem
+        v-for="(items,index) in item.children"
+        :key="index"
+        :name="items.id"
+        :to="items.url"
+      >{{items.name}}</MenuItem>
     </Submenu>
   </Menu>
 </template>
@@ -42,5 +47,5 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="less">
 </style>

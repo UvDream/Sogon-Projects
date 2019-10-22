@@ -1,3 +1,11 @@
+<!--
+ * @Author: wangzhongjie
+ * @Date: 2019-10-22 11:53:46
+ * @LastEditors: wangzhongjie
+ * @LastEditTime: 2019-10-22 17:48:17
+ * @Description: 主界面
+ * @Email: UvDream@163.com
+ -->
 <template>
   <div class="layout">
     <Layout style="height:100vh">
@@ -39,8 +47,18 @@ export default {
           icon: "ios-analytics",
           id: "1",
           children: [
-            { name: "档案管理", id: "1-1" },
-            { name: "新建档案", id: "1-2" }
+            { name: "档案管理", id: "1-1", url: "/fileManagement" },
+            { name: "新建档案", id: "1-2", url: "/newFile" }
+          ]
+        },
+        {
+          name: "个人中心",
+          icon: "ios-analytics",
+          id: "2",
+          children: [
+            { name: "个人账户", id: "2-1", url: "/personalAccount" },
+            { name: "已办档案", id: "2-2", url: "/fileAlreadyManagement" },
+            { name: "通知管理", id: "2-3", url: "/notificationManagement" }
           ]
         }
       ]
