@@ -3,19 +3,6 @@
     <Layout style="height:100vh">
       <Sider ref="side1" hide-trigger collapsible :collapsed-width="78" v-model="isCollapsed">
         <Logo />
-        <!-- <Menu active-name="1-2" theme="dark" width="auto" :class="menuitemClasses">
-          <Submenu v-for="(item,index) in menusList" :key="index" :name="item.id">
-            <template slot="title">
-              <Icon type="ios-analytics" />
-              {{item.name}}
-            </template>
-            <MenuItem
-              v-for="(items,index) in item.children"
-              :key="index"
-              :name="items.id"
-            >{{items.name}}</MenuItem>
-          </Submenu>
-        </Menu>-->
         <Menus :menus-list="menusList" />
       </Sider>
       <Layout>
