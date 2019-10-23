@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 11:53:46
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-23 16:06:50
+ * @LastEditTime: 2019-10-23 17:19:41
  * @Description: 主界面
  * @Email: UvDream@163.com
  -->
@@ -42,9 +42,9 @@
               </div>
             </div>
           </Header>
-          <!-- <Content :style="{padding: '24px', minHeight: '280px', background: '#ebf1f2'}">
+          <Content :style="{padding: '0px 24px', minHeight: '280px', background: '#ebf1f2'}">
             <router-view></router-view>
-          </Content>-->
+          </Content>
         </Layout>
       </Layout>
     </Layout>

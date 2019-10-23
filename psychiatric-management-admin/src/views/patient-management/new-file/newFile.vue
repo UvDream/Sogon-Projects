@@ -2,16 +2,23 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 17:27:24
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-22 17:48:36
+ * @LastEditTime: 2019-10-23 17:13:09
  * @Description: 新建档案
  * @Email: UvDream@163.com
  -->
 <template>
-  <div>新建档案</div>
+  <div class="new">
+    <TopStep />
+  </div>
 </template>
 
 <script>
-export default {};
+import TopStep from "./components/top-step.vue";
+export default {
+  components: {
+    TopStep
+  }
+};
 </script>
 
 <style scoped lang="less">
