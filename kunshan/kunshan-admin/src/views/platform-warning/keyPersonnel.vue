@@ -26,7 +26,7 @@
         ></MoreInput>
       </div>
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary" :disabled="disabled" @click="saveFunc">保存</a-button>
+        <a-button type="primary"  @click="saveFunc">保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-right">

@@ -11,7 +11,7 @@ export const checkPatrol = data => {
 // 保存
 export const saveList = data => {
   return fetch({
-    url: "/manager/pi/xlpczt",
+    url: "/manager/pi/savexlpczt",
     method: "POST",
     data
   });

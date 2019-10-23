@@ -10,7 +10,7 @@
   <div class="dashboard-bottom" style="height:100%">
     <div class="dashboard-bottom-left">
       <Title 
-      title="现场勘测质态" 
+      title="现场勘验质态" 
       v-model="data"
       />
       <div class="control" style="margin-left:10px">
@@ -24,7 +24,7 @@
         ></MoreInput>
       </div>
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary" :disabled="disabled" @click="saveFunc">保存</a-button>
+        <a-button type="primary" @click="saveFunc">保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-center"></div>

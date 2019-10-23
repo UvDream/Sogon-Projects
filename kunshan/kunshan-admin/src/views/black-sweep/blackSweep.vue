@@ -59,7 +59,7 @@
           ></MoreInput>
         </div>
         <div class="dashboard-bottom-left-content-btn">
-          <a-button type="primary" :disabled="disabled" @click="saveFunc">保存</a-button>
+          <a-button type="primary" @click="saveFunc">保存</a-button>
         </div>
       </div>
       <div class="dashboard-bottom-center"></div>
@@ -121,14 +121,13 @@ export default {
     }
   },
   watch: {
-    data: function(val) {
+    data: function(val) {      
       this.formdata.type = val;
       this.searchFunc(this.formdata);
     },
     // 警局下拉框变化
     policeStation: function(val) {
-      this.formdata.pcs = val;
-      this.formdata.type = 2;
+      this.formdata.pcs = val;      
       this.searchFunc(this.formdata);
     },
     // 日,周,月变化
@@ -143,6 +142,7 @@ export default {
     }
   },
   mounted() {
+    this.formdata.type = 2;
     this.searchFunc(this.formdata);
   },
   methods: {
@@ -168,7 +168,7 @@ export default {
         }
       };
       saveList(obj).then(res => {
-        // console.log("保存");
+        console.log("保存");
         // console.log(res);
         if (res.code == 0) {
           this.$message.success("保存成功!");

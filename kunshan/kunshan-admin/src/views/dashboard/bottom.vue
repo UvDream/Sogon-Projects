@@ -221,7 +221,7 @@ export default {
     searchFunc(data) {
       checkOnDuty(data).then(res => {
         console.log("底部", res);
-        this.data = res.data.bqll.type;
+        // this.data = res.data.bqll.type;
         this.list = res.data;
       });
     },

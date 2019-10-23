@@ -4,14 +4,14 @@ import qs from "qs";
 const api = {
     fetchTablePaiming: (data)=>{
         return request({
-            url: 'manager/lhnltf/zjbndxwlspry',
+            url: 'manager/lhybcf/zjbndcry',
             method: 'POST',
             data
         })
     },
     saveTablePaiming: (data)=>{
         return request({
-            url: 'manager/lhnltf/savezjbndxwlspry',
+            url: 'manager/lhybcf/savezjbndcry',
             method: 'post',
             headers: {"Content-Type":"application/json;charset=UTF-8"},
             data

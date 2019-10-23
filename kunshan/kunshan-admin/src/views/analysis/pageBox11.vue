@@ -8,7 +8,7 @@
  -->
 
 <template>
-  <div class="dashboard-bottom" style="height:auto">
+  <div class="dashboard-bottom" style="height:auto" v-show="formdata.pcs=='昆山市公安局'">
     <div class="dashboard-bottom-left">
       <Title title="各派出所周处警数" v-model="data"/>
       <div class="dashboard-bottom-left-table">
@@ -37,7 +37,7 @@
         <span>可视化样例</span>
       </div>
       <div class="dashboard-bottom-right-content">
-        <img style="" src="../../assets/images/a_ypfx11.png" />
+        <img style="width: 80%" src="../../assets/images/a_ypfx11.png" />
       </div>
     </div>
   </div>
@@ -88,11 +88,11 @@ export default {
         // EmptyObjVal(this.numberList, "num");
         // EmptyObjVal(this.tableList, "pcrynum");
         // EmptyObjVal(this.tableList, "pczdrynum");
-        this.formdata.type = val;
+        // this.formdata.type = val;
         this.searchFunc(this.formdata);
       } else if (val == 0) {
-        this.formdata.type = val;
-        this.searchFunc(this.formdata);
+        // this.formdata.type = val;
+        // this.searchFunc(this.formdata);
       }
     },
     // 警局下拉框变化
@@ -113,6 +113,7 @@ export default {
   },
   mounted() {
     this.formdata.type = 2;
+    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);    
   },
   methods: {
@@ -133,7 +134,9 @@ export default {
 
       console.log(FormData)
       api.saveTablePaiming(param).then(res=>{
-    
+        if (res.code == 0) {
+          this.$message.success("保存成功!");
+        }
       })
     }
   },

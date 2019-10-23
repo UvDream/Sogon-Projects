@@ -9,7 +9,6 @@
 <template>
   <div class="dashboard">
     <TopSelect :select-val="selectVal" :tab-val="tab" />
-
     <div class="dashboard-bottom">
       <div class="dashboard-bottom-left">
         <Title title="笔录制作质态" :is-check="false" v-model="data" />
@@ -26,8 +25,9 @@
         <sub-title :is-check="false" :title="subTitleName" />
         <div class="dashboard-bottom-left-table">
           <div class="dashboard-bottom-left-table-left">
-            <div>派出所</div>
-            <div v-for="(item,index) in tableList"  :key="index">{{item.pcsname}}</div>
+            <div>{{title}}</div>
+            <div v-for="(item,index) in tableList"  :key="index" v-show="title=='派出所'">{{item.pcsname}}</div>
+            <div v-for="(item,index) in tableList"  :key="index" v-show="title!=='派出所'">{{item.name}}</div>
           </div>
           <div class="dashboard-bottom-left-table-right">
             <div>
@@ -50,7 +50,7 @@
           <span>可视化样例</span>
         </div>
         <div class="dashboard-bottom-right-content">
-          <img src="../../assets/images/u2187.png" alt />
+          <img src="../../assets/images/u2187.png" />
         </div>
       </div>
     </div>
@@ -76,6 +76,7 @@ export default {
     return {
       selectVal: "",
       tab: 1,
+      title: '派出所',
       formdata: {
         type: 2,
         dateType: "日",
@@ -115,7 +116,7 @@ export default {
         this.formdata.type = val;
         this.searchFunc(this.formdata);
       } else if (val == 0) {
-        this.formdata.type = val;
+        this.formdata.type = val;        
         this.searchFunc(this.formdata);
       }
     },
@@ -123,6 +124,11 @@ export default {
     policeStation: function(val) {
       this.formdata.pcs = val;      
       this.searchFunc(this.formdata);
+      if(val == '昆山市公安局'){
+        this.title='派出所';
+      }else {
+        this.title='类型';
+      }
     },
     // 日,周,月变化
     topDate: function(val) {
@@ -137,6 +143,7 @@ export default {
   },
   mounted() {
     this.formdata.type = 2;
+    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);    
   },
   methods: {
@@ -147,7 +154,7 @@ export default {
         this.numberList = res.data.numberListFive;
         if(res.data.penrecordnumpm == undefined) {
           this.tableList = res.data.penrecordnumSeven;
-          this.subTitleName = '笔录质量问题分布';
+          this.subTitleName = '笔录质量问题分布';          
         }else {
           this.tableList = res.data.penrecordnumpm;
           this.subTitleName = '派出所笔录总数排名';
@@ -165,7 +172,9 @@ export default {
       };
       
       api.saveTablePaiming(param).then(res=>{
-    
+        if (res.code == 0) {
+          this.$message.success("保存成功!");
+        }
       })
     }
   },

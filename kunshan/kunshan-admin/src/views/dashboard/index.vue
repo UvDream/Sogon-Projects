@@ -190,7 +190,6 @@ export default {
     // 警局下拉框变化
     policeStation: function(val) {
       this.formdata.pcs = val;
-      this.formdata.type = 2;
       this.searchFunc(this.formdata);
     },
     // 日,周,月变化
@@ -205,6 +204,7 @@ export default {
     }
   },
   mounted() {
+    this.formdata.type = 2;
     this.searchFunc(this.formdata);
   },
   methods: {
@@ -225,7 +225,7 @@ export default {
     searchFunc(data) {
       checkOnDuty(data).then(res => {
         console.log("上面", res);
-        this.data = res.data.bqll.type;
+        // this.data = res.data.zbll.type;
         this.list = res.data;
       });
     },

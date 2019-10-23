@@ -7,7 +7,7 @@
  * @Email: UvDream@163.com
  -->
 <template>
-  <div class="dashboard-bottom">
+  <div class="dashboard-bottom" v-show="formdata.pcs=='昆山市公安局'">
     <div class="dashboard-bottom-left">
       <Title title="异常报警分析" v-model="data" />
       <PhoneTop :title="'24小时'" :phoneList="dailyCall" :disabled="disabled" />

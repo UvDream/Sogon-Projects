@@ -40,15 +40,42 @@
           </section>
           <section></section>
         </div>
+        <!-- ---- -->
+        <div class="dashboard-bottom-left-content-great" v-show="formdata.pcs=='昆山市公安局'">
+          <section>派出所</section>
+          <section style="margin-left:20px">详情</section>
+          <section></section>
+        </div>
+        <div v-show="formdata.pcs=='昆山市公安局'"
+          class="dashboard-bottom-left-content-great"
+          v-for="(item, index) in greatList"
+          :key="index"
+        >
+          <section>
+            <a-input
+              placeholder=""
+              :disabled="disabled"
+              v-model="item.pcs"
+            />
+          </section>
+          <section style="margin-left:20px">
+            <a-input
+              placeholder=""
+              :disabled="disabled"
+              v-model="item.jqxq"
+            />
+          </section>
+          <section></section>
+        </div>
       </div>
-      <div class="dashboard-bottom-left-title">
+      <div class="dashboard-bottom-left-title" v-show="formdata.pcs!=='昆山市公安局'">
         <a-icon
           type="file-text"
           style="margin:0 10px 0px 20px;font-size:18px;position:relative;top:3px;"
         />
         <span style="font-size:12px">重要性通知</span>
       </div>
-      <div class="dashboard-bottom-left-content-great" style="margin-left:10px">
+      <div class="dashboard-bottom-left-content-great" style="margin-left:10px" v-show="formdata.pcs!=='昆山市公安局'">
         <section>标题</section>
         <section>接收时间</section>
         <section></section>
