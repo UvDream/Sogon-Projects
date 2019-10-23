@@ -7,7 +7,7 @@
  * @Email: UvDream@163.com
  -->
 <template>
-  <div class="dashboard-bottom">
+  <div class="dashboard-bottom" v-if="formdata.pcs=='昆山市公安局'">
     <div class="dashboard-bottom-left">
       <Title 
       title="社会面信息采集情况"
