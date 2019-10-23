@@ -105,7 +105,7 @@ export default {
       formdata: {
         type: 2,
         dateType: "日",
-        pcs: this.$store.state.topSelect
+        pcs: "昆山市公安局",
       },
       tabList: []
     };
@@ -122,17 +122,13 @@ export default {
   },
   watch: {
     data: function(val) {
-      if (val == 1) {
-        // EmptyObjVal(this.tabList, "num");
-        // EmptyObjVal(this.tableList, "pcrynum");
-        // EmptyObjVal(this.tableList, "pczdrynum");
-      } else if (val == 0) {
-        this.searchFunc(this.formdata);
-      }
+      this.formdata.type = val;
+      this.searchFunc(this.formdata);
     },
     // 警局下拉框变化
     policeStation: function(val) {
       this.formdata.pcs = val;
+      this.formdata.type = 2;
       if(this.formdata.pcs=="昆山市公安局"){
         this.searchFunc(this.formdata);
       }
@@ -172,6 +168,7 @@ export default {
     searchFunc(data) {
       checkData(data).then(res => {
         this.tabList = res.data.carWarningListQuery;
+        this.data = res.data.carWarningListQuery[0].type;
       });
     },
     reduce(index, id) {

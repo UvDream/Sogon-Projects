@@ -47,7 +47,7 @@ export default {
   },
   data() {
     return {
-      selectVal: "",
+      selectVal: "昆山市公安局",
       tab: 1
     };
   }

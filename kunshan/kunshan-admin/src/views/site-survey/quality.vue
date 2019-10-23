@@ -62,7 +62,7 @@ export default {
       formdata: {
         type: 2,
         dateType: "日",
-        pcs: this.$store.state.topSelect
+        pcs: "昆山市公安局"
       },
       obj: {
         1: "日",
@@ -82,15 +82,12 @@ export default {
   },
   watch: {
     data:function(val) {
-      if(val ==1){
-
-      } else if (val == 0) {
-        this.formdata.type = val;
-        this.searchFunc(this.formdata);
-      }
+      this.formdata.type = val;
+      this.searchFunc(this.formdata);
     },
     policeStation: function(val) {
       this.formdata.pcs = val;
+      this.formdata.type = 2;
       this.searchFunc(this.formdata);
     },
     topDate: function(val) {
@@ -125,6 +122,7 @@ export default {
     searchFunc(data) {
       checkData(data).then(res => {
         this.numberList = res.data.kyxczt;
+        this.data = res.data.kyxczt[0].type;
       });
     },
   }
