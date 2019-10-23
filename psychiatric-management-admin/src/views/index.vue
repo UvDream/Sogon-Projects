@@ -2,30 +2,51 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 11:53:46
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-22 18:20:33
+ * @LastEditTime: 2019-10-23 15:26:27
  * @Description: 主界面
  * @Email: UvDream@163.com
  -->
 <template>
   <div class="layout">
     <Layout style="height:100vh">
-      <Sider ref="side1" hide-trigger collapsible :collapsed-width="78" v-model="isCollapsed">
-        <Logo />
-        <Menus :menus-list="menusList" />
-      </Sider>
       <Layout>
-        <Header :style="{padding: 0}" class="layout-header-bar">
-          <Icon
-            @click.native="collapsedSider"
-            :class="rotateIcon"
-            :style="{margin: '0 20px'}"
-            type="md-menu"
-            size="24"
-          ></Icon>
-        </Header>
-        <Content :style="{margin: '10px', background: '#fff', minHeight: '260px'}">
-          <router-view></router-view>
-        </Content>
+        <Sider hide-trigger :style="{background: '#fff'}">
+          <Logo />
+          <Menus :menus-list="menusList" />
+        </Sider>
+        <Layout>
+          <Header :style="{background: '#ebf1f2',height:'122px',padding:'0px 10px'}">
+            <div class="header">
+              <div class="header-bread">
+                <span>新建管理</span>
+                <Breadcrumb separator=">" :style="{marginTop:'10px'}">
+                  <BreadcrumbItem to="/">Home</BreadcrumbItem>
+                  <BreadcrumbItem to="/components/breadcrumb">Components</BreadcrumbItem>
+                  <BreadcrumbItem>Breadcrumb</BreadcrumbItem>
+                </Breadcrumb>
+              </div>
+              <div class="header-user">
+                <div class="header-user-left">
+                  <img src="../assets/fonts/avatar.png" alt />
+                  <span>
+                    您好!
+                    <span style="color:#53A7A9">民政局张云满</span>
+                  </span>
+                  <div>
+                    <img src="../assets/fonts/message.png" alt />
+                    <div>11</div>
+                  </div>
+                </div>
+                <div class="header-user-right">
+                  <img src="../assets/fonts/closed.png" alt />
+                </div>
+              </div>
+            </div>
+          </Header>
+          <!-- <Content :style="{padding: '24px', minHeight: '280px', background: '#ebf1f2'}">
+            <router-view></router-view>
+          </Content>-->
+        </Layout>
       </Layout>
     </Layout>
   </div>
@@ -85,55 +106,67 @@ export default {
 </script>
 
 <style scoped lang="less">
-.layout {
-  border: 1px solid #d7dde4;
-  background: #f5f7f9;
-  position: relative;
-  border-radius: 4px;
-  height: 100vh;
-  overflow: hidden;
-  outline: 1px solid red;
-}
-.layout-header-bar {
-  background: #fff;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-}
-.layout-logo-left {
-  width: 90%;
-  height: 30px;
-  background: #5b6270;
-  border-radius: 3px;
-  margin: 15px auto;
-}
-.menu-icon {
-  transition: all 0.3s;
-}
-.rotate-icon {
-  transform: rotate(-90deg);
-}
-.menu-item span {
-  display: inline-block;
-  overflow: hidden;
-  width: 69px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  vertical-align: bottom;
-  transition: width 0.2s ease 0.2s;
-}
-.menu-item i {
-  transform: translateX(0px);
-  transition: font-size 0.2s ease, transform 0.2s ease;
-  vertical-align: middle;
-  font-size: 16px;
-}
-.collapsed-menu span {
-  width: 0px;
-  transition: width 0.2s ease;
-}
-.collapsed-menu i {
-  transform: translateX(5px);
-  transition: font-size 0.2s ease 0.2s, transform 0.2s ease 0.2s;
-  vertical-align: middle;
-  font-size: 22px;
+.header {
+  height: 122px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &-bread {
+    line-height: 20px;
+    & > span {
+      font-size: 25px;
+      color: #333;
+    }
+  }
+  &-user {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    &-left {
+      display: flex;
+      width: 280px;
+      height: 50px;
+      background-color: #fff;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 50px;
+      & > img {
+        width: 50px;
+        height: 50px;
+      }
+      & > div {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        & > img {
+          width: 20px;
+          height: 20px;
+          margin-top: 15px;
+        }
+        & > div {
+          position: absolute;
+          height: 14px;
+          padding: 0 4px;
+          background-color: red;
+          color: #ffffff;
+          line-height: 14px;
+          font-size: 12px;
+          top: 10px;
+          border-radius: 14px;
+          right: 5px;
+        }
+      }
+    }
+    &-right {
+      height: 50px;
+      line-height: 50px;
+      & > img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
 }
 </style>

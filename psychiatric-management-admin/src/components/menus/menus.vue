@@ -2,12 +2,12 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 13:52:01
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-22 17:17:15
+ * @LastEditTime: 2019-10-23 09:45:07
  * @Description: 菜单
  * @Email: UvDream@163.com
  -->
 <template>
-  <Menu active-name="1-1" theme="dark" width="auto" :class="menuitemClasses">
+  <Menu active-name="1-1" theme="light" width="auto" :class="menuitemClasses">
     <Submenu v-for="(item,index) in menusList" :key="index" :name="item.id">
       <template slot="title">
         <Icon :type="item.icon" />

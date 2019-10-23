@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 13:52:22
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-22 19:10:47
+ * @LastEditTime: 2019-10-23 09:55:49
  * @Description: logo
  * @Email: UvDream@163.com
  -->
@@ -16,7 +16,7 @@ export default {};
 
 <style scoped lang="less">
 .logo {
-  color: #fff;
+  // color: #fff;
   font-size: 20px;
   text-align: center;
 }
