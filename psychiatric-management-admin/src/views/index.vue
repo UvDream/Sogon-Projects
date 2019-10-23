@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 11:53:46
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-23 15:26:27
+ * @LastEditTime: 2019-10-23 16:06:50
  * @Description: 主界面
  * @Email: UvDream@163.com
  -->
@@ -18,11 +18,10 @@
           <Header :style="{background: '#ebf1f2',height:'122px',padding:'0px 10px'}">
             <div class="header">
               <div class="header-bread">
-                <span>新建管理</span>
+                <span>{{$route.meta.label}}</span>
                 <Breadcrumb separator=">" :style="{marginTop:'10px'}">
-                  <BreadcrumbItem to="/">Home</BreadcrumbItem>
-                  <BreadcrumbItem to="/components/breadcrumb">Components</BreadcrumbItem>
-                  <BreadcrumbItem>Breadcrumb</BreadcrumbItem>
+                  <BreadcrumbItem>{{nowBreadcrunmb[0]}}</BreadcrumbItem>
+                  <BreadcrumbItem v-if="nowBreadcrunmb.length>1">{{nowBreadcrunmb[1]}}</BreadcrumbItem>
                 </Breadcrumb>
               </div>
               <div class="header-user">
@@ -64,6 +63,12 @@ export default {
     return {
       menusList: [
         {
+          name: "首页",
+          icon: "ios-barcode-outline",
+          id: "3",
+          url: "/dashboard"
+        },
+        {
           name: "病患分析",
           icon: "ios-barcode-outline",
           id: "1",
@@ -82,26 +87,32 @@ export default {
             { name: "通知管理", id: "2-3", url: "/notificationManagement" }
           ]
         }
-      ]
+      ],
+      breadcrumb: {
+        dashboard: ["首页"],
+        fileManagement: ["病患分析", "档案管理"],
+        newFile: ["病患分析", "新建档案"],
+        personalAccount: ["个人中心", "个人账户"],
+        fileAlreadyManagement: ["个人中心", "已办档案"],
+        notificationManagement: ["个人中心", "通知管理"]
+      },
+      nowBreadcrunmb: []
     };
   },
+  mounted() {
+    this.nowBreadcrunmb = this.breadcrumb[this.$route.name];
+  },
+  watch: {
+    $route(val) {
+      this.nowBreadcrunmb = this.breadcrumb[val.name];
+    }
+  },
   computed: {
-    rotateIcon() {
-      return ["menu-icon", this.isCollapsed ? "rotate-icon" : ""];
-    },
-    menuitemClasses() {
-      return ["menu-item", this.isCollapsed ? "collapsed-menu" : ""];
-    },
     isCollapsed: function() {
       return this.$store.state.isCollapsed;
     }
   },
-  methods: {
-    collapsedSider() {
-      //   this.$refs.side1.toggleCollapse();
-      this.$store.state.isCollapsed = !this.$store.state.isCollapsed;
-    }
-  }
+  methods: {}
 };
 </script>
 

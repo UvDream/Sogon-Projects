@@ -2,12 +2,16 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 13:52:22
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-23 09:55:49
+ * @LastEditTime: 2019-10-23 15:36:06
  * @Description: logo
  * @Email: UvDream@163.com
  -->
 <template>
-  <div class="logo">徐州重度精神病患者帮扶管控系统</div>
+  <div class="logo">
+    <div>徐州重度精神病患者</div>
+    <div>帮扶管控系统</div>
+    <div>HELP MANAGEMENT AND CONTROL SYSTEM</div>
+  </div>
 </template>
 
 <script>
@@ -17,7 +21,25 @@ export default {};
 <style scoped lang="less">
 .logo {
   // color: #fff;
+  margin-top: 20px;
   font-size: 20px;
   text-align: center;
+  & > div:nth-child(1) {
+    font-size: 16px;
+    color: #333;
+    letter-spacing: 1px;
+  }
+  & > div:nth-child(2) {
+    font-size: 20px;
+    color: #53a7a9;
+    letter-spacing: 1px;
+    line-height: 22px;
+  }
+  & > div:nth-child(3) {
+    font-size: 12px;
+    -webkit-transform: scale(0.5);
+    color: #999999;
+    letter-spacing: 0;
+  }
 }
 </style>

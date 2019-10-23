@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 11:05:32
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-22 17:46:31
+ * @LastEditTime: 2019-10-23 16:02:12
  * @Description:路由文件
  * @Email: UvDream@163.com
  */
@@ -22,13 +22,17 @@ const routes = [
       {
         path: "/dashboard",
         name: "dashboard",
-        label: "首页",
+        meta: {
+          label: "首页"
+        },
         component: () => import("../views/dashboard/dashboard.vue")
       },
       {
         path: "/fileManagement",
         name: "fileManagement",
-        label: "档案管理",
+        meta: {
+          label: "档案管理"
+        },
         component: () =>
           import(
             "../views/patient-management/file-management/fileManagement.vue"
@@ -37,14 +41,18 @@ const routes = [
       {
         path: "/newFile",
         name: "newFile",
-        label: "新建档案",
+        meta: {
+          label: "新建档案"
+        },
         component: () =>
           import("../views/patient-management/new-file/newFile.vue")
       },
       {
         path: "/personalAccount",
         name: "personalAccount",
-        label: "个人账户",
+        meta: {
+          label: "个人账户"
+        },
         component: () =>
           import(
             "../views/personal-center/personal-account/personalAccount.vue"
@@ -53,7 +61,9 @@ const routes = [
       {
         path: "/fileAlreadyManagement",
         name: "fileAlreadyManagement",
-        label: "已办档案",
+        meta: {
+          label: "已办档案"
+        },
         component: () =>
           import(
             "../views/personal-center/file-already-filed/fileAlreadyFiled.vue"
@@ -62,7 +72,9 @@ const routes = [
       {
         path: "/notificationManagement",
         name: "notificationManagement",
-        label: "通知管理",
+        meta: {
+          label: "通知管理"
+        },
         component: () =>
           import(
             "../views/personal-center/notification-management/notificationManagement.vue"
