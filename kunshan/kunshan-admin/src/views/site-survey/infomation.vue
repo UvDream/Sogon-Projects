@@ -7,7 +7,7 @@
  * @Email: UvDream@163.com
  -->
 <template>
-  <div class="dashboard-bottom">
+  <div class="dashboard-bottom" v-if="formdata.pcs=='昆山市公安局'">
     <div class="dashboard-bottom-left">
       <Title 
       title="社会面信息采集情况"
@@ -136,7 +136,7 @@ export default {
       formdata: {
         type: 2,
         time: "日",
-        pcs: this.$store.state.topSelect
+        pcs: "昆山市公安局"
       }
     };
   },
@@ -152,18 +152,17 @@ export default {
   },
   watch: {
     data: function(val) {
-      if (val == 1) {
-        // EmptyObjVal(this.numberList, "num");
-        // EmptyObjVal(this.tableList, "pcrynum");
-        // EmptyObjVal(this.tableList, "pczdrynum");
-      } else if (val == 0) {
-        this.searchFunc(this.formdata);
-      }
+      this.formdata.type = val;
+      this.searchFunc(this.formdata);
     },
     // 警局下拉框变化
     policeStation: function(val) {
       this.formdata.pcs = val;
-      this.searchFunc(this.formdata);
+      if(this.formdata.pcs=="昆山市公安局"){
+        this.formdata.pcs = val;
+        this.formdata.type = 2;
+        this.searchFunc(this.formdata);
+      }
     },
     // 日,周,月变化
     topDate: function(val) {
@@ -172,12 +171,16 @@ export default {
         2: "周",
         3: "月"
       };
-      this.formdata.time = obj[val];
-      this.searchFunc(this.formdata);
+      if(this.formdata.pcs=="昆山市公安局"){
+        this.formdata.time = obj[val];
+        this.searchFunc(this.formdata);
+      }
     }
   },
   mounted() {
-    this.searchFunc(this.formdata);
+    if(this.formdata.pcs=="昆山市公安局"){
+     this.searchFunc(this.formdata);
+    }
   },
   methods: {
     saveFunc() {
@@ -202,6 +205,7 @@ export default {
     searchFunc(data) {
       checkDataSic(data).then(res => {
         this.tableListSic = res.data.societyInformationCollectList;
+        this.data = res.data.societyInformationCollectList[0].type;
       });
       checkDataPic(data).then(res => {
         this.tableListPic = res.data.peopleCardTestInformationCollectList;

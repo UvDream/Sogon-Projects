@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-22 09:35:59
+ * @LastEditTime: 2019-10-23 11:44:07
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
@@ -19,7 +19,7 @@
             :key="'info1-'+index"
           >
             <section>
-              <span v-show="index+1!=list.jld.length">局领导:</span>
+              <span v-show="index+1!=list.jld.length || list.jld.length==1">局领导:</span>
             </section>
             <section>
               <a-input
@@ -38,7 +38,7 @@
             :key="'info-'+index"
           >
             <section>
-              <span v-if="index+1!=list.zzbz.length">总值班长:</span>
+              <span v-if="index+1!=list.zzbz.length || list.zzbz.length==1">总值班长:</span>
             </section>
             <section>
               <a-input
@@ -126,7 +126,7 @@
             </section>
           </div>
           <div class="dashboard-bottom-left-content-btn">
-            <a-button type="primary" :disabled="disabled" @click="saveFunc">保存</a-button>
+            <a-button type="primary" @click="saveFunc">保存</a-button>
           </div>
         </div>
       </div>
@@ -184,15 +184,13 @@ export default {
   },
   watch: {
     data: function(val) {
-      if (val == 1) {
-      } else if (val == 0) {
-        this.formdata.type = val;
-        this.searchFunc(this.formdata);
-      }
+      this.formdata.type = val;
+      this.searchFunc(this.formdata);
     },
     // 警局下拉框变化
     policeStation: function(val) {
       this.formdata.pcs = val;
+      this.formdata.type = 2;
       this.searchFunc(this.formdata);
     },
     // 日,周,月变化
@@ -212,7 +210,7 @@ export default {
   methods: {
     saveFunc() {
       let obj = {
-        type: this.formdata.type,
+        type: this.data,
         dateType: this.formdata.dateType,
         pcs: this.formdata.pcs
       };
@@ -226,7 +224,8 @@ export default {
     },
     searchFunc(data) {
       checkOnDuty(data).then(res => {
-        console.log(res);
+        console.log("上面", res);
+        this.data = res.data.bqll.type;
         this.list = res.data;
       });
     },

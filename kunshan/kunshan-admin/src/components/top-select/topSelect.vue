@@ -2,13 +2,18 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 08:47:45
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-18 10:22:24
+ * @LastEditTime: 2019-10-23 11:11:27
  * @Description: 顶部下拉选择框
  * @Email: UvDream@163.com
  -->
 <template>
   <div class="dashboard-top">
-    <a-select style="width: 250px;padding-left:14px" placeholder="请选择大屏" @change="selectChange">
+    <a-select
+      defaultValue="昆山市公安局"
+      style="width: 250px;padding-left:14px"
+      placeholder="请选择大屏"
+      @change="selectChange"
+    >
       <a-select-option
         v-for="(item,index) in policeStation"
         :key="index"

@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-12 10:37:07
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-16 16:13:48
+ * @LastEditTime: 2019-10-23 13:59:10
  * @Description:控制真实数据和人工数据
  * @Email: UvDream@163.com
  */
@@ -10,12 +10,7 @@ export default {
   data() {
     return {
       data: 0,
-      disabled: true,
-      formdata: {
-        type: 2,
-        dateType: "日",
-        pcs: this.$store.state.topSelect
-      }
+      disabled: true
     };
   },
   watch: {
