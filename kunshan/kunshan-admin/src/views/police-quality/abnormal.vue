@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 09:02:22
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-23 10:49:17
+ * @LastEditTime: 2019-10-23 14:02:27
  * @Description: 异常报警分析
  * @Email: UvDream@163.com
  -->
@@ -14,7 +14,7 @@
       <PhoneTop :title="'30天'" :phoneList="monthCall" :disabled="disabled" />
       <PhoneTop :title="'半年'" :phoneList="halfYearCall" :disabled="disabled" />
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary" :disabled="disabled" @click="saveFunc">保存</a-button>
+        <a-button type="primary" @click="saveFunc">保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-center"></div>
@@ -51,8 +51,8 @@ export default {
       halfYearCall: [],
       monthCall: [],
       formdata: {
-        type: 2,
         dateType: "日",
+        type: 2,
         pcs: this.$store.state.topSelect
       }
     };
@@ -70,15 +70,14 @@ export default {
   },
   watch: {
     data: function(val) {
-      if (val == 1) {
-      } else if (val == 0) {
-        this.formdata.type = val;
-        this.searchFunc(this.formdata);
-      }
+      this.formdata.type = val;
+      this.searchFunc(this.formdata);
     },
     // 警局下拉框变化
     policeStation: function(val) {
       this.formdata.pcs = val;
+      this.formdata.type = 2;
+
       this.searchFunc(this.formdata);
     },
     // 日,周,月变化
@@ -93,6 +92,7 @@ export default {
     }
   },
   mounted() {
+    console.log("1111111111", this.formdata);
     this.searchFunc(this.formdata);
   },
   methods: {
@@ -117,6 +117,7 @@ export default {
         if (res.code == 0) {
           console.log("异常报警分析");
           console.log(res);
+          // this.data = res.data;
           this.dailyCall = res.data.dailyCall;
           this.halfYearCall = res.data.halfYearCall;
           this.monthCall = res.data.monthCall;

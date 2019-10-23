@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-23 11:38:48
+ * @LastEditTime: 2019-10-23 11:44:07
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
@@ -184,11 +184,8 @@ export default {
   },
   watch: {
     data: function(val) {
-      if (val == 1) {
-      } else if (val == 0) {
-        this.formdata.type = val;
-        this.searchFunc(this.formdata);
-      }
+      this.formdata.type = val;
+      this.searchFunc(this.formdata);
     },
     // 警局下拉框变化
     policeStation: function(val) {

@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 15:46:06
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-23 10:49:01
+ * @LastEditTime: 2019-10-23 14:02:41
  * @Description: 警情分布
  * @Email: UvDream@163.com
  -->
@@ -89,7 +89,7 @@
       </div>
 
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary" :disabled="disabled" @click="saveFunc">保存</a-button>
+        <a-button type="primary" @click="saveFunc">保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-right">
@@ -143,15 +143,14 @@ export default {
   },
   watch: {
     data: function(val) {
-      if (val == 1) {
-      } else if (val == 0) {
-        this.formdata.type = val;
-        this.searchFunc(this.formdata);
-      }
+      this.formdata.type = val;
+      this.searchFunc(this.formdata);
     },
     // 警局下拉框变化
     policeStation: function(val) {
       this.formdata.pcs = val;
+      this.formdata.type = 2;
+
       this.searchFunc(this.formdata);
     },
     // 日,周,月变化
@@ -191,6 +190,7 @@ export default {
         console.log("警情分布");
         console.log(res);
         if (res.code == 0) {
+          res.data.top.type ? (this.data = res.data.top.type) : "";
           this.top = res.data.top;
           this.wfjq = res.data.wfjq;
           this.slbj = res.data.slbj;

@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 10:24:15
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-23 10:48:05
+ * @LastEditTime: 2019-10-23 14:10:10
  * @Description: 警情质态分析
  * @Email: UvDream@163.com
  -->
@@ -55,7 +55,7 @@
         </div>
       </div>
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary" :disabled="disabled" @click="saveFunc">保存</a-button>
+        <a-button type="primary" @click="saveFunc">保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-center"></div>
@@ -119,21 +119,13 @@ export default {
   },
   watch: {
     data: function(val) {
-      if (val == 1) {
-        EmptyObjVal(this.numberList, "val");
-        EmptyObjVal(this.tableList, "qy");
-        EmptyObjVal(this.tableList, "hq");
-        EmptyObjVal(this.tableList, "cb");
-        EmptyObjVal(this.tableList, "bx");
-        EmptyObjVal(this.tableList, "other");
-      } else if (val == 0) {
-        this.formdata.type = val;
-        this.searchFunc(this.formdata);
-      }
+      this.formdata.type = val;
+      this.searchFunc(this.formdata);
     },
     // 警局下拉框变化
     policeStation: function(val) {
       this.formdata.pcs = val;
+      this.formdata.type = 2;
       this.searchFunc(this.formdata);
     },
     // 日,周,月变化
@@ -171,8 +163,9 @@ export default {
     searchFunc(data) {
       checkPolice(data).then(res => {
         console.log("警情质态分析");
-        console.log(res);
+        console.log("警情质态分析", res);
         if (res.code == 0) {
+          res.data.jqzt ? (this.data = res.data.jqzt[0].type) : "";
           this.tableList = res.data.jqzl;
           this.numberList = res.data.jqzt;
         }

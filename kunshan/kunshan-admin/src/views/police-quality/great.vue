@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 11:43:39
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-23 10:48:25
+ * @LastEditTime: 2019-10-23 14:02:58
  * @Description: 重大警情
  * @Email: UvDream@163.com
  -->
@@ -73,7 +73,7 @@
         <section></section>
       </div>
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary" @click="saveFunc" :disabled="disabled">保存</a-button>
+        <a-button type="primary" @click="saveFunc">保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-center"></div>
@@ -136,15 +136,14 @@ export default {
   },
   watch: {
     data: function(val) {
-      if (val == 1) {
-      } else if (val == 0) {
-        this.formdata.type = val;
-        this.searchFunc(this.formdata);
-      }
+      this.formdata.type = val;
+      this.searchFunc(this.formdata);
     },
     // 警局下拉框变化
     policeStation: function(val) {
       this.formdata.pcs = val;
+      this.formdata.type = 2;
+
       this.searchFunc(this.formdata);
     },
     // 日,周,月变化
@@ -184,6 +183,7 @@ export default {
           console.log("查询重大警情");
           console.log(res);
           this.greatList = res.data.zdjq;
+          res.data.zdjq[0] ? (this.data = res.data.zdjq[0].type) : "";
           this.zyxtz = res.data.zyxtz;
         }
       });
