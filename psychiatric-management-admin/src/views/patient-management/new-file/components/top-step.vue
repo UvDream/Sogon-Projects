@@ -22,5 +22,6 @@ export default {};
   display: flex;
   align-items: center;
   padding: 0 20px;
+  box-shadow: 0 0 15px 0 rgba(14, 37, 38, 0.06);
 }
 </style>

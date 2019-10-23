@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 11:53:46
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-23 17:19:41
+ * @LastEditTime: 2019-10-23 17:33:43
  * @Description: 主界面
  * @Email: UvDream@163.com
  -->
@@ -10,12 +10,15 @@
   <div class="layout">
     <Layout style="height:100vh">
       <Layout>
-        <Sider hide-trigger :style="{background: '#fff'}">
+        <Sider
+          hide-trigger
+          :style="{background: '#fff',boxShadow: '10px 0 24px 0 rgba(14,37,38,0.10)'}"
+        >
           <Logo />
           <Menus :menus-list="menusList" />
         </Sider>
         <Layout>
-          <Header :style="{background: '#ebf1f2',height:'122px',padding:'0px 10px'}">
+          <Header :style="{background: '#ebf1f2',height:'122px',padding:'0px 20px'}">
             <div class="header">
               <div class="header-bread">
                 <span>{{$route.meta.label}}</span>
