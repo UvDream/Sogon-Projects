@@ -2,12 +2,12 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 13:52:01
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-23 16:31:48
+ * @LastEditTime: 2019-10-23 17:03:31
  * @Description: 菜单
  * @Email: UvDream@163.com
  -->
 <template>
-  <Menu theme="light" :open-names="['1']" width="auto" :class="menuitemClasses">
+  <Menu theme="light" :open-names="openKey" :active-name="activeName" width="auto">
     <MenuItem
       v-for="(item) in menusList"
       :key="item.id+'sh'"
@@ -35,6 +35,12 @@
 
 <script>
 export default {
+  data() {
+    return {
+      openKey: ["1"],
+      activeName: "3"
+    };
+  },
   props: {
     menusList: {
       type: Array,
@@ -46,12 +52,24 @@ export default {
   computed: {
     isCollapsed: function() {
       return this.$store.state.isCollapsed;
-    },
-    rotateIcon() {
-      return ["menu-icon", this.isCollapsed ? "rotate-icon" : ""];
-    },
-    menuitemClasses() {
-      return ["menu-item", this.isCollapsed ? "collapsed-menu" : ""];
+    }
+  },
+  watch: {},
+  mounted() {
+    this.activeName = this.activeFunc(this.$route.path);
+  },
+  methods: {
+    activeFunc(path) {
+      let num;
+      this.menusList.forEach(element => {
+        element.url == path ? (num = element.id) : "";
+        element.children
+          ? element.children.forEach(item => {
+              item.url === path ? (num = item.id) : "";
+            })
+          : "";
+      });
+      return num;
     }
   }
 };
