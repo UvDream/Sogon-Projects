@@ -41,7 +41,7 @@
           </div>
         </div>        
         <div class="dashboard-bottom-left-content-btn">
-          <a-button type="primary" @click="saveFunc" :disabled="disabled">保存</a-button>
+          <a-button type="primary" @click="saveFunc">保存</a-button>
         </div>
       </div>
       <div class="dashboard-bottom-right">
@@ -112,6 +112,8 @@ export default {
         // EmptyObjVal(this.numberList, "num");
         // EmptyObjVal(this.tableList, "pcrynum");
         // EmptyObjVal(this.tableList, "pczdrynum");
+        this.formdata.type = val;
+        this.searchFunc(this.formdata);
       } else if (val == 0) {
         this.formdata.type = val;
         this.searchFunc(this.formdata);
@@ -119,7 +121,7 @@ export default {
     },
     // 警局下拉框变化
     policeStation: function(val) {
-      this.formdata.pcs = val;
+      this.formdata.pcs = val;      
       this.searchFunc(this.formdata);
     },
     // 日,周,月变化
@@ -134,6 +136,7 @@ export default {
     }
   },
   mounted() {
+    this.formdata.type = 2;
     this.searchFunc(this.formdata);    
   },
   methods: {
@@ -149,18 +152,18 @@ export default {
           this.tableList = res.data.penrecordnumpm;
           this.subTitleName = '派出所笔录总数排名';
         }
+        this.data = res.data.numberListFive[0].type;
       })
     },
     saveFunc() {
       let param = {
-        type: 1,
+        type: this.data,
         dateType: this.formdata.dateType,
         pcs: this.formdata.pcs,
         numberListFive: this.numberList,
         penrecordnumpm: this.tableList,
       };
-
-      console.log(FormData)
+      
       api.saveTablePaiming(param).then(res=>{
     
       })

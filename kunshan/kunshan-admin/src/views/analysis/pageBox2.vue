@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary" @click="saveFunc" :disabled="disabled">保存</a-button>
+        <a-button type="primary" @click="saveFunc" >保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-right">
@@ -62,6 +62,11 @@ export default {
   data() {
     return {
       disabled: true,
+      formdata: {
+        type: 2,
+        dateType: "日",
+        pcs: this.$store.state.topSelect
+      },
       tableList: [
         { qy: 200 },
         { qy: 200 },
@@ -111,7 +116,7 @@ export default {
     }
   },
   mounted() {
-    this.formdata.type = 0;
+    this.formdata.type = 2;
     this.searchFunc(this.formdata);    
   },
   methods: {
@@ -119,12 +124,13 @@ export default {
       console.log(data)
       api.fetchTablePaiming(data).then(res=>{
         console.log(res.data.lastThirtyInvestigationNumAndCaseHappenList)
-        this.tableList = res.data.lastThirtyInvestigationNumAndCaseHappenList;        
+        this.tableList = res.data.lastThirtyInvestigationNumAndCaseHappenList;    
+        this.data = res.data.lastThirtyInvestigationNumAndCaseHappenList[0].type;      
       })
     },
     saveFunc() {
       let param = {
-        type: 1,
+        type: this.data,
         pcs: this.formdata.pcs,
         lastThirtyInvestigationNumAndCaseHappenList: this.tableList,
       };
