@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-22 09:35:59
+ * @LastEditTime: 2019-10-23 10:38:53
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
@@ -212,7 +212,7 @@ export default {
   methods: {
     saveFunc() {
       let obj = {
-        type: this.formdata.type,
+        type: this.data,
         dateType: this.formdata.dateType,
         pcs: this.formdata.pcs
       };
@@ -226,7 +226,7 @@ export default {
     },
     searchFunc(data) {
       checkOnDuty(data).then(res => {
-        console.log(res);
+        console.log("上面", res);
         this.list = res.data;
       });
     },

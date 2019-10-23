@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 11:43:39
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-22 09:51:06
+ * @LastEditTime: 2019-10-23 10:48:25
  * @Description: 重大警情
  * @Email: UvDream@163.com
  -->
@@ -164,7 +164,7 @@ export default {
   methods: {
     saveFunc() {
       let obj = {
-        type: this.formdata.type,
+        type: this.data,
         dateType: this.formdata.dateType,
         pcs: this.formdata.pcs,
         zdjq: this.greatList,

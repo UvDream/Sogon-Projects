@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 09:02:22
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-22 09:35:47
+ * @LastEditTime: 2019-10-23 10:49:17
  * @Description: 异常报警分析
  * @Email: UvDream@163.com
  -->
@@ -98,7 +98,7 @@ export default {
   methods: {
     saveFunc() {
       let obj = {
-        type: this.formdata.type,
+        type: this.data,
         dateType: this.formdata.dateType,
         pcs: this.formdata.pcs,
         dailyCall: this.dailyCall,
