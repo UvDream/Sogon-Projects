@@ -24,7 +24,6 @@
               :disabled="disabled"
               v-model="item.xm"
             />
-            </a-select>
           </section>
           <section style="width:250px;">
             <Time v-model="item.yjsj" :disabled="disabled" :format="'YYYY-MM-DD'" />
@@ -118,7 +117,9 @@ export default {
     // 警局下拉框变化
     policeStation: function(val) {
       this.formdata.pcs = val;
-      this.searchFunc(this.formdata);
+      if(this.formdata.pcs=="昆山市公安局"){
+        this.searchFunc(this.formdata);
+      }
     },
     // 日,周,月变化
     topDate: function(val) {
@@ -128,11 +129,15 @@ export default {
         3: "月"
       };
       this.formdata.dateType = obj[val];
-      this.searchFunc(this.formdata);
+      if(this.formdata.pcs=="昆山市公安局"){
+        this.searchFunc(this.formdata);
+      }
     }
   },
   mounted() {
-    this.searchFunc(this.formdata);
+    if(this.formdata.pcs=="昆山市公安局"){
+      this.searchFunc(this.formdata);
+    }
   },
   methods: {
     saveFunc() {

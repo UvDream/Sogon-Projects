@@ -115,6 +115,8 @@ export default {
   },
   data() {
     return {
+      selectVal: "",
+      tab: 1,
       radioVal: 1,
       tableList: [],
       numberList: [],

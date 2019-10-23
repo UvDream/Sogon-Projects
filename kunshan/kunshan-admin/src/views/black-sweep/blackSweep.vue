@@ -98,6 +98,8 @@ export default {
   data() {
     return {
       radioVal: 1,
+      selectVal: "",
+      tab: 1,
       numberList1: [],
       numberList2: [],
       numberList3: [],
