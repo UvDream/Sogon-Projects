@@ -31,7 +31,7 @@ class RingChart extends React.Component<RingChartProps, RingChartState> {
                     <div>
                         <p>{this.props.total}</p>
                         <p>目标</p>
-                    </div>
+                    </div> 
                     <div>
                         <p>{this.props.complete}</p>
                         <p>已完成</p>
