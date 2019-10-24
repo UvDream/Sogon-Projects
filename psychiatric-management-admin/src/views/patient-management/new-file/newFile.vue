@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 17:27:24
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-24 15:00:22
+ * @LastEditTime: 2019-10-24 15:23:26
  * @Description: 新建档案
  * @Email: UvDream@163.com
  -->
@@ -10,9 +10,9 @@
   <div class="new">
     <TopStep />
     <!-- 发现 -->
-    <Find />
+    <!-- <Find /> -->
     <!-- 评定 -->
-    <!-- <Assessment /> -->
+    <Assessment />
     <!-- 治疗 -->
     <Treatment />
     <!-- 监护 -->
