@@ -219,8 +219,8 @@ export default {
           item.check == "true" ? (item.check = true) : (item.check = false);
         });
         this.tableList = res.data.essxspcryhpczdrynumList;  
-        if(res.data.essxspcryhpczdrynumList.length > 0) {
-          this.data = res.data.essxspcryhpczdrynumList[0].type;      
+        if(res.data.pcnum.length > 0) {
+          this.data = res.data.pcnum[0].type;      
         }
       });
     },
