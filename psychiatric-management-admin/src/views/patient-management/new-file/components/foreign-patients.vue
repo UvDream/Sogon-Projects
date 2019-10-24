@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-23 17:37:33
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-24 10:15:58
+ * @LastEditTime: 2019-10-24 13:48:49
  * @Description: 外地病患
  * @Email: UvDream@163.com
  -->
@@ -15,7 +15,7 @@
         label-position="top"
         :model="formValidate"
         :rules="ruleValidate"
-        :label-width="80"
+        :label-width="200"
       >
         <div class="form">
           <FormItem label="档案编号" prop="number" class="form-block">
