@@ -2,27 +2,25 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 17:27:24
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-24 10:24:53
+ * @LastEditTime: 2019-10-24 11:46:30
  * @Description: 新建档案
  * @Email: UvDream@163.com
  -->
 <template>
   <div class="new">
     <TopStep />
-    <ForeignPatients />
-    <Registration />
+    <!-- 发现 -->
+    <Find />
   </div>
 </template>
 
 <script>
 import TopStep from "./components/top-step.vue";
-import ForeignPatients from "./components/foreign-patients";
-import Registration from "./components/registration";
+import Find from "./find";
 export default {
   components: {
     TopStep,
-    ForeignPatients,
-    Registration
+    Find
   }
 };
 </script>

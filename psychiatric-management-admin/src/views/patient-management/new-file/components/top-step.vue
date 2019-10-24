@@ -1,6 +1,6 @@
 <template>
   <div class="top-step">
-    <Steps :current="1">
+    <Steps :current="0">
       <Step title="发现" icon="ios-person"></Step>
       <Step title="评定" icon="ios-camera"></Step>
       <Step title="治疗" icon="ios-mail"></Step>

@@ -108,8 +108,9 @@
             placeholder="输入所属村居"
           />
         </FormItem>
+        <!-- 上传文件 -->
         <FormItem label="上传证明文件" prop="uploadFiles" class="form-block">
-          <Input v-model="formValidate.uploadFiles" placeholder="输入档案号" />
+          <Upload />
         </FormItem>
       </div>
       <!-- 第七排 -->
@@ -117,20 +118,25 @@
         <FormItem label="登记人员" prop="registrationStaff" class="form-block">
           <Input v-model="formValidate.registrationStaff" placeholder="输入档案号" />
         </FormItem>
-        <FormItem label="创建日期" prop="registrationDate" class="form-block">
-          <DatePicker type="registrationDate" placeholder="选择日期" v-model="formValidate.createDate"></DatePicker>
+        <FormItem label="登记日期" prop="registrationDate" class="form-block">
+          <DatePicker type="date" placeholder="请选择登记日期" v-model="formValidate.createDate"></DatePicker>
         </FormItem>
       </div>
+      <FormItem>
+        <Button type="primary" @click="handleSubmit('formValidate')">Submit</Button>
+      </FormItem>
     </Form>
   </div>
 </template>
 
 <script>
 import TopTitle from "../../../../components/top-title/top-title";
+import Upload from "../../../../components/upload/upload";
 
 export default {
   components: {
-    TopTitle
+    TopTitle,
+    Upload
   },
   data() {
     return {
@@ -159,31 +165,81 @@ export default {
         uploadFiles: "",
         // 登记人员
         registrationStaff: "",
-        registrationDate: ""
+        registrationDate: "2019-10-11"
       },
       ruleValidate: {
         patientName: [{ required: true, message: "请输入患者姓名" }],
         sex: [{ required: true, message: "请选择性别" }],
         IdNumber: [{ required: true, message: "请输入身份证号" }],
-        phone: [
-          { required: false },
-          { type: "phone", message: "请输入正确手机号", trigger: "blur" }
+        // phone: [
+        //   { required: false },
+        //   { type: "phone", message: "请输入正确手机号", trigger: "blur" }
+        // ],
+        status: [{ required: true, message: "请选择患者状况" }],
+        village: [{ required: true, message: "请输入所属村居" }],
+        police: [{ required: true, message: "请输入社区民警" }],
+        patientCondition: [{ required: true, message: "请选择患者病情" }],
+        risk: [{ required: true, message: "请选择危险性评估" }],
+        contactFamily: [{ required: true, message: "请选择是否联系到家属" }],
+        processingMethod: [
+          { required: true, message: "请选择外籍患者处理方式" }
         ],
-        status: [{ required: true }],
-        village: [{ required: true }],
-        police: [{ required: true }],
-        patientCondition: [{ required: true }],
-        risk: [{ required: true }],
-        contactFamily: [{ required: true }],
-        processingMethod: [{ required: true }],
-        uploadFiles: [{ required: true }],
-        registrationStaff: [{ required: true }],
-        registrationDate: [{ required: true }]
+        uploadFiles: [{ required: true, message: "上传证明文件" }],
+        registrationStaff: [{ required: true, message: "请输入登记人员" }],
+        registrationDate: [{ required: true, message: "请选择登记日期" }]
       }
     };
+  },
+  mounted() {},
+  methods: {
+    handleSubmit(name) {
+      this.$refs[name].validate(valid => {
+        if (valid) {
+          this.$Message.success("Success!");
+        } else {
+          this.$Message.error("Fail!");
+        }
+      });
+    }
   }
 };
 </script>
 
 <style scoped lang="less">
+.demo-upload-list {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+  position: relative;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  margin-right: 4px;
+}
+.demo-upload-list img {
+  width: 100%;
+  height: 100%;
+}
+.demo-upload-list-cover {
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+.demo-upload-list:hover .demo-upload-list-cover {
+  display: block;
+}
+.demo-upload-list-cover i {
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  margin: 0 2px;
+}
 </style>
