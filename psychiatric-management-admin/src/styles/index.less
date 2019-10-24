@@ -27,3 +27,37 @@
         margin-right: 10px;
     }
 }
+
+// 表单
+.white-block {
+    margin-top      : 20px;
+    background-color: #fff;
+    border-radius   : 20px;
+    min-height      : 200px;
+    box-shadow      : 0 0 15px 0 rgba(14, 37, 38, 0.06);
+}
+
+.form {
+    display     : flex;
+    flex-wrap   : wrap;
+    padding-left: 30px;
+
+    &-block {
+        width          : 240px;
+        margin-right   : 15px;
+        // outline     : 1px solid red;
+
+        .ivu-date-picker {
+            width: 240px;
+        }
+
+        &>label {
+            text-align: left !important;
+        }
+
+
+        .ivu-form-item-content {
+            margin-left: 0px !important;
+        }
+    }
+}

@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 17:27:24
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-23 17:39:13
+ * @LastEditTime: 2019-10-24 10:24:53
  * @Description: 新建档案
  * @Email: UvDream@163.com
  -->
@@ -10,16 +10,19 @@
   <div class="new">
     <TopStep />
     <ForeignPatients />
+    <Registration />
   </div>
 </template>
 
 <script>
 import TopStep from "./components/top-step.vue";
 import ForeignPatients from "./components/foreign-patients";
+import Registration from "./components/registration";
 export default {
   components: {
     TopStep,
-    ForeignPatients
+    ForeignPatients,
+    Registration
   }
 };
 </script>
