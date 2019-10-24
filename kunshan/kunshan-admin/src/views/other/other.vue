@@ -135,7 +135,6 @@ export default {
   },
   mounted() {
     this.formdata.type = 2;
-    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);    
   },
   methods: {
@@ -144,7 +143,9 @@ export default {
       api.fetchTablePaiming(data).then(res=>{
         console.log(res.data.highRiskAnalyseAndPhoneCollectList)
         this.tableList = res.data.highRiskAnalyseAndPhoneCollectList; 
-        this.data = res.data.highRiskAnalyseAndPhoneCollectList[0].type;       
+        if(res.data.highRiskAnalyseAndPhoneCollectList.length > 0) {
+          this.data = res.data.highRiskAnalyseAndPhoneCollectList[0].type;       
+        }
       })
     },
     saveFunc() {

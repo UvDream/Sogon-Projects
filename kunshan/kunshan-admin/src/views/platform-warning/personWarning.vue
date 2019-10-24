@@ -131,9 +131,11 @@ export default {
     }
   },
   mounted() {
-    if(this.formdata.pcs=="昆山市公安局"){
-      this.searchFunc(this.formdata);
-    }
+    // if(this.formdata.pcs=="昆山市公安局"){
+    //   this.searchFunc(this.formdata);
+    // }
+    this.formdata.type = 2;
+    this.searchFunc(this.formdata);  
   },
   methods: {
     saveFunc() {
@@ -152,7 +154,9 @@ export default {
     searchFunc(data) {
       checkData(data).then(res => {
         this.numberList = res.data.peopleWarningListQuery;
-        this.data = res.data.peopleWarningListQuery[0].type;
+        if(res.data.peopleWarningListQuery.length > 0) {
+          this.data = res.data.peopleWarningListQuery[0].type;
+        }
       });
     },
     reduce(index, id) {

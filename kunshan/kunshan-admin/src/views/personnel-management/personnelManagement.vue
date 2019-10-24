@@ -44,7 +44,7 @@
         <div class="dashboard-bottom-left-table" v-show="this.formdata.pcs=='昆山市公安局'">
           <div class="dashboard-bottom-left-table-left">
             <div>派出所</div>
-            <div v-for="(item,index) in tableList2"  :key="index">{{item.name}}</div>
+            <div v-for="(item,index) in tableList2"  :key="index"><a-input v-model="item.name" :disabled="disabled"/></div>
           </div>
           <div class="dashboard-bottom-left-table-right">
             <div>
@@ -160,7 +160,6 @@ export default {
   },
   mounted() {
     this.formdata.type = 2;
-    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);    
   },
   methods: {
@@ -170,7 +169,9 @@ export default {
         this.numberList = res.data.rytj;
         this.tableList1 = res.data.rylb; 
         this.tableList2 = res.data.rank; 
-        this.data = res.data.rytj[0].type;
+        if(res.data.rytj.length > 0) {
+          this.data = res.data.rytj[0].type;
+        }
       })
     },
     saveFunc() {
@@ -219,5 +220,8 @@ export default {
     height: 80%;
     background-color: #b3b3b3;
   }
+}
+.ant-input {
+  width: auto
 }
 </style>

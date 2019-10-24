@@ -143,7 +143,6 @@ export default {
   },
   mounted() {
     this.formdata.type = 2;
-    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);
   },
   methods: {
@@ -178,7 +177,9 @@ export default {
     },
     searchFunc(data) {
       checkData(data).then(res => {
-        this.data = res.data.blxzaj[0].type;
+        if(res.data.blxzaj.length > 0) { 
+          this.data = res.data.blxzaj[0].type;
+        }
         this.numberList1 = res.data.jlxsaj;
         this.numberList2 = res.data.blxzaj;
         this.numberList3 = res.data.qt;

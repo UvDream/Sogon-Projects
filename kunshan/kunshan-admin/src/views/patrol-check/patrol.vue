@@ -179,7 +179,6 @@ export default {
     // 检测全选状态
     // this.findCheck();
     this.formdata.type = 2;
-    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);
   },
   methods: {
@@ -220,7 +219,9 @@ export default {
           item.check == "true" ? (item.check = true) : (item.check = false);
         });
         this.tableList = res.data.essxspcryhpczdrynumList;  
-          this.data = res.data.pcnum[0].type;      
+        if(res.data.essxspcryhpczdrynumList.length > 0) {
+          this.data = res.data.essxspcryhpczdrynumList[0].type;      
+        }
       });
     },
     // 单选按钮状态改变

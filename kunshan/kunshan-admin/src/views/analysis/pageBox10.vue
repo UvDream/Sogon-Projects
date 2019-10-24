@@ -140,7 +140,6 @@ export default {
   },
   mounted() {
     this.formdata.type = 2;
-    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);    
   },
   methods: {
@@ -148,8 +147,10 @@ export default {
       console.log(data)
       api.fetchTablePaiming(data).then(res=>{
         console.log(res.data.lastThirtyWfjqAndBeEntryList)
-        this.tableList = res.data.lastThirtyWfjqAndBeEntryList;        
-        this.data = res.data.lastThirtyWfjqAndBeEntryList[0].type;  
+        this.tableList = res.data.lastThirtyWfjqAndBeEntryList; 
+        if(res.data.lastThirtyWfjqAndBeEntryList.length > 0) {       
+          this.data = res.data.lastThirtyWfjqAndBeEntryList[0].type;  
+        }
       })
     },
     saveFunc() {
