@@ -26,8 +26,8 @@
         <div class="dashboard-bottom-left-table">
           <div class="dashboard-bottom-left-table-left">
             <div>{{title}}</div>
-            <div v-for="(item,index) in tableList"  :key="index" v-show="title=='派出所'">{{item.pcsname}}</div>
-            <div v-for="(item,index) in tableList"  :key="index" v-show="title!=='派出所'">{{item.name}}</div>
+            <div v-for="(item,index) in tableList"  v-show="title=='派出所'">{{item.pcsname}}</div>
+            <div v-for="(item,index) in tableList"  v-show="title!=='派出所'">{{item.name}}</div>
           </div>
           <div class="dashboard-bottom-left-table-right">
             <div>

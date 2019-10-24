@@ -16,7 +16,7 @@
         title="一案一档一研判"
         v-model="data"
         ></Title>
-        <div class="table" v-if="tableList.length != 0">
+        <div class="table" v-if="tableList.length != 0" v-show="formdata.pcs=='昆山市公安局'">
           <div class="table-row">
             <section style="border-top: solid 1px #cbcbcb;color:#999;">类型\派出所</section>
             <section style="border-top: solid 1px #cbcbcb;color:#999;">不合格退回数</section>
@@ -145,7 +145,6 @@ export default {
     // 警局下拉框变化
     policeStation: function(val) {
       this.formdata.pcs = val;
-      this.formdata.type = 2;
       this.searchFunc(this.formdata);
     },
     // 日,周,月变化
@@ -160,6 +159,8 @@ export default {
     }
   },
   mounted() {
+    this.formdata.type = 2;
+    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);
   },
   methods: {

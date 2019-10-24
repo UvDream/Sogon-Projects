@@ -143,6 +143,7 @@ export default {
   },
   mounted() {
     this.formdata.type = 2;
+    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);
   },
   methods: {

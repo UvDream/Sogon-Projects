@@ -93,6 +93,8 @@ export default {
   },
   mounted() {
     console.log("1111111111", this.formdata);
+    this.formdata.type = 2;
+    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);
   },
   methods: {

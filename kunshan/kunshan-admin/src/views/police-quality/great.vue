@@ -48,9 +48,7 @@
         </div>
         <div v-show="formdata.pcs=='昆山市公安局'"
           class="dashboard-bottom-left-content-great"
-          v-for="(item, index) in greatList"
-          :key="index"
-        >
+          v-for="item in greatList">
           <section>
             <a-input
               placeholder=""
@@ -185,6 +183,8 @@ export default {
     }
   },
   mounted() {
+    this.formdata.type = 2;
+    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);
   },
   methods: {

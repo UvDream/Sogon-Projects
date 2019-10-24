@@ -88,11 +88,11 @@ export default {
         // EmptyObjVal(this.numberList, "num");
         // EmptyObjVal(this.tableList, "pcrynum");
         // EmptyObjVal(this.tableList, "pczdrynum");
-        // this.formdata.type = val;
+        this.formdata.type = val;
         this.searchFunc(this.formdata);
       } else if (val == 0) {
-        // this.formdata.type = val;
-        // this.searchFunc(this.formdata);
+        this.formdata.type = val;
+        this.searchFunc(this.formdata);
       }
     },
     // 警局下拉框变化
@@ -120,7 +120,7 @@ export default {
     searchFunc(data) {
       console.log(data)
       api.fetchTablePaiming(data).then(res=>{
-        console.log(res.data.everyWeekPloliceNumList)
+        console.log(res.data.everyWeekPloliceNumList[0].type)
         this.tableList = res.data.everyWeekPloliceNumList;  
         this.data = res.data.everyWeekPloliceNumList[0].type;        
       })

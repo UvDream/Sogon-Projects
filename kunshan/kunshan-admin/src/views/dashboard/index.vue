@@ -9,7 +9,7 @@
 <template>
   <div class="dashboard">
     <TopSelect :select-val="selectVal" :tab-val="tab" />
-    <div class="dashboard-bottom">
+    <div class="dashboard-bottom" v-if="formdata.pcs=='昆山市公安局'">
       <div class="dashboard-bottom-left">
         <Title title="市局今日值班情况" v-model="data" />
         <div class="dashboard-bottom-left-content">
@@ -142,7 +142,7 @@
         </div>
       </div>
     </div>
-    <Bottom />
+    <Bottom v-if="formdata.pcs!=='昆山市公安局'"/>
   </div>
 </template>
 
@@ -205,6 +205,7 @@ export default {
   },
   mounted() {
     this.formdata.type = 2;
+    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);
   },
   methods: {
@@ -227,6 +228,7 @@ export default {
         console.log("上面", res);
         // this.data = res.data.zbll.type;
         this.list = res.data;
+        this.data = res.data.jld[0].type;
       });
     },
     radioChange(e) {},
