@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-24 13:42:19
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-24 15:28:53
+ * @LastEditTime: 2019-10-24 15:39:30
  * @Description: 外地病患
  * @Email: UvDream@163.com
  -->
@@ -21,12 +21,7 @@
           <Input v-model="formValidate.policePhone" placeholder="输入原籍公安联系电话" />
         </FormItem>
         <FormItem label="原籍公安联系时间" prop="contactTime" class="form-block">
-          <DatePicker
-            type="datetime"
-            placeholder="请选择时间"
-            v-model="formValidate.policeContactTime"
-            style="width: 200px"
-          ></DatePicker>
+          <DatePicker type="datetime" placeholder="请选择时间" v-model="formValidate.policeContactTime"></DatePicker>
         </FormItem>
       </div>
       <div class="form">
