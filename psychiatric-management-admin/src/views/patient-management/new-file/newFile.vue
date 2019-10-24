@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 17:27:24
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-24 11:46:30
+ * @LastEditTime: 2019-10-24 11:55:26
  * @Description: 新建档案
  * @Email: UvDream@163.com
  -->
@@ -11,16 +11,32 @@
     <TopStep />
     <!-- 发现 -->
     <Find />
+    <!-- 评定 -->
+    <!-- 治疗 -->
+    <!-- 监护 -->
+    <!-- 帮扶 -->
   </div>
 </template>
 
 <script>
 import TopStep from "./components/top-step.vue";
 import Find from "./find";
+// 评定
+import Assessment from "./assessment";
+// 治疗
+import Treatment from "./treatment";
+// 监护
+import Guardianship from "./guardianship";
+// 帮扶
+import Help from "./help";
 export default {
   components: {
     TopStep,
-    Find
+    Find,
+    Assessment,
+    Treatment,
+    Guardianship,
+    Help
   }
 };
 </script>
