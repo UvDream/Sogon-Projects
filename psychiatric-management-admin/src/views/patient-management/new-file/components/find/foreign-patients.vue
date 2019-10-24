@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-23 17:37:33
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-24 13:48:49
+ * @LastEditTime: 2019-10-24 15:02:03
  * @Description: 外地病患
  * @Email: UvDream@163.com
  -->
@@ -30,13 +30,7 @@
           <FormItem label="创建日期" prop="createDate" class="form-block">
             <DatePicker type="date" placeholder="选择日期" v-model="formValidate.createDate"></DatePicker>
           </FormItem>
-          <FormItem label="档案状态" prop="status" class="form-block">
-            <Select v-model="formValidate.status" placeholder="选择档案状态">
-              <Option value="beijing">New York</Option>
-              <Option value="shanghai">London</Option>
-              <Option value="shenzhen">Sydney</Option>
-            </Select>
-          </FormItem>
+
           <FormItem label="转发人" prop="forwarder" class="form-block">
             <Input v-model="formValidate.forwarder" placeholder="输入转发人" />
           </FormItem>
@@ -66,7 +60,6 @@ export default {
         name: "",
         founder: "",
         createDate: "",
-        status: "",
         forwarder: "",
         forwardDate: ""
       },
