@@ -53,7 +53,7 @@
   </div>
 </template>
 <script>
-import TopTitle from "../../../../components/top-title/top-title";
+import TopTitle from "@/components/top-title/top-title";
 export default {
   components: {
     TopTitle

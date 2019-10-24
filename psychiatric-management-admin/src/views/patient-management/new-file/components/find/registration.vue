@@ -130,8 +130,8 @@
 </template>
 
 <script>
-import TopTitle from "../../../../components/top-title/top-title";
-import Upload from "../../../../components/upload/upload";
+import TopTitle from "@/components/top-title/top-title";
+import Upload from "@/components/upload/upload";
 
 export default {
   components: {
