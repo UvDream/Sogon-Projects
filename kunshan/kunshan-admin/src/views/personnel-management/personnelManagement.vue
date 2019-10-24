@@ -40,8 +40,8 @@
             </div>
           </div>
         </div>
-        <sub-title :is-check="false" title="入所人员派出所排名" />
-        <div class="dashboard-bottom-left-table">
+        <sub-title :is-check="false" title="入所人员派出所排名" v-show="this.formdata.pcs=='昆山市公安局'"/>
+        <div class="dashboard-bottom-left-table" v-show="this.formdata.pcs=='昆山市公安局'">
           <div class="dashboard-bottom-left-table-left">
             <div>派出所</div>
             <div v-for="(item,index) in tableList2"  :key="index">{{item.name}}</div>
@@ -58,7 +58,7 @@
           </div>
         </div>
         <div class="dashboard-bottom-left-content-btn">
-          <a-button type="primary" @click="saveFunc" :disabled="disabled">保存</a-button>
+          <a-button type="primary" @click="saveFunc">保存</a-button>
         </div>
       </div>
       <div class="dashboard-bottom-right">
@@ -159,22 +159,23 @@ export default {
     }
   },
   mounted() {
-    this.formdata.type = 0;
+    this.formdata.type = 2;
+    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);    
   },
   methods: {
     searchFunc(data) {
       console.log(data)
       api.fetchTablePaiming(data).then(res=>{
-        console.log(res.data.penrecordnumpm)
         this.numberList = res.data.rytj;
         this.tableList1 = res.data.rylb; 
         this.tableList2 = res.data.rank; 
+        this.data = res.data.rytj[0].type;
       })
     },
     saveFunc() {
       let param = {
-        type: 1,
+        type: this.data,
         dateType: this.formdata.dateType,
         pcs: this.formdata.pcs,
         rytj: this.numberList,
@@ -183,7 +184,9 @@ export default {
       };
 
       api.saveTablePaiming(param).then(res=>{
-    
+        if (res.code == 0) {
+          this.$message.success("保存成功!");
+        }
       })
     }
   },

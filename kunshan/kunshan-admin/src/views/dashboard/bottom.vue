@@ -201,6 +201,8 @@ export default {
     }
   },
   mounted() {
+    this.formdata.type = 2;
+    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);
   },
   methods: {
@@ -221,7 +223,7 @@ export default {
     searchFunc(data) {
       checkOnDuty(data).then(res => {
         console.log("底部", res);
-        this.data = res.data.bqll.type;
+        // this.data = res.data.bqll.type;
         this.list = res.data;
       });
     },

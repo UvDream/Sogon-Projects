@@ -40,7 +40,7 @@
           ></MoreInput>
         </div>
         <div class="dashboard-bottom-left-content-btn">
-          <a-button type="primary" @click="saveFunc" :disabled="disabled">保存</a-button>
+          <a-button type="primary" @click="saveFunc">保存</a-button>
         </div>
       </div>
       <div class="dashboard-bottom-right">
@@ -130,7 +130,8 @@ export default {
     }
   },
   mounted() {
-    this.formdata.type = 0;
+    this.formdata.type = 2;
+    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);    
   },
   methods: {
@@ -140,11 +141,12 @@ export default {
         console.log(res.data.penrecordnumpm)
         this.numberList1 = res.data.kjjf;
         this.numberList2 = res.data.jysb;
+        this.data = res.data.kjjf[0].type;    
       })
     },
     saveFunc() {
       let param = {
-        type: 1,
+        type: this.data,
         dateType: this.formdata.dateType,
         pcs: this.formdata.pcs,
         kjjf: this.numberList1,
@@ -153,7 +155,9 @@ export default {
 
       console.log(FormData)
       api.saveTablePaiming(param).then(res=>{
-    
+        if (res.code == 0) {
+          this.$message.success("保存成功!");
+        }
       })
     }
   },

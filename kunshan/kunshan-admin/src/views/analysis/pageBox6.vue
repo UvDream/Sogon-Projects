@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary" @click="saveFunc" :disabled="disabled">保存</a-button>
+        <a-button type="primary" @click="saveFunc">保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-right">
@@ -58,6 +58,11 @@ export default {
   data() {
     return {
       disabled: true,
+      formdata: {
+        type: 2,
+        dateType: "日",
+        pcs: this.$store.state.topSelect
+      },
       tableList: [
         { qy: 200 },
         { qy: 200 },
@@ -107,7 +112,8 @@ export default {
     }
   },
   mounted() {
-    this.formdata.type = 0;
+    this.formdata.type = 2;
+    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);    
   },
   methods: {
@@ -115,19 +121,22 @@ export default {
       console.log(data)
       api.fetchTablePaiming(data).then(res=>{
         console.log(res.data.lastThirtyCaseHappenPlaceList)
-        this.tableList = res.data.lastThirtyCaseHappenPlaceList;        
+        this.tableList = res.data.lastThirtyCaseHappenPlaceList;   
+        this.data = res.data.lastThirtyCaseHappenPlaceList[0].type;          
       })
     },
     saveFunc() {
       let param = {
-        type: 1,
+        type: this.data,
         pcs: this.formdata.pcs,
         lastThirtyCaseHappenPlaceList: this.tableList,
       };
 
       console.log(FormData)
       api.saveTablePaiming(param).then(res=>{
-    
+        if (res.code == 0) {
+          this.$message.success("保存成功!");
+        }
       })
     }
   },

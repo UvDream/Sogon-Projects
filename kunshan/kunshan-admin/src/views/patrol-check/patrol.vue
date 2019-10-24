@@ -43,7 +43,12 @@
         </div>
         <div class="table-row" v-for="(item,index) in tableList" :key="index">
           <section>
-            <Time v-model="item.hour" :disabled="disabled" :format="'YYYY-MM-DD'" />
+            <a-input
+              placeholder="数值"
+              style="width:160px"
+              :disabled="disabled"
+              v-model="item.hour"
+            />
           </section>
           <section>
             <a-input
@@ -77,7 +82,7 @@
       </div>
       <!-- 保存 -->
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary" :disabled="disabled" @click="saveFunc">保存</a-button>
+        <a-button type="primary" @click="saveFunc">保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-center"></div>
@@ -147,8 +152,10 @@ export default {
         // EmptyObjVal(this.numberList, "num");
         // EmptyObjVal(this.tableList, "pcrynum");
         // EmptyObjVal(this.tableList, "pczdrynum");
-      } else if (val == 0) {
         this.formdata.type = val;
+        this.searchFunc(this.formdata);
+      } else if (val == 0) {
+        this.formdata.type = val;        
         this.searchFunc(this.formdata);
       }
     },
@@ -171,6 +178,8 @@ export default {
   mounted() {
     // 检测全选状态
     // this.findCheck();
+    this.formdata.type = 2;
+    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);
   },
   methods: {
@@ -182,7 +191,7 @@ export default {
         pcs: this.policeStation,
         patrolInvestigationDo: {
           pcnum: this.numberList,
-          pcryhpczdrynum: this.tableList
+          essxspcryhpczdrynumList: this.tableList
         }
       };
       // console.log("检测是否为空", EmptyArray(this.numberList, "num"));
@@ -210,7 +219,8 @@ export default {
         this.numberList.forEach(item => {
           item.check == "true" ? (item.check = true) : (item.check = false);
         });
-        this.tableList = res.data.essxspcryhpczdrynumList;
+        this.tableList = res.data.essxspcryhpczdrynumList;  
+          this.data = res.data.pcnum[0].type;      
       });
     },
     // 单选按钮状态改变

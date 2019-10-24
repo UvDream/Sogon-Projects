@@ -11,29 +11,52 @@
   <div class="dashboard-bottom" style="height:auto">
     <div class="dashboard-bottom-left">
       <Title title="最近30天入所人员数与笔录对比" v-model="data"/>
-      <div class="dashboard-bottom-left-table">
-        <div class="dashboard-bottom-left-table-left">
-          <div>日期</div>
-          <div v-for="(item,index) in tableList"  :key="index">{{item.date}}</div>
+      <div class="person-one">
+        <div class="person-one-table">
+          <section style="width:250px;">日期</section>
+          <section>入所人员数</section>
+          <section>笔录数</section>
+          <section></section>
         </div>
-        <div class="dashboard-bottom-left-table-right">
-          <div>
-            <section>入所人员数</section>
-            <section>笔录数</section>
-          </div>
-          <div v-for="(item, index) in tableList" :key="index">
-            <section>
-              <a-input v-model="item.rsrynum" :disabled="disabled"/>
-            </section>
-            <section>
-              <a-input v-model="item.blzsnum" :disabled="disabled"/>
-            </section>
-          </div>
+        <div class="person-one-table" v-for="(item,index) in tableList" :key="index">
+          <section style="width:250px;">
+            <a-input
+              placeholder="01-01"
+              :disabled="disabled"
+              v-model="item.date"
+            />
+          </section>
+          <section>
+            <a-input
+              placeholder="盘查人数"
+              :disabled="disabled"
+              v-model="item.rsrynum"
+            />
+          </section>
+          <section>
+            <a-input
+              placeholder="笔录数"
+              :disabled="disabled"
+              v-model="item.blzsnum"
+            />
+          </section>
+          <section>
+            <a-icon
+              type="minus-circle"
+              v-if="index+1!=tableList.length &&disabled==false "
+              @click="reduce(index,1)"
+            />
+            <a-icon
+              type="plus-circle"
+              v-if="index+1==tableList.length && disabled==false"
+              @click="reduce(index,2)"
+            />
+          </section>
         </div>
-      </div>
-      <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary" @click="saveFunc" :disabled="disabled">保存</a-button>
-      </div>
+        <div class="dashboard-bottom-left-content-btn">
+          <a-button type="primary" @click="saveFunc">保存</a-button>
+        </div>
+      </div>    
     </div>
     <div class="dashboard-bottom-right">
       <div class="dashboard-bottom-right-title">
@@ -62,6 +85,11 @@ export default {
   data() {
     return {
       disabled: true,
+      formdata: {
+        type: 2,
+        dateType: "日",
+        pcs: this.$store.state.topSelect
+      },
       tableList: [
         { qy: 200 },
         { qy: 200 },
@@ -111,7 +139,8 @@ export default {
     }
   },
   mounted() {
-    this.formdata.type = 0;
+    this.formdata.type = 2;
+    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);    
   },
   methods: {
@@ -119,20 +148,31 @@ export default {
       console.log(data)
       api.fetchTablePaiming(data).then(res=>{
         console.log(res.data.lastThirtyBeEntryAndPenrecordCountList)
-        this.tableList = res.data.lastThirtyBeEntryAndPenrecordCountList;        
+        this.tableList = res.data.lastThirtyBeEntryAndPenrecordCountList;     
+        this.data = res.data.lastThirtyBeEntryAndPenrecordCountList[0].type;          
       })
     },
     saveFunc() {
       let param = {
-        type: 1,
+        type: this.data,
         pcs: this.formdata.pcs,
         lastThirtyBeEntryAndPenrecordCountList: this.tableList,
       };
 
       console.log(FormData)
       api.saveTablePaiming(param).then(res=>{
-    
+        if (res.code == 0) {
+          this.$message.success("保存成功!");
+        }
       })
+    },
+    reduce(index, id) {
+      if (id == 1) {
+        this.tableList.splice(index, 1);
+      } else {
+        let obj = { type: "", number: "", color: "" };
+        this.tableList.push(obj);
+      }
     }
   },
   // 顶部派出所
@@ -163,5 +203,40 @@ export default {
 }
 .dashboard-bottom-left-table-right div section {
   width: 100%!important;
+}
+.person-one {
+  margin: 0 20px;
+  color: #666;
+  &-table {
+    display: flex;
+    height: 40px;
+    align-items: center;
+    & > section{
+      text-align: center;
+      width: 33%;
+      height: 40px;
+      line-height: 40px;
+      border-bottom: solid 1px #cbcbcb;
+      border-left: solid 1px #cbcbcb;
+      & > input{
+        width:80%;
+      }
+    }
+    & > section:nth-child(3) {
+      border-right: solid 1px #cbcbcb;
+    }
+    & > section:last-child {
+      width: 50px;
+      border: none;
+    }
+  }
+  &-table:nth-child(1){
+    & > section{
+      border-top: solid 1px #cbcbcb;
+    }
+    & > section:last-child {
+      border-top: none;
+    }
+  }
 }
 </style>

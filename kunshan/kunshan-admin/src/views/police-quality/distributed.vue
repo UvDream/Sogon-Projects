@@ -10,15 +10,15 @@
 <template>
   <div class="dashboard-bottom">
     <div class="dashboard-bottom-left">
-      <Title title="警情分布" v-model="data" />
-      <div class="dashboard-bottom-left-title">
+      <Title title="警情分布" v-model="data"/>
+      <div class="dashboard-bottom-left-title" v-show="formdata.pcs=='昆山市公安局'">
         <a-icon
           type="file-text"
           style="margin:0 10px 0px 20px;font-size:18px;position:relative;top:3px;"
         />
         <span style="font-size:12px">派出所违法警情Top5</span>
       </div>
-      <div class="dashboard-bottom-left-content-block">
+      <div class="dashboard-bottom-left-content-block" v-show="formdata.pcs=='昆山市公安局'">
         <MoreInput
           v-for="(item,index) in top"
           :key="index"
@@ -28,12 +28,12 @@
           v-model="item.num"
         />
       </div>
-      <div class="dashboard-bottom-left-title">
+      <div class="dashboard-bottom-left-title" v-show="formdata.pcs=='昆山市公安局'">
         <a-icon
           type="file-text"
           style="margin:0 10px 0px 20px;font-size:18px;position:relative;top:3px;"
         />
-        <span style="font-size:12px">违法警情分布</span>
+        <span style="font-size:12px" v-show="formdata.pcs=='昆山市公安局'">违法警情分布</span>
       </div>
       <div class="dashboard-bottom-left-content-block">
         <MoreInput
@@ -165,6 +165,8 @@ export default {
     }
   },
   mounted() {
+    this.formdata.type = 2;
+    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);
   },
   methods: {
@@ -213,7 +215,7 @@ export default {
     position: absolute;
     top: 80px;
     width: 1px;
-    height: 800px;
+    height: 80%;
     background-color: #b3b3b3;
   }
 }

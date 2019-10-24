@@ -97,7 +97,7 @@
         </div>
       </div>
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary" :disabled="disabled" @click="saveFunc">保存</a-button>
+        <a-button type="primary"  @click="saveFunc">保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-center"></div>
@@ -135,7 +135,7 @@ export default {
       tableListPic: [],
       formdata: {
         type: 2,
-        time: "日",
+        dateType: "日",
         pcs: "昆山市公安局"
       }
     };
@@ -158,11 +158,7 @@ export default {
     // 警局下拉框变化
     policeStation: function(val) {
       this.formdata.pcs = val;
-      if(this.formdata.pcs=="昆山市公安局"){
-        this.formdata.pcs = val;
-        this.formdata.type = 2;
-        this.searchFunc(this.formdata);
-      }
+      this.searchFunc(this.formdata);
     },
     // 日,周,月变化
     topDate: function(val) {
@@ -172,15 +168,15 @@ export default {
         3: "月"
       };
       if(this.formdata.pcs=="昆山市公安局"){
-        this.formdata.time = obj[val];
+        this.formdata.dateType = obj[val];
         this.searchFunc(this.formdata);
       }
     }
   },
   mounted() {
-    if(this.formdata.pcs=="昆山市公安局"){
-     this.searchFunc(this.formdata);
-    }
+    this.formdata.pcs = "昆山市公安局";
+    this.formdata.type = 2;
+    this.searchFunc(this.formdata);
   },
   methods: {
     saveFunc() {
@@ -192,7 +188,7 @@ export default {
       };
       let objSic = {
         type: this.data,
-        time: this.formdata.time,
+        time: this.formdata.dateType,
         societyInformationCollectList: this.tableListSic
       };
       axios.all([saveListSic(objSic),saveListPic(objPic)])
@@ -205,6 +201,7 @@ export default {
     searchFunc(data) {
       checkDataSic(data).then(res => {
         this.tableListSic = res.data.societyInformationCollectList;
+        console.log(res)
         this.data = res.data.societyInformationCollectList[0].type;
       });
       checkDataPic(data).then(res => {

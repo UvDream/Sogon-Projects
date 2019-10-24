@@ -20,7 +20,7 @@
           v-model="item.num"
         ></MoreInput>
       </div>
-      <div class="dashboard-bottom-left-title">
+      <div class="dashboard-bottom-left-title" v-show="this.formdata.pcs=='昆山市公安局'">
         <a-icon
           type="file-text"
           style="margin:0 10px 0px 20px;font-size:18px;position:relative;top:3px;"
@@ -29,7 +29,7 @@
       </div>
       <div class="mInput">
         <MoreInput
-          v-for="(item,index) in numberList1"
+          v-for="(item,index) in numberList2"
           :key="index"
           :index="index"
           :disabled="disabled"
@@ -38,7 +38,7 @@
         ></MoreInput>
       </div>
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary" @click="saveFunc" :disabled="disabled">保存</a-button>
+        <a-button type="primary" @click="saveFunc">保存</a-button>
       </div>
     </div>
 
@@ -125,7 +125,8 @@ export default {
     }
   },
   mounted() {
-    this.formdata.type = 0;
+    this.formdata.type = 2;
+    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);    
   },
   methods: {
@@ -135,11 +136,12 @@ export default {
         console.log(res.data.penrecordnumpm)
         this.numberList1 = res.data.zfy;
         this.numberList2 = res.data.zfyfb;
+        this.data = res.data.zfy[0].type;    
       })
     },
     saveFunc() {
       let param = {
-        type: 1,
+        type: this.data,
         dateType: this.formdata.dateType,
         pcs: this.formdata.pcs,
         zfy: this.numberList1,
@@ -148,7 +150,9 @@ export default {
 
       console.log(FormData)
       api.saveTablePaiming(param).then(res=>{
-    
+        if (res.code == 0) {
+          this.$message.success("保存成功!");
+        }
       })
     }
   },

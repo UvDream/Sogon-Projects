@@ -11,7 +11,7 @@ const api = {
     },
     saveTablePaiming: (data)=>{
         return request({
-            url: 'manager/pr/saveexcuteAndDistribute',
+            url: 'manager/tp/saveExcuteAndDistribute',
             method: 'post',
             headers: {"Content-Type":"application/json;charset=UTF-8"},
             data

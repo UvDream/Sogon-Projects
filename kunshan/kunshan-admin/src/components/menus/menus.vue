@@ -45,7 +45,7 @@ export default {
         },
         {
           id: 6,
-          name: "现场勘查质态",
+          name: "现场勘验质态",
           icon: "folder-open"
         },
         {

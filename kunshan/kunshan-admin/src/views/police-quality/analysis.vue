@@ -23,14 +23,14 @@
           ></MoreInput>
         </div>
       </div>
-      <div class="dashboard-bottom-left-title">
+      <div class="dashboard-bottom-left-title"  v-show="formdata.pcs=='昆山市公安局'">
         <a-icon
           type="file-text"
           style="margin:0 10px 0px 20px;font-size:18px;position:relative;top:3px;"
         />
         <span style="font-size:12px">警情数据质量</span>
       </div>
-      <div class="table">
+      <div class="table"  v-show="formdata.pcs=='昆山市公安局'">
         <div class="table-left">
           <div>/</div>
           <div>区域评估错误</div>
@@ -43,14 +43,14 @@
         </div>
         <div class="table-right">
           <div v-for="(item,index) in  tableList" :key="index">
-            <div>{{item.name}}</div>
-            <div>{{item.qypgcw}}</div>
-            <div>{{item.ylbbyz}}</div>
-            <div>{{item.jqbws}}</div>
-            <div>{{item.wpwsr}}</div>
-            <div>{{item.bzth}}</div>
-            <div>{{item.rywsr}}</div>
-            <div>{{item.lbbqd}}</div>
+            <div style="padding: 0 5px;">{{item.name}}</div>
+            <div style="padding: 0 5px;"><a-input v-model="item.qypgcw" :disabled="disabled" /></div>
+            <div style="padding: 0 5px;"><a-input v-model="item.ylbbyz" :disabled="disabled" /></div>
+            <div style="padding: 0 5px;"><a-input v-model="item.jqbws" :disabled="disabled" /></div>
+            <div style="padding: 0 5px;"><a-input v-model="item.wpwsr" :disabled="disabled" /></div>
+            <div style="padding: 0 5px;"><a-input v-model="item.bzth" :disabled="disabled" /></div>
+            <div style="padding: 0 5px;"><a-input v-model="item.rywsr" :disabled="disabled" /></div>
+            <div style="padding: 0 5px;"><a-input v-model="item.lbbqd" :disabled="disabled" /></div>
           </div>
         </div>
       </div>
@@ -140,6 +140,8 @@ export default {
     }
   },
   mounted() {
+    this.formdata.type = 2;
+    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);
   },
   methods: {

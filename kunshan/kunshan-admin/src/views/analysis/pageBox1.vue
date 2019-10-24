@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary" @click="saveFunc" :disabled="disabled">保存</a-button>
+        <a-button type="primary" @click="saveFunc">保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-right">
@@ -37,7 +37,7 @@
         <span>可视化样例</span>
       </div>
       <div class="dashboard-bottom-right-content">
-        <img style="width: 80%" src="../../assets/images/a_ypfx1.png" />
+        <img style="width: 80%" src="../../assets/images/a_ypfx3.png" />
       </div>
     </div>
   </div>
@@ -58,6 +58,11 @@ export default {
   data() {
     return {
       disabled: true,
+      formdata: {
+        type: 2,
+        dateType: "日",
+        pcs: this.$store.state.topSelect
+      },
       tableList: [
         { qy: 200 },
         { qy: 200 },
@@ -92,7 +97,6 @@ export default {
     },
     // 警局下拉框变化
     policeStation: function(val) {
-      this.formdata.pcs = val;
       this.searchFunc(this.formdata);
     },
     // 日,周,月变化
@@ -107,28 +111,32 @@ export default {
     }
   },
   mounted() {
-    this.formdata.type = 0;
+    this.formdata.type = 2;
+    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);    
   },
   methods: {
     searchFunc(data) {
       console.log(data)
       api.fetchTablePaiming(data).then(res=>{
-        console.log(res.data.lastHalfYearBitChuTopFive)
-        this.tableList = res.data.lastHalfYearBitChuTopFive;        
+        console.log(res.data.lastHalfYearNetworkLiedTopFive)
+        this.tableList = res.data.lastHalfYearNetworkLiedTopFive;      
+        this.data = res.data.lastHalfYearNetworkLiedTopFive[0].type;      
       })
     },
     saveFunc() {
       let param = {
-        type: 1,
+        type: this.data,
         pcs: this.formdata.pcs,
-        lastHalfYearBitChuTopFiveList: this.tableList,
+        lastHalfYearNetworkLiedTopFiveList: this.tableList,
       };
 
       console.log(FormData)
       api.saveTablePaiming(param).then(res=>{
-    
-      })
+        if (res.code == 0) {
+          this.$message.success("保存成功!");
+        }
+      })  
     }
   },
   // 顶部派出所

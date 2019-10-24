@@ -12,7 +12,7 @@
     <div class="dashboard-bottom">
       <div class="dashboard-bottom-left">        
         <Title :is-check="false" title="高危人员分析与手机采集情况"  v-model="data"/>
-        <div class="dashboard-bottom-left-table">
+        <div class="dashboard-bottom-left-table" v-show="tableShow">
           <div class="dashboard-bottom-left-table-left" style="width: 30%">
             <div class="h50 lh3">派出所\数值</div>
             <div v-for="(item,index) in tableList"  :key="index">{{item.pcsname}}</div>
@@ -41,7 +41,7 @@
           </div>
         </div>
         <div class="dashboard-bottom-left-content-btn">
-          <a-button type="primary" @click="saveFunc" :disabled="disabled">保存</a-button>
+          <a-button type="primary" @click="saveFunc">保存</a-button>
         </div>
       </div>
       <div class="dashboard-bottom-right">
@@ -73,6 +73,12 @@ export default {
     return {
       selectVal: "",
       tab: 1,
+      tableShow: true,
+      formdata: {
+        type: 2,
+        dateType: "日",
+        pcs: this.$store.state.topSelect
+      },
       tableList: [
         { qy: 200 },
         { qy: 200 },
@@ -107,7 +113,13 @@ export default {
     },
     // 警局下拉框变化
     policeStation: function(val) {
+      console.log(val)
       this.formdata.pcs = val;
+      if(val == '昆山市公安局'){
+        this.tableShow = true;
+      }else {
+        this.tableShow = false;
+      }
       this.searchFunc(this.formdata);
     },
     // 日,周,月变化
@@ -122,7 +134,8 @@ export default {
     }
   },
   mounted() {
-    this.formdata.type = 0;
+    this.formdata.type = 2;
+    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);    
   },
   methods: {
@@ -130,19 +143,22 @@ export default {
       console.log(data)
       api.fetchTablePaiming(data).then(res=>{
         console.log(res.data.highRiskAnalyseAndPhoneCollectList)
-        this.tableList = res.data.highRiskAnalyseAndPhoneCollectList;        
+        this.tableList = res.data.highRiskAnalyseAndPhoneCollectList; 
+        this.data = res.data.highRiskAnalyseAndPhoneCollectList[0].type;       
       })
     },
     saveFunc() {
       let param = {
-        type: 1,
+        type: this.data,
         pcs: this.formdata.pcs,
         highRiskAnalyseAndPhoneCollectList: this.tableList,
       };
 
       console.log(FormData)
       api.saveTablePaiming(param).then(res=>{
-    
+        if (res.code == 0) {
+          this.$message.success("保存成功!");
+        }
       })
     }
   },
@@ -186,7 +202,7 @@ export default {
     position: absolute;
     top: 70px;
     width: 1px;
-    height: 400px;
+    height: 80%;
     background-color: #b3b3b3;
   }
 }

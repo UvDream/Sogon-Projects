@@ -13,7 +13,7 @@ export const saveList = data => {
   return fetch({
     url: "/manager/againstCrime/saveSituation",
     method: "POST",
-    data: qs.parse(data),
+    data,
     headers: { "Content-Type": "application/json" }
   });
 };
