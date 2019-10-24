@@ -1,6 +1,6 @@
 <template>
   <div class="top-step">
-    <Steps :current="0">
+    <Steps :current="status">
       <Step title="发现" icon="ios-person"></Step>
       <Step title="评定" icon="md-brush"></Step>
       <Step title="治疗" icon="ios-heart"></Step>
@@ -11,7 +11,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    status: function() {
+      return this.$store.state.step.stepStatus;
+    }
+  }
+};
 </script>
 
 <style scoped lang="less">
