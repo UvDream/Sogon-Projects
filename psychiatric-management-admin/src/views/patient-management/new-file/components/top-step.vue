@@ -2,10 +2,10 @@
   <div class="top-step">
     <Steps :current="0">
       <Step title="发现" icon="ios-person"></Step>
-      <Step title="评定" icon="ios-camera"></Step>
-      <Step title="治疗" icon="ios-mail"></Step>
-      <Step title="监护" icon="ios-mail"></Step>
-      <Step title="帮扶" icon="ios-mail"></Step>
+      <Step title="评定" icon="md-brush"></Step>
+      <Step title="治疗" icon="ios-heart"></Step>
+      <Step title="四帮一" icon="ios-hand"></Step>
+      <Step title="康复" icon="ios-happy"></Step>
     </Steps>
   </div>
 </template>

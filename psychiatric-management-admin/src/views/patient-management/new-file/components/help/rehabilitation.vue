@@ -1,64 +1,61 @@
 <!--
  * @Author: wangzhongjie
- * @Date: 2019-10-24 16:40:34
+ * @Date: 2019-10-24 19:23:28
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-24 19:20:25
- * @Description: 病患住院记录
+ * @LastEditTime: 2019-10-24 19:30:12
+ * @Description: 康复
  * @Email: UvDream@163.com
  -->
+
 <template>
   <div class="white-block">
-    <TopTitle :title="'病患住院记录'" v-model="closed" />
+    <TopTitle :title="'病患康复记录'" v-model="closed" />
     <Form ref="ruleForm" label-position="top" :model="ruleForm" :label-width="200">
       <div class="form-delete" v-for="(item,index) in ruleForm.more" :key="index">
         <div class="form">
+          <FormItem
+            label="病患康复日期"
+            :prop="'more.'+index+'.date'"
+            class="form-block"
+            :rules="{required:true,message:'请选择病患康复日期',trigger: 'blur'}"
+          >
+            <DatePicker type="datetime" placeholder="请选择病患康复日期" v-model="item.date"></DatePicker>
+          </FormItem>
           <FormItem
             label="病患就诊医院"
             class="form-block"
             :prop="'more.'+index+'.hospital'"
             :rules="{required:true,message:'请输入病患就诊医院',trigger: 'blur'}"
           >
-            <Input v-model="item.hospital" placeholder="输入病患就诊医院" />
+            <Select v-model="item.hospital" placeholder="选择档案状态">
+              <Option value="0">男</Option>
+              <Option value="1">女</Option>
+              <Option value="2">未知</Option>
+            </Select>
           </FormItem>
           <FormItem
-            label="病患主治医生"
-            :prop="'more.'+index+'.doctors'"
-            class="form-block"
-            :rules="{required:true,message:'请输入病患住院医生',trigger: 'blur'}"
+            label="病患工作单位"
+            :prop="'more.'+index+'.unit'"
+            class="form-blocks"
+            :rules="{required:true,message:'请输入病患工作单位',trigger: 'blur'}"
           >
-            <Input v-model="item.doctors" placeholder="输入病患住院医生" />
-          </FormItem>
-          <FormItem
-            label="病患住院时间"
-            :prop="'more.'+index+'.hospitalStay'"
-            class="form-block"
-            :rules="{required:true,message:'请选择病患住院时间',trigger: 'blur'}"
-          >
-            <DatePicker type="datetime" placeholder="请选择病患住院时间" v-model="item.hospitalStay"></DatePicker>
-          </FormItem>
-          <FormItem
-            label="病患出院时间"
-            :prop="'more.'+index+'.dischargeTime'"
-            class="form-block"
-            :rules="{required:true,message:'请选择病患出院时间',trigger: 'blur'}"
-          >
-            <DatePicker type="datetime" placeholder="请选择病患出院时间" v-model="item.dischargeTime"></DatePicker>
+            <Input v-model="item.unit" placeholder="输入病患工作单位" />
           </FormItem>
         </div>
         <div class="form">
           <FormItem
-            label="病患住院记录"
+            label="病患康复情况说明"
             :prop="'more.'+index+'.recording'"
             class="form-blocks"
-            :rules="{required:true,message:'请选择病患住院记录',trigger: 'blur'}"
+            :rules="{required:true,message:'请输入病患康复情况说明',trigger: 'blur'}"
           >
-            <Input type="textarea" v-model="item.recording" placeholder="输入病患住院记录" />
+            <Input type="textarea" v-model="item.recording" placeholder="输入病患康复情况说明" />
           </FormItem>
           <FormItem
-            label="病患住院证明材料"
+            label="病患治疗证明材料"
             :prop="'more.'+index+'.uploadFiles'"
             class="form-block"
-            :rules="{required:true,message:'请上传病患住院证明材料',trigger: 'blur'}"
+            :rules="{required:true,message:'请上传病患治疗证明材料',trigger: 'blur'}"
           >
             <Upload />
           </FormItem>
@@ -97,18 +94,9 @@ export default {
       ruleForm: {
         more: [
           {
+            date: "",
             hospital: "",
-            doctors: "",
-            hospitalStay: "",
-            dischargeTime: "",
-            recording: "",
-            uploadFiles: ""
-          },
-          {
-            hospital: "",
-            doctors: "",
-            hospitalStay: "",
-            dischargeTime: "",
+            unit: "",
             recording: "",
             uploadFiles: ""
           }
@@ -132,10 +120,9 @@ export default {
     // 添加
     handleAdd() {
       let obj = {
+        date: "",
         hospital: "",
-        doctors: "",
-        hospitalStay: "",
-        dischargeTime: "",
+        unit: "",
         recording: "",
         uploadFiles: ""
       };

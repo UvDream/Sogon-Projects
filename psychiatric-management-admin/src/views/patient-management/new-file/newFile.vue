@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 17:27:24
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-24 15:32:48
+ * @LastEditTime: 2019-10-24 19:22:20
  * @Description: 新建档案
  * @Email: UvDream@163.com
  -->
@@ -14,11 +14,11 @@
     <!-- 评定 -->
     <!-- <Assessment /> -->
     <!-- 治疗 -->
-    <Treatment />
-    <!-- 监护 -->
-    <Guardianship />
+    <!-- <Treatment /> -->
     <!-- 帮扶 -->
     <Help />
+    <!-- 康复 -->
+    <Guardianship />
   </div>
 </template>
 
