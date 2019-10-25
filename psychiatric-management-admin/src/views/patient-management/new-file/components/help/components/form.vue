@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-25 10:53:07
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-25 10:55:05
+ * @LastEditTime: 2019-10-25 11:40:32
  * @Description: 表单
  * @Email: UvDream@163.com
  -->
@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import { validatePhone } from "@/util/util";
+
 export default {
   data() {
     return {
@@ -47,9 +49,11 @@ export default {
         phone: ""
       },
       ruleValidate: {
-        name: [{ required: true, message: "请输入姓名" }],
-        department: [{ required: true, message: "请输入部门" }],
-        phone: [{ required: true, message: "请输入部门" }]
+        name: [{ required: true, message: "请输入姓名", trigger: "blur" }],
+        department: [
+          { required: true, message: "请输入部门", trigger: "blur" }
+        ],
+        phone: [{ required: true, validator: validatePhone, trigger: "blur" }]
       }
     };
   }
