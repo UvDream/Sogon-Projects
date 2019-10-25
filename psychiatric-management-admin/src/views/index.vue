@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 11:53:46
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-23 17:33:43
+ * @LastEditTime: 2019-10-25 11:14:55
  * @Description: 主界面
  * @Email: UvDream@163.com
  -->
@@ -22,10 +22,10 @@
             <div class="header">
               <div class="header-bread">
                 <span>{{$route.meta.label}}</span>
-                <Breadcrumb separator=">" :style="{marginTop:'10px'}">
+                <!-- <Breadcrumb separator=">" :style="{marginTop:'10px'}">
                   <BreadcrumbItem>{{nowBreadcrunmb[0]}}</BreadcrumbItem>
                   <BreadcrumbItem v-if="nowBreadcrunmb.length>1">{{nowBreadcrunmb[1]}}</BreadcrumbItem>
-                </Breadcrumb>
+                </Breadcrumb>-->
               </div>
               <div class="header-user">
                 <div class="header-user-left">
