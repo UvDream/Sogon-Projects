@@ -113,7 +113,6 @@ export default {
   },
   mounted() {
     this.formdata.type = 2;
-    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);    
   },
   methods: {
@@ -122,7 +121,9 @@ export default {
       api.fetchTablePaiming(data).then(res=>{
         console.log(res.data.everyWeekPloliceNumList[0].type)
         this.tableList = res.data.everyWeekPloliceNumList;  
-        this.data = res.data.everyWeekPloliceNumList[0].type;        
+        if(res.data.everyWeekPloliceNumList.length > 0) {   
+          this.data = res.data.everyWeekPloliceNumList[0].type;    
+        }    
       })
     },
     saveFunc() {

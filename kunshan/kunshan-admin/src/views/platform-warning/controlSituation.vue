@@ -103,9 +103,8 @@ export default {
     }
   },
   mounted() {
-    if(this.formdata.pcs=="昆山市公安局"){
-      this.searchFunc(this.formdata);
-    }
+    this.formdata.type = 2;
+    this.searchFunc(this.formdata);  
   },
   methods: {
     saveFunc() {

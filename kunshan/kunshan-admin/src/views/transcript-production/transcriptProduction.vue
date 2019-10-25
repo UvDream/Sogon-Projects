@@ -143,7 +143,6 @@ export default {
   },
   mounted() {
     this.formdata.type = 2;
-    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);    
   },
   methods: {
@@ -159,7 +158,9 @@ export default {
           this.tableList = res.data.penrecordnumpm;
           this.subTitleName = '派出所笔录总数排名';
         }
-        this.data = res.data.numberListFive[0].type;
+        if(res.data.numberListFive.length > 0) {
+          this.data = res.data.numberListFive[0].type;
+        }
       })
     },
     saveFunc() {

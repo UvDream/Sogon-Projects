@@ -169,7 +169,53 @@ export default {
         dateType: "日",
         pcs: this.$store.state.topSelect
       },
-      list: {}
+      list: {
+        "zbll": {},
+        "zzbz": [
+            {
+                "name": "李四",
+                "phone": "333",
+                "type": 0
+            }
+        ],
+        "bqll": {
+            "mj": 0,
+            "fj": 31,
+            "type": 0
+        },
+        "jld": [
+            {
+                "name": "李康",
+                "phone": "133",
+                "type": 0
+            },
+            {
+                "name": "流量",
+                "phone": "123",
+                "type": 0
+            }
+        ],
+        "drqwll": {
+            "mj": 0,
+            "fj": 45,
+            "type": 0
+        },
+        "zbsld": [
+            {
+                "name": "侯杰",
+                "phone": "341",
+                "type": 0
+            }
+        ],
+        "zbmj": [
+            {
+                "name": "程辉",
+                "phone": "94",
+                "type": 0
+            }
+        ],
+        "lzz": []
+    }
     };
   },
   computed: {
@@ -204,8 +250,7 @@ export default {
     }
   },
   mounted() {
-    this.formdata.type = 2;
-    this.formdata.pcs = "昆山市公安局";
+    this.formdata.type = 2;  
     this.searchFunc(this.formdata);
   },
   methods: {
@@ -228,7 +273,9 @@ export default {
         console.log("上面", res);
         // this.data = res.data.zbll.type;
         this.list = res.data;
-        this.data = res.data.jld[0].type;
+        if(res.data.zzbz.length > 0) {
+          this.data = res.data.zzbz[0].type;
+        }
       });
     },
     radioChange(e) {},

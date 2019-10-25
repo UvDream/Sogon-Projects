@@ -106,6 +106,7 @@ export default {
     menusClick(e) {
       console.log(e);
       this.$router.push(this.routes[e.key]);
+      this.$store.state.topSelect = "昆山市公安局";
     }
   }
 };

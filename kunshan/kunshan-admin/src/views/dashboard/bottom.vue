@@ -14,7 +14,7 @@
         <div class="dashboard-bottom-left-content">
           <div
             class="dashboard-bottom-left-content-block"
-            v-for="(item,index) in list.zbsld"
+            v-for="(item,index) in list.jld"
             :key="'info1-'+index"
           >
             <section>
@@ -56,7 +56,7 @@
             :key="'info1-'+index"
           >
             <section>
-              <span v-show="index+1!=list.jld.length || list.jld.length==1">值班所领导:</span>
+              <span>值班所领导:</span>
             </section>
             <section>
               <a-input
@@ -70,10 +70,11 @@
           </div>
           <div
             class="dashboard-bottom-left-content-block"
-            v-for="(item,index) in list.lzz"
+            v-for="(item,index) in list.zbmj"
             :key="index"
           >
-            <section v-if="index+1==list.lzz.length">值班民警:</section>
+            <section v-if="index == 0">值班民警:</section>
+            <section v-else></section>
             <section>
               <a-input
                 placeholder="姓名"
@@ -165,7 +166,53 @@ export default {
         dateType: "日",
         pcs: this.$store.state.topSelect
       },
-      list: {}
+      list: {
+        "zbll": {},
+        "zzbz": [
+            {
+                "name": "李四",
+                "phone": "333",
+                "type": 0
+            }
+        ],
+        "bqll": {
+            "mj": 0,
+            "fj": 31,
+            "type": 0
+        },
+        "jld": [
+            {
+                "name": "李康",
+                "phone": "133",
+                "type": 0
+            },
+            {
+                "name": "流量",
+                "phone": "123",
+                "type": 0
+            }
+        ],
+        "drqwll": {
+            "mj": 0,
+            "fj": 45,
+            "type": 0
+        },
+        "zbsld": [
+            {
+                "name": "侯杰",
+                "phone": "341",
+                "type": 0
+            }
+        ],
+        "zbmj": [
+            {
+                "name": "程辉",
+                "phone": "94",
+                "type": 0
+            }
+        ],
+        "lzz": []
+    }
     };
   },
   computed: {
@@ -180,13 +227,12 @@ export default {
   },
   watch: {
     data: function(val) {
-      this.formdata.type = val;
+      this.formdata.type = val;            
       this.searchFunc(this.formdata);
     },
     // 警局下拉框变化
     policeStation: function(val) {
       this.formdata.pcs = val;
-      this.formdata.type = 2;
       this.searchFunc(this.formdata);
     },
     // 日,周,月变化
@@ -202,7 +248,6 @@ export default {
   },
   mounted() {
     this.formdata.type = 2;
-    this.formdata.pcs = "昆山市公安局";
     this.searchFunc(this.formdata);
   },
   methods: {
@@ -225,6 +270,9 @@ export default {
         console.log("底部", res);
         // this.data = res.data.bqll.type;
         this.list = res.data;
+        if(res.data.jld.length > 0) {
+          this.data = res.data.jld[0].type;
+        }
       });
     },
     radioChange(e) {},
