@@ -1,6 +1,6 @@
 const step = {
   state: {
-    stepStatus: 1
+    stepStatus: 0
   }
 };
 export default step;

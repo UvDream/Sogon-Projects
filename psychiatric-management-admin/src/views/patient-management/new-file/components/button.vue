@@ -4,13 +4,22 @@
       <Button type="info">取消</Button>
       <Button type="primary">保存</Button>
       <Button type="primary">保存并推送</Button>
-      <Button type="primary" ghost>推送</Button>
+      <Button type="primary" ghost @click="pushFunc">推送</Button>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    pushFunc() {
+      this.$store.state.step.stepStatus < 5
+        ? (this.$store.state.step.stepStatus =
+            this.$store.state.step.stepStatus + 1)
+        : "";
+    }
+  }
+};
 </script>
 
 <style scoped lang="less">

@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-25 10:20:53
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-25 10:46:48
+ * @LastEditTime: 2019-10-25 11:11:54
  * @Description: 顶部标题
  * @Email: UvDream@163.com
  -->
@@ -28,6 +28,11 @@ export default {
   },
   components: {
     TopTitle
+  },
+  data() {
+    return {
+      closed: false
+    };
   }
 };
 </script>

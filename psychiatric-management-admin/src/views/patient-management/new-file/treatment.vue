@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-24 11:52:40
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-24 19:01:02
+ * @LastEditTime: 2019-10-25 11:08:45
  * @Description: 治疗
  * @Email: UvDream@163.com
  -->
@@ -14,6 +14,7 @@
     <TreatmentRecord />
     <!-- 病患住院 -->
     <PatientHospitalization />
+    <Btn />
   </div>
 </template>
  
@@ -21,11 +22,13 @@
 import PatientLevel from "./components/treatment/patient-level.vue";
 import TreatmentRecord from "./components/treatment/treatment-record";
 import PatientHospitalization from "./components/treatment/patient-hospitalization";
+import Btn from "./components/button";
 export default {
   components: {
     PatientLevel,
     TreatmentRecord,
-    PatientHospitalization
+    PatientHospitalization,
+    Btn
   }
 };
 </script>

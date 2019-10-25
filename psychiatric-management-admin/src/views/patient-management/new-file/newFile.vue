@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 17:27:24
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-24 19:37:10
+ * @LastEditTime: 2019-10-25 11:05:32
  * @Description: 新建档案
  * @Email: UvDream@163.com
  -->
@@ -10,15 +10,15 @@
   <div class="new">
     <TopStep />
     <!-- 发现 -->
-    <!-- <Find /> -->
+    <Find v-if="status==0" />
     <!-- 评定 -->
-    <!-- <Assessment /> -->
+    <Assessment v-if="status==1" />
     <!-- 治疗 -->
-    <!-- <Treatment /> -->
+    <Treatment v-if="status==2" />
     <!-- 帮扶 -->
-    <Help />
+    <Help v-if="status==3" />
     <!-- 康复 -->
-    <!-- <Guardianship /> -->
+    <Guardianship v-if="status==4" />
   </div>
 </template>
 
@@ -41,6 +41,11 @@ export default {
     Treatment,
     Guardianship,
     Help
+  },
+  computed: {
+    status: function() {
+      return this.$store.state.step.stepStatus;
+    }
   }
 };
 </script>
