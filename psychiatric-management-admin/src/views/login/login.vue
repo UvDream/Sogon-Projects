@@ -52,6 +52,7 @@
 export default {
   data() {
     return {
+      single: true,
       formInline: {
         user: "",
         password: ""
@@ -144,8 +145,7 @@ body{
         color: #999999;
         letter-spacing: 0;
       }
-    }
-    
+    }  
   }
   &-block {
     position: absolute;
@@ -177,6 +177,10 @@ body{
           font-weight:normal;
         }
         margin-bottom:10px;
+        .ivu-btn {
+          border-radius: 20px;
+          height: 40px;
+        }
       }
       & > div:nth-child(1){
         margin-bottom:44px;
@@ -195,12 +199,11 @@ body{
       right: -30px;
       top: -40px;
     }
-    
   }
 }
 </style>
 <style type="text/css">
-.ivu-input-wrapper .ivu-input{
+.login .ivu-input-wrapper .ivu-input{
   height: 42px;
   border-radius: 20px;
   color: #999;
@@ -208,12 +211,9 @@ body{
   background: #DDE2E2;
   border: 1px solid #DDE2E2;
 }
-.ivu-input-wrapper .ivu-input-prefix, .ivu-input-wrapper .ivu-input-suffix{
+.login .ivu-input-wrapper .ivu-input-prefix, 
+.login .ivu-input-wrapper .ivu-input-suffix{
   height: 42px;
   top:4px;
-}
-.ivu-form-item-content .ivu-btn-primary{
-  border-radius: 20px;
-  height: 40px;
 }
 </style>
