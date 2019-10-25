@@ -6,17 +6,17 @@
  * @Description: 顶部标题
  * @Email: UvDream@163.com
  -->
- <template>
+<template>
   <div>
     <TopTitle :title="title" v-model="closed" />
     <div class="more-desc">
       <Icon type="ios-alert-outline" style="color:red;" />
-      职责说明:{{message}}
+      职责说明:{{ message }}
     </div>
   </div>
 </template>
- 
- <script>
+
+<script>
 import TopTitle from "@/components/top-title/top-title";
 
 export default {
@@ -36,8 +36,8 @@ export default {
   }
 };
 </script>
- 
- <style scoped lang="less">
+
+<style scoped lang="less">
 .more-desc {
   padding-left: 25px;
   font-size: 14px;

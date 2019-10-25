@@ -6,7 +6,7 @@
  * @Description: 表格
  * @Email: UvDream@163.com
  -->
- <template>
+<template>
   <div>
     <div class="all-check">
       <div>
@@ -33,8 +33,8 @@
     </div>
   </div>
 </template>
- 
- <script>
+
+<script>
 export default {
   data() {
     return {
@@ -93,7 +93,6 @@ export default {
   }
 };
 </script>
- 
 
 <style scoped lang="less">
 .add {

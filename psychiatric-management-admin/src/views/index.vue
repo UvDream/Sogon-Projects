@@ -12,16 +12,25 @@
       <Layout>
         <Sider
           hide-trigger
-          :style="{background: '#fff',boxShadow: '10px 0 24px 0 rgba(14,37,38,0.10)'}"
+          :style="{
+            background: '#fff',
+            boxShadow: '10px 0 24px 0 rgba(14,37,38,0.10)'
+          }"
         >
           <Logo />
           <Menus :menus-list="menusList" />
         </Sider>
         <Layout>
-          <Header :style="{background: '#ebf1f2',height:'122px',padding:'0px 20px'}">
+          <Header
+            :style="{
+              background: '#ebf1f2',
+              height: '122px',
+              padding: '0px 20px'
+            }"
+          >
             <div class="header">
               <div class="header-bread">
-                <span>{{$route.meta.label}}</span>
+                <span>{{ $route.meta.label }}</span>
                 <!-- <Breadcrumb separator=">" :style="{marginTop:'10px'}">
                   <BreadcrumbItem>{{nowBreadcrunmb[0]}}</BreadcrumbItem>
                   <BreadcrumbItem v-if="nowBreadcrunmb.length>1">{{nowBreadcrunmb[1]}}</BreadcrumbItem>
@@ -45,7 +54,13 @@
               </div>
             </div>
           </Header>
-          <Content :style="{padding: '0px 24px', minHeight: '280px', background: '#ebf1f2'}">
+          <Content
+            :style="{
+              padding: '0px 24px',
+              minHeight: '280px',
+              background: '#ebf1f2'
+            }"
+          >
             <router-view></router-view>
           </Content>
         </Layout>

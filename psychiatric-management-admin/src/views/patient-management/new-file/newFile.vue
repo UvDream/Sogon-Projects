@@ -10,15 +10,15 @@
   <div class="new">
     <TopStep />
     <!-- 发现 -->
-    <Find v-if="status==0" />
+    <Find v-if="status == 0" />
     <!-- 评定 -->
-    <Assessment v-if="status==1" />
+    <Assessment v-if="status == 1" />
     <!-- 治疗 -->
-    <Treatment v-if="status==2" />
+    <Treatment v-if="status == 2" />
     <!-- 帮扶 -->
-    <Help v-if="status==3" />
+    <Help v-if="status == 3" />
     <!-- 康复 -->
-    <Guardianship v-if="status==4" />
+    <Guardianship v-if="status == 4" />
   </div>
 </template>
 
@@ -50,5 +50,4 @@ export default {
 };
 </script>
 
-<style scoped lang="less">
-</style>
+<style scoped lang="less"></style>

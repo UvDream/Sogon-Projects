@@ -6,7 +6,7 @@
  * @Description: 四帮一
  * @Email: UvDream@163.com
  -->
- <template>
+<template>
   <div>
     <!-- 村居干部帮扶 -->
     <VillageCadre />
@@ -19,8 +19,8 @@
     <Btn />
   </div>
 </template>
- 
- <script>
+
+<script>
 import Btn from "./components/button";
 import VillageCadre from "./components/help/village-cadre";
 import Police from "./components/help/police";
@@ -36,6 +36,5 @@ export default {
   }
 };
 </script>
- 
- <style>
-</style>
+
+<style></style>

@@ -7,28 +7,39 @@
  * @Email: UvDream@163.com
  -->
 <template>
-  <Menu theme="light" :open-names="openKey" :active-name="activeName" width="auto">
+  <Menu
+    theme="light"
+    :open-names="openKey"
+    :active-name="activeName"
+    width="auto"
+  >
     <MenuItem
-      v-for="(item) in menusList"
-      :key="item.id+'sh'"
+      v-for="item in menusList"
+      :key="item.id + 'sh'"
       :name="item.id"
       :to="item.url"
       v-show="!item.children"
     >
       <Icon type="md-document" />
-      {{item.name}}
+      {{ item.name }}
     </MenuItem>
-    <Submenu v-for="(item,index) in menusList" :key="index" :name="item.id" v-show="item.children">
+    <Submenu
+      v-for="(item, index) in menusList"
+      :key="index"
+      :name="item.id"
+      v-show="item.children"
+    >
       <template slot="title">
         <Icon :type="item.icon" />
-        {{item.name}}
+        {{ item.name }}
       </template>
       <MenuItem
-        v-for="(items,index) in item.children"
+        v-for="(items, index) in item.children"
         :key="index"
         :name="items.id"
         :to="items.url"
-      >{{items.name}}</MenuItem>
+        >{{ items.name }}</MenuItem
+      >
     </Submenu>
   </Menu>
 </template>
@@ -75,5 +86,4 @@ export default {
 };
 </script>
 
-<style scoped lang="less">
-</style>
+<style scoped lang="less"></style>

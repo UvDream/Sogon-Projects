@@ -8,7 +8,12 @@
  -->
 <template>
   <div class="white-block">
-    <TopMessage :title="'防治医生帮扶'" :message="'职责说明:定期开展健康检查，并纳入社区随访管理，实行分类干预，指导监护人督促患者日常服药。'" />
+    <TopMessage
+      :title="'防治医生帮扶'"
+      :message="
+        '职责说明:定期开展健康检查，并纳入社区随访管理，实行分类干预，指导监护人督促患者日常服药。'
+      "
+    />
     <div class="search">
       <cForm />
     </div>

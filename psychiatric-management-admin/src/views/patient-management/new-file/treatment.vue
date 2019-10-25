@@ -6,7 +6,7 @@
  * @Description: 治疗
  * @Email: UvDream@163.com
  -->
- <template>
+<template>
   <div>
     <!-- 病患危险等级 -->
     <PatientLevel />
@@ -17,8 +17,8 @@
     <Btn />
   </div>
 </template>
- 
- <script>
+
+<script>
 import PatientLevel from "./components/treatment/patient-level.vue";
 import TreatmentRecord from "./components/treatment/treatment-record";
 import PatientHospitalization from "./components/treatment/patient-hospitalization";
@@ -32,6 +32,5 @@ export default {
   }
 };
 </script>
- 
- <style>
-</style>
+
+<style></style>

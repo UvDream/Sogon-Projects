@@ -28,14 +28,22 @@
             <Input v-model="formValidate.founder" placeholder="输入创建人" />
           </FormItem>
           <FormItem label="创建日期" prop="createDate" class="form-block">
-            <DatePicker type="date" placeholder="选择日期" v-model="formValidate.createDate"></DatePicker>
+            <DatePicker
+              type="date"
+              placeholder="选择日期"
+              v-model="formValidate.createDate"
+            ></DatePicker>
           </FormItem>
 
           <FormItem label="转发人" prop="forwarder" class="form-block">
             <Input v-model="formValidate.forwarder" placeholder="输入转发人" />
           </FormItem>
           <FormItem label="转发日期" prop="forwardDate" class="form-block">
-            <DatePicker type="date" placeholder="选择转发日期" v-model="formValidate.forwardDate"></DatePicker>
+            <DatePicker
+              type="date"
+              placeholder="选择转发日期"
+              v-model="formValidate.forwardDate"
+            ></DatePicker>
           </FormItem>
         </div>
         <!-- <FormItem>

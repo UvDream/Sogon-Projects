@@ -28,24 +28,41 @@
       </div>
       <div class="form">
         <FormItem label="等级评定医院" prop="name" class="form-block">
-          <Input v-model="formValidate.policeName" placeholder="输入原籍公安机关名称" />
+          <Input
+            v-model="formValidate.policeName"
+            placeholder="输入原籍公安机关名称"
+          />
         </FormItem>
         <FormItem label="等级评定医生" prop="name" class="form-block">
-          <Input v-model="formValidate.policeName" placeholder="输入原籍公安机关名称" />
+          <Input
+            v-model="formValidate.policeName"
+            placeholder="输入原籍公安机关名称"
+          />
         </FormItem>
         <FormItem label="评定医生联系方式" prop="name" class="form-block">
-          <Input v-model="formValidate.policeName" placeholder="输入原籍公安机关名称" />
+          <Input
+            v-model="formValidate.policeName"
+            placeholder="输入原籍公安机关名称"
+          />
         </FormItem>
         <FormItem label="评定时间" prop="name" class="form-block">
-          <DatePicker type="datetime" placeholder="请选择时间" v-model="formValidate.policeContactTime"></DatePicker>
+          <DatePicker
+            type="datetime"
+            placeholder="请选择时间"
+            v-model="formValidate.policeContactTime"
+          ></DatePicker>
         </FormItem>
       </div>
       <div class="form">
-        <FormItem label="患者危险性等级说明" prop="employer" class="form-blocks">
+        <FormItem
+          label="患者危险性等级说明"
+          prop="employer"
+          class="form-blocks"
+        >
           <Input
             v-model="formValidate.anecdote"
             type="textarea"
-            :autosize="{minRows: 2,maxRows: 5}"
+            :autosize="{ minRows: 2, maxRows: 5 }"
             placeholder="输入所属村居"
           />
         </FormItem>
@@ -76,5 +93,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

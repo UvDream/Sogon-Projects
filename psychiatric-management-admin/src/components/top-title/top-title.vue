@@ -9,7 +9,7 @@
 
 <template>
   <div class="title">
-    {{title}}
+    {{ title }}
     <Icon
       type="ios-arrow-dropup-circle"
       size="60px"
@@ -56,5 +56,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

@@ -6,7 +6,7 @@
  * @Description: 本地病患
  * @Email: UvDream@163.com
  -->
- <template>
+<template>
   <div class="white-block">
     <TopTitle :title="'本地病患'" v-model="closed" />
     <Form
@@ -23,8 +23,15 @@
             <Option value="1">否</Option>
           </Select>
         </FormItem>
-        <FormItem label="情况说明" prop="isTreatmentDescription" class="form-blockd">
-          <Input v-model="formValidate.isTreatmentDescription" placeholder="请输入情况说明" />
+        <FormItem
+          label="情况说明"
+          prop="isTreatmentDescription"
+          class="form-blockd"
+        >
+          <Input
+            v-model="formValidate.isTreatmentDescription"
+            placeholder="请输入情况说明"
+          />
         </FormItem>
       </div>
 
@@ -33,7 +40,7 @@
           <Input
             v-model="formValidate.firstVisit"
             type="textarea"
-            :autosize="{minRows: 2,maxRows: 5}"
+            :autosize="{ minRows: 2, maxRows: 5 }"
             placeholder="输入第一次走访说明"
           />
         </FormItem>
@@ -41,7 +48,7 @@
           <Input
             v-model="formValidate.secondVisit"
             type="textarea"
-            :autosize="{minRows: 2,maxRows: 5}"
+            :autosize="{ minRows: 2, maxRows: 5 }"
             placeholder="输入第二次走访说明"
           />
         </FormItem>
@@ -49,7 +56,7 @@
           <Input
             v-model="formValidate.thirdVisit"
             type="textarea"
-            :autosize="{minRows: 2,maxRows: 5}"
+            :autosize="{ minRows: 2, maxRows: 5 }"
             placeholder="输入第三次走访说明"
           />
         </FormItem>
@@ -62,8 +69,8 @@
     </Form>
   </div>
 </template>
- 
- <script>
+
+<script>
 import TopTitle from "../../../../../components/top-title/top-title";
 import Upload from "@/components/upload/upload";
 export default {
@@ -90,6 +97,5 @@ export default {
   }
 };
 </script>
- 
- <style>
-</style>
+
+<style></style>

@@ -9,56 +9,97 @@
 <template>
   <div class="white-block">
     <TopTitle :title="'病患治疗记录'" v-model="closed" />
-    <Form ref="ruleForm" label-position="top" :model="ruleForm" :label-width="200">
-      <div class="form-delete" v-for="(item,index) in ruleForm.more" :key="index">
+    <Form
+      ref="ruleForm"
+      label-position="top"
+      :model="ruleForm"
+      :label-width="200"
+    >
+      <div
+        class="form-delete"
+        v-for="(item, index) in ruleForm.more"
+        :key="index"
+      >
         <div class="form">
           <FormItem
             label="病患就诊医院"
             class="form-block"
-            :prop="'more.'+index+'.hospital'"
-            :rules="{required:true,message:'请输入病患就诊医院',trigger: 'blur'}"
+            :prop="'more.' + index + '.hospital'"
+            :rules="{
+              required: true,
+              message: '请输入病患就诊医院',
+              trigger: 'blur'
+            }"
           >
             <Input v-model="item.hospital" placeholder="输入病患就诊医院" />
           </FormItem>
           <FormItem
             label="病患主治医生"
-            :prop="'more.'+index+'.doctors'"
+            :prop="'more.' + index + '.doctors'"
             class="form-block"
-            :rules="{required:true,message:'请输入病患主治医生',trigger: 'blur'}"
+            :rules="{
+              required: true,
+              message: '请输入病患主治医生',
+              trigger: 'blur'
+            }"
           >
             <Input v-model="item.doctors" placeholder="输入病患主治医生" />
           </FormItem>
           <FormItem
             label="医生联系电话"
-            :prop="'more.'+index+'.phone'"
+            :prop="'more.' + index + '.phone'"
             class="form-block"
-            :rules="{required:true,message:'请输入医生联系电话',trigger: 'blur'}"
+            :rules="{
+              required: true,
+              message: '请输入医生联系电话',
+              trigger: 'blur'
+            }"
           >
             <Input v-model="item.phone" placeholder="输入医生联系电话" />
           </FormItem>
           <FormItem
             label="病患就诊时间"
-            :prop="'more.'+index+'.dischargeTime'"
+            :prop="'more.' + index + '.dischargeTime'"
             class="form-block"
-            :rules="{required:true,message:'请选择病患就诊时间',trigger: 'blur'}"
+            :rules="{
+              required: true,
+              message: '请选择病患就诊时间',
+              trigger: 'blur'
+            }"
           >
-            <DatePicker type="datetime" placeholder="请选择病患就诊时间" v-model="item.dischargeTime"></DatePicker>
+            <DatePicker
+              type="datetime"
+              placeholder="请选择病患就诊时间"
+              v-model="item.dischargeTime"
+            ></DatePicker>
           </FormItem>
         </div>
         <div class="form">
           <FormItem
             label="病患诊断记录情况"
-            :prop="'more.'+index+'.recording'"
+            :prop="'more.' + index + '.recording'"
             class="form-blocks"
-            :rules="{required:true,message:'请选择病患诊断记录情况',trigger: 'blur'}"
+            :rules="{
+              required: true,
+              message: '请选择病患诊断记录情况',
+              trigger: 'blur'
+            }"
           >
-            <Input type="textarea" v-model="item.recording" placeholder="输入病患诊断记录情况" />
+            <Input
+              type="textarea"
+              v-model="item.recording"
+              placeholder="输入病患诊断记录情况"
+            />
           </FormItem>
           <FormItem
             label="病患治疗证明材料"
-            :prop="'more.'+index+'.uploadFiles'"
+            :prop="'more.' + index + '.uploadFiles'"
             class="form-block"
-            :rules="{required:true,message:'请上传病患治疗证明材料',trigger: 'blur'}"
+            :rules="{
+              required: true,
+              message: '请上传病患治疗证明材料',
+              trigger: 'blur'
+            }"
           >
             <Upload />
           </FormItem>

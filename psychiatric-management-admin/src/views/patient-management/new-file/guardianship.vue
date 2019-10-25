@@ -6,14 +6,14 @@
  * @Description: 康复
  * @Email: UvDream@163.com
  -->
- <template>
+<template>
   <div>
     <Rehabilitation />
     <Btn />
   </div>
 </template>
- 
- <script>
+
+<script>
 import Rehabilitation from "./components/guardianship/rehabilitation";
 import Btn from "./components/button";
 export default {
@@ -23,6 +23,5 @@ export default {
   }
 };
 </script>
- 
- <style>
-</style>
+
+<style></style>

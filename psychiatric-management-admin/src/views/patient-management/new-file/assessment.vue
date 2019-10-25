@@ -6,7 +6,7 @@
  * @Description: 评定
  * @Email: UvDream@163.com
  -->
- <template>
+<template>
   <div>
     <!-- 外地病患 -->
     <ForeignPatients />
@@ -15,8 +15,8 @@
     <Btn />
   </div>
 </template>
- 
- <script>
+
+<script>
 import ForeignPatients from "./components/assessment/foreign-patients";
 import LocalPatient from "./components/assessment/local-patient";
 import Btn from "./components/button";
@@ -29,6 +29,5 @@ export default {
   }
 };
 </script>
- 
- <style>
-</style>
+
+<style></style>

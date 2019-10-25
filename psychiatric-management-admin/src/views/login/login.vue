@@ -19,14 +19,20 @@
         </div>
         <div>
           <FormItem prop="password">
-            <Input type="password" v-model="formInline.password" placeholder="密码">
+            <Input
+              type="password"
+              v-model="formInline.password"
+              placeholder="密码"
+            >
               <Icon type="ios-lock-outline" slot="prepend"></Icon>
             </Input>
           </FormItem>
         </div>
 
         <FormItem>
-          <Button type="primary" @click="handleSubmit('formInline')">Signin</Button>
+          <Button type="primary" @click="handleSubmit('formInline')"
+            >Signin</Button
+          >
         </FormItem>
       </Form>
     </div>
@@ -78,7 +84,6 @@ export default {
   }
 };
 </script>
-
 
 <style scoped lang="less">
 .login {
