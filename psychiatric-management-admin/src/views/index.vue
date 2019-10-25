@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 11:53:46
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-25 11:14:55
+ * @LastEditTime: 2019-10-25 11:49:02
  * @Description: 主界面
  * @Email: UvDream@163.com
  -->
@@ -58,7 +58,8 @@
             :style="{
               padding: '0px 24px',
               minHeight: '280px',
-              background: '#ebf1f2'
+              background: '#ebf1f2',
+              minWidth:'800px'
             }"
           >
             <router-view></router-view>
@@ -170,7 +171,7 @@ export default {
         text-align: center;
         line-height: 50px;
         & > img {
-          width: 20px;
+          width: 16px;
           height: 20px;
           margin-top: 15px;
         }
