@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-25 10:48:08
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-25 10:58:23
+ * @LastEditTime: 2019-10-25 11:00:59
  * @Description: 防治医生帮扶
  * @Email: UvDream@163.com
  -->
@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import TopMessage from "./top-title";
-import cTable from "./table";
+import TopMessage from "./components/top-title";
+import cTable from "./components/table";
 import cForm from "./components/form";
 export default {
   components: {

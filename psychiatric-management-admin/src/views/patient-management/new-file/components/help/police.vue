@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-25 10:37:41
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-25 10:56:00
+ * @LastEditTime: 2019-10-25 11:01:40
  * @Description: 监护民警帮扶
  * @Email: UvDream@163.com
  -->
@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import TopMessage from "./top-title";
-import cTable from "./table";
+import TopMessage from "./components/top-title";
+import cTable from "./components/table";
 import cForm from "./components/form";
 
 export default {
