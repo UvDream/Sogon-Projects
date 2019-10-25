@@ -36,9 +36,9 @@
         <FormItem label="患者工作单位" prop="employer" class="form-blocks">
           <Input v-model="formValidate.employer" placeholder="输入患者住址" />
         </FormItem>
-        <FormItem label="联系电话" prop="guardianPhone" class="form-block">
+        <FormItem label="联系电话" prop="patientPhone" class="form-block">
           <Input
-            v-model="formValidate.guardianPhone"
+            v-model="formValidate.patientPhone"
             placeholder="输入监护人联系电话"
           />
         </FormItem>
@@ -51,15 +51,8 @@
       </div>
       <!-- 第三排 -->
       <div class="form">
-        <FormItem
-          label="是否是外阜患者"
-          prop="processingMethod"
-          class="form-block"
-        >
-          <Select
-            v-model="formValidate.processingMethod"
-            placeholder="选择档案状态"
-          >
+        <FormItem label="是否是外阜患者" prop="foreigner" class="form-block">
+          <Select v-model="formValidate.foreigner" placeholder="选择档案状态">
             <Option value="0">是</Option>
             <Option value="1">否</Option>
           </Select>
@@ -174,11 +167,11 @@ export default {
         status: "",
         // 2
         employer: "",
-        guardianPhone: "",
+        patient: "",
         village: "",
         police: "",
         // 3
-        processingMethod: "",
+        foreigner: "",
         processingMethod: "",
         patientAddress: "",
         // 4
@@ -203,7 +196,7 @@ export default {
         village: [{ required: true, message: "请输入患者所属村居" }],
         police: [{ required: true, message: "请输入患者社区民警" }],
         // 3
-        processingMethod: [{ required: true, message: "请选择是否外埠患者" }],
+        foreigner: [{ required: true, message: "请选择是否外埠患者" }],
         processingMethod: [
           { required: true, message: "请选择外埠患者处理方式" }
         ],
