@@ -1,19 +1,13 @@
 <!--
- * @Author: wangzhongjie
- * @Date: 2019-10-22 17:33:30
- * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-22 17:33:42
- * @Description: 通知管理
+ * @Author: xiahongxiu
+ * @Date: 2019-10-28 13:23:28
+ * @LastEditors: xiahongxiu
+ * @LastEditTime: 2019-10-28 13:23:52
+ * @Description: 已办档案
  * @Email: UvDream@163.com
  -->
-
 <template>
-  <div class="notification">
-    <TopTitle :title="'通知管理'" v-model="closed">
-      <template v-slot:icon>
-        <img src="../../../assets/fonts/center/account.png" :style="{verticalAlign:'middle'}" />
-      </template>
-    </TopTitle>
+  <div class="done">
     <div class="notification-form">
       <Form
         ref="formValidate"
@@ -29,24 +23,19 @@
           <FormItem label="档案编号" prop="num" class="form-block">
             <Input v-model="formValidate.num" placeholder="输入档案编号" />
           </FormItem>
+          <FormItem label="档案名称" prop="mc" class="form-block">
+            <Input v-model="formValidate.mc" placeholder="输入档案编号" />
+          </FormItem>
           <FormItem label="通知状态" prop="status" class="form-block">
             <Select v-model="formValidate.status">
               <Option value="1">未读</Option>
               <Option value="2">已读</Option>
             </Select>
           </FormItem>
-          <FormItem label="通知类型" prop="type" class="form-block">
-            <Select v-model="formValidate.type">
-              <Option value="1">转发通知</Option>
-              <Option value="2">退回通知</Option>
-              <Option value="3">定时帮扶</Option>
-              <Option value="4">定时走访</Option>
-            </Select>
-          </FormItem>
-          <FormItem label="通知时间" prop="time" class="form-block">
+          <FormItem label="创建时间" prop="time" class="form-block">
             <DatePicker
               type="date"
-              placeholder="选择通知时间"
+              placeholder="选择创建时间"
               v-model="formValidate.time"
             ></DatePicker>
           </FormItem>
@@ -64,7 +53,8 @@
           <Button @click="handleSelectAll(false)">取消全选</Button>
         </ButtonGroup>
         <ButtonGroup size="large">
-          <Button @click="handleSelectAll(true)">已读</Button>
+          <Button @click="handleSelectAll(true)">推送</Button>
+          <Button @click="handleSelectAll(true)">转发</Button>
         </ButtonGroup>
       </div>
       <Table ref="section"
@@ -73,13 +63,12 @@
       @on-select="Check" 
       @on-select-cancel="cancelCheck" 
       @on-selection-change="Modulechange">
-        <template slot-scope="{ row, index}" slot="status">
-          <span v-if="row.status == 1">
-            已读
-          </span>
-        </template>
         <template slot-scope="{ row, index }" slot="action">
-            <Button class="my-table-handle-button" @click="">已读</Button>
+          <Button class="my-table-handle-button" @click="">删除</Button>
+          <Button class="my-table-handle-button" @click="">推送</Button>
+          <Button class="my-table-handle-button" @click="">转发</Button>
+          <Button class="my-table-handle-button" @click="">退回</Button>
+          <Button class="my-table-handle-button" @click="">办结</Button>
         </template>
       </Table>
       <Page :total="40" show-elevator show-sizer show-total class="my-table-page"/>
@@ -88,20 +77,16 @@
 </template>
 
 <script>
-import TopTitle from "@/components/top-title/top-title";
 export default {
-  components: {
-    TopTitle,
-  },
   data (){
     return {
       closed: false,
       formValidate: {
         name: "",
         num: "",
+        mc: "",
         status: "",
-        accountname: "",
-        password: ""
+        time: ""
       },
       ruleValidate: {},
       columns: [
@@ -112,33 +97,12 @@ export default {
           align: 'center'
         },
         {
-          title: '序号',
+          title: '档案编号',
           width: 200,
           key: 'id'
         },
         {
-          title: '状态',
-          width: 150,
-          slot: 'status',
-          key: 'status'
-        },
-        {
-          title: '通知内容',
-          width: 300,
-          key: 'content'
-        },
-        {
-          title: '通知时间',
-          width: 200,
-          key: 'time'
-        },
-        {
-          title: '档案编号',
-          width: 150,
-          key: 'num'
-        },
-        {
-          title: '病患姓名',
+          title: '患者姓名',
           width: 120,
           key: 'name'
         },
@@ -147,9 +111,40 @@ export default {
           width: 200,
           key: 'icd'
         },
+                {
+          title: '重点病患',
+          width: 120,
+          key: 'important'
+        },
+        {
+          title: '档案状态',
+          width: 150,
+          slot: 'status',
+          key: 'status'
+        },
+        {
+          title: '创建人',
+          width: 150,
+          key: 'creater'
+        },
+        {
+          title: '创建时间',
+          width: 200,
+          key: 'creatertime'
+        },
+        {
+          title: '转发人',
+          width: 150,
+          key: 'forward'
+        },
+        {
+          title: '转发时间',
+          width: 200,
+          key: 'forwardtime'
+        },
         {
           title: '操作',
-          width: 150,
+          width: 380,
           fixed: 'right',
           slot: 'action',
           key: 'action',
@@ -159,21 +154,25 @@ export default {
       tabList: [
         {
           id: '201910170024',
-          status: 1,
-          content: '您接到来自XX部门转发档案已超过七天未处理，请及时…',
-          time: '2019-10-22 19:02:02',
-          num: '201910170024',
-          name: '欧阳小明',
+          name: '欧阳小红',
           icd: '320929992000100020',
+          important: '是',
+          status: 1,
+          creater: '网格员',
+          creatertime: '2019-10-22 19:02:02',
+          forward: '公安',
+          forwardtime: '2019-10-22 19:02:02',
         },
         {
           id: '201910170024',
-          status: 1,
-          content: '您接到来自XX部门转发档案已超过七天未处理，请及时…',
-          time: '2019-10-22 19:02:02',
-          num: '201910170024',
-          name: '欧阳小明',
+          name: '欧阳小红',
           icd: '320929992000100020',
+          important: '是',
+          status: 1,
+          creater: '网格员',
+          creatertime: '2019-10-22 19:02:02',
+          forward: '公安',
+          forwardtime: '2019-10-22 19:02:02',
         }
       ]
     }
@@ -210,12 +209,7 @@ export default {
 
 <style scoped lang="less">
 @import url("../../patient-management/file-management/index.less");
-.notification {
-  margin-top: 20px;
-  background-color: #fff;
-  border-radius: 20px;
-  min-height: 200px;
-  box-shadow: 0 0 15px 0 rgba(14, 37, 38, 0.06);
+.done {
   .my-table{
     margin-top: 0;
   }
