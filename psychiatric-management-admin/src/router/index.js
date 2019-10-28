@@ -48,6 +48,17 @@ const routes = [
           import("../views/patient-management/new-file/newFile.vue")
       },
       {
+        path: "/personCenter",
+        name: "personalCenter",
+        meta: {
+          label: "个人中心"
+        },
+        component: () =>
+          import(
+            "../views/personal-center/personCenter.vue"
+          )
+      }
+      /*{
         path: "/personalAccount",
         name: "personalAccount",
         meta: {
@@ -79,7 +90,7 @@ const routes = [
           import(
             "../views/personal-center/notification-management/notificationManagement.vue"
           )
-      }
+      }*/
     ]
   },
   {
