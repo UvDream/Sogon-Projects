@@ -1,6 +1,7 @@
 <template>
   <div class="white-block btn">
     <div>
+      <Forward />
       <Button type="info">取消</Button>
       <Button type="primary">保存</Button>
       <Button type="primary">保存并推送</Button>
@@ -10,7 +11,11 @@
 </template>
 
 <script>
+import Forward from "./modal/forward";
 export default {
+  components: {
+    Forward
+  },
   methods: {
     pushFunc() {
       this.$store.state.step.stepStatus < 5
