@@ -100,20 +100,22 @@ export default {
           name: "个人中心",
           icon: "md-person",
           id: "2",
-          children: [
+          url: "/personCenter",
+          /*children: [
             { name: "个人账户", id: "2-1", url: "/personalAccount" },
             { name: "已办档案", id: "2-2", url: "/fileAlreadyManagement" },
             { name: "通知管理", id: "2-3", url: "/notificationManagement" }
-          ]
+          ]*/
         }
       ],
       breadcrumb: {
         dashboard: ["首页"],
         fileManagement: ["病患分析", "档案管理"],
         newFile: ["病患分析", "新建档案"],
-        personalAccount: ["个人中心", "个人账户"],
-        fileAlreadyManagement: ["个人中心", "已办档案"],
-        notificationManagement: ["个人中心", "通知管理"]
+        personCenter: ["个人中心"]
+        // personalAccount: ["个人中心", "个人账户"],
+        // fileAlreadyManagement: ["个人中心", "已办档案"],
+        // notificationManagement: ["个人中心", "通知管理"]
       },
       nowBreadcrunmb: []
     };
