@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 17:27:24
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-25 11:05:32
+ * @LastEditTime: 2019-10-29 11:50:37
  * @Description: 新建档案
  * @Email: UvDream@163.com
  -->
@@ -41,6 +41,9 @@ export default {
     Treatment,
     Guardianship,
     Help
+  },
+  mounted() {
+    this.$store.state.step.stepStatus = 0;
   },
   computed: {
     status: function() {

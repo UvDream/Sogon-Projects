@@ -7,7 +7,7 @@
       <SetUp />
       <!-- 退回弹窗-->
       <Return />
-      <Button type="info">取消</Button>
+      <Button type="info" @click="cancelFunc">取消</Button>
       <Button type="primary" v-if="status==0">保存</Button>
       <Button type="primary" v-if="status==0">保存并推送</Button>
       <Button
@@ -39,6 +39,10 @@ export default {
     Return
   },
   methods: {
+    cancelFunc() {
+      this.$router.push("/fileManagement");
+    },
+    // 转发
     pushFunc() {
       this.$store.state.step.stepStatus < 5
         ? (this.$store.state.step.stepStatus =
