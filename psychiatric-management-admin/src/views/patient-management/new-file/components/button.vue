@@ -5,6 +5,8 @@
       <Forward />
       <!-- 办结弹窗 -->
       <SetUp />
+      <!-- 退回弹窗-->
+      <Return />
       <Button type="info">取消</Button>
       <Button type="primary" v-if="status==0">保存</Button>
       <Button type="primary" v-if="status==0">保存并推送</Button>
@@ -23,6 +25,7 @@
 <script>
 import Forward from "./modal/forward";
 import SetUp from "./modal/setUp";
+import Return from "./modal/return";
 export default {
   computed: {
     status: function() {
@@ -32,7 +35,8 @@ export default {
   },
   components: {
     Forward,
-    SetUp
+    SetUp,
+    Return
   },
   methods: {
     pushFunc() {

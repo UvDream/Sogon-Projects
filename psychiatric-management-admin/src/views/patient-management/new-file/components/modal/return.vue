@@ -1,14 +1,14 @@
 <!--
  * @Author: wangzhongjie
- * @Date: 2019-10-29 10:52:09
+ * @Date: 2019-10-29 11:21:22
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-29 11:20:23
- * @Description: 办结弹窗
+ * @LastEditTime: 2019-10-29 11:30:58
+ * @Description: 退回弹窗
  * @Email: UvDream@163.com
  -->
 
 <template>
-  <Modal v-model="modal" title="档案办结" width="530" @on-cancel="modal=false">
+  <Modal v-model="modal" title="档案退回" width="600" @on-cancel="modal=false">
     <Form
       ref="formValidate"
       label-position="top"
@@ -16,7 +16,15 @@
       :rules="ruleValidate"
       :label-width="200"
     >
-      <FormItem label="办结原因说明" prop="reason" class="form-blocks">
+      <div class="form">
+        <FormItem label="退回至部门" prop="department" class="form-block">
+          <Input v-model="formValidate.department" placeholder="输入办结原因说明" />
+        </FormItem>
+        <FormItem label="退回至姓名" prop="name" class="form-block">
+          <Input v-model="formValidate.name" placeholder="输入办结原因说明" />
+        </FormItem>
+      </div>
+      <FormItem style="margin-left:30px" label="退回原因说明" prop="reason" class="form-blocks">
         <Input
           v-model="formValidate.reason"
           type="textarea"
@@ -24,13 +32,13 @@
           placeholder="输入办结原因说明"
         />
       </FormItem>
-      <FormItem label="上传证明文件" prop="uploadFiles" class="form-block">
+      <FormItem style="margin-left:30px" label="上传证明文件" prop="uploadFiles" class="form-block">
         <Upload />
       </FormItem>
     </Form>
     <div slot="footer" style="text-align:center">
       <Button type="primary" size="large">
-        <Icon type="ios-checkmark-circle-outline" style="margin-right:10px" />办结
+        <Icon type="ios-log-out" style="margin-right:10px" />退回
       </Button>
     </div>
   </Modal>
@@ -47,10 +55,14 @@ export default {
     return {
       modal: false,
       formValidate: {
+        department: "",
+        name: "",
         reason: "",
         uploadFiles: ""
       },
       ruleValidate: {
+        name: [{ required: true, message: "请输入退回至姓名" }],
+        department: [{ required: true, message: "请输入退回至部门" }],
         reason: [{ required: true, message: "请输入办结原因" }],
         uploadFiles: [{ required: true, message: "请上传证明材料" }]
       }
