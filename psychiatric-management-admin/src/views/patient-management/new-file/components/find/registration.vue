@@ -37,10 +37,7 @@
           <Input v-model="formValidate.employer" placeholder="输入患者住址" />
         </FormItem>
         <FormItem label="联系电话" prop="patientPhone" class="form-block">
-          <Input
-            v-model="formValidate.patientPhone"
-            placeholder="输入监护人联系电话"
-          />
+          <Input v-model="formValidate.patientPhone" placeholder="输入监护人联系电话" />
         </FormItem>
         <FormItem label="患者所属村居" prop="village" class="form-block">
           <Input v-model="formValidate.village" placeholder="输入所属村居" />
@@ -57,15 +54,8 @@
             <Option value="1">否</Option>
           </Select>
         </FormItem>
-        <FormItem
-          label="外籍患者处理"
-          prop="processingMethod"
-          class="form-block"
-        >
-          <Select
-            v-model="formValidate.processingMethod"
-            placeholder="选择档案状态"
-          >
+        <FormItem label="外籍患者处理" prop="processingMethod" class="form-block">
+          <Select v-model="formValidate.processingMethod" placeholder="选择档案状态">
             <Option value="0">男</Option>
             <Option value="1">女</Option>
             <Option value="2">未知</Option>
@@ -78,10 +68,7 @@
       <!-- 第四排 -->
       <div class="form">
         <FormItem label="患者病情" prop="patientCondition" class="form-blocks">
-          <Select
-            v-model="formValidate.patientCondition"
-            placeholder="选择患者状况"
-          >
+          <Select v-model="formValidate.patientCondition" placeholder="选择患者状况">
             <Option value="0">男</Option>
             <Option value="1">女</Option>
             <Option value="2">未知</Option>
@@ -98,28 +85,16 @@
       <!-- 第五排 -->
       <div class="form">
         <FormItem label="监护人姓名" prop="guardianName" class="form-block">
-          <Input
-            v-model="formValidate.guardianName"
-            placeholder="输入监护人姓名"
-          />
+          <Input v-model="formValidate.guardianName" placeholder="输入监护人姓名" />
         </FormItem>
         <FormItem label="与患者关系" prop="relationship" class="form-block">
-          <Input
-            v-model="formValidate.relationship"
-            placeholder="输入与患者关系"
-          />
+          <Input v-model="formValidate.relationship" placeholder="输入与患者关系" />
         </FormItem>
         <FormItem label="监护人单位" prop="guardianUnit" class="form-blocks">
-          <Input
-            v-model="formValidate.guardianUnit"
-            placeholder="输入患者住址"
-          />
+          <Input v-model="formValidate.guardianUnit" placeholder="输入患者住址" />
         </FormItem>
         <FormItem label="联系电话" prop="guardianPhone" class="form-block">
-          <Input
-            v-model="formValidate.guardianPhone"
-            placeholder="输入监护人联系电话"
-          />
+          <Input v-model="formValidate.guardianPhone" placeholder="输入监护人联系电话" />
         </FormItem>
       </div>
       <!-- 第六排 -->
@@ -139,9 +114,7 @@
       </div>
 
       <FormItem>
-        <Button type="primary" @click="handleSubmit('formValidate')"
-          >Submit</Button
-        >
+        <Button type="primary" @click="handleSubmit('formValidate')">Submit</Button>
       </FormItem>
     </Form>
   </div>

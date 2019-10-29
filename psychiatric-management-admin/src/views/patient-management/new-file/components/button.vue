@@ -1,20 +1,38 @@
 <template>
   <div class="white-block btn">
     <div>
+      <!-- 转发弹窗 -->
       <Forward />
+      <!-- 办结弹窗 -->
+      <SetUp />
       <Button type="info">取消</Button>
-      <Button type="primary">保存</Button>
-      <Button type="primary">保存并推送</Button>
-      <Button type="primary" ghost @click="pushFunc">推送</Button>
+      <Button type="primary" v-if="status==0">保存</Button>
+      <Button type="primary" v-if="status==0">保存并推送</Button>
+      <Button
+        type="primary"
+        ghost
+        @click="pushFunc"
+        v-if="status==0 || status ==1 || status==2 ||status==3"
+      >转发</Button>
+      <Button type="primary" v-if=" status ==1 || status==2 ||status==4">办结</Button>
+      <Button type="primary" ghost v-if=" status ==1||status==2 ||status==3 ||status==4">退回</Button>
     </div>
   </div>
 </template>
 
 <script>
 import Forward from "./modal/forward";
+import SetUp from "./modal/setUp";
 export default {
+  computed: {
+    status: function() {
+      console.log(this.$store.state.step.stepStatus);
+      return this.$store.state.step.stepStatus;
+    }
+  },
   components: {
-    Forward
+    Forward,
+    SetUp
   },
   methods: {
     pushFunc() {
