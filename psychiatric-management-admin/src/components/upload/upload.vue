@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-24 11:25:58
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-29 15:31:44
+ * @LastEditTime: 2019-10-29 15:51:23
  * @Description: 文件上传
  * @Email: UvDream@163.com
  -->
@@ -32,7 +32,7 @@
       :before-upload="handleBeforeUpload"
       multiple
       type="drag"
-      action="//jsonplaceholder.typicode.com/posts/"
+      action="url"
       style="display: inline-block;width:58px;"
     >
       <div style="width: 58px;height:58px;line-height: 58px;">
@@ -49,9 +49,13 @@
   </div>
 </template>
 <script>
+import { baseUrl } from "@/config/env";
+
 export default {
   data() {
     return {
+      // 上传接口地址
+      url: baseUrl + "/login",
       defaultList: [
         {
           name: "a42bdcc1178e62b4694c830f028db5c0",
