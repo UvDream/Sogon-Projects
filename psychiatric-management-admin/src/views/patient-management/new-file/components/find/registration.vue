@@ -88,7 +88,11 @@
           <Input v-model="formValidate.guardianName" placeholder="输入监护人姓名" />
         </FormItem>
         <FormItem label="与患者关系" prop="relationship" class="form-block">
-          <Input v-model="formValidate.relationship" placeholder="输入与患者关系" />
+          <Select v-model="formValidate.relationship" placeholder="选择危险性">
+            <Option value="0">男</Option>
+            <Option value="1">女</Option>
+            <Option value="2">未知</Option>
+          </Select>
         </FormItem>
         <FormItem label="监护人单位" prop="guardianUnit" class="form-blocks">
           <Input v-model="formValidate.guardianUnit" placeholder="输入患者住址" />
@@ -113,9 +117,9 @@
         </FormItem>
       </div>
 
-      <FormItem>
+      <!-- <FormItem>
         <Button type="primary" @click="handleSubmit('formValidate')">Submit</Button>
-      </FormItem>
+      </FormItem>-->
     </Form>
   </div>
 </template>
@@ -123,8 +127,10 @@
 <script>
 import TopTitle from "@/components/top-title/top-title";
 import Upload from "@/components/upload/upload";
-
+import data from "../../../../../mixin/newFile";
+import vm from "../../event";
 export default {
+  mixins: [data],
   components: {
     TopTitle,
     Upload
@@ -161,36 +167,65 @@ export default {
       },
       ruleValidate: {
         // 1
-        patientName: [{ required: true, message: "请输入患者姓名" }],
-        sex: [{ required: true, message: "请选择患者性别" }],
-        IdNumber: [{ required: true, message: "请输入患者身份证号" }],
-        status: [{ required: true, message: "请选择患者状态" }],
+        patientName: [
+          { required: true, message: "请输入患者姓名", trigger: "blur" }
+        ],
+        sex: [{ required: true, message: "请选择患者性别", trigger: "blur" }],
+        IdNumber: [
+          { required: true, message: "请输入患者身份证号", trigger: "blur" }
+        ],
+        status: [
+          { required: true, message: "请选择患者状态", trigger: "blur" }
+        ],
         // 2
-        village: [{ required: true, message: "请输入患者所属村居" }],
-        police: [{ required: true, message: "请输入患者社区民警" }],
+        village: [
+          { required: true, message: "请输入患者所属村居", trigger: "blur" }
+        ],
+        police: [
+          { required: true, message: "请输入患者社区民警", trigger: "blur" }
+        ],
         // 3
-        foreigner: [{ required: true, message: "请选择是否外埠患者" }],
+        foreigner: [
+          { required: true, message: "请选择是否外埠患者", trigger: "blur" }
+        ],
         processingMethod: [
-          { required: true, message: "请选择外埠患者处理方式" }
+          { required: true, message: "请选择外埠患者处理方式", trigger: "blur" }
         ],
         // 4
-        patientCondition: [{ required: true, message: "请选择患者病情" }],
-        risk: [{ required: true, message: "请选择患者危险性" }],
+        patientCondition: [
+          { required: true, message: "请选择患者病情", trigger: "blur" }
+        ],
+        risk: [
+          { required: true, message: "请选择患者危险性", trigger: "blur" }
+        ],
         // 5
-        guardianName: [{ required: true, message: "请输入监护人姓名" }],
-        relationship: [{ required: true, message: "请选择与胡拿着关系" }],
+        guardianName: [
+          { required: true, message: "请输入监护人姓名", trigger: "blur" }
+        ],
+        relationship: [
+          { required: true, message: "请选择与患者关系", trigger: "blur" }
+        ]
 
         // 6
-        uploadFiles: [{ required: true, message: "请上传证明文件" }]
+        // uploadFiles: [
+        //   { required: false, message: "请上传证明文件", trigger: "blur" }
+        // ]
       }
     };
   },
-  mounted() {},
+  created() {
+    vm.$on("blur", val => {
+      if (val == "saveEvent") {
+        this.handleSubmit("formValidate");
+      }
+    });
+  },
   methods: {
     handleSubmit(name) {
       this.$refs[name].validate(valid => {
         if (valid) {
           this.$Message.success("Success!");
+          this.$store.state.step.findData.checkRegistration = this.formValidate;
         } else {
           this.$Message.error("Fail!");
         }

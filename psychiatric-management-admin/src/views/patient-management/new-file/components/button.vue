@@ -8,8 +8,8 @@
       <!-- 退回弹窗-->
       <Return />
       <Button type="info" @click="cancelFunc">取消</Button>
-      <Button type="primary" v-if="status==0">保存</Button>
-      <Button type="primary" v-if="status==0">保存并推送</Button>
+      <Button type="primary" v-if="status==0" @click="saveFunc(1)">保存</Button>
+      <Button type="primary" v-if="status==0" @click="saveFunc(2)">保存并推送</Button>
       <Button
         type="primary"
         ghost
@@ -26,28 +26,42 @@
 import Forward from "./modal/forward";
 import SetUp from "./modal/setUp";
 import Return from "./modal/return";
+import mixin from "../../../../mixin/newFile";
+import vm from "../event";
 export default {
   computed: {
     status: function() {
-      console.log(this.$store.state.step.stepStatus);
       return this.$store.state.step.stepStatus;
     }
   },
+  mixins: [mixin],
   components: {
     Forward,
     SetUp,
     Return
   },
   methods: {
-    cancelFunc() {
-      this.$router.push("/fileManagement");
+    // 保存
+    saveFunc(id) {
+      console.log("保存动作", id);
+      vm.$emit("blur", "saveEvent");
+      // 上面两个表单数据
+      console.log("获取数据了", this.$store.state.step.findData);
+      this.findSave();
     },
+
+    // 发现保存
+    findSave() {},
     // 转发
     pushFunc() {
       this.$store.state.step.stepStatus < 5
         ? (this.$store.state.step.stepStatus =
             this.$store.state.step.stepStatus + 1)
         : "";
+    },
+    // 取消
+    cancelFunc() {
+      this.$router.push("/fileManagement");
     }
   }
 };
