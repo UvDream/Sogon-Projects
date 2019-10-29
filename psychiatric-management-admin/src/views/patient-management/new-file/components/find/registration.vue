@@ -224,10 +224,12 @@ export default {
     handleSubmit(name) {
       this.$refs[name].validate(valid => {
         if (valid) {
-          this.$Message.success("Success!");
+          // this.$Message.success("Success!");
           this.$store.state.step.findData.checkRegistration = this.formValidate;
+          this.$store.state.step.findStatus = false;
         } else {
-          this.$Message.error("Fail!");
+          // this.$Message.error("Fail!");
+          this.$store.state.step.findStatus = false;
         }
       });
     }

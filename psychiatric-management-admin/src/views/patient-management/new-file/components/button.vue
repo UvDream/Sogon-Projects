@@ -51,7 +51,13 @@ export default {
     },
 
     // 发现保存
-    findSave() {},
+    findSave() {
+      if (this.$store.state.step.findStatus) {
+        console.log("可以掉接口保存");
+      } else {
+        console.error("不可以保存");
+      }
+    },
     // 转发
     pushFunc() {
       this.$store.state.step.stepStatus < 5
