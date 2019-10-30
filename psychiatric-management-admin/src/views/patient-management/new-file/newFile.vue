@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 17:27:24
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-30 09:54:21
+ * @LastEditTime: 2019-10-30 10:33:25
  * @Description: 新建档案
  * @Email: UvDream@163.com
  -->
@@ -43,7 +43,7 @@ export default {
     Help
   },
   mounted() {
-    // this.$store.state.step.stepStatus = 0;
+    this.$store.state.step.stepStatus = 0;
   },
   computed: {
     status: function() {
