@@ -2,17 +2,19 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-25 10:20:53
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-25 11:11:54
+ * @LastEditTime: 2019-10-30 10:27:51
  * @Description: 顶部标题
  * @Email: UvDream@163.com
  -->
 <template>
   <div>
     <TopTitle :title="title" v-model="closed" />
-    <div class="more-desc">
-      <Icon type="ios-alert-outline" style="color:red;" />
-      职责说明:{{ message }}
-    </div>
+    <transition name="slide">
+      <div class="more-desc" v-if="!closed">
+        <Icon type="ios-alert-outline" style="color:red;" />
+        职责说明:{{ message }}
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -24,10 +26,22 @@ export default {
     title: { type: String },
     message: {
       type: String
+    },
+    value: {
+      type: Boolean,
+      default: false
     }
   },
   components: {
     TopTitle
+  },
+  mounted() {
+    this.closed = this.value;
+  },
+  watch: {
+    closed(val) {
+      this.$emit("input", val);
+    }
   },
   data() {
     return {

@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-25 10:48:08
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-25 11:00:59
+ * @LastEditTime: 2019-10-30 10:29:44
  * @Description: 防治医生帮扶
  * @Email: UvDream@163.com
  -->
@@ -13,11 +13,16 @@
       :message="
         '职责说明:定期开展健康检查，并纳入社区随访管理，实行分类干预，指导监护人督促患者日常服药。'
       "
+      v-model="closed"
     />
-    <div class="search">
-      <cForm />
-    </div>
-    <cTable />
+    <transition name="slide">
+      <div v-if="!closed">
+        <div class="search">
+          <cForm />
+        </div>
+        <cTable />
+      </div>
+    </transition>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="white-block btn">
+  <div class="white-block btn" style="height:100px">
     <div>
       <!-- 转发弹窗 -->
       <Forward />

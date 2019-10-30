@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-23 17:50:12
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-23 18:03:27
+ * @LastEditTime: 2019-10-30 09:57:25
  * @Description: 头部标题
  * @Email: UvDream@163.com
  -->
@@ -37,7 +37,7 @@ export default {
     },
     value: {
       type: Boolean,
-      default: false
+      default: true
     }
   },
   data() {
@@ -46,6 +46,7 @@ export default {
     };
   },
   mounted() {
+    console.log("传入的值", this.value);
     this.status = this.value;
   },
   methods: {
