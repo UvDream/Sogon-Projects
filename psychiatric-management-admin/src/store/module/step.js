@@ -1,6 +1,6 @@
 const step = {
   state: {
-    stepStatus: 0,
+    stepStatus: 4,
     // 发现页面
     findStatus: false,
     findData: {

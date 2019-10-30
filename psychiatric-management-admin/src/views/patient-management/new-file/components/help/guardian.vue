@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-25 10:49:27
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-30 09:57:52
+ * @LastEditTime: 2019-10-30 10:30:51
  * @Description: 监护人帮扶
  * @Email: UvDream@163.com
  -->
@@ -16,39 +16,43 @@
       "
       v-model="closed"
     />
-    <div class="search">
-      <Form
-        ref="formValidate"
-        label-position="top"
-        :model="formValidate"
-        :rules="ruleValidate"
-        :label-width="200"
-      >
-        <div class="form" style="margin-top:20px">
-          <FormItem label="姓名" prop="name" class="form-block">
-            <Input v-model="formValidate.name" placeholder="输入姓名" />
-          </FormItem>
-          <FormItem label="与患者关系" prop="relationship" class="form-block">
-            <Select v-model="formValidate.relationship" placeholder="选择与患者关系">
-              <Option value="0">父母</Option>
-              <Option value="1">配偶</Option>
-              <Option value="2">子女</Option>
-              <Option value="2">其它亲属</Option>
-            </Select>
-          </FormItem>
-          <FormItem label="救助金额领取银行卡号" prop="banNumber" class="form-block">
-            <Input v-model="formValidate.banNumber" placeholder="输入身份证号" />
-          </FormItem>
-          <FormItem label="联系电话" prop="phone" class="form-block">
-            <Input v-model="formValidate.phone" placeholder="输入联系电话" />
-          </FormItem>
-          <FormItem style="width:100px">
-            <Button type="primary" style="margin-top:25px">保存</Button>
-          </FormItem>
+    <transition name="slide">
+      <div v-if="!closed">
+        <div class="search">
+          <Form
+            ref="formValidate"
+            label-position="top"
+            :model="formValidate"
+            :rules="ruleValidate"
+            :label-width="200"
+          >
+            <div class="form" style="margin-top:20px">
+              <FormItem label="姓名" prop="name" class="form-block">
+                <Input v-model="formValidate.name" placeholder="输入姓名" />
+              </FormItem>
+              <FormItem label="与患者关系" prop="relationship" class="form-block">
+                <Select v-model="formValidate.relationship" placeholder="选择与患者关系">
+                  <Option value="0">父母</Option>
+                  <Option value="1">配偶</Option>
+                  <Option value="2">子女</Option>
+                  <Option value="2">其它亲属</Option>
+                </Select>
+              </FormItem>
+              <FormItem label="救助金额领取银行卡号" prop="banNumber" class="form-block">
+                <Input v-model="formValidate.banNumber" placeholder="输入身份证号" />
+              </FormItem>
+              <FormItem label="联系电话" prop="phone" class="form-block">
+                <Input v-model="formValidate.phone" placeholder="输入联系电话" />
+              </FormItem>
+              <FormItem style="width:100px">
+                <Button type="primary" style="margin-top:25px">保存</Button>
+              </FormItem>
+            </div>
+          </Form>
         </div>
-      </Form>
-    </div>
-    <cTable />
+        <cTable />
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -63,7 +67,7 @@ export default {
   },
   data() {
     return {
-      closed: true,
+      closed: false,
       formValidate: {
         name: "",
         relationship: "",
