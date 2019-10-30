@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 13:52:01
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-23 17:03:31
+ * @LastEditTime: 2019-10-30 14:16:46
  * @Description: 菜单
  * @Email: UvDream@163.com
  -->
@@ -10,6 +10,7 @@
   <Menu
     theme="light"
     :open-names="openKey"
+    :accordion="true"
     :active-name="activeName"
     width="auto"
   >
@@ -20,26 +21,22 @@
       :to="item.url"
       v-show="!item.children"
     >
-      <Icon type="md-document" />
-      {{ item.name }}
+      <div style="height:120px;font-size:16px;line-height:25px;">
+        <Icon :type="item.icon" size="40" style="margin-top:25px" />
+        <div>{{ item.name }}</div>
+      </div>
     </MenuItem>
-    <Submenu
-      v-for="(item, index) in menusList"
-      :key="index"
-      :name="item.id"
-      v-show="item.children"
-    >
+    <Submenu v-for="(item, index) in menusList" :key="index" :name="item.id" v-show="item.children">
       <template slot="title">
-        <Icon :type="item.icon" />
-        {{ item.name }}
+        <Icon :type="item.icon" size="40" style="margin-top:25px" />
+        <div>{{ item.name }}</div>
       </template>
       <MenuItem
         v-for="(items, index) in item.children"
         :key="index"
         :name="items.id"
         :to="items.url"
-        >{{ items.name }}</MenuItem
-      >
+      >{{ items.name }}</MenuItem>
     </Submenu>
   </Menu>
 </template>
@@ -86,4 +83,21 @@ export default {
 };
 </script>
 
-<style scoped lang="less"></style>
+<style  lang="less">
+.ivu-menu-item {
+  text-align: center;
+  font-size: 14px;
+  min-height: 60px;
+  line-height: 60px;
+  padding: 0 !important;
+}
+// 一级菜单
+.ivu-menu-submenu-title {
+  height: 120px !important;
+  text-align: center;
+  padding: 0 !important;
+}
+.ivu-menu-submenu-title-icon {
+  display: none !important;
+}
+</style>

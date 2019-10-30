@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 11:05:32
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-23 16:02:12
+ * @LastEditTime: 2019-10-30 13:45:44
  * @Description:路由文件
  * @Email: UvDream@163.com
  */
@@ -53,12 +53,9 @@ const routes = [
         meta: {
           label: "个人中心"
         },
-        component: () =>
-          import(
-            "../views/personal-center/personCenter.vue"
-          )
-      }
-      /*{
+        component: () => import("../views/personal-center/personCenter.vue")
+      },
+      {
         path: "/personalAccount",
         name: "personalAccount",
         meta: {
@@ -90,7 +87,7 @@ const routes = [
           import(
             "../views/personal-center/notification-management/notificationManagement.vue"
           )
-      }*/
+      }
     ]
   },
   {
