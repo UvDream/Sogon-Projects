@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-24 19:23:28
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-24 19:30:12
+ * @LastEditTime: 2019-10-30 10:04:14
  * @Description: 康复
  * @Email: UvDream@163.com
  -->
@@ -10,17 +10,8 @@
 <template>
   <div class="white-block">
     <TopTitle :title="'病患康复记录'" v-model="closed" />
-    <Form
-      ref="ruleForm"
-      label-position="top"
-      :model="ruleForm"
-      :label-width="200"
-    >
-      <div
-        class="form-delete"
-        v-for="(item, index) in ruleForm.more"
-        :key="index"
-      >
+    <Form ref="ruleForm" label-position="top" :model="ruleForm" :label-width="200">
+      <div class="form-delete" v-for="(item, index) in ruleForm.more" :key="index">
         <div class="form">
           <FormItem
             label="病患康复日期"
@@ -32,11 +23,7 @@
               trigger: 'blur'
             }"
           >
-            <DatePicker
-              type="datetime"
-              placeholder="请选择病患康复日期"
-              v-model="item.date"
-            ></DatePicker>
+            <DatePicker type="datetime" placeholder="请选择病患康复日期" v-model="item.date"></DatePicker>
           </FormItem>
           <FormItem
             label="病患就诊医院"
@@ -78,11 +65,7 @@
               trigger: 'blur'
             }"
           >
-            <Input
-              type="textarea"
-              v-model="item.recording"
-              placeholder="输入病患康复情况说明"
-            />
+            <Input type="textarea" v-model="item.recording" placeholder="输入病患康复情况说明" />
           </FormItem>
           <FormItem
             label="病患治疗证明材料"
@@ -176,6 +159,6 @@ export default {
 .add-block {
   outline: 1px solid red;
   width: 100%;
-  min-height: 200px;
+  // min-height: 200px;
 }
 </style>

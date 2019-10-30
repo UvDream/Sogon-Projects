@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-25 10:49:27
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-30 09:10:09
+ * @LastEditTime: 2019-10-30 09:57:52
  * @Description: 监护人帮扶
  * @Email: UvDream@163.com
  -->
@@ -14,6 +14,7 @@
       :message="
         '职责说明:负责患者的日常生活照料看管，监督被监护人按量按时服药，严禁遗弃、虐待患者，平时注意患者的言行和病情的发展，及时向村居干部、派出所报告动向。'
       "
+      v-model="closed"
     />
     <div class="search">
       <Form
@@ -62,7 +63,7 @@ export default {
   },
   data() {
     return {
-      closed: false,
+      closed: true,
       formValidate: {
         name: "",
         relationship: "",
@@ -77,6 +78,11 @@ export default {
         phone: [{ required: true, validator: validatePhone, trigger: "blur" }]
       }
     };
+  },
+  watch: {
+    closed(val) {
+      console.log("折叠", val);
+    }
   },
   methods: {}
 };

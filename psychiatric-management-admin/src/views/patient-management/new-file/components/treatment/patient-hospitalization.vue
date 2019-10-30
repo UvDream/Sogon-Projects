@@ -197,6 +197,6 @@ export default {
 .add-block {
   outline: 1px solid red;
   width: 100%;
-  min-height: 200px;
+  // min-height: 200px;
 }
 </style>
