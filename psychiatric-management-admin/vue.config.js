@@ -9,14 +9,16 @@ module.exports = {
       }
     }
   },
-  proxy: {
-    // 配置跨域
-    "/api": {
-      target: "http://10.10.10.76:8668",
-      ws: true,
-      changOrigin: true,
-      pathRewrite: {
-        "^/api": "/"
+  devServer: {
+    proxy: {
+      // 配置跨域
+      "/api": {
+        target: "http://10.10.10.76:8668",
+        ws: true,
+        changOrigin: true,
+        pathRewrite: {
+          "^/api": "/"
+        }
       }
     }
   }
