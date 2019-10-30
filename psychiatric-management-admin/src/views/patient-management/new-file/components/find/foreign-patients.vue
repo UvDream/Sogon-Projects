@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-23 17:37:33
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-25 09:20:24
+ * @LastEditTime: 2019-10-29 14:41:27
  * @Description: 外地病患
  * @Email: UvDream@163.com
  -->
@@ -10,13 +10,7 @@
   <div class="foreign">
     <TopTitle :title="'档案基本信息'" v-model="closed" />
     <div class="foreign-form">
-      <Form
-        ref="formValidate"
-        label-position="top"
-        :model="formValidate"
-        :rules="ruleValidate"
-        :label-width="200"
-      >
+      <Form label-position="top" :model="formValidate" :rules="ruleValidate" :label-width="200">
         <div class="form">
           <FormItem label="档案编号" prop="number" class="form-block">
             <Input v-model="formValidate.number" placeholder="输入档案号" />
@@ -28,22 +22,14 @@
             <Input v-model="formValidate.founder" placeholder="输入创建人" />
           </FormItem>
           <FormItem label="创建日期" prop="createDate" class="form-block">
-            <DatePicker
-              type="date"
-              placeholder="选择日期"
-              v-model="formValidate.createDate"
-            ></DatePicker>
+            <DatePicker type="date" placeholder="选择日期" v-model="formValidate.createDate"></DatePicker>
           </FormItem>
 
           <FormItem label="转发人" prop="forwarder" class="form-block">
             <Input v-model="formValidate.forwarder" placeholder="输入转发人" />
           </FormItem>
           <FormItem label="转发日期" prop="forwardDate" class="form-block">
-            <DatePicker
-              type="date"
-              placeholder="选择转发日期"
-              v-model="formValidate.forwardDate"
-            ></DatePicker>
+            <DatePicker type="date" placeholder="选择转发日期" v-model="formValidate.forwardDate"></DatePicker>
           </FormItem>
         </div>
         <!-- <FormItem>
@@ -56,6 +42,8 @@
 </template>
 <script>
 import TopTitle from "@/components/top-title/top-title";
+import vm from "../../event";
+
 export default {
   components: {
     TopTitle
@@ -73,6 +61,13 @@ export default {
       },
       ruleValidate: {}
     };
+  },
+  created() {
+    vm.$on("blur", val => {
+      if (val == "saveEvent") {
+        this.$store.state.step.findData.basicInformation = this.formValidate;
+      }
+    });
   },
   methods: {}
 };

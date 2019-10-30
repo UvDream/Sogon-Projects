@@ -1,29 +1,23 @@
+<!--
+ * @Author: wangzhongjie
+ * @Date: 2019-10-24 11:25:58
+ * @LastEditors: wangzhongjie
+ * @LastEditTime: 2019-10-29 15:51:23
+ * @Description: 文件上传
+ * @Email: UvDream@163.com
+ -->
 <template>
   <div>
-    <div
-      class="demo-upload-list"
-      v-for="(item, index) in uploadList"
-      :key="index"
-    >
+    <div class="demo-upload-list" v-for="(item, index) in uploadList" :key="index">
       <template v-if="item.status === 'finished'">
         <img :src="item.url" />
         <div class="demo-upload-list-cover">
-          <Icon
-            type="ios-eye-outline"
-            @click.native="handleView(item.name)"
-          ></Icon>
-          <Icon
-            type="ios-trash-outline"
-            @click.native="handleRemove(item)"
-          ></Icon>
+          <Icon type="ios-eye-outline" @click.native="handleView(item.name)"></Icon>
+          <Icon type="ios-trash-outline" @click.native="handleRemove(item)"></Icon>
         </div>
       </template>
       <template v-else>
-        <Progress
-          v-if="item.showProgress"
-          :percent="item.percentage"
-          hide-info
-        ></Progress>
+        <Progress v-if="item.showProgress" :percent="item.percentage" hide-info></Progress>
       </template>
     </div>
     <Upload
@@ -38,7 +32,7 @@
       :before-upload="handleBeforeUpload"
       multiple
       type="drag"
-      action="//jsonplaceholder.typicode.com/posts/"
+      action="url"
       style="display: inline-block;width:58px;"
     >
       <div style="width: 58px;height:58px;line-height: 58px;">
@@ -55,9 +49,13 @@
   </div>
 </template>
 <script>
+import { baseUrl } from "@/config/env";
+
 export default {
   data() {
     return {
+      // 上传接口地址
+      url: baseUrl + "/login",
       defaultList: [
         {
           name: "a42bdcc1178e62b4694c830f028db5c0",
