@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 11:53:46
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-30 14:15:29
+ * @LastEditTime: 2019-10-30 14:22:50
  * @Description: 主界面
  * @Email: UvDream@163.com
  -->
@@ -59,7 +59,7 @@
               padding: '0px 24px',
               minHeight: '280px',
               background: '#ebf1f2',
-              minWidth:'800px'
+              minWidth:'950px'
             }"
           >
             <router-view></router-view>
