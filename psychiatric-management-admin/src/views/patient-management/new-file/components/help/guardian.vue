@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-25 10:49:27
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-25 11:40:02
+ * @LastEditTime: 2019-10-30 09:10:09
  * @Description: 监护人帮扶
  * @Email: UvDream@163.com
  -->
@@ -29,8 +29,10 @@
           </FormItem>
           <FormItem label="与患者关系" prop="relationship" class="form-block">
             <Select v-model="formValidate.relationship" placeholder="选择与患者关系">
-              <Option value="0">是</Option>
-              <Option value="1">否</Option>
+              <Option value="0">父母</Option>
+              <Option value="1">配偶</Option>
+              <Option value="2">子女</Option>
+              <Option value="2">其它亲属</Option>
             </Select>
           </FormItem>
           <FormItem label="救助金额领取银行卡号" prop="banNumber" class="form-block">
