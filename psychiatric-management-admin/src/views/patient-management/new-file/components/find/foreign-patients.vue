@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-23 17:37:33
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-30 10:13:04
+ * @LastEditTime: 2019-10-30 17:28:51
  * @Description: 外地病患
  * @Email: UvDream@163.com
  -->
@@ -16,8 +16,8 @@
             <FormItem label="档案编号" prop="number" class="form-block">
               <Input v-model="formValidate.number" placeholder="输入档案号" />
             </FormItem>
-            <FormItem label="档案名称" prop="name" class="form-block">
-              <Input v-model="formValidate.name" placeholder="输入档案名称" />
+            <FormItem label="档案状态" prop="status" class="form-block">
+              <Input v-model="formValidate.status" placeholder="输入档案状态" />
             </FormItem>
             <FormItem label="创建人" prop="founder" class="form-block">
               <Input v-model="formValidate.founder" placeholder="输入创建人" />
@@ -55,7 +55,7 @@ export default {
       closed: false,
       formValidate: {
         number: "",
-        name: "",
+        status: "",
         founder: "",
         createDate: "",
         forwarder: "",
