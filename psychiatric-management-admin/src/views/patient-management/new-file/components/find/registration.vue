@@ -152,6 +152,7 @@ import TopTitle from "@/components/top-title/top-title";
 import Upload from "@/components/upload/upload";
 import data from "../../../../../mixin/newFile";
 import vm from "../../event";
+import { saveList } from "@/api/new-file/find";
 import { validatePhone } from "@/util/util";
 
 export default {
@@ -163,6 +164,7 @@ export default {
   data() {
     return {
       closed: false,
+      formList: {"patientCode":"320623198807064421","isforeign":"0","tFiles":[{"filepath":"D://file"},{"filepath":"D://Filetwo"}]},
       formValidate: {
         // 1
         patientName: "",
@@ -256,13 +258,18 @@ export default {
       }
     });
   },
+  mounted() {
+    saveList(this.formList).then(res=>{
+      console.log(res)
+    })
+  },
   methods: {
     handleSubmit(name) {
       this.$refs[name].validate(valid => {
         if (valid) {
           // this.$Message.success("Success!");
           this.$store.state.step.findData.checkRegistration = this.formValidate;
-          this.$store.state.step.findStatus = false;
+          this.$store.state.step.findStatus = true;
         } else {
           // this.$Message.error("Fail!");
           this.$store.state.step.findStatus = false;

@@ -2,7 +2,7 @@
  * @Author: xiahongxiu
  * @Date: 2019-10-22 17:26:14
  * @LastEditors: xiahongxiu
- * @LastEditTime: 2019-10-23 17:34:30
+ * @LastEditTime: 2019-10-30 14:34:30
  * @Description: 档案管理
  * @Email: UvDream@163.com
  -->
@@ -10,43 +10,44 @@
   <div class="file-manage">
     <div class="white-block my-form" :class="{'hidden':isShow == true}">
       <Form ref="formInline" :model="formInline" inline class="my-form-content">
-        <FormItem label="档案编号">
-          <Input type="text" v-model="formInline.user" placeholder="Username" />
+        <FormItem label="档案编号" prop="code">
+          <Input v-model="formInline.code" />
         </FormItem>
-        <FormItem label="档案状态">
+        <FormItem label="档案状态" prop="status">
           <Select v-model="formInline.status">
-            <Option value="beijing">发现中</Option>
-            <Option value="shanghai">已推送</Option>
-            <Option value="shenzhen">评定中</Option>
-            <Option value="beijing">治疗中</Option>
-            <Option value="shanghai">四帮一</Option>
-            <Option value="shenzhen">已康复</Option>
-            <Option value="shenzhen">已办结</Option>
+            <Option value="0">发现中</Option>
+            <Option value="1">已推送</Option>
+            <Option value="2">评定中</Option>
+            <Option value="3">已办结</Option>
+            <Option value="4">治疗中</Option>
+            <Option value="5">监护中</Option>
+            <Option value="6">帮扶中</Option>
+            <Option value="7">已康复</Option>
           </Select>
         </FormItem>
-        <FormItem label="病患姓名">
-          <Input type="password" v-model="formInline.password" placeholder="Password" />
+        <FormItem label="病患姓名" prop="patientName">
+          <Input v-model="formInline.patientName" />
         </FormItem>
-        <FormItem label="重点病患">
-          <Select v-model="formInline.status">
-            <Option value="beijing">是</Option>
-            <Option value="shanghai">否</Option>
+        <FormItem label="重点病患" prop="isfocal">
+          <Select v-model="formInline.isfocal">
+            <Option value="0">是</Option>
+            <Option value="1">否</Option>
           </Select>
         </FormItem>
-        <FormItem label="病患身份证号">
-          <Input type="password" v-model="formInline.password" placeholder="Password" />
+        <FormItem label="病患身份证号" prop="patientCode">
+          <Input v-model="formInline.patientCode" />
         </FormItem>
-        <FormItem prop="date" label="创建时间">
-          <DatePicker type="date" placeholder="Select date"></DatePicker>
+        <FormItem prop="date" label="开始创建时间">
+          <DatePicker type="datetime" v-model="formInline.beginCreateDate"></DatePicker>
         </FormItem>
         <span>-</span>
-        <FormItem prop="time" label="创建时间">
-          <TimePicker type="time" placeholder="Select time"></TimePicker>
+        <FormItem prop="date" label="结束创建时间">
+          <DatePicker type="datetime" v-model="formInline.endCreateDate"></DatePicker>
         </FormItem>
       </Form>
       <div class="my-form-handle">
-        <Button style="margin-right: 8px">取消</Button>
-        <Button type="primary">搜索</Button>
+        <Button style="margin-right: 8px" @click="handleReset('formInline')">取消</Button>
+        <Button type="primary" @click="search">搜索</Button>
         <div v-if="isShow" @click="show">
           <span>展开</span>
           <Icon type="ios-arrow-down" />
@@ -65,44 +66,141 @@
         </ButtonGroup>
         <ButtonGroup size="large">
           <Button @click="handleSelectAll(true)">推送</Button>
-          <Button @click="handleSelectAll(false)">转发</Button>
-          <Button @click="handleSelectAll(true)">EXCEL导入</Button>
           <Button @click="handleSelectAll(false)">删除</Button>
         </ButtonGroup>
       </div>
       <Table ref="section"
-      :columns="columns" 
-      :data="tabList" 
-      @on-select="Check" 
-      @on-select-cancel="cancelCheck" 
-      @on-selection-change="Modulechange">
+        :columns="columns" 
+        :data="tabList" 
+        @on-select="Check" 
+        @on-select-cancel="cancelCheck" 
+        @on-selection-change="Modulechange"
+      >
+        <template slot-scope="{ row, index}" slot="code">
+          <router-link :to="{name:'newFile', params: { id : row.code }}">
+            {{row.code}}
+          </router-link>
+        </template>
         <template slot-scope="{ row, index}" slot="status">
-          <span v-if="row.status == 1">
-          <!-- <img src="../../assets/fonts/file-manage/bangfu.png"> -->
-          {{row.status}}</span>
+          <span v-if="row.status == 0" @click="handleStatus(row.status)">
+            <img src="../../../assets/fonts/file-manage/faxian.png" style="margin-right:5px;vertical-align: middle;">
+            发现中
+          </span>
+          <span v-if="row.status == 1" @click="handleStatus(row.status)">
+            <img src="../../../assets/fonts/file-manage/tuisong.png" style="margin-right:5px;vertical-align: middle;">
+            已推送
+          </span>
+          <span v-if="row.status == 2" @click="handleStatus(row.status)">
+            <img src="../../../assets/fonts/file-manage/pingding.png" style="margin-right:5px;vertical-align: middle;">
+            评定中
+          </span>
+          <span v-if="row.status == 3" @click="handleStatus(row.status)">
+            <img src="../../../assets/fonts/file-manage/bangfu.png" style="margin-right:5px;vertical-align: middle;">
+            已办结
+          </span>
+          <span v-if="row.status == 4" @click="handleStatus(row.status)">
+            <img src="../../../assets/fonts/file-manage/zhiliao.png" style="margin-right:5px;vertical-align: middle;">
+            治疗中
+          </span>
+          <span v-if="row.status == 5" @click="handleStatus(row.status)">
+            <img src="../../../assets/fonts/file-manage/jianhu.png" style="margin-right:5px;vertical-align: middle;">
+            监护中
+          </span>
+          <span v-if="row.status == 6" @click="handleStatus(row.status)">
+            <img src="../../../assets/fonts/file-manage/bangfu.png" style="margin-right:5px;vertical-align: middle;">
+            帮扶中
+          </span>
+          <span v-if="row.status == 7" @click="handleStatus(row.status)">
+            <img src="../../../assets/fonts/file-manage/bangfu.png" style="margin-right:5px;vertical-align: middle;">
+            已康复
+          </span>
+        </template>
+        <template slot-scope="{ row, index}" slot="isfocal">
+          <span v-if="row.isfocal == 1">
+            否
+          </span>
+          <span v-else>
+            是
+          </span>
         </template>
         <template slot-scope="{ row, index }" slot="action">
-            <Button class="my-table-handle-button" @click="">转发</Button>
-            <Button class="my-table-handle-button" @click="">退回</Button>
-            <Button class="my-table-handle-button" @click="">办结</Button>
-            <Button class="my-table-handle-button" @click="">推送</Button>
-            <Button class="my-table-handle-button" @click="">删除</Button>
+          <Button class="my-table-handle-button" @click="handledelete(index)">删除</Button>
+          <Button 
+            class="my-table-handle-button" 
+            @click="handleforward(index)" 
+            v-if="row.status == 1 || row.status == 2 || row.status == 4 || row.status == 6"
+            >转发
+          </Button>
+          <Button 
+            class="my-table-handle-button" 
+            @click=""
+            v-if="row.status == 2 || row.status == 4 || row.status == 6 || row.status == 7">
+            退回
+          </Button>
+          <Button 
+            class="my-table-handle-button" 
+            @click=""
+            v-if="row.status == 7"
+            >办结
+          </Button>
+          <Button class="my-table-handle-button" @click="">推送</Button>
         </template>
       </Table>
-      <Page :total="40" show-elevator show-sizer show-total class="my-table-page"/>
+      <Page 
+        :total="total" 
+        :page-size="pageSize"
+        :current="pageNum"
+        show-elevator 
+        show-sizer 
+        show-total 
+        class="my-table-page"
+        @on-change="pageChange"
+        @on-page-size-change="pageSizeChange"
+      />
     </div>
+    <!-- 转发弹窗 -->
+    <Forward />
+    <!-- 办结弹窗 -->
+    <SetUp />
+    <!-- 退回弹窗-->
+    <Return />
+    <!-- 流程图-->
+    <Flow :modalFlow="modalFlow" @closemodal="closemodal"/>
   </div>
 </template>
 
 <script>
+import api from "@/api/file-manage";
+import Forward from "../new-file/components/modal/forward";
+import SetUp from "../new-file/components/modal/setUp";
+import Return from "../new-file/components/modal/return";
+import Flow from "./flow";
+import mixin from "../../../mixin/newFile";
+import { formatDate } from "@/util/util";
 export default {
+  mixins: [mixin],
+  components: {
+    Forward,
+    SetUp,
+    Return,
+    Flow
+  },
   data() {
     return {
+      modalForward:false,
+      modalFlow:true,
       formInline: {
-        user: '',
-        password: '',
-        status:''
+        code: '',
+        status: '',
+        patientName:'',
+        patientCode: '',
+        isfocal: '',
+        beginCreateDate:'',
+        endCreateDate: ''
       },
+      total:0,
+      pageNum:1,
+      pageSize: 10,
       isShow: true,
       height: '238px',
       columns: [
@@ -115,48 +213,60 @@ export default {
         {
           title: '档案编号',
           width: 200,
-          key: 'filenumber'
+          slot: 'code',
+          key: 'code'
         },
         {
           title: '病患姓名',
           width: 240,
-          key: 'name'
+          key: 'patientName'
         },
         {
           title: '病患身份证号',
           width: 200,
-          key: 'icd'
+          key: 'patientCode'
         },
         {
           title: '重点病患',
           width: 120,
-          key: 'iskey'
+          key: 'isfocal',
+          slot:'isfocal'
         },
         {
           title: '档案状态',
-          width: 100,
+          width: 120,
           slot: 'status',
           key: 'status'
         },
         {
           title: '创建人',
           width: 120,
-          key: 'creater'
+          key: 'checkinUserName'
         },
         {
           title: '创建时间',
           width: 200,
-          key: 'creatime'
+          key: 'createDate',
+          render:(h,params)=>{
+            return h('div',
+              formatDate(new Date(params.row.createDate),'yyyy-MM-dd hh:mm')
+            )
+          }
         },
         {
           title: '转发人',
           width: 120,
-          key: 'forward'
+          key: 'curForWardDeptName'
         },
         {
           title: '转发时间',
           width: 200,
-          key: 'forwardtime'
+          key: 'lastForWardTime',
+          render:(h,params)=>{
+            return h('div',
+              formatDate(new Date(params.row.lastForWardTime),'yyyy-MM-dd hh:mm')
+            )
+          }
         },
         {
           title: '操作',
@@ -167,35 +277,41 @@ export default {
           align: 'center'
         }
       ],
-      tabList: [
-        {
-          filenumber: '201910170024',
-          name: 'XZ_王显平_20191017',
-          icd: '320929992000100020',
-          iskey: '是',
-          status:1,
-          creater: '欧阳小明',
-          creatime: '2019-10-22 19:02:02',
-          forward: '欧阳小红',
-          forwardtime: '2019-10-22 19:02:02'
-        },
-        {
-          filenumber: '201910170024',
-          name: 'XZ_王显平_20191017',
-          icd: '320929992000100020',
-          iskey: '是',
-          status:'已办结',
-          creater: '欧阳小明',
-          creatime: '2019-10-22 19:02:02',
-          forward: '欧阳小红',
-          forwardtime: '2019-10-22 19:02:02'
-        }
-      ]
+      tabList: [],
+      selectnum:0
     }
   },
+  mounted() {
+    this.modalFlow = true;
+    let obj = Object.assign(
+      this.formInline,
+      {pageNum:this.pageNum},
+      {pageSize:this.pageSize}
+    );
+    this.searchFunc(obj);
+  },
   methods: {
+    //取消
+    handleReset (name) {
+      this.$refs[name].resetFields();
+    },
+    //搜索
+    search() {
+      let obj = Object.assign(
+        this.formInline,
+        {pageNum:this.pageNum},
+        {pageSize:this.pageSize}
+      );
+      this.searchFunc(obj);
+    },
+    searchFunc(data) {
+      api.checkData(data).then(res => {
+        console.log(res.data);
+        this.total = res.data.count;
+        this.tabList = res.data.data;
+      });
+    },
     handleSelectAll (status) {
-      debugger
       this.$refs.section.selectAll(status);
     },
     Check(section,row){
@@ -210,8 +326,41 @@ export default {
     show() {
       this.isShow = !this.isShow;
     },
-    remove (index) {
-      this.tabList.splice(index, 1);
+    handledelete (index) {
+      this.$Modal.confirm({
+        title:'删除',
+        content:'确认删除?',
+        onOk: () => {
+          //this.tabList.splice(index, 1);
+        }
+      });
+    },
+    handleforward(index) {
+
+    },
+    closemodal(val){
+      this.modalFlow = val;
+    },
+    handleStatus(status) {
+
+    },
+    pageChange(cur) {
+      this.pageNum = cur;
+      let obj = Object.assign(
+        this.formInline,
+        {pageNum:this.pageNum},
+        {pageSize:this.pageSize}
+      );
+      this.searchFunc(obj);
+    },
+    pageSizeChange(pagesize) {
+      this.pageSize = pagesize;
+      let obj = Object.assign(
+        this.formInline,
+        {pageNum:this.pageNum},
+        {pageSize:this.pageSize}
+      );
+      this.searchFunc(obj);
     }
   }
 };
@@ -219,15 +368,4 @@ export default {
 
 <style scoped lang="less">
 @import url("./index.less");
-</style>
-<style>
-.my-form-content.ivu-form-inline .ivu-form-item-label{
-  font-size: 16px;
-  color: #000;
-}
-.my-form-content.ivu-form-inline .ivu-input,
-.my-form-content.ivu-form-inline .ivu-select-selection{
-  width: 240px;
-  height: 40px;
-}
 </style>

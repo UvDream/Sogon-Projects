@@ -49,6 +49,8 @@
 </template>
 
 <script>
+import { login } from "@/api/login/index";
+import Cookies from 'js-cookie'
 export default {
   data() {
     return {
@@ -83,6 +85,16 @@ export default {
   },
   methods: {
     handleSubmit(name) {
+      this.formInline.user = "GA";
+      this.formInline.password = "42b8753abba111e953cd5633966e1794";
+      let data = {
+        "name": this.formInline.user,
+        "pwd": this.formInline.password
+      }
+      login(data).then(res=>{
+        Cookies.set(res.data.token)
+        this.$router.push({ path: '/dashboard' })
+      })
       this.$refs[name].validate(valid => {
         if (valid) {
           this.$Message.success("Success!");

@@ -1,12 +1,14 @@
 import axios from "axios";
 import config from "./config.js"; // 倒入默认配置
+import store from '@/store';
+axios.defaults.withCredentials=true;
 export default function fetch(options) {
   return new Promise((reslove, reject) => {
     var service = axios.create({
       baseURL: config.baseURL,
       timeout: config.timeout,
       headers: config.headers,
-      withCredentials: config.withCredentials
+      withCredentials: true
     });
     // request拦截器
     service.interceptors.request.use(

@@ -9,6 +9,7 @@
 
 <template>
   <div class="title">
+    <slot name="icon"></slot>
     {{ title }}
     <Icon
       type="ios-arrow-dropup-circle"
