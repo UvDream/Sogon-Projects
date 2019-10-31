@@ -77,7 +77,7 @@
         @on-selection-change="Modulechange"
       >
         <template slot-scope="{ row, index}" slot="code">
-          <router-link :to="{name:'newFile', params: {id:row.code}}">
+          <router-link :to="{name:'newFile', params: { id : row.code }}">
             {{row.code}}
           </router-link>
         </template>
@@ -272,7 +272,8 @@ export default {
           align: 'center'
         }
       ],
-      tabList: []
+      tabList: [],
+      selectnum:0
     }
   },
   mounted() {
@@ -314,7 +315,6 @@ export default {
       });
     },
     handleSelectAll (status) {
-      debugger
       this.$refs.section.selectAll(status);
     },
     Check(section,row){
@@ -371,9 +371,5 @@ export default {
   font-size: 16px;
   color: #000;
 }
-.my-form-content.ivu-form-inline .ivu-input,
-.my-form-content.ivu-form-inline .ivu-select-selection{
-  width: 240px;
-  height: 40px;
-}
+
 </style>

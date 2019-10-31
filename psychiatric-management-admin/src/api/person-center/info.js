@@ -1,15 +1,17 @@
 import request from '@/api/fetch';
 
 const api = {
-    checkPerAccount: ()=>{
+    checkData: (data)=>{
         return request({
-            url: '/jsbrgl/PerAccount/findOne',
+            url: '/jsbrgl/InfoManager/queryByCoditions',
             method: 'POST',
+            data
         })
     },
-    updatePassWord: (data)=>{
+    //修改已读状态
+    updateMessage: (data)=>{
         return request({
-            url: '/jsbrgl/PerAccount/updatePassWord',
+            url: '/jsbrgl/InfoManager/updateMessageById',
             method: 'POST',
             data
         })
