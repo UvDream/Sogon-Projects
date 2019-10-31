@@ -33,10 +33,11 @@ export default {
     return {
       list: [
         { name: "发现", icon: "ios-person" },
-        { name: "评定", icon: "md-brush" },
-        { name: "治疗", icon: "ios-heart" },
+        { name: "初步处理", icon: "md-brush" },
+        { name: "评定治疗", icon: "ios-heart" },
         { name: "四帮一", icon: "ios-hand" },
-        { name: "康复", icon: "ios-happy" }
+        { name: "再次评定", icon: "ios-hand" },
+        { name: "脱离管控", icon: "ios-happy" }
       ]
     };
   },
@@ -116,12 +117,12 @@ export default {
       background: #c6cbcb;
       & > div {
         text-align: center;
-        width: 50px;
+        width: 60px;
         // outline: 1px solid red;
         text-align: center;
         transform: rotate(45deg);
         position: relative;
-        left: 10px;
+        left: 5px;
         top: 10px;
       }
     }

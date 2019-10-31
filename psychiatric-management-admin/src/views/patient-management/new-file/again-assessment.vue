@@ -1,9 +1,9 @@
 <!--
  * @Author: wangzhongjie
- * @Date: 2019-10-24 14:52:49
+ * @Date: 2019-10-31 09:31:52
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-31 10:43:00
- * @Description: 病患等级
+ * @LastEditTime: 2019-10-31 10:38:41
+ * @Description: 再次评定
  * @Email: UvDream@163.com
  -->
 
@@ -32,44 +32,49 @@
         </div>
         <div class="form">
           <FormItem label="等级评定医院" prop="hospital" class="form-block">
-            <Input v-model="formValidate.hospital" placeholder="输入原籍公安机关名称" />
+            <Input v-model="formValidate.hospital" placeholder="输入等级评定医院" />
           </FormItem>
           <FormItem label="等级评定医生" prop="doctor" class="form-block">
-            <Input v-model="formValidate.doctor" placeholder="输入原籍公安机关名称" />
+            <Input v-model="formValidate.doctor" placeholder="输入等级评定医生" />
           </FormItem>
-          <FormItem label="评定医生联系方式" prop="phone" class="form-block">
-            <Input v-model="formValidate.phone" placeholder="输入原籍公安机关名称" />
+          <FormItem label="等级评定医生联系电话" prop="phone" class="form-block">
+            <Input v-model="formValidate.phone" placeholder="输入等级评定医生联系电话" />
           </FormItem>
-          <FormItem label="评定时间" prop="time" class="form-block">
-            <DatePicker type="datetime" placeholder="请选择时间" v-model="formValidate.time"></DatePicker>
+          <FormItem label="等级评定日期" prop="date" class="form-block">
+            <DatePicker type="date" placeholder="选择等级评定日期" v-model="formValidate.date"></DatePicker>
           </FormItem>
         </div>
         <div class="form">
-          <FormItem label="患者危险性等级说明" prop="description" class="form-blocks">
+          <FormItem label="外埠病患处理说明" prop="description" class="form-textarea">
             <Input
               v-model="formValidate.description"
               type="textarea"
               :autosize="{ minRows: 2, maxRows: 5 }"
-              placeholder="输入所属村居"
+              placeholder="输入外埠病患处理说明"
             />
           </FormItem>
-          <FormItem label="上传证明文件" prop="uploadFiles" class="form-block">
+          <FormItem label="外埠证明材料" prop="uploadFiles" class="form-block">
             <Upload />
           </FormItem>
         </div>
       </Form>
     </transition>
+
+    <Btn />
   </div>
 </template>
 
 <script>
 import TopTitle from "@/components/top-title/top-title";
 import Upload from "@/components/upload/upload";
+import Btn from "./components/button";
+import { validatePhone } from "@/util/util";
 
 export default {
   components: {
     TopTitle,
-    Upload
+    Upload,
+    Btn
   },
   data() {
     return {
@@ -111,4 +116,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+</style>
