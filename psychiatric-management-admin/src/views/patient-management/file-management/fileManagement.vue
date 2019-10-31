@@ -82,35 +82,35 @@
           </router-link>
         </template>
         <template slot-scope="{ row, index}" slot="status">
-          <span v-if="row.status == 0">
+          <span v-if="row.status == 0" @click="handleStatus(row.status)">
             <img src="../../../assets/fonts/file-manage/faxian.png" style="margin-right:5px;vertical-align: middle;">
             发现中
           </span>
-          <span v-if="row.status == 1">
+          <span v-if="row.status == 1" @click="handleStatus(row.status)">
             <img src="../../../assets/fonts/file-manage/tuisong.png" style="margin-right:5px;vertical-align: middle;">
             已推送
           </span>
-          <span v-if="row.status == 2">
+          <span v-if="row.status == 2" @click="handleStatus(row.status)">
             <img src="../../../assets/fonts/file-manage/pingding.png" style="margin-right:5px;vertical-align: middle;">
             评定中
           </span>
-          <span v-if="row.status == 3">
+          <span v-if="row.status == 3" @click="handleStatus(row.status)">
             <img src="../../../assets/fonts/file-manage/bangfu.png" style="margin-right:5px;vertical-align: middle;">
             已办结
           </span>
-          <span v-if="row.status == 4">
+          <span v-if="row.status == 4" @click="handleStatus(row.status)">
             <img src="../../../assets/fonts/file-manage/zhiliao.png" style="margin-right:5px;vertical-align: middle;">
             治疗中
           </span>
-          <span v-if="row.status == 5">
+          <span v-if="row.status == 5" @click="handleStatus(row.status)">
             <img src="../../../assets/fonts/file-manage/jianhu.png" style="margin-right:5px;vertical-align: middle;">
             监护中
           </span>
-          <span v-if="row.status == 6">
+          <span v-if="row.status == 6" @click="handleStatus(row.status)">
             <img src="../../../assets/fonts/file-manage/bangfu.png" style="margin-right:5px;vertical-align: middle;">
             帮扶中
           </span>
-          <span v-if="row.status == 7">
+          <span v-if="row.status == 7" @click="handleStatus(row.status)">
             <img src="../../../assets/fonts/file-manage/bangfu.png" style="margin-right:5px;vertical-align: middle;">
             已康复
           </span>
@@ -164,6 +164,8 @@
     <SetUp />
     <!-- 退回弹窗-->
     <Return />
+    <!-- 流程图-->
+    <Flow :modalFlow="modalFlow" @closemodal="closemodal"/>
   </div>
 </template>
 
@@ -172,6 +174,7 @@ import api from "@/api/file-manage";
 import Forward from "../new-file/components/modal/forward";
 import SetUp from "../new-file/components/modal/setUp";
 import Return from "../new-file/components/modal/return";
+import Flow from "./flow";
 import mixin from "../../../mixin/newFile";
 import { formatDate } from "@/util/util";
 export default {
@@ -179,11 +182,13 @@ export default {
   components: {
     Forward,
     SetUp,
-    Return
+    Return,
+    Flow
   },
   data() {
     return {
       modalForward:false,
+      modalFlow:true,
       formInline: {
         code: '',
         status: '',
@@ -277,6 +282,7 @@ export default {
     }
   },
   mounted() {
+    this.modalFlow = true;
     let obj = Object.assign(
       this.formInline,
       {pageNum:this.pageNum},
@@ -330,6 +336,12 @@ export default {
       });
     },
     handleforward(index) {
+
+    },
+    closemodal(val){
+      this.modalFlow = val;
+    },
+    handleStatus(status) {
 
     },
     pageChange(cur) {
