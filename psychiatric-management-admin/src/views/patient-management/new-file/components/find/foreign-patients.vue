@@ -14,24 +14,23 @@
         <Form label-position="top" :model="formValidate" :rules="ruleValidate" :label-width="200">
           <div class="form">
             <FormItem label="档案编号" prop="number" class="form-block">
-              <Input v-model="formValidate.number" placeholder="输入档案号" />
+              <Input v-model="formValidate.code" placeholder="输入档案号" />
             </FormItem>
             <FormItem label="档案名称" prop="name" class="form-block">
               <Input v-model="formValidate.name" placeholder="输入档案名称" />
             </FormItem>
             <FormItem label="创建人" prop="founder" class="form-block">
-              <Input v-model="formValidate.founder" placeholder="输入创建人" />
+              <Input v-model="formValidate.checkin_dept" placeholder="输入创建人" />
             </FormItem>
             <FormItem label="创建日期" prop="createDate" class="form-block">
               <DatePicker type="date" placeholder="选择日期" v-model="formValidate.createDate"></DatePicker>
             </FormItem>
-
-            <FormItem label="转发人" prop="forwarder" class="form-block">
+            <!-- <FormItem label="转发人" prop="forwarder" class="form-block">
               <Input v-model="formValidate.forwarder" placeholder="输入转发人" />
             </FormItem>
             <FormItem label="转发日期" prop="forwardDate" class="form-block">
               <DatePicker type="date" placeholder="选择转发日期" v-model="formValidate.forwardDate"></DatePicker>
-            </FormItem>
+            </FormItem> -->
           </div>
           <!-- <FormItem>
           <Button type="primary" @click="handleSubmit('formValidate')">Submit</Button>
@@ -45,7 +44,7 @@
 <script>
 import TopTitle from "@/components/top-title/top-title";
 import vm from "../../event";
-
+import { saveList } from "@/api/new-file/find";
 export default {
   components: {
     TopTitle
@@ -54,14 +53,15 @@ export default {
     return {
       closed: false,
       formValidate: {
-        number: "",
+        code: "",
         name: "",
-        founder: "",
+        checkin_dept: "",
         createDate: "",
         forwarder: "",
         forwardDate: ""
       },
-      ruleValidate: {}
+      ruleValidate: {},
+      
     };
   },
   created() {
@@ -71,7 +71,15 @@ export default {
       }
     });
   },
-  methods: {}
+  mounted() {
+    this.formValidate=this.$store.state.step.findData.basicInformation;
+    saveList(this.formList).then(res=>{
+      console.log(res)
+    })
+  },
+  methods: {
+
+  }
 };
 </script>
 
