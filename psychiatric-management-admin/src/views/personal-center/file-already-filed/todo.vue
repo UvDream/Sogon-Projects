@@ -64,22 +64,41 @@
       @on-select-cancel="cancelCheck" 
       @on-selection-change="Modulechange">
         <template slot-scope="{ row, index }" slot="action">
-          <Button class="my-table-handle-button" @click="">删除</Button>
-          <Button class="my-table-handle-button" @click="">推送</Button>
-          <Button class="my-table-handle-button" @click="">转发</Button>
-          <Button class="my-table-handle-button" @click="">退回</Button>
-          <Button class="my-table-handle-button" @click="">办结</Button>
+          <Button class="my-table-handle-button" @click="handleDelete(index)">删除</Button>
+          <Button class="my-table-handle-button" @click="handlePush(index)">推送</Button>
+          <Button class="my-table-handle-button" @click="handleForward(index)">转发</Button>
+          <Button class="my-table-handle-button" @click="handleReturn(index)">退回</Button>
+          <Button class="my-table-handle-button" @click="handleResult(index)">办结</Button>
         </template>
       </Table>
       <Page :total="40" show-elevator show-sizer show-total class="my-table-page"/>
     </div>
+    <!-- 转发弹窗 -->
+    <Forward />
+    <!-- 办结弹窗 -->
+    <SetUp />
+    <!-- 退回弹窗-->
+    <Return /> 
   </div>
 </template>
 
 <script>
+import Forward from "@/views/patient-management/new-file/components/modal/forward";
+import SetUp from "@/views/patient-management/new-file/components/modal//setUp";
+import Return from "@/views/patient-management/new-file/components/modal//return";
+import mixin from "@/mixin/newFile";
 export default {
+  mixins: [mixin],
+  components: {
+    Forward,
+    SetUp,
+    Return
+  },
   data (){
     return {
+      modalForward:true,
+      modalReturn: false,
+      modalResult: false,
       closed: false,
       formValidate: {
         name: "",
@@ -200,9 +219,27 @@ export default {
     show() {
       this.isShow = !this.isShow;
     },
-    remove (index) {
-      this.tabList.splice(index, 1);
-    }
+    handleDelete(index) { //删除
+      this.$Modal.confirm({
+        title:'提示',
+        content:'确认删除?',
+        onOk: () => {
+          this.tabList.splice(index, 1);
+        }
+      });
+    },
+    handlePush(index) { //推送
+
+    },
+    handleResult(index) { //办结
+      this.modalResult = true;
+    },
+    handleReturn(index) { //退回
+      this.modalReturn = true;
+    },
+    handleForward(index) { //转发
+      this.modalForward = true;
+    },
   }
 };
 </script>
@@ -227,4 +264,7 @@ export default {
     background:  #53A7A9;
   }
 }
+</style>
+<style type="text/css">
+
 </style>

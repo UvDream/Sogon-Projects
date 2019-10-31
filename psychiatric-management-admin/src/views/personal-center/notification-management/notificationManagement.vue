@@ -70,16 +70,24 @@
       <Table ref="section"
       :columns="columns" 
       :data="tabList" 
-      @on-select="Check" 
-      @on-select-cancel="cancelCheck" 
+      @on-select-all="CheckAll" 
+      @on-select-all-cancel="cancelCheckAll" 
       @on-selection-change="Modulechange">
         <template slot-scope="{ row, index}" slot="status">
           <span v-if="row.status == 1">
+            <span style="color: #F5222D;">已读</span>
+          </span>
+          <span v-else>
             已读
           </span>
         </template>
+        <template slot-scope="{ row, index}" slot="num">
+          <router-link :to="{name:'newFile', params: {id:row.id}}">
+            {{row.num}}
+          </router-link>
+        </template>
         <template slot-scope="{ row, index }" slot="action">
-            <Button class="my-table-handle-button" @click="">已读</Button>
+            <Button class="my-table-handle-button" @click="handleRead(index)">已读</Button>
         </template>
       </Table>
       <Page :total="40" show-elevator show-sizer show-total class="my-table-page"/>
@@ -125,7 +133,23 @@ export default {
         {
           title: '通知内容',
           width: 300,
-          key: 'content'
+          key: 'content',
+          render: (h,params)=>{
+            return h('div',[
+                h('span',{
+                  style:{
+                    display: 'inline-block',
+                    width: '100%',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  },
+                  domProps:{
+                    title:params.row.content
+                  }
+                },params.row.content)
+              ])
+          }
         },
         {
           title: '通知时间',
@@ -135,7 +159,8 @@ export default {
         {
           title: '档案编号',
           width: 150,
-          key: 'num'
+          key: 'num',
+          slot:'num'
         },
         {
           title: '病患姓名',
@@ -160,7 +185,7 @@ export default {
         {
           id: '201910170024',
           status: 1,
-          content: '您接到来自XX部门转发档案已超过七天未处理，请及时…',
+          content: '您接到来自XX部门转发档案已超过七天未处理，请及时您接到来自XX部门转发档案已超过七天未处理，请及时您接到来自XX部门转发档案已超过七天未处理，请及时您接到来自XX部门转发档案已超过七天未处理，请及时…',
           time: '2019-10-22 19:02:02',
           num: '201910170024',
           name: '欧阳小明',
@@ -168,14 +193,15 @@ export default {
         },
         {
           id: '201910170024',
-          status: 1,
+          status: 0,
           content: '您接到来自XX部门转发档案已超过七天未处理，请及时…',
           time: '2019-10-22 19:02:02',
           num: '201910170024',
           name: '欧阳小明',
           icd: '320929992000100020',
         }
-      ]
+      ],
+      selectList:[]
     }
   },
   methods: {
@@ -186,23 +212,31 @@ export default {
 
     },
     handleSelectAll (status) {
-      debugger
       this.$refs.section.selectAll(status);
     },
-    Check(section,row){
+    cancelAll(section){
       debugger
+      this.selectList = section;
+      console.log(this.selectList)
     },
-    cancelCheck(section,row){
+    cancelCheckAll(section){
       debugger
+      this.selectList = section;
+      console.log(this.selectList)
     },
     Modulechange(section){
       debugger
+      this.selectList = section;
+      console.log(this.selectList)
     },
     show() {
       this.isShow = !this.isShow;
     },
     remove (index) {
       this.tabList.splice(index, 1);
+    },
+    handleRead(index) {
+      //已读
     }
   }
 };

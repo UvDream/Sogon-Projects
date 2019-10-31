@@ -23,63 +23,138 @@
       >
         <div class="form">
           <FormItem label="所属部门" prop="dept" class="form-block">
-            <Select v-model="formValidate.dept">
+            <Select v-model="formValidate.dept" disabled>
               <Option value="1">公安</Option>
               <Option value="2">民政</Option>
               <Option value="3">网络</Option>
             </Select>
           </FormItem>
-          <FormItem label="真实姓名" prop="name" class="form-block">
-            <Input v-model="formValidate.name" placeholder="输入真实姓名" />
+          <FormItem label="联系电话" prop="telephone" class="form-block">
+            <Input v-model="formValidate.telephone" placeholder="输入联系电话" disabled />
           </FormItem>
-          <FormItem label="身份证号" prop="icd" class="form-block">
-            <Input v-model="formValidate.icd" placeholder="输入身份证号" />
+          <FormItem label="账户名称" prop="deptname" class="form-block">
+            <Input v-model="formValidate.deptname" placeholder="输入账户名称" disabled />
           </FormItem>
-          <FormItem label="联系电话" prop="iphone" class="form-block">
-            <Input v-model="formValidate.iphone" placeholder="输入联系电话" />
-          </FormItem>
-          <FormItem label="账户名称" prop="accountname" class="form-block">
-            <Input v-model="formValidate.accountname" placeholder="输入账户名称" />
-          </FormItem>
-          <FormItem label="登录密码" prop="password" class="form-block">
-            <Input v-model="formValidate.password" placeholder="输入登录密码" />
+          <FormItem label="登录密码" prop="pwd" class="form-block">
+            <Input v-model="formValidate.pwd" placeholder="输入登录密码" disabled />
           </FormItem>
           <FormItem class="form-block" style="display: flex;align-items: flex-end;">
-            <Button @click="handleSubmit('formValidate')">修改密码</Button>
-            <Button @click="handleReset('formValidate')" style="margin-left: 8px">信息维护</Button>
+            <Button @click="handleP('formValidate')">修改密码</Button>
+            <Button @click="handleI('formValidate')" style="margin-left: 8px" >信息维护</Button>
           </FormItem>
         </div>
       </Form>
     </div>
+    <Modal
+        title="修改密码"
+        v-model="modalP"
+        :mask-closable="false"
+        :closable="false"
+        draggable
+        scrollable
+        width="600"
+        @on-ok="okP"
+        @on-cancel="cancelP">
+        <div>
+          <Form
+            ref="formValidate"
+            label-position="left"
+            :model="formValidate"
+            :rules="ruleValidate"
+            :label-width="120"
+          >
+          <div class="form">
+            <FormItem label="原密码" prop="password" class="m-form-block">
+              <Input v-model="formValidate.password" placeholder="输入原密码"  />
+            </FormItem>
+            <FormItem label="新密码" prop="password" class="m-form-block">
+              <Input v-model="formValidate.password" placeholder="输入新密码"  />
+            </FormItem>
+            <FormItem label="再次输入新密码" prop="password" class="m-form-block">
+              <Input v-model="formValidate.password" placeholder="再次输入新密码"  />
+            </FormItem>
+          </div>
+        </Form>
+        </div>
+    </Modal>
+    <Modal
+        title="信息维护"
+        v-model="modalI"
+        :mask-closable="false"
+        :closable="false"
+        draggable
+        scrollable
+        width="600"
+        @on-ok="okI"
+        @on-cancel="cancelI">
+        <div>
+          <Form
+            ref="formValidate"
+            label-position="left"
+            :model="formValidate"
+            :rules="ruleValidate"
+            :label-width="120"
+          >
+          <div class="form">
+            <FormItem label="联系电话" prop="iphone" class="m-form-block">
+              <Input v-model="formValidate.iphone" placeholder="输入联系电话"  />
+            </FormItem>
+            <FormItem label="账号名称" prop="accountname" class="m-form-block">
+              <Input v-model="formValidate.accountname" placeholder="输入账号名称"  />
+            </FormItem>
+          </div>
+        </Form>
+        </div>
+    </Modal>
   </div>
 </template>
 
 <script>
 import TopTitle from "@/components/top-title/top-title";
+import api from "@/api/person-center";
 export default {
   components: {
     TopTitle,
   },
   data (){
     return {
+      modalP: false,
+      modalI: false,
       closed: false,
       formValidate: {
-        dept: "",
-        name: "",
-        icd: "",
-        iphone: "",
-        accountname: "",
-        password: ""
+        dept: "1",
+        telephone: "18661910020",
+        deptname: "2222",
+        pwd: "111111"
       },
       ruleValidate: {}
     }
   },
+  mounted() {
+    api.checkPerAccount().then(res => {
+      debugger
+      console.log(res.data);
+      this.formValidate = res.data;
+    })
+  },
   methods: {
-    handleSubmit() {
-
+    handleP() {
+      this.modalP = true
     },
-    handleReset() {
-
+    handleI() {
+      this.modalI = true
+    },
+    okP () {
+      this.$Message.info('Clicked ok');
+    },
+    cancelP () {
+      this.$Message.info('Clicked cancel');
+    },
+    okI () {
+      this.$Message.info('Clicked ok');
+    },
+    cancelI () {
+      this.$Message.info('Clicked cancel');
     }
   }
 };
@@ -98,5 +173,9 @@ export default {
     border-color: #53A7A9;
     background:  rgba(83,167,169,0.10);
   }
+}
+.ivu-modal-body .form{
+  display:flex;
+  justify-content: center;
 }
 </style>
