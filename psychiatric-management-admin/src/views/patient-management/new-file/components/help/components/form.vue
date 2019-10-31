@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-25 10:53:07
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-25 11:40:32
+ * @LastEditTime: 2019-10-31 10:46:17
  * @Description: 表单
  * @Email: UvDream@163.com
  -->
@@ -23,7 +23,7 @@
           <Input v-model="formValidate.department" placeholder="输入部门" />
         </FormItem>
         <FormItem label="身份证号" prop="IdNumber" class="form-block">
-          <Input v-model="formValidate.name" placeholder="输入身份证号" />
+          <Input v-model="formValidate.IdNumber" placeholder="输入身份证号" />
         </FormItem>
         <FormItem label="联系电话" prop="phone" class="form-block">
           <Input v-model="formValidate.phone" placeholder="输入联系电话" />
@@ -53,7 +53,15 @@ export default {
         department: [
           { required: true, message: "请输入部门", trigger: "blur" }
         ],
-        phone: [{ required: true, validator: validatePhone, trigger: "blur" }]
+        IdNumber: [
+          { required: false, message: "请输入患者身份证号", trigger: "blur" },
+          {
+            pattern: /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/,
+            message: "证件号码格式有误！",
+            trigger: "blur"
+          }
+        ],
+        phone: [{ required: true, message: "请输入联系方式", trigger: "blur" }]
       }
     };
   }

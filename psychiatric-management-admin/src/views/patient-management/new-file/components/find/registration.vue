@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-24 10:19:37
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-30 10:15:16
+ * @LastEditTime: 2019-10-31 10:39:10
  * @Description: 严重患者精神障碍排查登记
  * @Email: UvDream@163.com
  -->
@@ -152,6 +152,9 @@ import TopTitle from "@/components/top-title/top-title";
 import Upload from "@/components/upload/upload";
 import data from "../../../../../mixin/newFile";
 import vm from "../../event";
+import { saveList } from "@/api/new-file/find";
+import { validatePhone } from "@/util/util";
+
 export default {
   mixins: [data],
   components: {
@@ -161,6 +164,7 @@ export default {
   data() {
     return {
       closed: false,
+      formList: {"patientCode":"320623198807064421","isforeign":"0","tFiles":[{"filepath":"D://file"},{"filepath":"D://Filetwo"}]},
       formValidate: {
         // 1
         patientName: "",
@@ -195,7 +199,12 @@ export default {
         ],
         sex: [{ required: true, message: "请选择患者性别", trigger: "blur" }],
         IdNumber: [
-          { required: true, message: "请输入患者身份证号", trigger: "blur" }
+          { required: true, message: "请输入患者身份证号", trigger: "blur" },
+          {
+            pattern: /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/,
+            message: "证件号码格式有误！",
+            trigger: "blur"
+          }
         ],
         status: [
           { required: true, message: "请选择患者状态", trigger: "blur" }
@@ -204,6 +213,9 @@ export default {
         village: [
           { required: true, message: "请输入患者所属村居", trigger: "blur" }
         ],
+        // patientPhone: [
+        //   { required: false, validator: validatePhone, trigger: "blur" }
+        // ],
         police: [
           { required: true, message: "请输入患者社区民警", trigger: "blur" }
         ],
@@ -225,6 +237,9 @@ export default {
         guardianName: [
           { required: true, message: "请输入监护人姓名", trigger: "blur" }
         ],
+        // guardianPhone: [
+        //   { required: false, validator: validatePhone, trigger: "blur" }
+        // ],
         relationship: [
           { required: true, message: "请选择与患者关系", trigger: "blur" }
         ]
@@ -243,13 +258,18 @@ export default {
       }
     });
   },
+  mounted() {
+    saveList(this.formList).then(res=>{
+      console.log(res)
+    })
+  },
   methods: {
     handleSubmit(name) {
       this.$refs[name].validate(valid => {
         if (valid) {
           // this.$Message.success("Success!");
           this.$store.state.step.findData.checkRegistration = this.formValidate;
-          this.$store.state.step.findStatus = false;
+          this.$store.state.step.findStatus = true;
         } else {
           // this.$Message.error("Fail!");
           this.$store.state.step.findStatus = false;

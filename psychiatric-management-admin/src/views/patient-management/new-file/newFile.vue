@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 17:27:24
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-30 10:33:25
+ * @LastEditTime: 2019-10-31 10:39:51
  * @Description: 新建档案
  * @Email: UvDream@163.com
  -->
@@ -17,8 +17,10 @@
     <Treatment v-if="status == 2" />
     <!-- 帮扶 -->
     <Help v-if="status == 3" />
+    <!-- 再次评定 -->
+    <AgainAssessment v-if="status == 4" />
     <!-- 康复 -->
-    <Guardianship v-if="status == 4" />
+    <Guardianship v-if="status == 5" />
   </div>
 </template>
 
@@ -33,6 +35,9 @@ import Treatment from "./treatment";
 import Guardianship from "./guardianship";
 // 帮扶
 import Help from "./help";
+// 再次评定
+import AgainAssessment from "./again-assessment";
+
 export default {
   components: {
     TopStep,
@@ -40,7 +45,8 @@ export default {
     Assessment,
     Treatment,
     Guardianship,
-    Help
+    Help,
+    AgainAssessment
   },
   mounted() {
     this.$store.state.step.stepStatus = 0;

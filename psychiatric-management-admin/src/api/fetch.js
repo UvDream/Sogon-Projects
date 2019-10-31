@@ -1,5 +1,7 @@
 import axios from "axios";
 import config from "./config.js"; // 倒入默认配置
+import store from '@/store';
+import { getToken } from '@/util/auth'
 export default function fetch(options) {
   return new Promise((reslove, reject) => {
     var service = axios.create({
@@ -11,6 +13,9 @@ export default function fetch(options) {
     // request拦截器
     service.interceptors.request.use(
       config => {
+        if (store.getters.token) {
+          // config.headers['Admin-Token'] = getToken() 
+        }
         return config;
       },
       error => {

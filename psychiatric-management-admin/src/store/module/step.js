@@ -1,10 +1,16 @@
 const step = {
   state: {
+    // 步骤状态
     stepStatus: 0,
     // 发现页面
     findStatus: false,
     findData: {
-      basicInformation: {},
+      basicInformation: {
+        code: "XZ320623198807064421",
+        name: "sdfsdf",       
+        checkin_dept: "部门",
+        createDate: "2019-10-31T05:51:32.353+0000",       
+      },
       checkRegistration: {}
     }
   }

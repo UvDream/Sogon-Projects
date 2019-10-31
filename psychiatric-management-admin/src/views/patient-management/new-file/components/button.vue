@@ -7,17 +7,21 @@
       <SetUp />
       <!-- 退回弹窗-->
       <Return />
-      <Button type="info" @click="cancelFunc">取消</Button>
-      <Button type="primary" v-if="status==0" @click="saveFunc(1)">保存</Button>
+      <Button type="info" @click="cancelFunc">返回列表</Button>
+      <Button type="primary" @click="saveFunc(1)">保存</Button>
       <Button type="primary" v-if="status==0" @click="saveFunc(2)">保存并推送</Button>
       <Button
         type="primary"
         ghost
         @click="pushFunc"
-        v-if="status==0 || status ==1 || status==2 ||status==3"
+        v-if="status==0 || status ==1 || status==2 || status==3||status==4"
       >转发</Button>
-      <Button type="primary" v-if=" status ==1 || status==2 ||status==4">办结</Button>
-      <Button type="primary" ghost v-if=" status ==1||status==2 ||status==3 ||status==4">退回</Button>
+      <Button type="primary" v-if=" status ==1 || status==2 ||status==4||status==5">办结</Button>
+      <Button
+        type="primary"
+        ghost
+        v-if=" status ==1||status==2 ||status==3 ||status==4||status==5"
+      >退回</Button>
     </div>
   </div>
 </template>
