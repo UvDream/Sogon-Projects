@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 11:53:46
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-25 11:49:02
+ * @LastEditTime: 2019-10-30 15:14:30
  * @Description: 主界面
  * @Email: UvDream@163.com
  -->
@@ -59,7 +59,7 @@
               padding: '0px 24px',
               minHeight: '280px',
               background: '#ebf1f2',
-              minWidth:'800px'
+              minWidth:'950px'
             }"
           >
             <router-view></router-view>
@@ -82,14 +82,14 @@ export default {
     return {
       menusList: [
         {
-          name: "首页",
-          icon: "ios-barcode-outline",
+          name: "统计分析",
+          icon: "ios-stats",
           id: "3",
           url: "/dashboard"
         },
         {
           name: "病患分析",
-          icon: "ios-barcode-outline",
+          icon: "ios-medkit",
           id: "1",
           children: [
             { name: "档案管理", id: "1-1", url: "/fileManagement" },
@@ -101,21 +101,21 @@ export default {
           icon: "md-person",
           id: "2",
           url: "/personCenter",
-          /*children: [
+          children: [
             { name: "个人账户", id: "2-1", url: "/personalAccount" },
             { name: "已办档案", id: "2-2", url: "/fileAlreadyManagement" },
             { name: "通知管理", id: "2-3", url: "/notificationManagement" }
-          ]*/
+          ]
         }
       ],
       breadcrumb: {
         dashboard: ["首页"],
         fileManagement: ["病患分析", "档案管理"],
         newFile: ["病患分析", "新建档案"],
-        personCenter: ["个人中心"]
-        // personalAccount: ["个人中心", "个人账户"],
-        // fileAlreadyManagement: ["个人中心", "已办档案"],
-        // notificationManagement: ["个人中心", "通知管理"]
+        personCenter: ["个人中心"],
+        personalAccount: ["个人中心", "个人账户"],
+        fileAlreadyManagement: ["个人中心", "已办档案"],
+        notificationManagement: ["个人中心", "通知管理"]
       },
       nowBreadcrunmb: []
     };
