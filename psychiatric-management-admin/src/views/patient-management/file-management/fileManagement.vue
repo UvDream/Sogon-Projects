@@ -10,10 +10,10 @@
   <div class="file-manage">
     <div class="white-block my-form" :class="{'hidden':isShow == true}">
       <Form ref="formInline" :model="formInline" inline class="my-form-content">
-        <FormItem label="档案编号">
+        <FormItem label="档案编号" prop="code">
           <Input v-model="formInline.code" />
         </FormItem>
-        <FormItem label="档案状态">
+        <FormItem label="档案状态" prop="status">
           <Select v-model="formInline.status">
             <Option value="0">发现中</Option>
             <Option value="1">已推送</Option>
@@ -25,16 +25,16 @@
             <Option value="7">已康复</Option>
           </Select>
         </FormItem>
-        <FormItem label="病患姓名">
+        <FormItem label="病患姓名" prop="patientName">
           <Input v-model="formInline.patientName" />
         </FormItem>
-        <FormItem label="重点病患">
+        <FormItem label="重点病患" prop="isfocal">
           <Select v-model="formInline.isfocal">
             <Option value="0">是</Option>
             <Option value="1">否</Option>
           </Select>
         </FormItem>
-        <FormItem label="病患身份证号">
+        <FormItem label="病患身份证号" prop="patientCode">
           <Input v-model="formInline.patientCode" />
         </FormItem>
         <FormItem prop="date" label="开始创建时间">
@@ -170,8 +170,8 @@
 <script>
 import api from "@/api/file-manage";
 import Forward from "../new-file/components/modal/forward";
-import SetUp from "../new-file/components/modal//setUp";
-import Return from "../new-file/components/modal//return";
+import SetUp from "../new-file/components/modal/setUp";
+import Return from "../new-file/components/modal/return";
 import mixin from "../../../mixin/newFile";
 import { formatDate } from "@/util/util";
 export default {
@@ -288,15 +288,6 @@ export default {
     //取消
     handleReset (name) {
       this.$refs[name].resetFields();
-      this.formInline = {
-        code: '',
-        status: '',
-        patientName:'',
-        patientCode: '',
-        isfocal: '',
-        beginCreateDate:'',
-        endCreateDate: ''
-      }
     },
     //搜索
     search() {
@@ -365,11 +356,4 @@ export default {
 
 <style scoped lang="less">
 @import url("./index.less");
-</style>
-<style>
-.my-form-content.ivu-form-inline .ivu-form-item-label{
-  font-size: 16px;
-  color: #000;
-}
-
 </style>

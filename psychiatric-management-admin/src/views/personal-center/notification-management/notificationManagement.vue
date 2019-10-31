@@ -23,36 +23,44 @@
         :label-width="200"
       >
         <div class="form">
-          <FormItem label="病患姓名" prop="name" class="form-block">
-            <Input v-model="formValidate.name" placeholder="输入病患姓名" />
+          <FormItem label="病患姓名" prop="patientName" class="form-block">
+            <Input v-model="formValidate.patientName" placeholder="输入病患姓名" />
           </FormItem>
-          <FormItem label="档案编号" prop="num" class="form-block">
-            <Input v-model="formValidate.num" placeholder="输入档案编号" />
+          <FormItem label="档案编号" prop="code" class="form-block">
+            <Input v-model="formValidate.code" placeholder="输入档案编号" />
           </FormItem>
-          <FormItem label="通知状态" prop="status" class="form-block">
-            <Select v-model="formValidate.status">
-              <Option value="1">未读</Option>
-              <Option value="2">已读</Option>
+          <FormItem label="通知状态" prop="isLook" class="form-block">
+            <Select v-model="formValidate.isLook">
+              <Option value="0">未读</Option>
+              <Option value="1">已读</Option>
             </Select>
           </FormItem>
           <FormItem label="通知类型" prop="type" class="form-block">
             <Select v-model="formValidate.type">
-              <Option value="1">转发通知</Option>
-              <Option value="2">退回通知</Option>
-              <Option value="3">定时帮扶</Option>
-              <Option value="4">定时走访</Option>
+              <Option value="0">转发通知</Option>
+              <Option value="1">退回通知</Option>
+              <Option value="4">转发超期通知</Option>
+              <Option value="6">定期帮扶通知</Option>
+              <Option value="3">走访通知</Option>
             </Select>
           </FormItem>
-          <FormItem label="通知时间" prop="time" class="form-block">
+          <FormItem label="通知开始时间" prop="beginTime" class="form-block">
             <DatePicker
               type="date"
               placeholder="选择通知时间"
-              v-model="formValidate.time"
+              v-model="formValidate.beginTime"
+            ></DatePicker>
+          </FormItem>
+          <FormItem label="通知结束时间" prop="endTime" class="form-block">
+            <DatePicker
+              type="date"
+              placeholder="选择通知时间"
+              v-model="formValidate.endTime"
             ></DatePicker>
           </FormItem>
           <FormItem class="form-block" style="display: flex;align-items: flex-end;">
-            <Button @click="handleSubmit('formValidate')">取消</Button>
-            <Button type="primary" @click="handleReset('formValidate')" style="margin-left: 8px">搜索</Button>
+            <Button @click="handleReset('formValidate')">取消</Button>
+            <Button type="primary" @click="search" style="margin-left: 8px">搜索</Button>
           </FormItem>
         </div>
       </Form>
@@ -64,39 +72,50 @@
           <Button @click="handleSelectAll(false)">取消全选</Button>
         </ButtonGroup>
         <ButtonGroup size="large">
-          <Button @click="handleSelectAll(true)">已读</Button>
+          <Button @click="handleReadAll">已读</Button>
         </ButtonGroup>
       </div>
       <Table ref="section"
       :columns="columns" 
       :data="tabList" 
-      @on-select-all="CheckAll" 
-      @on-select-all-cancel="cancelCheckAll" 
       @on-selection-change="Modulechange">
-        <template slot-scope="{ row, index}" slot="status">
-          <span v-if="row.status == 1">
-            <span style="color: #F5222D;">已读</span>
+        <template slot-scope="{ row, index}" slot="islook">
+          <span v-if="row.islook == 0">
+            <span style="color: #F5222D;">未读</span>
           </span>
           <span v-else>
             已读
           </span>
         </template>
-        <template slot-scope="{ row, index}" slot="num">
-          <router-link :to="{name:'newFile', params: {id:row.id}}">
-            {{row.num}}
+        <template slot-scope="{ row, index}" slot="code">
+          <router-link :to="{name:'newFile', params: {id:row.code}}">
+            {{row.code}}
           </router-link>
         </template>
         <template slot-scope="{ row, index }" slot="action">
-            <Button class="my-table-handle-button" @click="handleRead(index)">已读</Button>
+            <Button class="my-table-handle-button" v-if="row.islook==0" @click="handleRead(row.id)">已读</Button>
+            <Button class="my-table-handle-button" v-else :disabled="true">已读</Button>
         </template>
       </Table>
-      <Page :total="40" show-elevator show-sizer show-total class="my-table-page"/>
+      <Page 
+        :total="total" 
+        :page-size="pageSize"
+        :current="pageNum"
+        show-elevator 
+        show-sizer 
+        show-total 
+        class="my-table-page"
+        @on-change="pageChange"
+        @on-page-size-change="pageSizeChange"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import TopTitle from "@/components/top-title/top-title";
+import api from "@/api/person-center";
+import { formatDate } from "@/util/util";
 export default {
   components: {
     TopTitle,
@@ -104,13 +123,19 @@ export default {
   data (){
     return {
       closed: false,
+      total:0,
+      pageNum:1,
+      pageSize: 10,
       formValidate: {
-        name: "",
-        num: "",
-        status: "",
-        accountname: "",
-        password: ""
-      },
+        code:"",
+        patientName:"",
+        isLook:"",
+        type:"",
+        beginTime:"",
+        endTime:"",
+        pageNum:1,
+        pageSize:10
+        },
       ruleValidate: {},
       columns: [
         {
@@ -127,13 +152,13 @@ export default {
         {
           title: '状态',
           width: 150,
-          slot: 'status',
-          key: 'status'
+          slot: 'islook',
+          key: 'islook'
         },
         {
           title: '通知内容',
-          width: 300,
-          key: 'content',
+          width: 350,
+          key: 'context',
           render: (h,params)=>{
             return h('div',[
                 h('span',{
@@ -145,32 +170,37 @@ export default {
                     whiteSpace: 'nowrap'
                   },
                   domProps:{
-                    title:params.row.content
+                    title:params.row.context
                   }
-                },params.row.content)
+                },params.row.context)
               ])
           }
         },
         {
           title: '通知时间',
           width: 200,
-          key: 'time'
+          key: 'createDate',
+          render:(h,params)=>{
+            return h('div',
+              formatDate(new Date(params.row.createDate),'yyyy-MM-dd hh:mm')
+            )
+          }
         },
         {
           title: '档案编号',
           width: 150,
-          key: 'num',
-          slot:'num'
+          key: 'code',
+          slot:'code'
         },
         {
           title: '病患姓名',
           width: 120,
-          key: 'name'
+          key: 'patientName'
         },
         {
           title: '患者身份证号',
           width: 200,
-          key: 'icd'
+          key: 'patientCode'
         },
         {
           title: '操作',
@@ -183,60 +213,123 @@ export default {
       ],
       tabList: [
         {
-          id: '201910170024',
-          status: 1,
-          content: '您接到来自XX部门转发档案已超过七天未处理，请及时您接到来自XX部门转发档案已超过七天未处理，请及时您接到来自XX部门转发档案已超过七天未处理，请及时您接到来自XX部门转发档案已超过七天未处理，请及时…',
-          time: '2019-10-22 19:02:02',
-          num: '201910170024',
-          name: '欧阳小明',
-          icd: '320929992000100020',
+          "id": 10,
+          "context": "您接到来自null部门转发档案，请及时查看！",
+          "islook": 0,
+          "userId": 1,
+          "type": 0,
+          "createDate": "2019-10-25T19:38:00.000+0000",
+          "archivesId": 55,
+          "isDo": null,
+          "code": "XZ320623198807064421",
+          "patientName": "WG",
+          "patientCode": "320623198807064421"
         },
         {
-          id: '201910170024',
-          status: 0,
-          content: '您接到来自XX部门转发档案已超过七天未处理，请及时…',
-          time: '2019-10-22 19:02:02',
-          num: '201910170024',
-          name: '欧阳小明',
-          icd: '320929992000100020',
+          "id": 11,
+          "context": "您接到来自null部门转发档案，请及时查看！",
+          "islook": 1,
+          "userId": 2,
+          "type": 0,
+          "createDate": "2019-10-25T19:38:00.000+0000",
+          "archivesId": 55,
+          "isDo": null,
+          "code": "XZ320623198807064421",
+          "patientName": "WG",
+          "patientCode": "320623198807064421"
         }
       ],
       selectList:[]
     }
   },
+  mounted() {
+    let obj = Object.assign(
+      this.formValidate,
+      {pageNum:this.pageNum},
+      {pageSize:this.pageSize}
+    );
+    //this.searchFunc(obj);
+  },
   methods: {
-    handleSubmit() {
-
+    //取消
+    handleReset (name) {
+      this.$refs[name].resetFields();
     },
-    handleReset() {
-
+    //搜索
+    search() {
+      let obj = Object.assign(
+        this.formValidate,
+        {pageNum:this.pageNum},
+        {pageSize:this.pageSize}
+      );
+      this.searchFunc(obj);
+    },
+    //搜索
+    search() {
+      let obj = Object.assign(
+        this.formValidate,
+        {pageNum:this.pageNum},
+        {pageSize:this.pageSize}
+      );
+      this.searchFunc(obj);
+    },
+    searchFunc(data) {
+      api.checkData(data).then(res => {
+        console.log(res.data);
+        this.total = res.data.total;
+        this.tabList = res.data.list;
+      });
+    },
+    //全选已读
+    handleReadAll() {
+      if(this.selectList.length==0){
+        this.$Message.error('请至少选中一项')
+      }else{
+        //操作
+        let arr = [];
+        arr = this.selectList.map((item)=>{
+          return item.id
+        });
+        console.log(arr)
+        /*api.updateMessage({ids:arr}).then(res => {
+          console.log(res);
+          this.$Message.success("Success!");
+        });*/
+      }
+    },
+    handleRead(id) {
+      //已读
+      let arr = [id];
+      console.log(arr)
+      /*api.updateMessage({ids:arr}).then(res => {
+        console.log(res);
+        this.$Message.success("Success!");
+      });*/
     },
     handleSelectAll (status) {
       this.$refs.section.selectAll(status);
     },
-    cancelAll(section){
-      debugger
-      this.selectList = section;
-      console.log(this.selectList)
-    },
-    cancelCheckAll(section){
-      debugger
-      this.selectList = section;
-      console.log(this.selectList)
-    },
     Modulechange(section){
-      debugger
       this.selectList = section;
-      console.log(this.selectList)
+      console.log(this.selectList);
     },
-    show() {
-      this.isShow = !this.isShow;
+    pageChange(cur) {
+      this.pageNum = cur;
+      let obj = Object.assign(
+        this.formInline,
+        {pageNum:this.pageNum},
+        {pageSize:this.pageSize}
+      );
+      this.searchFunc(obj);
     },
-    remove (index) {
-      this.tabList.splice(index, 1);
-    },
-    handleRead(index) {
-      //已读
+    pageSizeChange(pagesize) {
+      this.pageSize = pagesize;
+      let obj = Object.assign(
+        this.formInline,
+        {pageNum:this.pageNum},
+        {pageSize:this.pageSize}
+      );
+      this.searchFunc(obj);
     }
   }
 };
