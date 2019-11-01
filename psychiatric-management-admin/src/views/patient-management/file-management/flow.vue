@@ -38,16 +38,29 @@
 
 <script>
 export default {
-  props:["modalFlow"],
+  props:{
+    modalFlow: {
+      type: Boolean,
+      default: false
+    },
+    indexId:{
+      default: 0
+    }
+  },
   data() {
     return {
       modal: this.modalFlow,
       tabList:[{},{}]
     };
   },
+  watch:{
+    modalFlow:function(val){
+      this.modal = val;
+    }
+  },
   methods: {
     cancle() {
-      this.$emit('closemodal',false)
+      this.$emit('closemodal')
     }
   }
 };

@@ -61,7 +61,6 @@ export default {
   padding: 30px;
   background-color: #fff;
   border-radius: 20px;
-  min-height: 200px;
   box-shadow: 0 0 15px 0 rgba(14, 37, 38, 0.06);
   .my-table{
     margin-top: 0;

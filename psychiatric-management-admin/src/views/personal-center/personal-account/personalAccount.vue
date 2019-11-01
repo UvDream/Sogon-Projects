@@ -173,8 +173,8 @@ export default {
         newPassWord2: [{ required: true, validator: validatePass, trigger: 'blur' },],
       },
       formValidate3: {
-        telephone: "",
-        name: ""
+        telephone: "13862786998",
+        name: "GA"
       },
       ruleValidate3: {
         telephone: [{ required: true, validator: checkTel, trigger: "blur" }],
@@ -184,9 +184,10 @@ export default {
   },
   mounted() {
     api.checkPerAccount().then(res => {
+      debugger
       console.log(res.data);
       this.formValidate = res.data;
-    })
+    });
   },
   methods: {
     // 验证手机号
@@ -224,15 +225,17 @@ export default {
       this.modalP = false;
     },
     okI () {
-      this.$refs[name].validate(valid => {
+      debugger
+      /*this.$refs[name].validate(valid => {
         if (valid) {
           this.$Message.success("Success!");
-          /*api.updateUserInfo(this.formValidate3).then(res => {
-            console.log(res.data);
-            if(res.data=="{}"){
-              this.modalI = false;
-            }
-          });*/
+          
+        }
+      });*/
+      api.updateUserInfo(this.formValidate3).then(res => {
+        console.log(res.data);
+        if(res.data=="{}"){
+          this.modalI = false;
         }
       });
     },
