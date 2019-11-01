@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-23 17:37:33
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-30 17:28:51
+ * @LastEditTime: 2019-10-31 20:21:21
  * @Description: 外地病患
  * @Email: UvDream@163.com
  -->
@@ -30,7 +30,7 @@
             </FormItem>
             <FormItem label="转发日期" prop="forwardDate" class="form-block">
               <DatePicker type="date" placeholder="选择转发日期" v-model="formValidate.forwardDate"></DatePicker>
-            </FormItem> -->
+            </FormItem>-->
           </div>
           <!-- <FormItem>
           <Button type="primary" @click="handleSubmit('formValidate')">Submit</Button>
@@ -44,7 +44,7 @@
 <script>
 import TopTitle from "@/components/top-title/top-title";
 import vm from "../../event";
-import { saveList } from "@/api/new-file/find";
+// import { saveList } from "@/api/new-file/find";
 export default {
   components: {
     TopTitle
@@ -74,9 +74,7 @@ export default {
   mounted(){
     this.formValidate = this.$store.state.step.findData.basicInformation;
   },
-  methods: {
-
-  }
+  methods: {}
 };
 </script>
 
