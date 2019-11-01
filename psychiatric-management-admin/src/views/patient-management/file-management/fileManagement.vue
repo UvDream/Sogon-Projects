@@ -125,23 +125,23 @@
           <Button class="my-table-handle-button" @click="handledelete(row.id,index)">删除</Button>
           <Button 
             class="my-table-handle-button" 
-            @click="handleforward(row.id)" 
+            @click="handleforward(row.id,index)" 
             v-if="row.status == 1 || row.status == 2 || row.status == 4 || row.status == 6"
             >转发
           </Button>
           <Button 
             class="my-table-handle-button" 
-            @click=""
+            @click="handlereturn(row.id,index)"
             v-if="row.status == 2 || row.status == 4 || row.status == 6 || row.status == 7">
             退回
           </Button>
           <Button 
             class="my-table-handle-button" 
-            @click=""
+            @click="handlesetup(row.id,index)"
             v-if="row.status == 7"
             >办结
           </Button>
-          <Button class="my-table-handle-button" @click="">推送</Button>
+          <Button class="my-table-handle-button" @click="handlepush(row.id,index)">推送</Button>
         </template>
       </Table>
       <Page 
@@ -159,11 +159,11 @@
     <!-- 转发弹窗 -->
     <Forward :modalForward="modalForward" :indexId="indexId" @closemodal="closemodal"/>
     <!-- 办结弹窗 -->
-    <SetUp :modalFlow="modalFlow" @closemodal="closemodal"/>
+    <SetUp :modalSetUp="modalSetUp" :indexId="indexId" @closemodal="closemodal"/>
     <!-- 退回弹窗-->
-    <Return :modalFlow="modalFlow" @closemodal="closemodal"/>
+    <Return :modalReturn="modalReturn" :indexId="indexId" @closemodal="closemodal"/>
     <!-- 流程图-->
-    <Flow :modalFlow="modalFlow" @closemodal="closemodal"/>
+    <Flow :modalFlow="modalFlow" :indexId="indexId" @closemodal="closemodal"/>
   </div>
 </template>
 
@@ -188,6 +188,8 @@ export default {
       indexId:0,
       modalForward:false,
       modalFlow:false,
+      modalSetUp:false,
+      modalReturn:false,
       formInline: {
         code: '',
         status: '',
@@ -363,16 +365,33 @@ export default {
       }
     },
     //转发
-    handleforward(id) {
+    handleforward(id,index) {
       this.indexId = id;
       this.modalForward = true;
     },
+    //退回
+    handlereturn(id,index) {
+      this.indexId = id;
+      this.modalReturn = true;
+    },
+    //办结
+    handlesetup(id,index) {
+      this.indexId = id;
+      this.modalSetUp = true;
+    },
+    //推送
+    handlepush(id,index) {
+      this.indexId = id;
+
+    },
+    //查看流程图
+    handleStatus(status) {
+      this.modalFlow = true;
+    },
+    //弹窗关闭
     closemodal(){
       this.modalFlow = false;
       this.modalForward = false;
-    },
-    handleStatus(status) {
-
     },
     pageChange(cur) {
       this.pageNum = cur;

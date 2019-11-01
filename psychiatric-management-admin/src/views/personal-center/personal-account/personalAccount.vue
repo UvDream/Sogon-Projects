@@ -13,38 +13,40 @@
         <img src="../../../assets/fonts/center/account.png" :style="{verticalAlign:'middle'}" />
       </template>
     </TopTitle>
-    <div class="account-form">
-      <Form
-        ref="formValidate"
-        label-position="top"
-        :model="formValidate"
-        :label-width="200"
-      >
-        <div class="form">
-          <FormItem label="所属部门" prop="deptId" class="form-block">
-            <Select v-model="formValidate.deptId" disabled>
-              <Option value="2">公安</Option>
-              <Option value="4">民政</Option>
-              <Option value="1">网络</Option>
-              <Option value="3">卫生</Option>
-            </Select>
-          </FormItem>
-          <FormItem label="联系电话" prop="telephone" class="form-block">
-            <Input v-model="formValidate.telephone" placeholder="输入联系电话" disabled />
-          </FormItem>
-          <FormItem label="账户名称" prop="deptname" class="form-block">
-            <Input v-model="formValidate.deptname" placeholder="输入账户名称" disabled />
-          </FormItem>
-          <FormItem label="登录密码" prop="pwd" class="form-block">
-            <Input v-model="formValidate.pwd" placeholder="输入登录密码" disabled />
-          </FormItem>
-          <FormItem class="form-block" style="display: flex;align-items: flex-end;">
-            <Button @click="handleP('formValidate')">修改密码</Button>
-            <Button @click="handleI('formValidate')" style="margin-left: 8px" >信息维护</Button>
-          </FormItem>
-        </div>
-      </Form>
-    </div>
+    <transition name="slide">
+      <div class="account-form" v-if="!closed">
+        <Form
+          ref="formValidate"
+          label-position="top"
+          :model="formValidate"
+          :label-width="200"
+        >
+          <div class="form">
+            <FormItem label="所属部门" prop="deptId" class="form-block">
+              <Select v-model="formValidate.deptId" disabled>
+                <Option value="2">公安</Option>
+                <Option value="4">民政</Option>
+                <Option value="1">网络</Option>
+                <Option value="3">卫生</Option>
+              </Select>
+            </FormItem>
+            <FormItem label="联系电话" prop="telephone" class="form-block">
+              <Input v-model="formValidate.telephone" placeholder="输入联系电话" disabled />
+            </FormItem>
+            <FormItem label="账户名称" prop="deptname" class="form-block">
+              <Input v-model="formValidate.deptname" placeholder="输入账户名称" disabled />
+            </FormItem>
+            <FormItem label="登录密码" prop="pwd" class="form-block">
+              <Input v-model="formValidate.pwd" placeholder="输入登录密码" disabled />
+            </FormItem>
+            <FormItem class="form-block" style="display: flex;align-items: flex-end;">
+              <Button @click="handleP('formValidate')">修改密码</Button>
+              <Button @click="handleI('formValidate')" style="margin-left: 8px" >信息维护</Button>
+            </FormItem>
+          </div>
+        </Form>
+      </div>
+    </transition>
     <Modal
       title="修改密码"
       v-model="modalP"
@@ -115,7 +117,7 @@
 
 <script>
 import TopTitle from "@/components/top-title/top-title";
-import api from "@/api/person-center";
+import api from "@/api/person-center/index";
 export default {
   components: {
     TopTitle,
@@ -246,7 +248,6 @@ export default {
   margin-top: 20px;
   background-color: #fff;
   border-radius: 20px;
-  min-height: 200px;
   box-shadow: 0 0 15px 0 rgba(14, 37, 38, 0.06);
   button{
     height: 40px;

@@ -14,107 +14,111 @@
         <img src="../../../assets/fonts/center/account.png" :style="{verticalAlign:'middle'}" />
       </template>
     </TopTitle>
-    <div class="notification-form">
-      <Form
-        ref="formValidate"
-        label-position="top"
-        :model="formValidate"
-        :rules="ruleValidate"
-        :label-width="200"
-      >
-        <div class="form">
-          <FormItem label="病患姓名" prop="patientName" class="form-block">
-            <Input v-model="formValidate.patientName" placeholder="输入病患姓名" />
-          </FormItem>
-          <FormItem label="档案编号" prop="code" class="form-block">
-            <Input v-model="formValidate.code" placeholder="输入档案编号" />
-          </FormItem>
-          <FormItem label="通知状态" prop="isLook" class="form-block">
-            <Select v-model="formValidate.isLook">
-              <Option value="0">未读</Option>
-              <Option value="1">已读</Option>
-            </Select>
-          </FormItem>
-          <FormItem label="通知类型" prop="type" class="form-block">
-            <Select v-model="formValidate.type">
-              <Option value="0">转发通知</Option>
-              <Option value="1">退回通知</Option>
-              <Option value="4">转发超期通知</Option>
-              <Option value="6">定期帮扶通知</Option>
-              <Option value="3">走访通知</Option>
-            </Select>
-          </FormItem>
-          <FormItem label="通知开始时间" prop="beginTime" class="form-block">
-            <DatePicker
-              type="date"
-              placeholder="选择通知时间"
-              v-model="formValidate.beginTime"
-            ></DatePicker>
-          </FormItem>
-          <FormItem label="通知结束时间" prop="endTime" class="form-block">
-            <DatePicker
-              type="date"
-              placeholder="选择通知时间"
-              v-model="formValidate.endTime"
-            ></DatePicker>
-          </FormItem>
-          <FormItem class="form-block" style="display: flex;align-items: flex-end;">
-            <Button @click="handleReset('formValidate')">取消</Button>
-            <Button type="primary" @click="search" style="margin-left: 8px">搜索</Button>
-          </FormItem>
+    <transition name="slide">
+      <div v-if="!closed">
+        <div class="notification-form" >
+          <Form
+            ref="formValidate"
+            label-position="top"
+            :model="formValidate"
+            :rules="ruleValidate"
+            :label-width="200"
+          >
+            <div class="form">
+              <FormItem label="病患姓名" prop="patientName" class="form-block">
+                <Input v-model="formValidate.patientName" placeholder="输入病患姓名" />
+              </FormItem>
+              <FormItem label="档案编号" prop="code" class="form-block">
+                <Input v-model="formValidate.code" placeholder="输入档案编号" />
+              </FormItem>
+              <FormItem label="通知状态" prop="isLook" class="form-block">
+                <Select v-model="formValidate.isLook">
+                  <Option value="0">未读</Option>
+                  <Option value="1">已读</Option>
+                </Select>
+              </FormItem>
+              <FormItem label="通知类型" prop="type" class="form-block">
+                <Select v-model="formValidate.type">
+                  <Option value="0">转发通知</Option>
+                  <Option value="1">退回通知</Option>
+                  <Option value="4">转发超期通知</Option>
+                  <Option value="6">定期帮扶通知</Option>
+                  <Option value="3">走访通知</Option>
+                </Select>
+              </FormItem>
+              <FormItem label="通知开始时间" prop="beginTime" class="form-block">
+                <DatePicker
+                  type="date"
+                  placeholder="选择通知时间"
+                  v-model="formValidate.beginTime"
+                ></DatePicker>
+              </FormItem>
+              <FormItem label="通知结束时间" prop="endTime" class="form-block">
+                <DatePicker
+                  type="date"
+                  placeholder="选择通知时间"
+                  v-model="formValidate.endTime"
+                ></DatePicker>
+              </FormItem>
+              <FormItem class="form-block" style="display: flex;align-items: flex-end;">
+                <Button @click="handleReset('formValidate')">取消</Button>
+                <Button type="primary" @click="search" style="margin-left: 8px">搜索</Button>
+              </FormItem>
+            </div>
+          </Form>
         </div>
-      </Form>
-    </div>
-    <div class="my-table">
-      <div class="my-table-handle">
-        <ButtonGroup size="large">
-          <Button @click="handleSelectAll(true)">全选</Button>
-          <Button @click="handleSelectAll(false)">取消全选</Button>
-        </ButtonGroup>
-        <ButtonGroup size="large">
-          <Button @click="handleReadAll">已读</Button>
-        </ButtonGroup>
+        <div class="my-table">
+          <div class="my-table-handle">
+            <ButtonGroup size="large">
+              <Button @click="handleSelectAll(true)">全选</Button>
+              <Button @click="handleSelectAll(false)">取消全选</Button>
+            </ButtonGroup>
+            <ButtonGroup size="large">
+              <Button @click="handleReadAll">已读</Button>
+            </ButtonGroup>
+          </div>
+          <Table ref="section"
+          :columns="columns" 
+          :data="tabList" 
+          @on-selection-change="Modulechange">
+            <template slot-scope="{ row, index}" slot="islook">
+              <span v-if="row.islook == 0">
+                <span style="color: #F5222D;">未读</span>
+              </span>
+              <span v-else>
+                已读
+              </span>
+            </template>
+            <template slot-scope="{ row, index}" slot="code">
+              <router-link :to="{name:'newFile', params: {id:row.code}}">
+                {{row.code}}
+              </router-link>
+            </template>
+            <template slot-scope="{ row, index }" slot="action">
+                <Button class="my-table-handle-button" v-if="row.islook==0" @click="handleRead(row.id)">已读</Button>
+                <Button class="my-table-handle-button" v-else :disabled="true">已读</Button>
+            </template>
+          </Table>
+          <Page 
+            :total="total" 
+            :page-size="pageSize"
+            :current="pageNum"
+            show-elevator 
+            show-sizer 
+            show-total 
+            class="my-table-page"
+            @on-change="pageChange"
+            @on-page-size-change="pageSizeChange"
+          />
+        </div>
       </div>
-      <Table ref="section"
-      :columns="columns" 
-      :data="tabList" 
-      @on-selection-change="Modulechange">
-        <template slot-scope="{ row, index}" slot="islook">
-          <span v-if="row.islook == 0">
-            <span style="color: #F5222D;">未读</span>
-          </span>
-          <span v-else>
-            已读
-          </span>
-        </template>
-        <template slot-scope="{ row, index}" slot="code">
-          <router-link :to="{name:'newFile', params: {id:row.code}}">
-            {{row.code}}
-          </router-link>
-        </template>
-        <template slot-scope="{ row, index }" slot="action">
-            <Button class="my-table-handle-button" v-if="row.islook==0" @click="handleRead(row.id)">已读</Button>
-            <Button class="my-table-handle-button" v-else :disabled="true">已读</Button>
-        </template>
-      </Table>
-      <Page 
-        :total="total" 
-        :page-size="pageSize"
-        :current="pageNum"
-        show-elevator 
-        show-sizer 
-        show-total 
-        class="my-table-page"
-        @on-change="pageChange"
-        @on-page-size-change="pageSizeChange"
-      />
-    </div>
+    </transition>
   </div>
 </template>
 
 <script>
 import TopTitle from "@/components/top-title/top-title";
-import api from "@/api/person-center";
+import api from "@/api/person-center/info";
 import { formatDate } from "@/util/util";
 export default {
   components: {
@@ -248,7 +252,7 @@ export default {
       {pageNum:this.pageNum},
       {pageSize:this.pageSize}
     );
-    //this.searchFunc(obj);
+    this.searchFunc(obj);
   },
   methods: {
     //取消
@@ -291,20 +295,20 @@ export default {
           return item.id
         });
         console.log(arr)
-        /*api.updateMessage({ids:arr}).then(res => {
+        api.updateMessage({ids:arr}).then(res => {
           console.log(res);
           this.$Message.success("Success!");
-        });*/
+        });
       }
     },
     handleRead(id) {
       //已读
       let arr = [id];
       console.log(arr)
-      /*api.updateMessage({ids:arr}).then(res => {
+      api.updateMessage({ids:arr}).then(res => {
         console.log(res);
         this.$Message.success("Success!");
-      });*/
+      });
     },
     handleSelectAll (status) {
       this.$refs.section.selectAll(status);
@@ -316,7 +320,7 @@ export default {
     pageChange(cur) {
       this.pageNum = cur;
       let obj = Object.assign(
-        this.formInline,
+        this.formValidate,
         {pageNum:this.pageNum},
         {pageSize:this.pageSize}
       );
@@ -325,7 +329,7 @@ export default {
     pageSizeChange(pagesize) {
       this.pageSize = pagesize;
       let obj = Object.assign(
-        this.formInline,
+        this.formValidate,
         {pageNum:this.pageNum},
         {pageSize:this.pageSize}
       );
@@ -341,7 +345,6 @@ export default {
   margin-top: 20px;
   background-color: #fff;
   border-radius: 20px;
-  min-height: 200px;
   box-shadow: 0 0 15px 0 rgba(14, 37, 38, 0.06);
   .my-table{
     margin-top: 0;
