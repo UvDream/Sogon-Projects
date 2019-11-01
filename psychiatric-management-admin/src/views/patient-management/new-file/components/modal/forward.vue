@@ -22,6 +22,12 @@
               trigger: 'blur'
             }"
           >
+            <Select v-model="item.deptId">
+              <Option value="1">网络</Option>
+              <Option value="2">公安</Option>
+              <Option value="3">卫生</Option>
+              <Option value="4">民政</Option>
+            </Select>
             <Input v-model="item.department" placeholder="输入病患就诊医院" />
           </FormItem>
           <FormItem
@@ -30,7 +36,7 @@
             :prop="'forward.' + index + '.name'"
             :rules="{
               required: true,
-              message: '请输入病患就诊医院',
+              message: '请输入转发人姓名',
               trigger: 'blur'
             }"
           >
@@ -73,7 +79,7 @@ export default {
     return {
       modal: false,
       ruleForm: {
-        forward: [{ department: "", name: "" }]
+        forward: [{ department: "1", name: "" }]
       }
     };
   },

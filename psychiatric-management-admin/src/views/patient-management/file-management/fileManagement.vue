@@ -66,14 +66,12 @@
         </ButtonGroup>
         <ButtonGroup size="large">
           <Button @click="handleSelectAll(true)">推送</Button>
-          <Button @click="handleSelectAll(false)">删除</Button>
+          <Button @click="handleDeleteAll()">删除</Button>
         </ButtonGroup>
       </div>
       <Table ref="section"
         :columns="columns" 
-        :data="tabList" 
-        @on-select="Check" 
-        @on-select-cancel="cancelCheck" 
+        :data="tabList"  
         @on-selection-change="Modulechange"
       >
         <template slot-scope="{ row, index}" slot="code">
@@ -124,10 +122,10 @@
           </span>
         </template>
         <template slot-scope="{ row, index }" slot="action">
-          <Button class="my-table-handle-button" @click="handledelete(index)">删除</Button>
+          <Button class="my-table-handle-button" @click="handledelete(row.id,index)">删除</Button>
           <Button 
             class="my-table-handle-button" 
-            @click="handleforward(index)" 
+            @click="handleforward(row.id)" 
             v-if="row.status == 1 || row.status == 2 || row.status == 4 || row.status == 6"
             >转发
           </Button>
@@ -159,11 +157,11 @@
       />
     </div>
     <!-- 转发弹窗 -->
-    <Forward />
+    <Forward :modalForward="modalForward" :indexId="indexId" @closemodal="closemodal"/>
     <!-- 办结弹窗 -->
-    <SetUp />
+    <SetUp :modalFlow="modalFlow" @closemodal="closemodal"/>
     <!-- 退回弹窗-->
-    <Return />
+    <Return :modalFlow="modalFlow" @closemodal="closemodal"/>
     <!-- 流程图-->
     <Flow :modalFlow="modalFlow" @closemodal="closemodal"/>
   </div>
@@ -187,8 +185,9 @@ export default {
   },
   data() {
     return {
+      indexId:0,
       modalForward:false,
-      modalFlow:true,
+      modalFlow:false,
       formInline: {
         code: '',
         status: '',
@@ -196,7 +195,7 @@ export default {
         patientCode: '',
         isfocal: '',
         beginCreateDate:'',
-        endCreateDate: ''
+        endCreateDate: '',
       },
       total:0,
       pageNum:1,
@@ -278,11 +277,10 @@ export default {
         }
       ],
       tabList: [],
-      selectnum:0
+      selectList: []
     }
   },
   mounted() {
-    this.modalFlow = true;
     let obj = Object.assign(
       this.formInline,
       {pageNum:this.pageNum},
@@ -311,35 +309,67 @@ export default {
         this.tabList = res.data.data;
       });
     },
+    //全选中
     handleSelectAll (status) {
       this.$refs.section.selectAll(status);
     },
-    Check(section,row){
-      debugger
-    },
-    cancelCheck(section,row){
-      debugger
-    },
+    //选中变化
     Modulechange(section){
-      debugger
+      this.selectList = section;
+      console.log(this.selectList);
     },
+    //下拉
     show() {
       this.isShow = !this.isShow;
     },
-    handledelete (index) {
+    //删除
+    handledelete (id, index) {
+      let _this = this;
       this.$Modal.confirm({
         title:'删除',
         content:'确认删除?',
         onOk: () => {
-          //this.tabList.splice(index, 1);
+          let arr = [id];
+          api.deleteData({ids:arr}).then(res =>{
+            console.log(res);
+            _this.tabList.splice(index, 1);
+            _this.$Message.success("删除成功!");
+          })
+          
         }
       });
     },
-    handleforward(index) {
-
+    handleDeleteAll() {
+      var _this = this;
+      if(this.selectList.length==0){
+        this.$Message.error('请至少选中一项')
+      }else{
+        //操作
+        let arr = [];
+        arr = this.selectList.map((item)=>{
+          return item.id
+        });
+        console.log(arr);
+        api.deleteData({ids:arr}).then(res => {
+          console.log(res);
+          let obj = Object.assign(
+            _this.formInline,
+            {pageNum:this.pageNum},
+            {pageSize:this.pageSize}
+          );
+          _this.searchFunc(obj);
+          _this.$Message.success("删除成功!");
+        });
+      }
     },
-    closemodal(val){
-      this.modalFlow = val;
+    //转发
+    handleforward(id) {
+      this.indexId = id;
+      this.modalForward = true;
+    },
+    closemodal(){
+      this.modalFlow = false;
+      this.modalForward = false;
     },
     handleStatus(status) {
 
