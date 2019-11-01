@@ -7,8 +7,7 @@ export const findSaveList = data => {
     method: "POST",
     data,
     headers: { 
-      "Content-Type": "application/json",
-      "token": Cookies.get('TokenKey')
+      "Content-Type": "application/json"
     }
   });
 };
@@ -20,8 +19,7 @@ export const handleSaveList = data => {
     method: "POST",
     data,
     headers: { 
-      "Content-Type": "application/json",
-      "token": Cookies.get('TokenKey')
+      "Content-Type": "application/json"
     }
   });
 };

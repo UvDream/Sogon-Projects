@@ -106,11 +106,11 @@ export default {
 
           findSaveList(obj).then(res=>{
             console.log(res)  
-            this.$store.state.step.findData.basicInformation = res.data.code;
-            this.$store.state.step.findData.basicInformation = res.data.status;
-            this.$store.state.step.findData.basicInformation = res.data.name;
-            this.$store.state.step.findData.basicInformation = res.data.checkin_dept;
-            this.$store.state.step.findData.basicInformation = res.data.createDate;
+            this.$store.state.step.findData.basicInformation.code = res.data.code;
+            this.$store.state.step.findData.basicInformation.status = res.data.status;
+            this.$store.state.step.findData.basicInformation.name = res.data.name;
+            this.$store.state.step.findData.basicInformation.checkin_dept = res.data.checkin_dept;
+            this.$store.state.step.findData.basicInformation.createDate = res.data.createDate;
           })
       //     console.log("可以掉接口保存");
       // } else {
@@ -147,7 +147,14 @@ export default {
           objLocal.fristRemarks = data.status;
           objLocal.secondRemarks = data.employer;
           objLocal.thirdRemarks = data.patient;
-          objLocal.tFiles = data.village;         
+          objLocal.tFiles = data.village;       
+          
+          objOutside.wCompanyName = data.patientName;
+          objOutside.wCompanyLeader = data.sex;
+          objOutside.wCompanyTel = data.IdNumber;
+          objOutside.wCompanyContactTime = data.status;
+          objOutside.wDoRemarks = data.employer;
+          objOutside.tFiles = data.patient;
 
           handleSaveList(obj_local).then(res=>{
             console.log(res)  

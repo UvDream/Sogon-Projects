@@ -92,7 +92,7 @@ export default {
         "pwd": this.formInline.password
       }
       login(data).then(res=>{
-        Cookies.set(res.data.token)
+        Cookies.set('token',res.data.token)
         this.$router.push({ path: '/dashboard' })
       })
       this.$refs[name].validate(valid => {

@@ -6,11 +6,11 @@ const step = {
     findStatus: false,
     findData: {
       basicInformation: {
-        code: "XZ320623198807064421",
-        status: "2",
-        name: "sdfsdf",       
-        checkin_dept: "部门",
-        createDate: "2019-10-31T05:51:32.353+0000",       
+        code: "",
+        status: "",
+        name: "",       
+        checkin_dept: "",
+        createDate: "",       
       },
       checkRegistration: {
          // 1
