@@ -40,21 +40,23 @@ const step = {
          uploadFiles: [{"filepath":"D://file"},{"filepath":"D://Filetwo"}]
       }
     },
-    treatmentData: {
+    dealData: {
       formLocal: {
-        name:"",
-        principal:"",
-        phone:"",
-        contactTime:"",
-        description:"",
-      },
-      formOutside: {
         isTreatment: "",
         isTreatmentDescription: "",
         firstVisit: "",
         secondVisit: "",
         thirdVisit: "",
         uploadFiles: ""
+      },
+      formOutside: {
+        name:"",
+        principal:"",
+        phone:"",
+        contactTime:"",
+        description:"",
+        uploadFiles:"",
+        archivesId:""
       },
     },
     evaluateData: {

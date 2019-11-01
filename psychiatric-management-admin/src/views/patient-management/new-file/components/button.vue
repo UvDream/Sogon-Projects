@@ -140,21 +140,22 @@ export default {
           }
 
           let data=this.$store.state.step.findData.checkRegistration;
+          // 左边后台接口名称，右边本地命名（表单、通信vuex）
+          objLocal.bIstreat = data.isTreatment;
+          objLocal.bDoRemarks = data.isTreatmentDescription;
+          objLocal.fristRemarks = data.firstVisit;
+          objLocal.secondRemarks = data.secondVisit;
+          objLocal.thirdRemarks = data.thirdVisit;
+          objLocal.tFiles = data.uploadFiles;     
+          objOutside.archivesId = data.archivesId;  
           
-          objLocal.bIstreat = data.patientName;
-          objLocal.bIswilltreat = data.sex;
-          objLocal.bDoRemarks = data.IdNumber;
-          objLocal.fristRemarks = data.status;
-          objLocal.secondRemarks = data.employer;
-          objLocal.thirdRemarks = data.patient;
-          objLocal.tFiles = data.village;       
-          
-          objOutside.wCompanyName = data.patientName;
-          objOutside.wCompanyLeader = data.sex;
-          objOutside.wCompanyTel = data.IdNumber;
-          objOutside.wCompanyContactTime = data.status;
-          objOutside.wDoRemarks = data.employer;
-          objOutside.tFiles = data.patient;
+          objOutside.wCompanyName = data.name;
+          objOutside.wCompanyLeader = data.principal;
+          objOutside.wCompanyTel = data.phone;
+          objOutside.wCompanyContactTime = data.contactTime;
+          objOutside.wDoRemarks = data.description;
+          objOutside.tFiles = data.uploadFiles;
+          objOutside.archivesId = data.archivesId;
 
           handleSaveList(obj_local).then(res=>{
             console.log(res)  
@@ -191,7 +192,7 @@ export default {
             "tFiles":"13222222222",
           }
 
-          let data=this.$store.state.step.findData.checkRegistration;
+          let data=this.$store.state.step.findData.dealData;
           
           objLocal.bIstreat = data.patientName;
           objLocal.bIswilltreat = data.sex;
@@ -203,11 +204,13 @@ export default {
 
           handleSaveList(obj_local).then(res=>{
             console.log(res)  
-            this.$store.state.step.findData.basicInformation = res.data.code;
-            this.$store.state.step.findData.basicInformation = res.data.status;
-            this.$store.state.step.findData.basicInformation = res.data.name;
-            this.$store.state.step.findData.basicInformation = res.data.checkin_dept;
-            this.$store.state.step.findData.basicInformation = res.data.createDate;
+            this.$store.state.step.formLocal.bIstreat = res.data.bIstreat;
+            this.$store.state.step.formLocal.bIswilltreat = res.data.bIswilltreat;
+            this.$store.state.step.formLocal.bDoRemarks = res.data.bDoRemarks;
+            this.$store.state.step.formLocal.fristRemarks = res.data.fristRemarks;
+            this.$store.state.step.formLocal.secondRemarks = res.data.secondRemarks;
+            this.$store.state.step.formLocal.thirdRemarks = res.data.thirdRemarks;
+            this.$store.state.step.formLocal.tFiles = res.data.tFiles;
           })
           console.log("可以掉接口保存");
       } else {

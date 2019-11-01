@@ -111,12 +111,12 @@ export default {
   created() {
     vm.$on("blur", val => {
       if (val == "saveEvent") {
-        this.$store.state.step.findData.treatmentData = this.formValidate;
+        this.$store.state.step.findData.dealData = this.formValidate;
       }
     });
   },
   mounted(){
-    this.formValidate = this.$store.state.step.findData.treatmentData;
+    this.formValidate = this.$store.state.step.findData.dealData;
   },
 };
 </script>

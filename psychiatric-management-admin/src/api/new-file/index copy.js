@@ -1,30 +1,7 @@
 import fetch from "../fetch";
 import Cookies from 'js-cookie'
-// 发现
-export const findSaveList = data => {
-  return fetch({
-    url: "/jsbrgl/createArchives/saveArchives",
-    method: "POST",
-    data,
-    headers: { 
-      "Content-Type": "application/json"
-    }
-  });
-};
 
-// 初步处理
-export const dealSaveList = data => {
-  return fetch({
-    url: "/jsbrgl/createArchives/saveArchives",
-    method: "POST",
-    data,
-    headers: { 
-      "Content-Type": "application/json"
-    }
-  });
-};
-
-// 评定治疗
+// 评定治疗-病患危险等级
 export const treatSaveList = data => {
   return fetch({
     url: "/jsbrgl/createArchives/saveArchives",
@@ -36,8 +13,8 @@ export const treatSaveList = data => {
   });
 };
 
-// 四帮一
-export const forToOneSaveList = data => {
+// 评定治疗-病患治疗等级
+export const treatSaveList = data => {
   return fetch({
     url: "/jsbrgl/createArchives/saveArchives",
     method: "POST",
@@ -48,8 +25,8 @@ export const forToOneSaveList = data => {
   });
 };
 
-// 再次评定
-export const againSaveList = data => {
+// 评定治疗-病患治疗等级-删除该条记录
+export const treatSaveList = data => {
   return fetch({
     url: "/jsbrgl/createArchives/saveArchives",
     method: "POST",
@@ -59,3 +36,5 @@ export const againSaveList = data => {
     }
   });
 };
+
+
