@@ -32,7 +32,7 @@ import SetUp from "./modal/setUp";
 import Return from "./modal/return";
 import mixin from "../../../../mixin/newFile";
 import vm from "../event";
-import { saveList } from "@/api/new-file/find";
+import { findSaveList,handleSaveList } from "@/api/new-file/index";
 export default {
   computed: {
     status: function() {
@@ -104,7 +104,7 @@ export default {
           // obj.tFiles = data.uploadFiles;
           // obj.isfocal=data.isfocal;  
 
-          saveList(obj).then(res=>{
+          findSaveList(obj).then(res=>{
             console.log(res)  
             this.$store.state.step.findData.basicInformation = res.data.code;
             this.$store.state.step.findData.basicInformation = res.data.status;
@@ -117,7 +117,7 @@ export default {
       //   console.error("不可以保存");
       // }
     },
-    // 发现保存
+    // 初步处理保存
     handleSave() {
       if (this.$store.state.step.findStatus) {
           let objLocal={
@@ -149,7 +149,7 @@ export default {
           objLocal.thirdRemarks = data.patient;
           objLocal.tFiles = data.village;         
 
-          saveList(obj_local).then(res=>{
+          handleSaveList(obj_local).then(res=>{
             console.log(res)  
             this.$store.state.step.findData.basicInformation = res.data.code;
             this.$store.state.step.findData.basicInformation = res.data.status;
@@ -162,6 +162,186 @@ export default {
         console.error("不可以保存");
       }
     },
+    // 评定治疗保存
+    evaluateSave() {
+      if (this.$store.state.step.findStatus) {
+          let objLocal={
+            "bIstreat":"123",
+            "bIswilltreat":"0",
+            "bDoRemarks":"222222222222222222",
+            "fristRemarks":"0",
+            "secondRemarks":"0",
+            "thirdRemarks":"13222222222",
+            "tFiles":"asdfsdf",          
+          }
+
+          let objOutside={
+            "wCompanyName":"123",
+            "wCompanyLeader":"0",
+            "wCompanyTel":"222222222222222222",
+            "wCompanyContactTime":"0",
+            "wDoRemarks":"0",
+            "tFiles":"13222222222",
+          }
+
+          let data=this.$store.state.step.findData.checkRegistration;
+          
+          objLocal.bIstreat = data.patientName;
+          objLocal.bIswilltreat = data.sex;
+          objLocal.bDoRemarks = data.IdNumber;
+          objLocal.fristRemarks = data.status;
+          objLocal.secondRemarks = data.employer;
+          objLocal.thirdRemarks = data.patient;
+          objLocal.tFiles = data.village;         
+
+          handleSaveList(obj_local).then(res=>{
+            console.log(res)  
+            this.$store.state.step.findData.basicInformation = res.data.code;
+            this.$store.state.step.findData.basicInformation = res.data.status;
+            this.$store.state.step.findData.basicInformation = res.data.name;
+            this.$store.state.step.findData.basicInformation = res.data.checkin_dept;
+            this.$store.state.step.findData.basicInformation = res.data.createDate;
+          })
+          console.log("可以掉接口保存");
+      } else {
+        console.error("不可以保存");
+      }
+    },
+    // 四帮一保存
+    forToOneSave() {
+      if (this.$store.state.step.findStatus) {
+          let objLocal={
+            "bIstreat":"123",
+            "bIswilltreat":"0",
+            "bDoRemarks":"222222222222222222",
+            "fristRemarks":"0",
+            "secondRemarks":"0",
+            "thirdRemarks":"13222222222",
+            "tFiles":"asdfsdf",          
+          }
+
+          let objOutside={
+            "wCompanyName":"123",
+            "wCompanyLeader":"0",
+            "wCompanyTel":"222222222222222222",
+            "wCompanyContactTime":"0",
+            "wDoRemarks":"0",
+            "tFiles":"13222222222",
+          }
+
+          let data=this.$store.state.step.findData.checkRegistration;
+          
+          objLocal.bIstreat = data.patientName;
+          objLocal.bIswilltreat = data.sex;
+          objLocal.bDoRemarks = data.IdNumber;
+          objLocal.fristRemarks = data.status;
+          objLocal.secondRemarks = data.employer;
+          objLocal.thirdRemarks = data.patient;
+          objLocal.tFiles = data.village;         
+
+          handleSaveList(obj_local).then(res=>{
+            console.log(res)  
+            this.$store.state.step.findData.basicInformation = res.data.code;
+            this.$store.state.step.findData.basicInformation = res.data.status;
+            this.$store.state.step.findData.basicInformation = res.data.name;
+            this.$store.state.step.findData.basicInformation = res.data.checkin_dept;
+            this.$store.state.step.findData.basicInformation = res.data.createDate;
+          })
+          console.log("可以掉接口保存");
+      } else {
+        console.error("不可以保存");
+      }
+    },
+    // 再次评定保存
+    treatmentSave() {
+      if (this.$store.state.step.findStatus) {
+          let objLocal={
+            "bIstreat":"123",
+            "bIswilltreat":"0",
+            "bDoRemarks":"222222222222222222",
+            "fristRemarks":"0",
+            "secondRemarks":"0",
+            "thirdRemarks":"13222222222",
+            "tFiles":"asdfsdf",          
+          }
+
+          let objOutside={
+            "wCompanyName":"123",
+            "wCompanyLeader":"0",
+            "wCompanyTel":"222222222222222222",
+            "wCompanyContactTime":"0",
+            "wDoRemarks":"0",
+            "tFiles":"13222222222",
+          }
+
+          let data=this.$store.state.step.findData.checkRegistration;
+          
+          objLocal.bIstreat = data.patientName;
+          objLocal.bIswilltreat = data.sex;
+          objLocal.bDoRemarks = data.IdNumber;
+          objLocal.fristRemarks = data.status;
+          objLocal.secondRemarks = data.employer;
+          objLocal.thirdRemarks = data.patient;
+          objLocal.tFiles = data.village;         
+
+          handleSaveList(obj_local).then(res=>{
+            console.log(res)  
+            this.$store.state.step.findData.basicInformation = res.data.code;
+            this.$store.state.step.findData.basicInformation = res.data.status;
+            this.$store.state.step.findData.basicInformation = res.data.name;
+            this.$store.state.step.findData.basicInformation = res.data.checkin_dept;
+            this.$store.state.step.findData.basicInformation = res.data.createDate;
+          })
+          console.log("可以掉接口保存");
+      } else {
+        console.error("不可以保存");
+      }
+    },
+    // 脱离管控保存
+    // evaluateSave() {
+    //   if (this.$store.state.step.findStatus) {
+    //       let objLocal={
+    //         "bIstreat":"123",
+    //         "bIswilltreat":"0",
+    //         "bDoRemarks":"222222222222222222",
+    //         "fristRemarks":"0",
+    //         "secondRemarks":"0",
+    //         "thirdRemarks":"13222222222",
+    //         "tFiles":"asdfsdf",          
+    //       }
+
+    //       let objOutside={
+    //         "wCompanyName":"123",
+    //         "wCompanyLeader":"0",
+    //         "wCompanyTel":"222222222222222222",
+    //         "wCompanyContactTime":"0",
+    //         "wDoRemarks":"0",
+    //         "tFiles":"13222222222",
+    //       }
+
+    //       let data=this.$store.state.step.findData.checkRegistration;
+          
+    //       objLocal.bIstreat = data.patientName;
+    //       objLocal.bIswilltreat = data.sex;
+    //       objLocal.bDoRemarks = data.IdNumber;
+    //       objLocal.fristRemarks = data.status;
+    //       objLocal.secondRemarks = data.employer;
+    //       objLocal.thirdRemarks = data.patient;
+    //       objLocal.tFiles = data.village;         
+
+    //       handleSaveList(obj_local).then(res=>{
+    //         console.log(res)  
+    //         this.$store.state.step.findData.basicInformation = res.data.code;
+    //         this.$store.state.step.findData.basicInformation = res.data.status;
+    //         this.$store.state.step.findData.basicInformation = res.data.name;
+    //         this.$store.state.step.findData.basicInformation = res.data.checkin_dept;
+    //         this.$store.state.step.findData.basicInformation = res.data.createDate;
+    //       })
+    //       console.log("可以掉接口保存");
+    //   } else {
+    //     console.error("不可以保存");
+    //   }
+    // },
     // 转发
     pushFunc() {
       this.$store.state.step.stepStatus < 5

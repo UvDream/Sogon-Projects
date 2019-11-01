@@ -54,7 +54,7 @@
             />
           </FormItem>
           <FormItem label="上传证明文件" prop="uploadFiles" class="form-block">
-            <Upload />
+            <Upload v-model="formValidate.uploadFiles"/>
           </FormItem>
         </div>
       </Form>
@@ -75,11 +75,11 @@ export default {
     return {
       closed: false,
       formValidate: {
-        status: "",
-        hospital: "",
-        doctor: "",
-        phone: "",
-        date: ""
+        hospital:"",
+        doctor:"",
+        phone:"",
+        time:"",
+        description:""
       },
       ruleValidate: {
         status: [
@@ -107,7 +107,17 @@ export default {
         ]
       }
     };
-  }
+  },
+  created() {
+    vm.$on("blur", val => {
+      if (val == "saveEvent") {
+        this.$store.state.step.findData.treatmentData = this.formValidate;
+      }
+    });
+  },
+  mounted(){
+    this.formValidate = this.$store.state.step.findData.treatmentData;
+  },
 };
 </script>
 

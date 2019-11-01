@@ -18,7 +18,7 @@
     <transition name="slide">
       <div v-if="!closed">
         <div class="search">
-          <cForm />
+          <cForm v-model="formValidate.fzysbf" />
         </div>
         <cTable />
       </div>
@@ -38,7 +38,10 @@ export default {
   },
   data() {
     return {
-      closed: false
+      closed: false,
+      formValidate: {
+        fzysbf: {}
+      }
     };
   },
   methods: {}

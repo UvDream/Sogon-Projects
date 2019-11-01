@@ -79,12 +79,14 @@ export default {
   data() {
     return {
       closed: false,
-      formValidate: {
-        status: "",
-        hospital: "",
-        doctor: "",
-        phone: "",
-        date: ""
+      formValidate: {     
+        status:"",
+        hospital:"",
+        doctor:"",
+        phone:"",
+        date:"",
+        description:"",
+        uploadFiles:""
       },
       ruleValidate: {
         status: [

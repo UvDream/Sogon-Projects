@@ -40,7 +40,7 @@ const step = {
          uploadFiles: [{"filepath":"D://file"},{"filepath":"D://Filetwo"}]
       }
     },
-    handleData: {
+    treatmentData: {
       formLocal: {
         name:"",
         principal:"",
@@ -55,6 +55,31 @@ const step = {
         secondVisit: "",
         thirdVisit: "",
         uploadFiles: ""
+      },
+    },
+    evaluateData: {
+      formPatientLevel: {
+        status:"",
+        hospital:"",
+        doctor:"",
+        phone:"",
+        date:"",
+        description:"",
+        uploadFiles:""
+      },
+      formPatientTreat: {
+        hospital:"",
+        doctor:"",
+        phone:"",
+        time:"",
+        description:""
+      },
+      formPatientZhuyuan: {
+        hospital:"",
+        doctor:"",
+        phone:"",
+        time:"",
+        description:""
       },
     }
   }
