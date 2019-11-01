@@ -306,7 +306,7 @@ export default {
       api.checkData(data).then(res => {
         console.log(res.data);
         this.total = res.data.count;
-        this.tabList = res.data.data;
+        this.tabList = res.data.list;
       });
     },
     //全选中
