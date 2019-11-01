@@ -135,7 +135,7 @@
           </FormItem>
           <!-- 上传文件 -->
           <FormItem label="上传证明文件" prop="uploadFiles" class="form-block">
-            <Upload />
+            <Upload v-model="formValidate.uploadFiles" />
           </FormItem>
         </div>
 
@@ -152,7 +152,6 @@ import TopTitle from "@/components/top-title/top-title";
 import Upload from "@/components/upload/upload";
 import data from "../../../../../mixin/newFile";
 import vm from "../../event";
-import { saveList } from "@/api/new-file/find";
 import { validatePhone } from "@/util/util";
 
 export default {
@@ -257,11 +256,6 @@ export default {
         this.handleSubmit("formValidate");
       }
     });
-  },
-  mounted() {
-    saveList(this.formList).then(res=>{
-      console.log(res)
-    })
   },
   methods: {
     handleSubmit(name) {

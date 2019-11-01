@@ -32,6 +32,7 @@ import SetUp from "./modal/setUp";
 import Return from "./modal/return";
 import mixin from "../../../../mixin/newFile";
 import vm from "../event";
+import { saveList } from "@/api/new-file/find";
 export default {
   computed: {
     status: function() {
@@ -56,8 +57,107 @@ export default {
 
     // 发现保存
     findSave() {
+      // if (this.$store.state.step.findStatus) {
+        let obj={
+          "patientName":"123",
+          "patientSex":"0",
+          "patientCode":"222222222222222222",
+          "type":"0",
+          "patientCompany":"0",
+          "patientTel":"13222222222",
+          "patientRusticate":"asdfsdf",
+          "patientPolice":"asdfa",
+          "isforeign":"0",
+          "foreignHandle":"1",
+          "patientAddr":"asfadsfasdfdsa",
+          "patientStatus1":"2",
+          "patientStatus2":"2",
+          "guardianName":"范范",
+          "guardianRel":"0",
+          "guardianCompany":"0",
+          "guardianTel":"13222222222",
+          "causeTrouble":"sadfasfsdafdasf",
+          "tFiles":[{"filepath":"D://file"},{"filepath":"D://Filetwo"}],
+          "isfocal":"0"
+          }
+
+          let data=this.$store.state.step.findData.checkRegistration;
+          
+          // obj.patientName = data.patientName;
+          // obj.patientSex = data.sex;
+          // obj.patientCode = data.IdNumber;
+          // obj.type = data.status;
+          // obj.patientCompany = data.employer;
+          // obj.patientTel = data.patient;
+          // obj.patientRusticate = data.village;
+          // obj.patientPolice = data.police;
+          // obj.isforeign = data.foreigner;
+          // obj.foreignHandle = data.processingMethod;
+          // obj.patientAddr = data.patientAddress;
+          // obj.patientStatus1 = data.patientCondition;
+          // obj.patientStatus2 = data.risk;
+          // obj.guardianName = data.guardianName;
+          // obj.guardianRel = data.relationship;
+          // obj.guardianCompany = data.guardianUnit;
+          // obj.guardianTel = data.guardianPhone;
+          // obj.causeTrouble = data.anecdote;
+          // obj.tFiles = data.uploadFiles;
+          // obj.isfocal=data.isfocal;  
+
+          saveList(obj).then(res=>{
+            console.log(res)  
+            this.$store.state.step.findData.basicInformation = res.data.code;
+            this.$store.state.step.findData.basicInformation = res.data.status;
+            this.$store.state.step.findData.basicInformation = res.data.name;
+            this.$store.state.step.findData.basicInformation = res.data.checkin_dept;
+            this.$store.state.step.findData.basicInformation = res.data.createDate;
+          })
+      //     console.log("可以掉接口保存");
+      // } else {
+      //   console.error("不可以保存");
+      // }
+    },
+    // 发现保存
+    handleSave() {
       if (this.$store.state.step.findStatus) {
-        console.log("可以掉接口保存");
+          let objLocal={
+            "bIstreat":"123",
+            "bIswilltreat":"0",
+            "bDoRemarks":"222222222222222222",
+            "fristRemarks":"0",
+            "secondRemarks":"0",
+            "thirdRemarks":"13222222222",
+            "tFiles":"asdfsdf",          
+          }
+
+          let objOutside={
+            "wCompanyName":"123",
+            "wCompanyLeader":"0",
+            "wCompanyTel":"222222222222222222",
+            "wCompanyContactTime":"0",
+            "wDoRemarks":"0",
+            "tFiles":"13222222222",
+          }
+
+          let data=this.$store.state.step.findData.checkRegistration;
+          
+          objLocal.bIstreat = data.patientName;
+          objLocal.bIswilltreat = data.sex;
+          objLocal.bDoRemarks = data.IdNumber;
+          objLocal.fristRemarks = data.status;
+          objLocal.secondRemarks = data.employer;
+          objLocal.thirdRemarks = data.patient;
+          objLocal.tFiles = data.village;         
+
+          saveList(obj_local).then(res=>{
+            console.log(res)  
+            this.$store.state.step.findData.basicInformation = res.data.code;
+            this.$store.state.step.findData.basicInformation = res.data.status;
+            this.$store.state.step.findData.basicInformation = res.data.name;
+            this.$store.state.step.findData.basicInformation = res.data.checkin_dept;
+            this.$store.state.step.findData.basicInformation = res.data.createDate;
+          })
+          console.log("可以掉接口保存");
       } else {
         console.error("不可以保存");
       }

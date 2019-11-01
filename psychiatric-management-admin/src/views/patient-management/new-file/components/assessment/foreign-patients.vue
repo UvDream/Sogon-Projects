@@ -19,19 +19,19 @@
       >
         <div class="form">
           <FormItem label="原籍公安机关名称" prop="name" class="form-block">
-            <Input v-model="formValidate.policeName" placeholder="输入原籍公安机关名称" />
+            <Input v-model="formValidate.name" placeholder="输入原籍公安机关名称" />
           </FormItem>
           <FormItem label="原籍公安负责人" prop="principal" class="form-block">
-            <Input v-model="formValidate.policePrincipal" placeholder="输入原籍公安负责人" />
+            <Input v-model="formValidate.principal" placeholder="输入原籍公安负责人" />
           </FormItem>
           <FormItem label="原籍公安联系电话" prop="phone" class="form-block">
-            <Input v-model="formValidate.policePhone" placeholder="输入原籍公安联系电话" />
+            <Input v-model="formValidate.phone" placeholder="输入原籍公安联系电话" />
           </FormItem>
           <FormItem label="原籍公安联系时间" prop="contactTime" class="form-block">
             <DatePicker
               type="datetime"
               placeholder="请选择时间"
-              v-model="formValidate.policeContactTime"
+              v-model="formValidate.contactTime"
             ></DatePicker>
           </FormItem>
         </div>
@@ -64,7 +64,13 @@ export default {
   data() {
     return {
       closed: false,
-      formValidate: {}
+      formValidate: {
+        name:"",
+        principal:"",
+        phone:"",
+        contactTime:"",
+        description:"",
+      }
     };
   }
 };

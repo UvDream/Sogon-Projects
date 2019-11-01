@@ -58,7 +58,7 @@
         </div>
         <div class="form">
           <FormItem label="本埠证明材料" prop="uploadFiles" class="form-block">
-            <Upload />
+            <Upload v-model="uploadFiles"/>
           </FormItem>
         </div>
       </Form>

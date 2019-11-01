@@ -32,7 +32,7 @@
       :before-upload="handleBeforeUpload"
       multiple
       type="drag"
-      action="url"
+      :action="url"
       style="display: inline-block;width:58px;"
     >
       <div style="width: 58px;height:58px;line-height: 58px;">
@@ -55,7 +55,7 @@ export default {
   data() {
     return {
       // 上传接口地址
-      url: baseUrl + "/login",
+      url: baseUrl + "/jsbrgl/fileUploadController/fileUpload",
       defaultList: [
         {
           name: "a42bdcc1178e62b4694c830f028db5c0",
@@ -77,6 +77,7 @@ export default {
       this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
     },
     handleSuccess(res, file) {
+      console.log(res)
       file.url =
         "https://o5wwk8baw.qnssl.com/7eb99afb9d5f317c912f08b5212fd69a/avatar";
       file.name = "7eb99afb9d5f317c912f08b5212fd69a";

@@ -14,19 +14,19 @@
         <Form label-position="top" :model="formValidate" :rules="ruleValidate" :label-width="200">
           <div class="form">
             <FormItem label="档案编号" prop="number" class="form-block">
-              <Input v-model="formValidate.code" placeholder="输入档案号" />
+              <Input disabled v-model="formValidate.code" placeholder="输入档案号" />
             </FormItem>
             <FormItem label="档案状态" prop="status" class="form-block">
-              <Input v-model="formValidate.status" placeholder="输入档案状态" />
+              <Input disabled v-model="formValidate.status" placeholder="输入档案状态" />
             </FormItem>
             <FormItem label="创建人" prop="founder" class="form-block">
-              <Input v-model="formValidate.checkin_dept" placeholder="输入创建人" />
+              <Input disabled v-model="formValidate.checkin_dept" placeholder="输入创建人" />
             </FormItem>
             <FormItem label="创建日期" prop="createDate" class="form-block">
-              <DatePicker type="date" placeholder="选择日期" v-model="formValidate.createDate"></DatePicker>
+              <DatePicker disabled type="date" placeholder="选择日期" v-model="formValidate.createDate"></DatePicker>
             </FormItem>
             <!-- <FormItem label="转发人" prop="forwarder" class="form-block">
-              <Input v-model="formValidate.forwarder" placeholder="输入转发人" />
+              <Input disabled v-model="formValidate.forwarder" placeholder="输入转发人" />
             </FormItem>
             <FormItem label="转发日期" prop="forwardDate" class="form-block">
               <DatePicker type="date" placeholder="选择转发日期" v-model="formValidate.forwardDate"></DatePicker>
@@ -54,14 +54,14 @@ export default {
       closed: false,
       formValidate: {
         code: "",
-        name: "",
+        // name: "",
+        status: "",
         checkin_dept: "",
         createDate: "",
-        forwarder: "",
-        forwardDate: ""
+        // forwarder: "",
+        // forwardDate: ""
       },
-      ruleValidate: {},
-      
+      ruleValidate: {},      
     };
   },
   created() {
@@ -71,11 +71,8 @@ export default {
       }
     });
   },
-  mounted() {
-    this.formValidate=this.$store.state.step.findData.basicInformation;
-    saveList(this.formList).then(res=>{
-      console.log(res)
-    })
+  mounted(){
+    this.formValidate = this.$store.state.step.findData.basicInformation;
   },
   methods: {
 
