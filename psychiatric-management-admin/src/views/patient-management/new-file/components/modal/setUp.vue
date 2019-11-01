@@ -8,7 +8,7 @@
  -->
 
 <template>
-  <Modal v-model="modal" title="档案办结" width="530" @on-cancel="modal=false">
+  <Modal v-model="modal" title="档案办结" width="530" @on-cancel="cancle">
     <Form
       ref="formValidate"
       label-position="top"
@@ -43,9 +43,18 @@ export default {
   components: {
     Upload
   },
+  props:{
+    modalSetUp: {
+      type: Boolean,
+      default: false
+    },
+    indexId:{
+      default: 0
+    }
+  },
   data() {
     return {
-      modal: false,
+      modal: this.modalSetUp,
       formValidate: {
         reason: "",
         uploadFiles: ""
@@ -56,7 +65,16 @@ export default {
       }
     };
   },
-  methods: {}
+  watch:{
+    modalSetUp:function(val){
+      this.modal = val;
+    }
+  },
+  methods: {
+    cancle() {
+      this.$emit('closemodal');
+    }
+  }
 };
 </script>
 
