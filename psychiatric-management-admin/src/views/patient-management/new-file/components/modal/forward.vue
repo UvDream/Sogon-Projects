@@ -8,7 +8,7 @@
  -->
 
 <template>
-  <Modal v-model="modal" title="档案转发" width="600" @on-cancel="modal=false">
+  <Modal v-model="modal" title="档案转发" width="600" @on-cancel="cancle">
     <Form ref="ruleForm" label-position="top" :model="ruleForm" :label-width="200">
       <div v-for="(item,index) in ruleForm.forward" :key="index">
         <div class="form">
@@ -60,6 +60,15 @@
 
 <script>
 export default {
+  props:{
+    modalForward: {
+      type: Boolean,
+      default: false
+    },
+    indexId:{
+      default: 0
+    }
+  },
   data() {
     return {
       modal: false,
@@ -67,6 +76,11 @@ export default {
         forward: [{ department: "", name: "" }]
       }
     };
+  },
+  watch:{
+    modalForward:function(val){
+      this.modal = val;
+    }
   },
   methods: {
     // 删除操作
@@ -77,6 +91,9 @@ export default {
     addFunc() {
       let obj = { department: "", name: "" };
       this.ruleForm.forward.push(obj);
+    },
+    cancle() {
+      this.$emit('closemodal');
     }
   }
 };
