@@ -5,7 +5,7 @@ export default {
   baseURL: baseUrl,
   // 请求头信息
   headers: {
-    "Content-Type": "application/json;charset=UTF-8",
+    "Content-Type": "application/json;charset=UTF-8"
     // "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyIiwiZXhwIjoxNTcyNTEyOTY2LCJpYXQiOjE1NzI1MDkzNjZ9.fDC2FTomgK4G-kXi-jBGui-a4zWit5CbKeWYBlUkJws"
   },
   // 参数

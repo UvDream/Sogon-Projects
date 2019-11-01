@@ -6,7 +6,7 @@ export default function fetch(options) {
       baseURL: config.baseURL,
       timeout: config.timeout,
       headers: config.headers,
-      withCredentials: false
+      withCredentials: config.withCredentials
     });
     // request拦截器
     service.interceptors.request.use(
