@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 11:35:47
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-24 08:52:06
+ * @LastEditTime: 2019-11-01 10:49:53
  * @Description: 登陆注册界面
  * @Email: UvDream@163.com
  -->
@@ -50,7 +50,6 @@
 
 <script>
 import { login } from "@/api/login/index";
-import Cookies from 'js-cookie'
 export default {
   data() {
     return {
@@ -92,7 +91,6 @@ export default {
         "pwd": this.formInline.password
       }
       login(data).then(res=>{
-        Cookies.set(res.data.token)
         this.$router.push({ path: '/dashboard' })
       })
       this.$refs[name].validate(valid => {
