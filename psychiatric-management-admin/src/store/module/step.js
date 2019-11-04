@@ -3,50 +3,52 @@ const step = {
     // 步骤状态
     stepStatus: 0,
     // 01发现页面
-    findStatus: false,
+    findStatus: true,
     // 02初步处理页面
     dealStatus: false,
     // 03评定治疗页面
-    evaluateStatus: false,
+    treatStatus: false,
     // 04四帮一页面
     helpStatus: false,
     // 05再次评定页面
-    againStatus: false,
+    againTreatStatus: false,
+    // 06再次评定页面
+    outControlStatus: false,
     // ---01发现页面
     findData: {
       basicInformation: {
         code: "",
         status: "",
-        name: "",
+        name: "",       
         checkin_dept: "",
-        createDate: ""
+        createDate: "",       
       },
       checkRegistration: {
-        // 1
-        patientName: "",
-        sex: "",
-        IdNumber: "",
-        status: "",
-        // 2
-        employer: "",
-        patient: "",
-        village: "",
-        police: "",
-        // 3
-        foreigner: "",
-        processingMethod: "",
-        patientAddress: "",
-        // 4
-        patientCondition: "",
-        risk: "",
-        // 5
-        guardianName: "",
-        relationship: "",
-        guardianUnit: "",
-        guardianPhone: "",
-        // 6
-        anecdote: "",
-        uploadFiles: [{ filepath: "D://file" }, { filepath: "D://Filetwo" }]
+         // 1
+         patientName: "",
+         sex: "",
+         IdNumber: "",
+         status: "",
+         // 2
+         employer: "",
+         patient: "",
+         village: "",
+         police: "",
+         // 3
+         foreigner: "",
+         processingMethod: "",
+         patientAddress: "",
+         // 4
+         patientCondition: "",
+         risk: "",
+         // 5
+         guardianName: "",
+         relationship: "",
+         guardianUnit: "",
+         guardianPhone: "",
+         // 6
+         anecdote: "",
+         uploadFiles: [{"filepath":"D://file"},{"filepath":"D://Filetwo"}]
       }
     },
     // ---02初步处理页面
@@ -60,25 +62,25 @@ const step = {
         uploadFiles: ""
       },
       formOutside: {
-        name: "",
-        principal: "",
-        phone: "",
-        contactTime: "",
-        description: "",
-        uploadFiles: "",
-        archivesId: ""
-      }
+        name:"",
+        principal:"",
+        phone:"",
+        contactTime:"",
+        description:"",
+        uploadFiles:"",
+        archivesId:""
+      },
     },
     // ---03评定治疗页面
     treatData: {
       formPatientLevel: {
-        status: "",
-        hospital: "",
-        doctor: "",
-        phone: "",
-        time: "",
-        description: "",
-        uploadFiles: ""
+        status:"",
+        hospital:"",
+        doctor:"",
+        phone:"",
+        time:"",
+        description:"",
+        uploadFiles:""
       },
       formPatientTreat: {
         hospital: "",
@@ -88,7 +90,7 @@ const step = {
         recording: "",
         uploadFiles: ""
       },
-      formPatientZhuyuan: {
+      formPatientZhuyuan: {        
         more: [
           {
             hospital: "",
@@ -107,18 +109,18 @@ const step = {
             uploadFiles: ""
           }
         ]
-      }
+      },
     },
     // ---04四帮一页面
     treatData: {
       formPatientLevel: {
-        status: "",
-        hospital: "",
-        doctor: "",
-        phone: "",
-        time: "",
-        description: "",
-        uploadFiles: ""
+        status:"",
+        hospital:"",
+        doctor:"",
+        phone:"",
+        time:"",
+        description:"",
+        uploadFiles:""
       },
       formPatientTreat: {
         hospital: "",
@@ -128,7 +130,7 @@ const step = {
         recording: "",
         uploadFiles: ""
       },
-      formPatientZhuyuan: {
+      formPatientZhuyuan: {        
         more: [
           {
             hospital: "",
@@ -147,9 +149,39 @@ const step = {
             uploadFiles: ""
           }
         ]
-      }
-    }
+      },
+    },    
     // ---05再次评定页面
+    againTreatData: {
+      formPatientLevel: {
+        status:"",
+        hospital:"",
+        doctor:"",
+        phone:"",
+        time:"",
+        description:"",
+        uploadFiles:""
+      },
+    },
+    // ---06脱离管控
+    outControlData: {
+      formPatientRecorder: [
+        {
+          date:"",
+          hospital:"",
+          unit:"",
+          recording:"",
+          uploadFiles:""
+        },
+        {
+          date:"",
+          hospital:"",
+          unit:"",
+          recording:"",
+          uploadFiles:""
+        },
+      ]
+    }
   }
 };
 export default step;

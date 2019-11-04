@@ -111,7 +111,7 @@
 <script>
 import TopTitle from "@/components/top-title/top-title";
 import Upload from "@/components/upload/upload";
-
+import vm from "../../event";
 export default {
   components: {
     TopTitle,
@@ -149,6 +149,13 @@ export default {
         ]
       }
     };
+  },
+  created() {
+    vm.$on("blur", val => {
+      if (val == "saveEvent") {
+        this.$store.state.step.dealData.basicInformation = this.formValidate;
+      }
+    });
   },
   methods: {
     handleSubmit(name) {

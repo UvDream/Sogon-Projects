@@ -61,7 +61,7 @@ export default {
 
     // 01发现保存
     findSave() {
-      if (this.$store.state.step.findStatus) {
+      if (this.$store.state.findStatus) {
         let obj={
           "patientName":"123",
           "patientSex":"0",
@@ -272,8 +272,8 @@ export default {
           objLocal.thirdRemarks = data.patient;
           objLocal.tFiles = data.village;         
 
-          handleSaveList(obj_local).then(res=>{
-            console.log(res)  
+          handleSaveList(objLocal).then(res=>{
+            console.log(res)
             this.$store.state.step.findData.basicInformation = res.data.code;
             this.$store.state.step.findData.basicInformation = res.data.status;
             this.$store.state.step.findData.basicInformation = res.data.name;
@@ -288,42 +288,27 @@ export default {
     // 05再次评定保存
     againTreatSave() {
       if (this.$store.state.step.againTreatStatus) {
-          let objLocal={
-            "bIstreat":"123",
-            "bIswilltreat":"0",
-            "bDoRemarks":"222222222222222222",
-            "fristRemarks":"0",
-            "secondRemarks":"0",
-            "thirdRemarks":"13222222222",
+          let formPatientLevel={
+            "patientLevel":"123",
+            "hospitalName":"0",
+            "doctorName":"222222222222222222",
+            "doctorTel":"0",
+            "doctorEvtime":"0",
+            "levelRemark":"13222222222",
             "tFiles":"asdfsdf",          
           }
 
-          let objOutside={
-            "wCompanyName":"123",
-            "wCompanyLeader":"0",
-            "wCompanyTel":"222222222222222222",
-            "wCompanyContactTime":"0",
-            "wDoRemarks":"0",
-            "tFiles":"13222222222",
-          }
+          let dataLevel=this.$store.state.step.againTreatData.formPatientLevel;
+          formPatientLevel.patientLevel = dataLevel.status;
+          formPatientLevel.hospitalName = dataLevel.hospital;
+          formPatientLevel.doctorName = dataLevel.doctor;
+          formPatientLevel.doctorTel = dataLevel.phone;
+          formPatientLevel.doctorEvtime = dataLevel.time;
+          formPatientLevel.levelRemark = dataLevel.description;
+          formPatientLevel.tFiles = dataLevel.uploadFiles;                 
 
-          let data=this.$store.state.step.findData.checkRegistration;
-          
-          objLocal.bIstreat = data.patientName;
-          objLocal.bIswilltreat = data.sex;
-          objLocal.bDoRemarks = data.IdNumber;
-          objLocal.fristRemarks = data.status;
-          objLocal.secondRemarks = data.employer;
-          objLocal.thirdRemarks = data.patient;
-          objLocal.tFiles = data.village;         
-
-          handleSaveList(obj_local).then(res=>{
-            console.log(res)  
-            this.$store.state.step.findData.basicInformation = res.data.code;
-            this.$store.state.step.findData.basicInformation = res.data.status;
-            this.$store.state.step.findData.basicInformation = res.data.name;
-            this.$store.state.step.findData.basicInformation = res.data.checkin_dept;
-            this.$store.state.step.findData.basicInformation = res.data.createDate;
+          handleSaveList(formPatientLevel).then(res=>{
+            console.log("保存成功")
           })
           console.log("可以掉接口保存");
       } else {
@@ -331,50 +316,32 @@ export default {
       }
     },
     // 06脱离管控保存
-    // treatSave() {
-    //   if (this.$store.state.step.findStatus) {
-    //       let objLocal={
-    //         "bIstreat":"123",
-    //         "bIswilltreat":"0",
-    //         "bDoRemarks":"222222222222222222",
-    //         "fristRemarks":"0",
-    //         "secondRemarks":"0",
-    //         "thirdRemarks":"13222222222",
-    //         "tFiles":"asdfsdf",          
-    //       }
+    treatSave() {
+      if (this.$store.state.step.outControlStatus) {
+          let RecorderList={
+            "patientCuteDate":"123",
+            "patientCuteType":"0",
+            "patientCompany":"222222222222222222",
+            "patientRemarks":"0",
+            "tFiles":"",    
+          }
 
-    //       let objOutside={
-    //         "wCompanyName":"123",
-    //         "wCompanyLeader":"0",
-    //         "wCompanyTel":"222222222222222222",
-    //         "wCompanyContactTime":"0",
-    //         "wDoRemarks":"0",
-    //         "tFiles":"13222222222",
-    //       }
-
-    //       let data=this.$store.state.step.findData.checkRegistration;
+          let data=this.$store.state.step.outControl.outControlData;
           
-    //       objLocal.bIstreat = data.patientName;
-    //       objLocal.bIswilltreat = data.sex;
-    //       objLocal.bDoRemarks = data.IdNumber;
-    //       objLocal.fristRemarks = data.status;
-    //       objLocal.secondRemarks = data.employer;
-    //       objLocal.thirdRemarks = data.patient;
-    //       objLocal.tFiles = data.village;         
+          RecorderList.patientCuteDate = data.patientName;
+          RecorderList.patientCuteType = data.sex;
+          RecorderList.patientCompany = data.IdNumber;
+          RecorderList.patientRemarks = data.status;
+          RecorderList.tFiles = data.employer; 
 
-    //       handleSaveList(obj_local).then(res=>{
-    //         console.log(res)  
-    //         this.$store.state.step.findData.basicInformation = res.data.code;
-    //         this.$store.state.step.findData.basicInformation = res.data.status;
-    //         this.$store.state.step.findData.basicInformation = res.data.name;
-    //         this.$store.state.step.findData.basicInformation = res.data.checkin_dept;
-    //         this.$store.state.step.findData.basicInformation = res.data.createDate;
-    //       })
-    //       console.log("可以掉接口保存");
-    //   } else {
-    //     console.error("不可以保存");
-    //   }
-    // },
+          handleSaveList(RecorderList).then(res=>{
+            console.log(res)  
+          })
+          console.log("可以掉接口保存");
+      } else {
+        console.error("不可以保存");
+      }
+    },
     // 转发
     pushFunc() {
       this.$store.state.step.stepStatus < 5

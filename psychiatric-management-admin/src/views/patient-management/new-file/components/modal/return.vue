@@ -17,27 +17,32 @@
       :label-width="200"
     >
       <div class="form">
-        <FormItem label="退回至部门" prop="department" class="form-block">
-          <Input v-model="formValidate.department" placeholder="输入办结原因说明" />
+        <FormItem label="退回至部门" prop="curPositionid" class="form-block">
+          <Select v-model="formValidate.curPositionid">
+            <Option value="1">网络</Option>
+            <Option value="2">公安</Option>
+            <Option value="3">卫生</Option>
+            <Option value="4">民政</Option>
+          </Select>
         </FormItem>
         <FormItem label="退回至姓名" prop="name" class="form-block">
           <Input v-model="formValidate.name" placeholder="输入办结原因说明" />
         </FormItem>
       </div>
-      <FormItem style="margin-left:30px" label="退回原因说明" prop="reason" class="form-blocks">
+      <FormItem style="margin-left:30px" label="退回原因说明" prop="remarks" class="form-blocks">
         <Input
-          v-model="formValidate.reason"
+          v-model="formValidate.remarks"
           type="textarea"
           :autosize="{ minRows: 2, maxRows: 5 }"
           placeholder="输入办结原因说明"
         />
       </FormItem>
       <FormItem style="margin-left:30px" label="上传证明文件" prop="uploadFiles" class="form-block">
-        <Upload />
+        <Upload v-model="formValidate.uploadFiles" />
       </FormItem>
     </Form>
     <div slot="footer" style="text-align:center">
-      <Button type="primary" size="large">
+      <Button type="primary" size="large" @click="saveBack()">
         <Icon type="ios-log-out" style="margin-right:10px" />退回
       </Button>
     </div>
@@ -46,8 +51,9 @@
 
 <script>
 import Upload from "@/components/upload/upload";
-
+import mixin from "@/mixin/newFile";
 export default {
+  mixins: [mixin],
   components: {
     Upload
   },
@@ -64,15 +70,15 @@ export default {
     return {
       modal: this.modalReturn,
       formValidate: {
-        department: "",
+        curPositionid: "2",
         name: "",
-        reason: "",
+        remarks: "",
         uploadFiles: ""
       },
       ruleValidate: {
         name: [{ required: true, message: "请输入退回至姓名" }],
-        department: [{ required: true, message: "请输入退回至部门" }],
-        reason: [{ required: true, message: "请输入办结原因" }],
+        curPositionid: [{ required: true, message: "请输入退回至部门" }],
+        remarks: [{ required: true, message: "请输入办结原因" }],
         uploadFiles: [{ required: true, message: "请上传证明材料" }]
       }
     };
