@@ -83,7 +83,8 @@ export default {
         firstVisit: "",
         secondVisit: "",
         thirdVisit: "",
-        uploadFiles: ""
+        uploadFiles: "",
+        archivesId:"",
       },
       ruleValidate: {
         isTreatment: [{ required: true, message: "请选择是否接受治疗" }],

@@ -8,7 +8,7 @@
  -->
 
 <template>
-  <Modal v-model="modal" title="档案退回" width="600" @on-cancel="modal=false">
+  <Modal v-model="modal" title="档案退回" width="600" @on-cancel="cancle">
     <Form
       ref="formValidate"
       label-position="top"
@@ -51,9 +51,18 @@ export default {
   components: {
     Upload
   },
+  props:{
+  modalReturn: {
+    type: Boolean,
+    default: false
+  },
+  indexId:{
+    default: 0
+  }
+},
   data() {
     return {
-      modal: false,
+      modal: this.modalReturn,
       formValidate: {
         department: "",
         name: "",
@@ -68,7 +77,16 @@ export default {
       }
     };
   },
-  methods: {}
+  watch:{
+    modalReturn:function(val){
+      this.modal = val;
+    }
+  },
+  methods: {
+    cancle() {
+      this.$emit('closemodal');
+    }
+  }
 };
 </script>
 

@@ -2,15 +2,24 @@ const step = {
   state: {
     // 步骤状态
     stepStatus: 0,
-    // 发现页面
+    // 01发现页面
     findStatus: false,
+    // 02初步处理页面
+    dealStatus: false,
+    // 03评定治疗页面
+    evaluateStatus: false,
+    // 04四帮一页面
+    helpStatus: false,
+    // 05再次评定页面
+    againStatus: false,
+    // ---01发现页面
     findData: {
       basicInformation: {
-        code: "XZ320623198807064421",
-        status: "2",
-        name: "sdfsdf",       
-        checkin_dept: "部门",
-        createDate: "2019-10-31T05:51:32.353+0000",       
+        code: "",
+        status: "",
+        name: "",       
+        checkin_dept: "",
+        createDate: "",       
       },
       checkRegistration: {
          // 1
@@ -40,15 +49,9 @@ const step = {
          uploadFiles: [{"filepath":"D://file"},{"filepath":"D://Filetwo"}]
       }
     },
-    treatmentData: {
+    // ---02初步处理页面
+    dealData: {
       formLocal: {
-        name:"",
-        principal:"",
-        phone:"",
-        contactTime:"",
-        description:"",
-      },
-      formOutside: {
         isTreatment: "",
         isTreatmentDescription: "",
         firstVisit: "",
@@ -56,32 +59,97 @@ const step = {
         thirdVisit: "",
         uploadFiles: ""
       },
+      formOutside: {
+        name:"",
+        principal:"",
+        phone:"",
+        contactTime:"",
+        description:"",
+        uploadFiles:"",
+        archivesId:""
+      },
     },
-    evaluateData: {
+    // ---03评定治疗页面
+    treatData: {
       formPatientLevel: {
         status:"",
         hospital:"",
         doctor:"",
         phone:"",
-        date:"",
+        time:"",
         description:"",
         uploadFiles:""
       },
       formPatientTreat: {
-        hospital:"",
-        doctor:"",
-        phone:"",
-        time:"",
-        description:""
+        hospital: "",
+        doctors: "",
+        phone: "",
+        dischargeTime: "",
+        recording: "",
+        uploadFiles: ""
       },
-      formPatientZhuyuan: {
+      formPatientZhuyuan: {        
+        more: [
+          {
+            hospital: "",
+            doctors: "",
+            hospitalStay: "",
+            dischargeTime: "",
+            recording: "",
+            uploadFiles: ""
+          },
+          {
+            hospital: "",
+            doctors: "",
+            hospitalStay: "",
+            dischargeTime: "",
+            recording: "",
+            uploadFiles: ""
+          }
+        ]
+      },
+    },
+    // ---04四帮一页面
+    treatData: {
+      formPatientLevel: {
+        status:"",
         hospital:"",
         doctor:"",
         phone:"",
         time:"",
-        description:""
+        description:"",
+        uploadFiles:""
+      },
+      formPatientTreat: {
+        hospital: "",
+        doctors: "",
+        phone: "",
+        dischargeTime: "",
+        recording: "",
+        uploadFiles: ""
+      },
+      formPatientZhuyuan: {        
+        more: [
+          {
+            hospital: "",
+            doctors: "",
+            hospitalStay: "",
+            dischargeTime: "",
+            recording: "",
+            uploadFiles: ""
+          },
+          {
+            hospital: "",
+            doctors: "",
+            hospitalStay: "",
+            dischargeTime: "",
+            recording: "",
+            uploadFiles: ""
+          }
+        ]
       },
     }
+    // ---05再次评定页面
   }
 };
 export default step;

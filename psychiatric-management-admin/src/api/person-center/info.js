@@ -1,11 +1,15 @@
-import request from '@/api/fetch';
+import request from "../fetch";
+import Cookies from 'js-cookie'
 
 const api = {
     checkData: (data)=>{
         return request({
             url: '/jsbrgl/InfoManager/queryByCoditions',
             method: 'POST',
-            data
+            data,
+            headers: { 
+              "Content-Type": "application/json"
+            }
         })
     },
     //修改已读状态
@@ -13,7 +17,10 @@ const api = {
         return request({
             url: '/jsbrgl/InfoManager/updateMessageById',
             method: 'POST',
-            data
+            data,
+            headers: { 
+              "Content-Type": "application/json"
+            }
         })
     }
 }

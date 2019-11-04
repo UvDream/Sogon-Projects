@@ -45,7 +45,7 @@
             />
           </FormItem>
           <FormItem label="外埠证明材料" prop="uploadFiles" class="form-block">
-            <Upload />
+            <Upload v-model="formValidate.uploadFiles"/>
           </FormItem>
         </div>
       </Form>
@@ -70,6 +70,9 @@ export default {
         phone:"",
         contactTime:"",
         description:"",
+        uploadFiles:"",
+        archivesId:"",
+
       }
     };
   }

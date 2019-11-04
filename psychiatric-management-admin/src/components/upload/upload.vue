@@ -25,6 +25,7 @@
       :show-upload-list="false"
       :default-file-list="defaultList"
       :on-success="handleSuccess"
+      :headers = "headers"
       :format="['jpg', 'jpeg', 'png']"
       :max-size="2048"
       :on-format-error="handleFormatError"
@@ -50,7 +51,7 @@
 </template>
 <script>
 import { baseUrl } from "@/config/env";
-
+import Cookies from 'js-cookie'
 export default {
   data() {
     return {
@@ -62,7 +63,10 @@ export default {
           url: "https://nexmoe.com/images/avatar.png"
         }
       ],
-      imgName: "",
+      headers: {
+        "Content-Type": "application/json", 
+      },
+      imgName: "222.jpg",
       visible: false,
       uploadList: []
     };
