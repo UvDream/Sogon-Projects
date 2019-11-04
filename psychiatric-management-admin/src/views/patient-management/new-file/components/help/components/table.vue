@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-25 10:24:24
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-11-04 16:41:18
+ * @LastEditTime: 2019-11-04 17:26:02
  * @Description: 表格
  * @Email: UvDream@163.com
  -->
@@ -26,6 +26,7 @@
         @on-select-all="selectAll"
         @on-select-all-cancel="cancelAll"
         @on-select="selectTable"
+        @on-select-cancel="cancelTable"
         :columns="columns"
         :data="data"
       ></Table>
@@ -245,9 +246,7 @@ export default {
     },
     // ?删除
     deleteFunc() {
-      console.log("删除");
-      console.log(this.allCheck);
-      console.log(this.code);
+      // 全选删除逻辑
       this.code === 0
         ? this.allCheck
           ? (this.$store.state.form.cadreList = [])
@@ -268,9 +267,39 @@ export default {
           ? (this.$store.state.form.guardianList = [])
           : ""
         : "";
+      // 部分选删除
+      if (!this.allCheck) {
+        this.$store.state.form.cadreList = this.deleteList(
+          this.cadreList,
+          this.$store.state.form.cadreSelect
+        );
+        this.$store.state.form.policeList = this.deleteList(
+          this.policeList,
+          this.$store.state.form.policeSelect
+        );
+        this.$store.state.form.doctorList = this.deleteList(
+          this.doctorList,
+          this.$store.state.form.doctorSelect
+        );
+        this.$store.state.form.guardianList = this.deleteList(
+          this.guardianList,
+          this.$store.state.form.guardianSelect
+        );
+      }
+    },
+    deleteList(list, data) {
+      list.forEach((item, index) => {
+        data.length > 0
+          ? data.forEach(element => {
+              if (item.helpDate == element.helpDate) {
+                list.splice(index, 1);
+              }
+            })
+          : "";
+      });
+      return list;
     },
     handleSelectAll(status) {
-      console.log("全选");
       this.allCheck = status;
       this.$refs.selection.selectAll(status);
     },
@@ -282,7 +311,26 @@ export default {
     },
     selectTable(selection, row) {
       console.log(selection);
+      this.code === 0 ? (this.$store.state.form.cadreSelect = selection) : "";
+      this.code === 1 ? (this.$store.state.form.policeSelect = selection) : "";
+      this.code === 2 ? (this.$store.state.form.doctorSelect = selection) : "";
+      this.code === 3
+        ? (this.$store.state.form.guardianSelect = selection)
+        : "";
       console.log(row);
+      console.log(this.$store.state.form.cadreSelect);
+    },
+    cancelTable(selection, row) {
+      this.code === 0 ? (this.$store.state.form.cadreSelect = selection) : "";
+      this.code === 1 ? (this.$store.state.form.policeSelect = selection) : "";
+      this.code === 2 ? (this.$store.state.form.doctorSelect = selection) : "";
+      this.code === 3
+        ? (this.$store.state.form.guardianSelect = selection)
+        : "";
+      console.log("取消");
+      console.log(selection);
+      console.log(row);
+      console.log(this.$store.state.form.cadreSelect);
     }
   }
 };
