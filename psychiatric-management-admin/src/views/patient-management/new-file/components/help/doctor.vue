@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-25 10:48:08
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-30 10:29:44
+ * @LastEditTime: 2019-11-04 16:02:15
  * @Description: 防治医生帮扶
  * @Email: UvDream@163.com
  -->
@@ -20,7 +20,7 @@
         <div class="search">
           <cForm v-model="formValidate.fzysbf" />
         </div>
-        <cTable />
+        <cTable :code="2" />
       </div>
     </transition>
   </div>

@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-25 10:37:41
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-30 10:28:53
+ * @LastEditTime: 2019-11-04 16:02:03
  * @Description: 监护民警帮扶
  * @Email: UvDream@163.com
  -->
@@ -20,7 +20,7 @@
         <div class="search">
           <cForm />
         </div>
-        <cTable />
+        <cTable :code="1" />
       </div>
     </transition>
   </div>

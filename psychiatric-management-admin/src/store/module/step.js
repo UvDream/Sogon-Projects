@@ -17,36 +17,36 @@ const step = {
       basicInformation: {
         code: "",
         status: "",
-        name: "",       
+        name: "",
         checkin_dept: "",
-        createDate: "",       
+        createDate: ""
       },
       checkRegistration: {
-         // 1
-         patientName: "",
-         sex: "",
-         IdNumber: "",
-         status: "",
-         // 2
-         employer: "",
-         patient: "",
-         village: "",
-         police: "",
-         // 3
-         foreigner: "",
-         processingMethod: "",
-         patientAddress: "",
-         // 4
-         patientCondition: "",
-         risk: "",
-         // 5
-         guardianName: "",
-         relationship: "",
-         guardianUnit: "",
-         guardianPhone: "",
-         // 6
-         anecdote: "",
-         uploadFiles: [{"filepath":"D://file"},{"filepath":"D://Filetwo"}]
+        // 1
+        patientName: "",
+        sex: "",
+        IdNumber: "",
+        status: "",
+        // 2
+        employer: "",
+        patient: "",
+        village: "",
+        police: "",
+        // 3
+        foreigner: "",
+        processingMethod: "",
+        patientAddress: "",
+        // 4
+        patientCondition: "",
+        risk: "",
+        // 5
+        guardianName: "",
+        relationship: "",
+        guardianUnit: "",
+        guardianPhone: "",
+        // 6
+        anecdote: "",
+        uploadFiles: [{ filepath: "D://file" }, { filepath: "D://Filetwo" }]
       }
     },
     // ---02初步处理页面
@@ -60,25 +60,25 @@ const step = {
         uploadFiles: ""
       },
       formOutside: {
-        name:"",
-        principal:"",
-        phone:"",
-        contactTime:"",
-        description:"",
-        uploadFiles:"",
-        archivesId:""
-      },
+        name: "",
+        principal: "",
+        phone: "",
+        contactTime: "",
+        description: "",
+        uploadFiles: "",
+        archivesId: ""
+      }
     },
     // ---03评定治疗页面
     treatData: {
       formPatientLevel: {
-        status:"",
-        hospital:"",
-        doctor:"",
-        phone:"",
-        time:"",
-        description:"",
-        uploadFiles:""
+        status: "",
+        hospital: "",
+        doctor: "",
+        phone: "",
+        time: "",
+        description: "",
+        uploadFiles: ""
       },
       formPatientTreat: {
         hospital: "",
@@ -88,7 +88,7 @@ const step = {
         recording: "",
         uploadFiles: ""
       },
-      formPatientZhuyuan: {        
+      formPatientZhuyuan: {
         more: [
           {
             hospital: "",
@@ -107,18 +107,18 @@ const step = {
             uploadFiles: ""
           }
         ]
-      },
+      }
     },
     // ---04四帮一页面
     treatData: {
       formPatientLevel: {
-        status:"",
-        hospital:"",
-        doctor:"",
-        phone:"",
-        time:"",
-        description:"",
-        uploadFiles:""
+        status: "",
+        hospital: "",
+        doctor: "",
+        phone: "",
+        time: "",
+        description: "",
+        uploadFiles: ""
       },
       formPatientTreat: {
         hospital: "",
@@ -128,7 +128,7 @@ const step = {
         recording: "",
         uploadFiles: ""
       },
-      formPatientZhuyuan: {        
+      formPatientZhuyuan: {
         more: [
           {
             hospital: "",
@@ -147,7 +147,7 @@ const step = {
             uploadFiles: ""
           }
         ]
-      },
+      }
     }
     // ---05再次评定页面
   }
