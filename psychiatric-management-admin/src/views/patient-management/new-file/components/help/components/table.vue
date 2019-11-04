@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-25 10:24:24
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-11-04 17:26:02
+ * @LastEditTime: 2019-11-04 21:23:05
  * @Description: 表格
  * @Email: UvDream@163.com
  -->
@@ -29,7 +29,20 @@
         @on-select-cancel="cancelTable"
         :columns="columns"
         :data="data"
-      ></Table>
+      >
+        <template slot-scope="{ row }" slot="isubsidy">
+          <span v-if="row.isubsidy==0">是</span>
+          <span v-if="row.isubsidy==1">否</span>
+        </template>
+        <template slot-scope="{ row }" slot="istilltreat">
+          <span v-if="row.istilltreat==0">是</span>
+          <span v-if="row.istilltreat==1">否</span>
+        </template>
+        <template slot-scope="{ row }" slot="isguardianduty">
+          <span v-if="row.isguardianduty==0">是</span>
+          <span v-if="row.isguardianduty==1">否</span>
+        </template>
+      </Table>
     </div>
     <div class="add">
       <div @click="modal=true">
@@ -188,17 +201,17 @@ export default {
         },
         {
           title: "是否符合补助条件",
-          key: "isubsidy",
+          slot: "isubsidy",
           align: "center"
         },
         {
           title: "是否坚持治疗",
-          key: "istilltreat",
+          slot: "istilltreat",
           align: "center"
         },
         {
           title: "监护人是否履行职责",
-          key: "isguardianduty",
+          slot: "isguardianduty",
           align: "center"
         },
         {
