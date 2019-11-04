@@ -28,7 +28,6 @@
               <Option value="3">卫生</Option>
               <Option value="4">民政</Option>
             </Select>
-            <Input v-model="item.department" placeholder="输入病患就诊医院" />
           </FormItem>
           <FormItem
             label="转发人姓名"
@@ -57,7 +56,7 @@
       </div>
     </Form>
     <div slot="footer" style="text-align:center">
-      <Button type="primary" size="large">
+      <Button type="primary" size="large" @click="saveForward({archivesId:indexId,deptIds:deptIds})">
         <Icon type="ios-sync" style="margin-right:10px" />转发
       </Button>
     </div>
@@ -65,7 +64,9 @@
 </template>
 
 <script>
+import mixin from "@/mixin/newFile";
 export default {
+  mixins: [mixin],
   props:{
     modalForward: {
       type: Boolean,
@@ -79,13 +80,29 @@ export default {
     return {
       modal: false,
       ruleForm: {
-        forward: [{ department: "1", name: "" }]
-      }
+        forward: [
+          { deptId: "1", name: "小明" },
+          { deptId: "2", name: "小红" }
+        ]
+      },
     };
+  },
+  computed:{
+    deptIds:function() {
+      let arr = this.ruleForm.forward.map((item,index)=>{
+         return {deptId:item.deptId}
+      });
+      return arr
+    }
   },
   watch:{
     modalForward:function(val){
       this.modal = val;
+    },
+    ruleForm:function(val){
+      this.deptIds = this.ruleForm.forward.map((item,index)=>{
+        return {deptId:item.deptId}
+      })
     }
   },
   methods: {
@@ -95,12 +112,12 @@ export default {
     },
     // 添加操作
     addFunc() {
-      let obj = { department: "", name: "" };
+      let obj = { deptId: "", name: "" };
       this.ruleForm.forward.push(obj);
     },
     cancle() {
       this.$emit('closemodal');
-    }
+    },
   }
 };
 </script>

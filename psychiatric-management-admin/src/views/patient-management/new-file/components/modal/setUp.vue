@@ -16,9 +16,9 @@
       :rules="ruleValidate"
       :label-width="200"
     >
-      <FormItem label="办结原因说明" prop="reason" class="form-blocks">
+      <FormItem label="办结原因说明" prop="remarks" class="form-blocks">
         <Input
-          v-model="formValidate.reason"
+          v-model="formValidate.remarks"
           type="textarea"
           :autosize="{ minRows: 2, maxRows: 5 }"
           placeholder="输入办结原因说明"
@@ -29,7 +29,7 @@
       </FormItem>
     </Form>
     <div slot="footer" style="text-align:center">
-      <Button type="primary" size="large">
+      <Button type="primary" size="large" @click="saveFinish()">
         <Icon type="ios-checkmark-circle-outline" style="margin-right:10px" />办结
       </Button>
     </div>
@@ -38,8 +38,9 @@
 
 <script>
 import Upload from "@/components/upload/upload";
-
+import mixin from "@/mixin/newFile";
 export default {
+  mixins: [mixin],
   components: {
     Upload
   },
@@ -56,11 +57,11 @@ export default {
     return {
       modal: this.modalSetUp,
       formValidate: {
-        reason: "",
+        remarks: "",
         uploadFiles: ""
       },
       ruleValidate: {
-        reason: [{ required: true, message: "请输入办结原因" }],
+        remarks: [{ required: true, message: "请输入办结原因" }],
         uploadFiles: [{ required: true, message: "请上传证明材料" }]
       }
     };
