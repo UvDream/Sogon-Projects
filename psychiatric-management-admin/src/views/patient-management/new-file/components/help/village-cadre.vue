@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-25 08:57:18
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-30 10:22:22
+ * @LastEditTime: 2019-11-04 15:10:41
  * @Description: 村居干部帮扶
  * @Email: UvDream@163.com
  -->
@@ -20,7 +20,7 @@
         <div class="search">
           <cForm />
         </div>
-        <cTable />
+        <cTable :code="0" />
       </div>
     </transition>
   </div>

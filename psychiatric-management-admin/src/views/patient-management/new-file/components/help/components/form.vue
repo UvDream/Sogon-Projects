@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-25 10:53:07
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-31 10:46:17
+ * @LastEditTime: 2019-11-04 15:30:03
  * @Description: 表单
  * @Email: UvDream@163.com
  -->
@@ -17,7 +17,10 @@
     >
       <div class="form" style="margin-top:20px">
         <FormItem label="姓名" prop="name" class="form-block">
-          <Input v-model="formValidate.name" placeholder="输入姓名" />
+          <!-- <Input v-model="formValidate.name" placeholder="输入姓名" /> -->
+          <Select v-model="formValidate.name" placeholder="请输入姓名">
+            <Option v-for="item in nameList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+          </Select>
         </FormItem>
         <FormItem label="部门" prop="department" class="form-block">
           <Input v-model="formValidate.department" placeholder="输入部门" />
@@ -28,9 +31,9 @@
         <FormItem label="联系电话" prop="phone" class="form-block">
           <Input v-model="formValidate.phone" placeholder="输入联系电话" />
         </FormItem>
-        <FormItem style="width:100px">
+        <!-- <FormItem style="width:100px">
           <Button type="primary" style="margin-top:25px">保存</Button>
-        </FormItem>
+        </FormItem>-->
       </div>
     </Form>
   </div>
@@ -42,6 +45,7 @@ import { validatePhone } from "@/util/util";
 export default {
   data() {
     return {
+      nameList: [],
       formValidate: {
         name: "",
         department: "",

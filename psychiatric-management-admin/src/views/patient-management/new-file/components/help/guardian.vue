@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-25 10:49:27
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-30 10:30:51
+ * @LastEditTime: 2019-11-04 16:02:34
  * @Description: 监护人帮扶
  * @Email: UvDream@163.com
  -->
@@ -50,7 +50,7 @@
             </div>
           </Form>
         </div>
-        <cTable />
+        <cTable :code="3" />
       </div>
     </transition>
   </div>

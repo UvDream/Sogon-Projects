@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 17:27:24
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-31 10:39:51
+ * @LastEditTime: 2019-11-04 15:33:48
  * @Description: 新建档案
  * @Email: UvDream@163.com
  -->
@@ -49,7 +49,7 @@ export default {
     AgainAssessment
   },
   mounted() {
-    this.$store.state.step.stepStatus = 0;
+    this.$store.state.step.stepStatus = 3;
   },
   computed: {
     status: function() {
