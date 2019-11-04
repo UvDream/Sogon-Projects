@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-25 10:24:24
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-11-04 16:30:40
+ * @LastEditTime: 2019-11-04 16:41:18
  * @Description: 表格
  * @Email: UvDream@163.com
  -->
@@ -25,6 +25,7 @@
         ref="selection"
         @on-select-all="selectAll"
         @on-select-all-cancel="cancelAll"
+        @on-select="selectTable"
         :columns="columns"
         :data="data"
       ></Table>
@@ -278,6 +279,10 @@ export default {
     },
     cancelAll(data) {
       this.allCheck = false;
+    },
+    selectTable(selection, row) {
+      console.log(selection);
+      console.log(row);
     }
   }
 };

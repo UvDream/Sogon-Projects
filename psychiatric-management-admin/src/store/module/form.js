@@ -5,6 +5,9 @@ const form = {
     cadreList: [
       {
         helpDate: "2019"
+      },
+      {
+        helpDate: "222"
       }
     ],
     // 监护民警帮扶
