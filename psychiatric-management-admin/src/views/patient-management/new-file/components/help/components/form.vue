@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-25 10:53:07
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-11-04 17:51:22
+ * @LastEditTime: 2019-11-04 18:03:05
  * @Description: 表单
  * @Email: UvDream@163.com
  -->
@@ -30,7 +30,7 @@
           </Select>
         </FormItem>
         <FormItem label="姓名" prop="name" class="form-block">
-          <Select v-model="formValidate.name" placeholder="请输入姓名">
+          <Select v-model="formValidate.name" placeholder="请输入姓名" @on-change="nameChange">
             <Option v-for="item in nameList" :value="item.id" :key="item.value">{{ item.name }}</Option>
           </Select>
         </FormItem>
@@ -88,12 +88,22 @@ export default {
   },
   methods: {
     departmentChange() {
-      console.log(this.formValidate.department);
       let obj = {
         deptId: this.formValidate.department
       };
       nameFunc(obj).then(res => {
         this.nameList = res.data;
+      });
+    },
+    nameChange() {
+      this.nameList.forEach(element => {
+        if (
+          element.deptId == this.formValidate.department &&
+          element.id == this.formValidate.name
+        ) {
+          this.formValidate.IdNumber = element.idCode;
+          this.formValidate.phone = element.telephone;
+        }
       });
     }
   }
