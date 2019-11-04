@@ -10,8 +10,8 @@
   <div class="white-block">
     <TopTitle :title="'病患治疗记录'" v-model="closed" />
     <transition name="slide">
-      <Form ref="ruleForm" label-position="top" :model="ruleForm" :label-width="200" v-if="!closed">
-        <div class="form-delete" v-for="(item, index) in ruleForm.more" :key="index">
+      <Form ref="formValidate" label-position="top" :model="formValidate" :label-width="200" v-if="!closed">
+        <div class="form-delete" v-for="(item, index) in formValidate.more" :key="index">
           <div class="form">
             <FormItem
               label="病患就诊医院"
@@ -96,7 +96,7 @@
         </div>
 
         <!-- <FormItem class="form-add"> -->
-        <!-- <Button type="primary" @click="handleSubmit('ruleForm')">Submit</Button> -->
+        <!-- <Button type="primary" @click="handleSubmit('formValidate')">Submit</Button> -->
         <div class="form-add">
           <div @click="handleAdd">
             <img src="../../../../../assets/fonts/add.png" alt />
@@ -120,7 +120,7 @@ export default {
   data() {
     return {
       closed: false,
-      ruleForm: {
+      formValidate: {
         more: [
           {
             hospital: "",
@@ -165,11 +165,11 @@ export default {
         recording: "",
         uploadFiles: ""
       };
-      this.ruleForm.more.push(obj);
+      this.formValidate.more.push(obj);
     },
     // 删除
     handleRemove(index) {
-      this.ruleForm.more.splice(index, 1);
+      this.formValidate.more.splice(index, 1);
     }
   }
 };

@@ -2,8 +2,17 @@ const step = {
   state: {
     // 步骤状态
     stepStatus: 0,
-    // 发现页面
+    // 01发现页面
     findStatus: false,
+    // 02初步处理页面
+    dealStatus: false,
+    // 03评定治疗页面
+    evaluateStatus: false,
+    // 04四帮一页面
+    helpStatus: false,
+    // 05再次评定页面
+    againStatus: false,
+    // ---01发现页面
     findData: {
       basicInformation: {
         code: "",
@@ -40,6 +49,7 @@ const step = {
          uploadFiles: [{"filepath":"D://file"},{"filepath":"D://Filetwo"}]
       }
     },
+    // ---02初步处理页面
     dealData: {
       formLocal: {
         isTreatment: "",
@@ -59,31 +69,48 @@ const step = {
         archivesId:""
       },
     },
-    evaluateData: {
+    // ---03评定治疗页面
+    treatData: {
       formPatientLevel: {
         status:"",
         hospital:"",
         doctor:"",
         phone:"",
-        date:"",
+        time:"",
         description:"",
         uploadFiles:""
       },
       formPatientTreat: {
-        hospital:"",
-        doctor:"",
-        phone:"",
-        time:"",
-        description:""
+        hospital: "",
+        doctors: "",
+        phone: "",
+        dischargeTime: "",
+        recording: "",
+        uploadFiles: ""
       },
-      formPatientZhuyuan: {
-        hospital:"",
-        doctor:"",
-        phone:"",
-        time:"",
-        description:""
+      formPatientZhuyuan: {        
+        more: [
+          {
+            hospital: "",
+            doctors: "",
+            hospitalStay: "",
+            dischargeTime: "",
+            recording: "",
+            uploadFiles: ""
+          },
+          {
+            hospital: "",
+            doctors: "",
+            hospitalStay: "",
+            dischargeTime: "",
+            recording: "",
+            uploadFiles: ""
+          }
+        ]
       },
     }
+    // ---04四帮一页面
+    // ---05再次评定页面
   }
 };
 export default step;

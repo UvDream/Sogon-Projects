@@ -75,11 +75,13 @@ export default {
     return {
       closed: false,
       formValidate: {
+        status:"",
         hospital:"",
         doctor:"",
         phone:"",
         time:"",
-        description:""
+        description:"",
+        uploadFiles:""
       },
       ruleValidate: {
         status: [
