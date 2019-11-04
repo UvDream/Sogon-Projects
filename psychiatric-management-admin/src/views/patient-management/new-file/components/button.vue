@@ -186,17 +186,18 @@ export default {
           }
 
           let formPatientTreat={
+            "type":"0",
+            "patientHospital":"wws",
             "patientDoctor":"0",
             "doctorTel":"222222222222222222",
             "treatTime":"0",
-            "checkinTime":"0",
-            "checkoutTime":"13222222222",
+            "checkinTime":"0",            
             "treatRemark":"13222222222",
-            "tFiles":"13222222222",
-            "type":"13222222222",
+            "tFiles":"13222222222"
           }
 
           let formPatientZhuyuan={
+            "type":"1",
             "patientHospital":"123",
             "doctorName":"0",
             "checkinTime":"222222222222222222",
@@ -206,27 +207,29 @@ export default {
           }
 
           let dataLevel=this.$store.state.step.treatData.formPatientLevel;
-          objLocal.patientLevel = dataLevel.status;
-          objLocal.hospitalName = dataLevel.hospital;
-          objLocal.doctorName = dataLevel.doctor;
-          objLocal.doctorTel = dataLevel.phone;
-          objLocal.doctorEvtime = dataLevel.time;
-          objLocal.levelRemark = dataLevel.description;
-          objLocal.tFiles = dataLevel.uploadFiles;         
-          let dataTreat=this.$store.state.step.treatData.formPatientLevel;
-          objLocal.patientHospital = dataLevel.hospital;
-          objLocal.patientDoctor = dataLevel.doctors;
-          objLocal.doctorTel = dataLevel.phone;
-          objLocal.treatTime = dataLevel.dischargeTime;
-          objLocal.treatRemark = dataLevel.recording;   
-          objLocal.tFiles = dataLevel.uploadFiles;   
-          let dataLive=this.$store.state.step.treatData.formPatientLevel;
-          objLocal.patientHospital = dataLevel.hospital;
-          objLocal.doctorName = dataLevel.doctors;
-          objLocal.checkinTime = dataLevel.hospitalStay;
-          objLocal.checkoutTime = dataLevel.dischargeTime;
-          objLocal.treatRemark = dataLevel.recording;
-          objLocal.tFiles = dataLevel.uploadFiles;   
+          formPatientLevel.patientLevel = dataLevel.status;
+          formPatientLevel.hospitalName = dataLevel.hospital;
+          formPatientLevel.doctorName = dataLevel.doctor;
+          formPatientLevel.doctorTel = dataLevel.phone;
+          formPatientLevel.doctorEvtime = dataLevel.time;
+          formPatientLevel.levelRemark = dataLevel.description;
+          formPatientLevel.tFiles = dataLevel.uploadFiles;       
+
+          let dataTreat=this.$store.state.step.treatData.formPatientTreat;
+          formPatientTreat.patientHospital = dataLevel.hospital;
+          formPatientTreat.patientDoctor = dataLevel.doctors;
+          formPatientTreat.doctorTel = dataLevel.phone;
+          formPatientTreat.treatTime = dataLevel.dischargeTime;
+          formPatientTreat.treatRemark = dataLevel.recording;   
+          formPatientTreat.tFiles = dataLevel.uploadFiles;   
+
+          let dataLive=this.$store.state.step.treatData.formPatientZhuyuan;
+          formPatientZhuyuan.patientHospital = dataLevel.hospital;
+          formPatientZhuyuan.doctorName = dataLevel.doctors;
+          formPatientZhuyuan.checkinTime = dataLevel.hospitalStay;
+          formPatientZhuyuan.checkoutTime = dataLevel.dischargeTime;
+          formPatientZhuyuan.treatRemark = dataLevel.recording;
+          formPatientZhuyuan.tFiles = dataLevel.uploadFiles;   
           
 
           handleSaveList(obj_local).then(res=>{

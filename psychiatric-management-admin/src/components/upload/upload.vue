@@ -64,8 +64,7 @@ export default {
         }
       ],
       headers: {
-        "Content-Type": "application/json",
-        "token": Cookies.get('TokenKey')
+        "Content-Type": "application/json", 
       },
       imgName: "222.jpg",
       visible: false,

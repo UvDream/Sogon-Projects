@@ -108,8 +108,47 @@ const step = {
           }
         ]
       },
-    }
+    },
     // ---04四帮一页面
+    treatData: {
+      formPatientLevel: {
+        status:"",
+        hospital:"",
+        doctor:"",
+        phone:"",
+        time:"",
+        description:"",
+        uploadFiles:""
+      },
+      formPatientTreat: {
+        hospital: "",
+        doctors: "",
+        phone: "",
+        dischargeTime: "",
+        recording: "",
+        uploadFiles: ""
+      },
+      formPatientZhuyuan: {        
+        more: [
+          {
+            hospital: "",
+            doctors: "",
+            hospitalStay: "",
+            dischargeTime: "",
+            recording: "",
+            uploadFiles: ""
+          },
+          {
+            hospital: "",
+            doctors: "",
+            hospitalStay: "",
+            dischargeTime: "",
+            recording: "",
+            uploadFiles: ""
+          }
+        ]
+      },
+    }
     // ---05再次评定页面
   }
 };
