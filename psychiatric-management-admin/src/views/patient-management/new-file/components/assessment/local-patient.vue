@@ -69,6 +69,7 @@
 <script>
 import TopTitle from "../../../../../components/top-title/top-title";
 import Upload from "@/components/upload/upload";
+import vm from "../../event";
 export default {
   components: {
     TopTitle,
@@ -91,6 +92,13 @@ export default {
         uploadFiles: [{ required: true, message: "上传本埠证明材料" }]
       }
     };
+  },
+  created() {
+    vm.$on("blur", val => {
+      if (val == "saveEvent") {
+        this.$store.state.step.dealData.basicInformation = this.formValidate;
+      }
+    });
   }
 };
 </script>

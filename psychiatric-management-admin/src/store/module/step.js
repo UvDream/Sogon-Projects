@@ -3,15 +3,17 @@ const step = {
     // 步骤状态
     stepStatus: 0,
     // 01发现页面
-    findStatus: false,
+    findStatus: true,
     // 02初步处理页面
     dealStatus: false,
     // 03评定治疗页面
-    evaluateStatus: false,
+    treatStatus: false,
     // 04四帮一页面
     helpStatus: false,
     // 05再次评定页面
-    againStatus: false,
+    againTreatStatus: false,
+    // 06再次评定页面
+    outControlStatus: false,
     // ---01发现页面
     findData: {
       basicInformation: {
@@ -148,8 +150,38 @@ const step = {
           }
         ]
       },
-    }
+    },    
     // ---05再次评定页面
+    againTreatData: {
+      formPatientLevel: {
+        status:"",
+        hospital:"",
+        doctor:"",
+        phone:"",
+        time:"",
+        description:"",
+        uploadFiles:""
+      },
+    },
+    // ---06脱离管控
+    outControlData: {
+      formPatientRecorder: [
+        {
+          date:"",
+          hospital:"",
+          unit:"",
+          recording:"",
+          uploadFiles:""
+        },
+        {
+          date:"",
+          hospital:"",
+          unit:"",
+          recording:"",
+          uploadFiles:""
+        },
+      ]
+    }
   }
 };
 export default step;

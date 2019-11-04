@@ -27,19 +27,22 @@
               <DatePicker type="datetime" placeholder="请选择病患康复日期" v-model="item.date"></DatePicker>
             </FormItem>
             <FormItem
-              label="病患就诊医院"
+              label="病患康复后状态"
               class="form-block"
               :prop="'more.' + index + '.hospital'"
               :rules="{
               required: true,
-              message: '请输入病患就诊医院',
+              message: '请输入病患康复后状态',
               trigger: 'blur'
             }"
             >
               <Select v-model="item.hospital" placeholder="选择档案状态">
-                <Option value="0">男</Option>
-                <Option value="1">女</Option>
-                <Option value="2">未知</Option>
+                <Option value="0">在家</Option>
+                <Option value="1">住院</Option>
+                <Option value="2">就学</Option>
+                <Option value="3">就业</Option>
+                <Option value="4">不明</Option>
+                <Option value="5">其它</Option>
               </Select>
             </FormItem>
             <FormItem

@@ -65,7 +65,7 @@
 <script>
 import TopTitle from "@/components/top-title/top-title";
 import Upload from "@/components/upload/upload";
-
+import vm from "../../event";
 export default {
   components: {
     TopTitle,
@@ -116,9 +116,6 @@ export default {
         this.$store.state.step.findData.dealData = this.formValidate;
       }
     });
-  },
-  mounted(){
-    this.formValidate = this.$store.state.step.findData.dealData;
   },
 };
 </script>
