@@ -14,7 +14,7 @@ export default {
     //   this.handleSubmit("handleSubmit");
     // }
     saveForward(obj) {
-      debugger
+      // debugger
       api.forward(obj).then(res=>{
         this.$Message.success("转发成功!");
       })

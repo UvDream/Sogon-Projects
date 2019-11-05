@@ -55,6 +55,12 @@ import vm from "../../../event";
 import { departmentFunc, nameFunc } from "@/api/four/index";
 
 export default {
+  props:{
+code:{
+  type:Number
+}
+  },
+
   data() {
     return {
       departmentList: [],
@@ -85,7 +91,9 @@ export default {
   created() {
     vm.$on("blur", val => {
       if (val == "saveEvent") {
-        this.$store.state.step.form.cadre = this.formValidate;
+        this.code==0?this.$store.state.step.form.cadre = this.formValidate:""
+        this.code==1?this.$store.state.step.form.police = this.formValidate:""
+        this.code==2?this.$store.state.step.form.doctor = this.formValidate:""
       }
     });
   }, 

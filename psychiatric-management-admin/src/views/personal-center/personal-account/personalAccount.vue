@@ -184,7 +184,7 @@ export default {
   },
   mounted() {
     api.checkPerAccount().then(res => {
-      debugger
+      // debugger
       console.log(res.data);
       this.formValidate = res.data;
     });
@@ -225,7 +225,7 @@ export default {
       this.modalP = false;
     },
     okI () {
-      debugger
+      // debugger
       /*this.$refs[name].validate(valid => {
         if (valid) {
           this.$Message.success("Success!");
