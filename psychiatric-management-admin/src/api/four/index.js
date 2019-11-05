@@ -40,3 +40,19 @@ export const listFunc = data => {
     data
   });
 };
+
+// 部门接口
+export const departmentFunc = data => {
+  return fetch({
+    url: "/jsbrgl/fourToOneController/selectDept",
+    method: "POST",
+    data
+  });
+};
+export const nameFunc = data => {
+  return fetch({
+    url: "/jsbrgl/fourToOneController/selectUser",
+    method: "POST",
+    data
+  });
+};

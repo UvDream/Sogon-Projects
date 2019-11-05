@@ -1,3 +1,4 @@
+import api from "@/api/modal";
 export default {
   data() {
     return {};
@@ -12,5 +13,30 @@ export default {
     //   console.log(type);
     //   this.handleSubmit("handleSubmit");
     // }
+    saveForward(obj) {
+      debugger
+      api.forward(obj).then(res=>{
+        this.$Message.success("转发成功!");
+      })
+    },
+    saveFinish() {
+      let obj = {
+        tArchiveId:this.indexId,
+        remarks:this.formValidate.remarks,
+      };
+      api.finish(obj).then(res=>{
+        this.$Message.success("办结成功!");
+      })
+    },
+    saveBack() {
+      let obj = {
+        tArchiveId:this.indexId,
+        remarks:this.formValidate.remarks,
+        curPositionid:this.formValidate.curPositionid
+      };
+      api.back(obj).then(res=>{
+        this.$Message.success("退回成功!");
+      })
+    },
   }
 };

@@ -57,7 +57,7 @@
       </div>
     </Form>
     <div slot="footer" style="text-align:center">
-      <Button type="primary" size="large" @click="btnFunc">
+      <Button type="primary" size="large" @click="saveForward({archivesId:indexId,deptIds:deptIds})">
         <Icon type="ios-sync" style="margin-right:10px" />转发
       </Button>
     </div>
@@ -65,7 +65,9 @@
 </template>
 
 <script>
+import mixin from "@/mixin/newFile";
 export default {
+  mixins: [mixin],
   props:{
     modalForward: {
       type: Boolean,
@@ -79,13 +81,29 @@ export default {
     return {
       modal: false,
       ruleForm: {
-        forward: []
-      }
+        forward: [
+          { deptId: "1", name: "小明" },
+          { deptId: "2", name: "小红" }
+        ]
+      },
     };
+  },
+  computed:{
+    deptIds:function() {
+      let arr = this.ruleForm.forward.map((item,index)=>{
+         return {deptId:item.deptId}
+      });
+      return arr
+    }
   },
   watch:{
     modalForward:function(val){
       this.modal = val;
+    },
+    ruleForm:function(val){
+      this.deptIds = this.ruleForm.forward.map((item,index)=>{
+        return {deptId:item.deptId}
+      })
     }
   },
   mounted(){
@@ -98,7 +116,7 @@ export default {
     },
     // 添加操作
     addFunc() {
-      let obj = { department: "", name: "" };
+      let obj = { deptId: "", name: "" };
       this.ruleForm.forward.push(obj);
     },
     cancle() {

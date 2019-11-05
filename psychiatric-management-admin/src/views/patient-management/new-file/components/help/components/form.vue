@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-25 10:53:07
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-11-04 15:30:03
+ * @LastEditTime: 2019-11-04 18:03:05
  * @Description: 表单
  * @Email: UvDream@163.com
  -->
@@ -16,15 +16,25 @@
       :label-width="200"
     >
       <div class="form" style="margin-top:20px">
-        <FormItem label="姓名" prop="name" class="form-block">
-          <!-- <Input v-model="formValidate.name" placeholder="输入姓名" /> -->
-          <Select v-model="formValidate.name" placeholder="请输入姓名">
-            <Option v-for="item in nameList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+        <FormItem label="部门" prop="department" class="form-block">
+          <Select
+            v-model="formValidate.department"
+            placeholder="请选择部门"
+            @on-change="departmentChange"
+          >
+            <Option
+              v-for="item in departmentList"
+              :value="item.id"
+              :key="item.id"
+            >{{ item.deptName }}</Option>
           </Select>
         </FormItem>
-        <FormItem label="部门" prop="department" class="form-block">
-          <Input v-model="formValidate.department" placeholder="输入部门" />
+        <FormItem label="姓名" prop="name" class="form-block">
+          <Select v-model="formValidate.name" placeholder="请输入姓名" @on-change="nameChange">
+            <Option v-for="item in nameList" :value="item.id" :key="item.value">{{ item.name }}</Option>
+          </Select>
         </FormItem>
+
         <FormItem label="身份证号" prop="IdNumber" class="form-block">
           <Input v-model="formValidate.IdNumber" placeholder="输入身份证号" />
         </FormItem>
@@ -42,9 +52,12 @@
 <script>
 import { validatePhone } from "@/util/util";
 import vm from "../../../event";
+import { departmentFunc, nameFunc } from "@/api/four/index";
+
 export default {
   data() {
     return {
+      departmentList: [],
       nameList: [],
       formValidate: {
         name: "",
@@ -76,6 +89,32 @@ export default {
       }
     });
   }, 
+  mounted() {
+    departmentFunc().then(res => {
+      this.departmentList = res.data;
+    });
+  },
+  methods: {
+    departmentChange() {
+      let obj = {
+        deptId: this.formValidate.department
+      };
+      nameFunc(obj).then(res => {
+        this.nameList = res.data;
+      });
+    },
+    nameChange() {
+      this.nameList.forEach(element => {
+        if (
+          element.deptId == this.formValidate.department &&
+          element.id == this.formValidate.name
+        ) {
+          this.formValidate.IdNumber = element.idCode;
+          this.formValidate.phone = element.telephone;
+        }
+      });
+    }
+  }
 };
 </script>
 

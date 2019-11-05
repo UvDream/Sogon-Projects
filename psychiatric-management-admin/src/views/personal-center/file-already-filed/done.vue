@@ -13,7 +13,6 @@
         ref="formInline"
         label-position="top"
         :model="formInline"
-        :rules="ruleValidate"
         :label-width="200">
         <div class="form">
           <FormItem label="病患姓名" class="form-block" prop="patientName">
