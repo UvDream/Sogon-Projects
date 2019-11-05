@@ -34,6 +34,9 @@ export default {
         tArchiveId:this.indexId,
         remarks:this.formValidate.remarks,
       };
+      if(this.$route.name=="newFile"){
+        obj.tArchiveId=this.$store.state.step.archivesId;
+      }
       api.finish(obj).then(res=>{
         this.$Message.success("办结成功!");
       })
@@ -44,6 +47,9 @@ export default {
         remarks:this.formValidate.remarks,
         curPositionid:this.formValidate.curPositionid
       };
+      if(this.$route.name=="newFile"){
+        obj.tArchiveId=this.$store.state.step.archivesId;
+      }
       api.back(obj).then(res=>{
         this.$Message.success("退回成功!");
       })
