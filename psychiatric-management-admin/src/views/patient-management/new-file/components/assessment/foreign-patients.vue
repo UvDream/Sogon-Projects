@@ -80,10 +80,10 @@ export default {
   created() {
     vm.$on("blur", val => {
       if (val == "saveEvent") {
-        this.$store.state.step.dealData.basicInformation = this.formValidate;
+        this.$store.state.step.dealData.formOutside = this.formValidate;
       }
     });
-  },
+  },  
 };
 </script>
 

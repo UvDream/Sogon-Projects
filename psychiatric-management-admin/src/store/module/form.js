@@ -1,7 +1,14 @@
 const form = {
   state: {
     //   村居干部帮扶
-    cadre: {},
+    cadre: {
+      name:"",
+      department:"",
+      IdNumber:"",
+      phone:""
+    },
+    // 列表信息
+    cadreSelect: {},
     cadreList: [
       {
         helpDate: "2019"
@@ -12,6 +19,7 @@ const form = {
     ],
     // 监护民警帮扶
     police: {},
+    policeSelect: {},
     policeList: [
       {
         helpDate: "2020"
@@ -19,6 +27,7 @@ const form = {
     ],
     // 医生帮扶
     doctor: {},
+    doctorSelect: {},
     doctorList: [
       {
         helpDate: "2021"
@@ -26,6 +35,7 @@ const form = {
     ],
     // 监护人监护
     guardian: {},
+    guardianSelect: {},
     guardianList: [
       {
         helpDate: "2022"

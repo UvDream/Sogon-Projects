@@ -1,10 +1,10 @@
 import fetch from "../fetch";
 import Cookies from 'js-cookie'
 
-// 再次评定
-export const againSaveList = data => {
+// 脱离管控
+export const outControlSaveList = data => {
     return fetch({
-      url: "/jsbrgl/reEvaluateController/saveEvaluateController",
+      url: "/jsbrgl/rehabilitationController/saveRehabilitation",
       method: "POST",
       data,
       headers: { 

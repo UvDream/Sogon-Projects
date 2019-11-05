@@ -4,7 +4,7 @@
       <div v-for="(item,index) in list" :key="index" class="top-step-block">
         <div class="top-step-block-body" :class="{'isSelect':status>=index}">
           <div>
-            <Icon :type="item.icon" />
+            <Icon :type="item.icon" size="18" />
             <div>{{item.name}}</div>
           </div>
         </div>
@@ -36,7 +36,7 @@ export default {
         { name: "初步处理", icon: "md-brush" },
         { name: "评定治疗", icon: "ios-heart" },
         { name: "四帮一", icon: "ios-hand" },
-        { name: "再次评定", icon: "ios-hand" },
+        { name: "再次评定", icon: "ios-color-wand" },
         { name: "脱离管控", icon: "ios-happy" }
       ]
     };
@@ -51,7 +51,8 @@ export default {
 
 <style scoped lang="less">
 .isSelect {
-  background-color: #53a7a9 !important;
+  // background-color: #53a7a9 !important;
+  background-image: url("../../../../assets/imgs.png") !important;
 }
 .isDot {
   border-top: 2px dotted #53a7a9 !important;
@@ -97,33 +98,20 @@ export default {
       }
     }
     &-body {
-      width: 65px;
-      height: 65px;
-      position: relative;
+      width: 75px;
+      height: 75px;
       color: #fff;
-      top: 15px;
-      left: 10px;
       border-radius: 8px;
-      -webkit-transform-origin: 0 100%;
-      -moz-transform-origin: 0 100%;
-      -o-transform-origin: 0 100%;
-      -ms-transform-origin: 0 100%;
-      transform-origin: 0 100%;
-      -webkit-transform: rotate(-45deg);
-      -moz-transform: rotate(-45deg);
-      -o-transform: rotate(-45deg);
-      -ms-transform: rotate(-45deg);
-      transform: rotate(-45deg);
-      background: #c6cbcb;
+      background-image: url("../../../../assets/img.png");
+      background-size: 100% 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       & > div {
         text-align: center;
         width: 60px;
-        // outline: 1px solid red;
         text-align: center;
-        transform: rotate(45deg);
-        position: relative;
-        left: 5px;
-        top: 10px;
+        font-size: 12px;
       }
     }
   }

@@ -18,7 +18,7 @@
     <transition name="slide">
       <div v-if="!closed">
         <div class="search">
-          <cForm v-model="formValidate.fzysbf" />
+          <cForm :code="2" />
         </div>
         <cTable :code="2" />
       </div>
