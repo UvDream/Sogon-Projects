@@ -2,14 +2,14 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 13:52:22
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-30 10:44:29
+ * @LastEditTime: 2019-11-05 18:00:58
  * @Description: logo
  * @Email: UvDream@163.com
  -->
 <template>
   <div class="logo">
     <img src="../../assets/fonts/login/logo.png" width="50" alt />
-    <div>徐州重度精神病患者</div>
+    <div>经开区重度精神病患者</div>
     <div>帮扶管控系统</div>
     <div>HELP MANAGEMENT AND CONTROL SYSTEM</div>
   </div>

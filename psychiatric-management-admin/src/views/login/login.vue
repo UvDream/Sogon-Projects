@@ -11,7 +11,7 @@
     <div class="logo">
       <img src="../../assets/fonts/login/logo.png" />
       <div>
-        <div>徐州重度精神病患者</div>
+        <div>徐州经开区重度精神病患者</div>
         <div>帮扶管控系统</div>
         <div>HELP MANAGEMENT AND CONTROL SYSTEM</div>
       </div>
