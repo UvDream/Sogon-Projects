@@ -22,19 +22,20 @@
           :label-width="200"
         >
           <div class="form">
-            <FormItem label="所属部门" prop="deptId" class="form-block">
-              <Select v-model="formValidate.deptId" disabled>
+            <FormItem label="所属部门" prop="deptname" class="form-block">
+              <!-- <Select v-model="formValidate.deptId" disabled>
                 <Option value="2">公安</Option>
                 <Option value="4">民政</Option>
                 <Option value="1">网络</Option>
                 <Option value="3">卫生</Option>
-              </Select>
+              </Select> -->
+              <Input v-model="formValidate.deptname" placeholder="输入联系电话" disabled />
             </FormItem>
             <FormItem label="联系电话" prop="telephone" class="form-block">
               <Input v-model="formValidate.telephone" placeholder="输入联系电话" disabled />
             </FormItem>
-            <FormItem label="账户名称" prop="deptname" class="form-block">
-              <Input v-model="formValidate.deptname" placeholder="输入账户名称" disabled />
+            <FormItem label="账户名称" prop="name" class="form-block">
+              <Input v-model="formValidate.name" placeholder="输入账户名称" disabled />
             </FormItem>
             <FormItem label="登录密码" prop="pwd" class="form-block">
               <Input v-model="formValidate.pwd" placeholder="输入登录密码" disabled />
@@ -158,8 +159,9 @@ export default {
       closed: false,
       formValidate: {
         deptId: "1",
+        deptname: "",
         telephone: "18661910020",
-        deptname: "2222",
+        name: "2222",
         pwd: "111111"
       },
       formValidate2: {
@@ -184,7 +186,6 @@ export default {
   },
   mounted() {
     api.checkPerAccount().then(res => {
-      debugger
       console.log(res.data);
       this.formValidate = res.data;
     });
@@ -208,34 +209,32 @@ export default {
     okP (name) {
       this.$refs[name].validate(valid => {
         if (valid) {
-          this.$Message.success("Success!");
-          /*api.updatePassWord(this.formValidate2).then(res => {
-            console.log(res.data);
-            if(res.data=="{}"){
+          api.updatePassWord(this.formValidate2).then(res => {
+            if(JSON.stringify(res)=="{}"){
               this.formValidate.pwd = this.formValidate2.newPassWord;
+              this.$Message.success("修改密码成功!");
               this.modalP = false;
             }else{
-              this.$Message.error(res.data.msg);
+              this.$Message.error(res.msg);
             }
-          });*/
+          });
         }
       });
     },
     cancelP () {
       this.modalP = false;
     },
-    okI () {
-      debugger
-      /*this.$refs[name].validate(valid => {
+    okI (name) {
+      this.$refs[name].validate(valid => {
         if (valid) {
-          this.$Message.success("Success!");
-          
-        }
-      });*/
-      api.updateUserInfo(this.formValidate3).then(res => {
-        console.log(res.data);
-        if(res.data=="{}"){
-          this.modalI = false;
+          api.updateUserInfo(this.formValidate3).then(res => {
+            if(JSON.stringify(res)=="{}"){
+              this.modalI = false;
+              this.$Message.success("修改信息成功!");
+            }else{
+              this.$Message.error(res.msg);
+            }
+          });
         }
       });
     },

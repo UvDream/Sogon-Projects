@@ -41,22 +41,28 @@
                 <Select v-model="formValidate.type">
                   <Option value="0">转发通知</Option>
                   <Option value="1">退回通知</Option>
-                  <Option value="4">转发超期通知</Option>
-                  <Option value="6">定期帮扶通知</Option>
+                  <!-- <Option value="2">帮扶通知</Option> -->
                   <Option value="3">走访通知</Option>
+                  <Option value="4">转发超期通知</Option>
+                  <!-- <Option value="5">退回超期通知</Option> -->
+                  <Option value="6">帮扶超期通知</Option>
+                  <!-- <Option value="7">走访超期通知</Option> -->
+                  
                 </Select>
               </FormItem>
               <FormItem label="通知开始时间" prop="beginTime" class="form-block">
                 <DatePicker
-                  type="date"
+                  type="datetime"
                   placeholder="选择通知时间"
+                  format="yyyy/MM/dd"
                   v-model="formValidate.beginTime"
                 ></DatePicker>
               </FormItem>
               <FormItem label="通知结束时间" prop="endTime" class="form-block">
                 <DatePicker
-                  type="date"
+                  type="datetime"
                   placeholder="选择通知时间"
+                  format="yyyy/MM/dd"
                   v-model="formValidate.endTime"
                 ></DatePicker>
               </FormItem>
@@ -82,7 +88,7 @@
           :data="tabList" 
           @on-selection-change="Modulechange">
             <template slot-scope="{ row, index}" slot="islook">
-              <span v-if="row.islook == 0">
+              <span v-if="row.islook == '0'">
                 <span style="color: #F5222D;">未读</span>
               </span>
               <span v-else>
@@ -95,7 +101,7 @@
               </router-link>
             </template>
             <template slot-scope="{ row, index }" slot="action">
-                <Button class="my-table-handle-button" v-if="row.islook==0" @click="handleRead(row.id)">已读</Button>
+                <Button class="my-table-handle-button" v-if="row.islook=='0'" @click="handleRead(row.id)">未读</Button>
                 <Button class="my-table-handle-button" v-else :disabled="true">已读</Button>
             </template>
           </Table>
@@ -254,6 +260,8 @@ export default {
     );
     this.searchFunc(obj);
   },
+  watch:{
+  },
   methods: {
     //取消
     handleReset (name) {
@@ -261,15 +269,9 @@ export default {
     },
     //搜索
     search() {
-      let obj = Object.assign(
-        this.formValidate,
-        {pageNum:this.pageNum},
-        {pageSize:this.pageSize}
-      );
-      this.searchFunc(obj);
-    },
-    //搜索
-    search() {
+      debugger
+      let ss = formatDate(new Date(this.formValidate.beginTime),'yyyy-MM-dd hh:mm:ss');
+      let aa = formatDate(new Date(this.formValidate.endTime),'yyyy-MM-dd hh:mm:ss');
       let obj = Object.assign(
         this.formValidate,
         {pageNum:this.pageNum},
@@ -294,7 +296,6 @@ export default {
         arr = this.selectList.map((item)=>{
           return item.id
         });
-        console.log(arr)
         api.updateMessage({ids:arr}).then(res => {
           console.log(res);
           this.$Message.success("Success!");
@@ -306,8 +307,11 @@ export default {
       let arr = [id];
       console.log(arr)
       api.updateMessage({ids:arr}).then(res => {
-        console.log(res);
-        this.$Message.success("Success!");
+        if(JSON.stringify(res)=="{}"){
+          this.$Message.success("Success!");
+        }else{
+          this.$Message.error(res.msg);
+        }
       });
     },
     handleSelectAll (status) {

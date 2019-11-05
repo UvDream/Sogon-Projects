@@ -13,7 +13,6 @@
         ref="formInline"
         label-position="top"
         :model="formInline"
-        :rules="ruleValidate"
         :label-width="200">
         <div class="form">
           <FormItem label="病患姓名" class="form-block" prop="patientName">
@@ -74,6 +73,17 @@
         :data="tabList" 
         @on-selection-change="Modulechange"
       >
+        <template slot-scope="{ row, index}" slot="urgent">
+          <span v-if="row.urgent == '0'">
+            <span>一般</span>
+          </span>
+          <span v-else-if="row.urgent == '1'">
+            紧急
+          </span>
+          <span v-else>
+            非常紧急
+          </span>
+        </template>
         <template slot-scope="{ row, index}" slot="code">
           <router-link :to="{name:'newFile', params: { id : row.code }}">
             {{row.code}}
@@ -133,6 +143,7 @@
             class="my-table-handle-button" 
             @click="handlereturn(row.id,index)"
             v-if="row.status == 2 || row.status == 4 || row.status == 6 || row.status == 7">
+            
             退回
           </Button>
           <Button 
@@ -178,10 +189,8 @@ import Forward from "../../patient-management/new-file/components/modal/forward"
 import SetUp from "../../patient-management/new-file/components/modal/setUp";
 import Return from "../../patient-management/new-file/components/modal/return";
 import Flow from "../../patient-management/file-management/flow";
-import mixin from "@/mixin/newFile";
 import { formatDate } from "@/util/util";
 export default {
-  mixins: [mixin],
   components: {
     Forward,
     SetUp,
@@ -218,8 +227,8 @@ export default {
         {
           title: '紧急程度',
           width: 120,
-          slot: 'status',
-          key: 'status'
+          slot: 'urgent',
+          key: 'urgent'
         },
         {
           title: '档案编号',
@@ -317,8 +326,8 @@ export default {
     searchFunc(data) {
       api.checkData(data).then(res => {
         console.log(res.data);
-        this.total = res.data.count;
-        this.tabList = res.data.data;
+        this.total = res.data.total;
+        this.tabList = res.data.list;
       }).catch(()=>{
         this.total =  50;
         this.tabList =  [
@@ -683,6 +692,7 @@ export default {
               "lastForWardTime": null
           }
         ];
+
       });
     },
     //全选中

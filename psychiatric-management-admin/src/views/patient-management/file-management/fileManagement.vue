@@ -37,11 +37,11 @@
         <FormItem label="病患身份证号" prop="patientCode">
           <Input v-model="formInline.patientCode" />
         </FormItem>
-        <FormItem prop="date" label="开始创建时间">
+        <FormItem prop="beginCreateDate" label="开始创建时间">
           <DatePicker type="datetime" v-model="formInline.beginCreateDate"></DatePicker>
         </FormItem>
         <span>-</span>
-        <FormItem prop="date" label="结束创建时间">
+        <FormItem prop="endCreateDate" label="结束创建时间">
           <DatePicker type="datetime" v-model="formInline.endCreateDate"></DatePicker>
         </FormItem>
       </Form>
@@ -178,10 +178,10 @@ import Forward from "../new-file/components/modal/forward";
 import SetUp from "../new-file/components/modal/setUp";
 import Return from "../new-file/components/modal/return";
 import Flow from "./flow";
-import mixin from "../../../mixin/newFile";
+// import mixin from "../../../mixin/newFile";
 import { formatDate } from "@/util/util";
 export default {
-  mixins: [mixin],
+  // mixins: [mixin],
   components: {
     Forward,
     SetUp,
@@ -307,379 +307,20 @@ export default {
         {pageNum:this.pageNum},
         {pageSize:this.pageSize}
       );
+      debugger
       this.searchFunc(obj);
     },
     searchFunc(data) {
       api.checkData(data).then(res => {
-        console.log(res.data);
-        this.total = res.data.count;
-        this.tabList = res.data.list;
+        if(JSON.stringify(res)=="{}"){
+          this.total = 0;
+          this.tabList = [];
+        }else{
+          console.log(res.data);
+          this.total = res.data.total;
+          this.tabList = res.data.list;
+        }
       })
-      /*.catch(()=>{
-        this.total =  50;
-        this.tabList =  [
-          {
-              "id": 63,
-              "code": "XZ320623198807064421",
-              "name": null,
-              "status": 1,
-              "patientName": "WG",
-              "patientCode": "320623198807064421",
-              "patientTel": null,
-              "patientSex": 1,
-              "patientAddr": null,
-              "patientCompany": null,
-              "patientStatus1": 1,
-              "patientRusticate": "lizhuang",
-              "patientDanger": null,
-              "patientStatus2": 1,
-              "createDate": "2019-10-30T03:04:41.000+0000",
-              "updateDate": "2019-10-30T03:04:41.000+0000",
-              "type": null,
-              "checkinUserId": 1,
-              "checkinDept": null,
-              "guardianName": null,
-              "guardianRel": null,
-              "patientPolice": "lijinguan",
-              "guardianCompany": null,
-              "guardianTel": null,
-              "isforeign": 0,
-              "foreignHandle": null,
-              "causeTrouble": null,
-              "fileCode": null,
-              "isfocal": 1,
-              "tFiles": null,
-              "checkinUserName": "WG",
-              "curForWardDeptName": null,
-              "curForWardName": null,
-              "lastForWardTime": null
-          },
-          {
-              "id": 64,
-              "code": "XZ320623198807064421",
-              "name": null,
-              "status": 1,
-              "patientName": "WG",
-              "patientCode": "320623198807064421",
-              "patientTel": null,
-              "patientSex": 1,
-              "patientAddr": null,
-              "patientCompany": null,
-              "patientStatus1": 1,
-              "patientRusticate": "lizhuang",
-              "patientDanger": null,
-              "patientStatus2": 1,
-              "createDate": "2019-10-30T03:06:53.000+0000",
-              "updateDate": "2019-10-30T03:06:53.000+0000",
-              "type": null,
-              "checkinUserId": 1,
-              "checkinDept": null,
-              "guardianName": null,
-              "guardianRel": null,
-              "patientPolice": "lijinguan",
-              "guardianCompany": null,
-              "guardianTel": null,
-              "isforeign": 0,
-              "foreignHandle": null,
-              "causeTrouble": null,
-              "fileCode": null,
-              "isfocal": 1,
-              "tFiles": null,
-              "checkinUserName": "WG",
-              "curForWardDeptName": null,
-              "curForWardName": null,
-              "lastForWardTime": null
-          },
-          {
-              "id": 65,
-              "code": "XZ320623198807064421",
-              "name": null,
-              "status": 1,
-              "patientName": "WG",
-              "patientCode": "320623198807064421",
-              "patientTel": null,
-              "patientSex": 1,
-              "patientAddr": null,
-              "patientCompany": null,
-              "patientStatus1": 1,
-              "patientRusticate": "lizhuang",
-              "patientDanger": null,
-              "patientStatus2": 1,
-              "createDate": "2019-10-30T05:58:13.000+0000",
-              "updateDate": "2019-10-30T05:58:13.000+0000",
-              "type": null,
-              "checkinUserId": 1,
-              "checkinDept": null,
-              "guardianName": null,
-              "guardianRel": null,
-              "patientPolice": "lijinguan",
-              "guardianCompany": null,
-              "guardianTel": null,
-              "isforeign": 0,
-              "foreignHandle": null,
-              "causeTrouble": null,
-              "fileCode": null,
-              "isfocal": 1,
-              "tFiles": null,
-              "checkinUserName": "WG",
-              "curForWardDeptName": null,
-              "curForWardName": null,
-              "lastForWardTime": null
-          },
-          {
-              "id": 67,
-              "code": "XZ320623198807064421",
-              "name": null,
-              "status": 1,
-              "patientName": "WG",
-              "patientCode": "320623198807064421",
-              "patientTel": null,
-              "patientSex": 1,
-              "patientAddr": null,
-              "patientCompany": null,
-              "patientStatus1": 1,
-              "patientRusticate": "lizhuang",
-              "patientDanger": null,
-              "patientStatus2": 1,
-              "createDate": "2019-10-30T07:35:11.000+0000",
-              "updateDate": "2019-10-30T07:35:11.000+0000",
-              "type": null,
-              "checkinUserId": 1,
-              "checkinDept": null,
-              "guardianName": null,
-              "guardianRel": null,
-              "patientPolice": "lijinguan",
-              "guardianCompany": null,
-              "guardianTel": null,
-              "isforeign": 0,
-              "foreignHandle": null,
-              "causeTrouble": null,
-              "fileCode": null,
-              "isfocal": 1,
-              "tFiles": null,
-              "checkinUserName": "WG",
-              "curForWardDeptName": null,
-              "curForWardName": null,
-              "lastForWardTime": null
-          },
-          {
-              "id": 68,
-              "code": "XZ320623198807064421",
-              "name": null,
-              "status": 1,
-              "patientName": "WG",
-              "patientCode": "320623198807064421",
-              "patientTel": null,
-              "patientSex": 1,
-              "patientAddr": null,
-              "patientCompany": null,
-              "patientStatus1": 1,
-              "patientRusticate": "lizhuang",
-              "patientDanger": null,
-              "patientStatus2": 1,
-              "createDate": "2019-10-30T08:08:18.000+0000",
-              "updateDate": "2019-10-30T08:08:18.000+0000",
-              "type": null,
-              "checkinUserId": 1,
-              "checkinDept": null,
-              "guardianName": null,
-              "guardianRel": null,
-              "patientPolice": "lijinguan",
-              "guardianCompany": null,
-              "guardianTel": null,
-              "isforeign": 0,
-              "foreignHandle": null,
-              "causeTrouble": null,
-              "fileCode": null,
-              "isfocal": 1,
-              "tFiles": null,
-              "checkinUserName": "WG",
-              "curForWardDeptName": null,
-              "curForWardName": null,
-              "lastForWardTime": null
-          },
-          {
-              "id": 69,
-              "code": "XZ320623198807064421",
-              "name": null,
-              "status": 1,
-              "patientName": "WG",
-              "patientCode": "320623198807064421",
-              "patientTel": null,
-              "patientSex": 1,
-              "patientAddr": null,
-              "patientCompany": null,
-              "patientStatus1": 1,
-              "patientRusticate": "lizhuang",
-              "patientDanger": null,
-              "patientStatus2": 1,
-              "createDate": "2019-10-30T08:08:30.000+0000",
-              "updateDate": "2019-10-30T08:08:30.000+0000",
-              "type": null,
-              "checkinUserId": 1,
-              "checkinDept": null,
-              "guardianName": null,
-              "guardianRel": null,
-              "patientPolice": "lijinguan",
-              "guardianCompany": null,
-              "guardianTel": null,
-              "isforeign": 0,
-              "foreignHandle": null,
-              "causeTrouble": null,
-              "fileCode": null,
-              "isfocal": 1,
-              "tFiles": null,
-              "checkinUserName": "WG",
-              "curForWardDeptName": null,
-              "curForWardName": null,
-              "lastForWardTime": null
-          },
-          {
-              "id": 70,
-              "code": "XZ320623198807064421",
-              "name": null,
-              "status": 1,
-              "patientName": "WG",
-              "patientCode": "320623198807064421",
-              "patientTel": null,
-              "patientSex": 1,
-              "patientAddr": null,
-              "patientCompany": null,
-              "patientStatus1": 1,
-              "patientRusticate": "lizhuang",
-              "patientDanger": null,
-              "patientStatus2": 1,
-              "createDate": "2019-10-30T08:08:42.000+0000",
-              "updateDate": "2019-10-30T08:08:42.000+0000",
-              "type": null,
-              "checkinUserId": 1,
-              "checkinDept": null,
-              "guardianName": null,
-              "guardianRel": null,
-              "patientPolice": "lijinguan",
-              "guardianCompany": null,
-              "guardianTel": null,
-              "isforeign": 0,
-              "foreignHandle": null,
-              "causeTrouble": null,
-              "fileCode": null,
-              "isfocal": 1,
-              "tFiles": null,
-              "checkinUserName": "WG",
-              "curForWardDeptName": null,
-              "curForWardName": null,
-              "lastForWardTime": null
-          },
-          {
-              "id": 71,
-              "code": "XZ320623198807064421",
-              "name": null,
-              "status": 1,
-              "patientName": "WG",
-              "patientCode": "320623198807064421",
-              "patientTel": null,
-              "patientSex": 1,
-              "patientAddr": null,
-              "patientCompany": null,
-              "patientStatus1": 1,
-              "patientRusticate": "lizhuang",
-              "patientDanger": null,
-              "patientStatus2": 1,
-              "createDate": "2019-10-30T08:09:03.000+0000",
-              "updateDate": "2019-10-30T08:09:03.000+0000",
-              "type": null,
-              "checkinUserId": 1,
-              "checkinDept": null,
-              "guardianName": null,
-              "guardianRel": null,
-              "patientPolice": "lijinguan",
-              "guardianCompany": null,
-              "guardianTel": null,
-              "isforeign": 0,
-              "foreignHandle": null,
-              "causeTrouble": null,
-              "fileCode": null,
-              "isfocal": 1,
-              "tFiles": null,
-              "checkinUserName": "WG",
-              "curForWardDeptName": null,
-              "curForWardName": null,
-              "lastForWardTime": null
-          },
-          {
-              "id": 72,
-              "code": "XZ320623198807064421",
-              "name": null,
-              "status": 1,
-              "patientName": "WG",
-              "patientCode": "320623198807064421",
-              "patientTel": null,
-              "patientSex": 1,
-              "patientAddr": null,
-              "patientCompany": null,
-              "patientStatus1": 1,
-              "patientRusticate": "lizhuang",
-              "patientDanger": null,
-              "patientStatus2": 1,
-              "createDate": "2019-10-30T08:09:09.000+0000",
-              "updateDate": "2019-10-30T08:09:09.000+0000",
-              "type": null,
-              "checkinUserId": 1,
-              "checkinDept": null,
-              "guardianName": null,
-              "guardianRel": null,
-              "patientPolice": "lijinguan",
-              "guardianCompany": null,
-              "guardianTel": null,
-              "isforeign": 0,
-              "foreignHandle": null,
-              "causeTrouble": null,
-              "fileCode": null,
-              "isfocal": 1,
-              "tFiles": null,
-              "checkinUserName": "WG",
-              "curForWardDeptName": null,
-              "curForWardName": null,
-              "lastForWardTime": null
-          },
-          {
-              "id": 73,
-              "code": "XZ320623198807064421",
-              "name": null,
-              "status": 1,
-              "patientName": "WG",
-              "patientCode": "320623198807064421",
-              "patientTel": null,
-              "patientSex": 1,
-              "patientAddr": null,
-              "patientCompany": null,
-              "patientStatus1": 1,
-              "patientRusticate": "lizhuang",
-              "patientDanger": null,
-              "patientStatus2": 1,
-              "createDate": "2019-10-30T08:09:40.000+0000",
-              "updateDate": "2019-10-30T08:09:40.000+0000",
-              "type": null,
-              "checkinUserId": 1,
-              "checkinDept": null,
-              "guardianName": null,
-              "guardianRel": null,
-              "patientPolice": "lijinguan",
-              "guardianCompany": null,
-              "guardianTel": null,
-              "isforeign": 0,
-              "foreignHandle": null,
-              "causeTrouble": null,
-              "fileCode": null,
-              "isfocal": 1,
-              "tFiles": null,
-              "checkinUserName": "WG",
-              "curForWardDeptName": null,
-              "curForWardName": null,
-              "lastForWardTime": null
-          }
-        ];
-      });*/
     },
     //全选中
     handleSelectAll (status) {
@@ -736,8 +377,15 @@ export default {
     },
     //转发
     handleforward(id,index) {
-      this.indexId = id;
-      this.modalForward = true;
+      //判断是否填写资料
+      api.isSave({tArchiveId:id}).then(res=>{
+        if(res.success==true){
+          this.indexId = id;
+          this.modalForward = true;
+        }else{
+          this.$Message.success("资料填写不完整，请先至档案处填写完整!");
+        }
+      });
     },
     //退回
     handlereturn(id,index) {
@@ -746,8 +394,14 @@ export default {
     },
     //办结
     handlesetup(id,index) {
-      this.indexId = id;
-      this.modalSetUp = true;
+      api.isSave({tArchiveId:id}).then(res=>{
+        if(res.success==true){
+          this.indexId = id;
+          this.modalSetUp = true;
+        }else{
+          this.$Message.success("资料填写不完整，请先至档案处填写完整!");
+        }
+      });
     },
     //推送
     handlepush(id,index) {

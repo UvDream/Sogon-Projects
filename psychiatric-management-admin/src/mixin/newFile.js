@@ -17,6 +17,7 @@ export default {
       debugger
       api.forward(obj).then(res=>{
         this.$Message.success("转发成功!");
+        this.modalForward = false;
       })
     },
     saveFinish() {
