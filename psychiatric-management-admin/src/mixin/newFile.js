@@ -16,28 +16,38 @@ export default {
     saveForward(obj) {
       // debugger
       api.forward(obj).then(res=>{
-        this.$Message.success("转发成功!");
-        this.modalForward = false;
+        if(res.success==true){
+          this.$Message.success(res.msg);
+          this.$emit('closemodal');
+        }
       })
     },
     saveFinish() {
       let obj = {
         tArchiveId:this.indexId,
         remarks:this.formValidate.remarks,
+        tFilesList:this.tFilesList
       };
       api.finish(obj).then(res=>{
-        this.$Message.success("办结成功!");
+        if(res.success==true){
+          this.$Message.success(res.msg);
+          this.$emit('closemodal');
+        };
       })
     },
     saveBack() {
       let obj = {
         tArchiveId:this.indexId,
         remarks:this.formValidate.remarks,
-        curPositionid:this.formValidate.curPositionid
+        curPositionid:this.formValidate.curPositionid,
+        tFilesList:this.tFilesList
       };
       api.back(obj).then(res=>{
-        this.$Message.success("退回成功!");
+        if(res.success==true){
+          this.$emit('closemodal');
+          this.$Message.success("退回成功！");
+        }
       })
-    },
+    }
   }
 };
