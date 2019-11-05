@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-24 11:25:58
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-29 15:51:23
+ * @LastEditTime: 2019-11-05 20:30:44
  * @Description: 文件上传
  * @Email: UvDream@163.com
  -->
@@ -25,7 +25,7 @@
       :show-upload-list="false"
       :default-file-list="defaultList"
       :on-success="handleSuccess"
-      :headers = "headers"
+      :headers="headers"
       :format="['jpg', 'jpeg', 'png']"
       :max-size="2048"
       :on-format-error="handleFormatError"
@@ -41,17 +41,12 @@
       </div>
     </Upload>
     <Modal title="View Image" v-model="visible">
-      <img
-        :src="'https://o5wwk8baw.qnssl.com/' + imgName + '/large'"
-        v-if="visible"
-        style="width: 100%"
-      />
+      <img :src="'https://nexmoe.com/images/' + imgName" v-if="visible" style="width: 100%" />
     </Modal>
   </div>
 </template>
 <script>
 import { baseUrl } from "@/config/env";
-import Cookies from 'js-cookie'
 export default {
   data() {
     return {
@@ -59,14 +54,14 @@ export default {
       url: baseUrl + "/jsbrgl/fileUploadController/fileUpload",
       defaultList: [
         {
-          name: "a42bdcc1178e62b4694c830f028db5c0",
+          name: "avatar.png",
           url: "https://nexmoe.com/images/avatar.png"
         }
       ],
       headers: {
-        "Content-Type": "application/json", 
+        "Content-Type": "application/json"
       },
-      imgName: "222.jpg",
+      imgName: "avatar.png",
       visible: false,
       uploadList: []
     };
@@ -81,10 +76,9 @@ export default {
       this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
     },
     handleSuccess(res, file) {
-      console.log(res)
-      file.url =
-        "https://o5wwk8baw.qnssl.com/7eb99afb9d5f317c912f08b5212fd69a/avatar";
-      file.name = "7eb99afb9d5f317c912f08b5212fd69a";
+      console.log(res);
+      file.url = "https://nexmoe.com/images/avatar.png";
+      file.name = "avatar.png";
     },
     handleFormatError(file) {
       this.$Notice.warning({
