@@ -4,7 +4,7 @@ import Cookies from 'js-cookie'
 // 四帮一
 export const helpSaveList = data => {
   return fetch({
-    url: "/jsbrgl/createArchives/saveArchives",
+    url: "/jsbrgl/fourToOneController/saveHelpful",
     method: "POST",
     data,
     headers: { 

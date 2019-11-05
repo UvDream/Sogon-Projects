@@ -14,6 +14,8 @@ const step = {
     againTreatStatus: false,
     // 06再次评定页面
     outControlStatus: false,
+    // archivesId
+    archivesId: "276",
     // ---01发现页面
     findData: {
       basicInformation: {
@@ -113,16 +115,13 @@ const step = {
     },
     // ---04四帮一页面
     treatData: {
-      formPatientLevel: {
-        status:"",
-        hospital:"",
-        doctor:"",
-        phone:"",
-        time:"",
-        description:"",
-        uploadFiles:""
+      cjgbbfData: {
+        name:"",
+        department:"",
+        IdNumber:"",
+        phone:""       
       },
-      formPatientTreat: {
+      jhmjbfData: {
         hospital: "",
         doctors: "",
         phone: "",
@@ -130,26 +129,7 @@ const step = {
         recording: "",
         uploadFiles: ""
       },
-      formPatientZhuyuan: {        
-        more: [
-          {
-            hospital: "",
-            doctors: "",
-            hospitalStay: "",
-            dischargeTime: "",
-            recording: "",
-            uploadFiles: ""
-          },
-          {
-            hospital: "",
-            doctors: "",
-            hospitalStay: "",
-            dischargeTime: "",
-            recording: "",
-            uploadFiles: ""
-          }
-        ]
-      },
+      
     },    
     // ---05再次评定页面
     againTreatData: {
@@ -167,19 +147,11 @@ const step = {
     outControlData: {
       formPatientRecorder: [
         {
-          date:"",
-          hospital:"",
-          unit:"",
-          recording:"",
-          uploadFiles:""
-        },
-        {
-          date:"",
-          hospital:"",
-          unit:"",
-          recording:"",
-          uploadFiles:""
-        },
+          patientCuteDate:"",
+          patientCuteType:"",
+          patientCompany:"",
+          patientRemarks:"",
+        }
       ]
     }
   }

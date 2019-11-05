@@ -96,9 +96,23 @@ export default {
   created() {
     vm.$on("blur", val => {
       if (val == "saveEvent") {
-        this.$store.state.step.dealData.basicInformation = this.formValidate;
+        this.handleSubmit('formValidate');
       }
     });
+  },  
+  methods: {
+    handleSubmit(name) {
+      this.$refs[name].validate(valid => {
+        if (valid) {
+          // this.$Message.success("Success!");
+          this.$store.state.step.dealData.formLocal = this.formValidate;
+          this.$store.state.step.dealStatus = true;
+        } else {
+          // this.$Message.error("Fail!");
+          this.$store.state.step.dealStatus = false;
+        }
+      });
+    }
   }
 };
 </script>

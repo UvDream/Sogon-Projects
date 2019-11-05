@@ -28,7 +28,7 @@
               <Option value="3">卫生</Option>
               <Option value="4">民政</Option>
             </Select>
-            <Input v-model="item.department" placeholder="输入病患就诊医院" />
+            <!-- <Input v-model="item.department" placeholder="输入病患就诊医院" /> -->
           </FormItem>
           <FormItem
             label="转发人姓名"
@@ -40,7 +40,7 @@
               trigger: 'blur'
             }"
           >
-            <Input v-model="item.name" placeholder="输入病患就诊医院" />
+            <Input v-model="item.name" placeholder="输入转发人姓名" />
           </FormItem>
           <div style="display:flex;align-items:center" @click="deleteFunc(index)">
             <img src="../../../../../assets/fonts/delete.png" alt />
@@ -57,7 +57,7 @@
       </div>
     </Form>
     <div slot="footer" style="text-align:center">
-      <Button type="primary" size="large">
+      <Button type="primary" size="large" @click="btnFunc">
         <Icon type="ios-sync" style="margin-right:10px" />转发
       </Button>
     </div>
@@ -79,7 +79,7 @@ export default {
     return {
       modal: false,
       ruleForm: {
-        forward: [{ department: "1", name: "" }]
+        forward: []
       }
     };
   },
@@ -87,6 +87,9 @@ export default {
     modalForward:function(val){
       this.modal = val;
     }
+  },
+  mounted(){
+    this.modal=this.modalForward;
   },
   methods: {
     // 删除操作
@@ -100,6 +103,14 @@ export default {
     },
     cancle() {
       this.$emit('closemodal');
+    },
+    btnFunc(){
+      
+      this.$store.state.step.stepStatus < 5
+        ? (this.$store.state.step.stepStatus =
+            this.$store.state.step.stepStatus + 1)
+        : "";
+
     }
   }
 };

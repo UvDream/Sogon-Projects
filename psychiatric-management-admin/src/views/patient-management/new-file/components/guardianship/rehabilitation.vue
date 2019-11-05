@@ -16,7 +16,7 @@
           <div class="form">
             <FormItem
               label="病患康复日期"
-              :prop="'more.' + index + '.date'"
+              :prop="'more.' + index + '.patientCuteDate'"
               class="form-block"
               :rules="{
               required: true,
@@ -24,19 +24,19 @@
               trigger: 'blur'
             }"
             >
-              <DatePicker type="datetime" placeholder="请选择病患康复日期" v-model="item.date"></DatePicker>
+              <DatePicker type="datetime" placeholder="请选择病患康复日期" v-model="item.patientCuteDate"></DatePicker>
             </FormItem>
             <FormItem
               label="病患康复后状态"
               class="form-block"
-              :prop="'more.' + index + '.hospital'"
+              :prop="'more.' + index + '.patientCuteType'"
               :rules="{
               required: true,
               message: '请输入病患康复后状态',
               trigger: 'blur'
             }"
             >
-              <Select v-model="item.hospital" placeholder="选择档案状态">
+              <Select v-model="item.patientCuteType" placeholder="选择档案状态">
                 <Option value="0">在家</Option>
                 <Option value="1">住院</Option>
                 <Option value="2">就学</Option>
@@ -47,7 +47,7 @@
             </FormItem>
             <FormItem
               label="病患工作单位"
-              :prop="'more.' + index + '.unit'"
+              :prop="'more.' + index + '.patientCompany'"
               class="form-blocks"
               :rules="{
               required: true,
@@ -55,13 +55,13 @@
               trigger: 'blur'
             }"
             >
-              <Input v-model="item.unit" placeholder="输入病患工作单位" />
+              <Input v-model="item.patientCompany" placeholder="输入病患工作单位" />
             </FormItem>
           </div>
           <div class="form">
             <FormItem
               label="病患康复情况说明"
-              :prop="'more.' + index + '.recording'"
+              :prop="'more.' + index + '.patientRemarks'"
               class="form-blocks"
               :rules="{
               required: true,
@@ -69,7 +69,7 @@
               trigger: 'blur'
             }"
             >
-              <Input type="textarea" v-model="item.recording" placeholder="输入病患康复情况说明" />
+              <Input type="textarea" v-model="item.patientRemarks" placeholder="输入病患康复情况说明" />
             </FormItem>
             <FormItem
               label="病患治疗证明材料"
@@ -119,10 +119,10 @@ export default {
       ruleForm: {
         more: [
           {
-            date: "",
-            hospital: "",
-            unit: "",
-            recording: "",
+            patientCuteDate: "",
+            patientCuteType: "",
+            patientCompany: "",
+            patientRemarks: "",
             uploadFiles: ""
           }
         ]
@@ -145,10 +145,10 @@ export default {
     // 添加
     handleAdd() {
       let obj = {
-        date: "",
-        hospital: "",
-        unit: "",
-        recording: "",
+        patientCuteDate: "",
+        patientCuteType: "",
+        patientCompany: "",
+        patientRemarks: "",
         uploadFiles: ""
       };
       this.ruleForm.more.push(obj);

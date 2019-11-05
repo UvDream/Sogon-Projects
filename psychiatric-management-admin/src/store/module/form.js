@@ -1,7 +1,13 @@
 const form = {
   state: {
     //   村居干部帮扶
-    cadre: {},
+    cadre: {
+      name:"",
+      department:"",
+      IdNumber:"",
+      phone:""
+    },
+    // 列表信息
     cadreList: [
       {
         helpDate: "2019"

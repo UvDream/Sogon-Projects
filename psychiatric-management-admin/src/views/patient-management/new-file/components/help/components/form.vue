@@ -41,7 +41,7 @@
 
 <script>
 import { validatePhone } from "@/util/util";
-
+import vm from "../../../event";
 export default {
   data() {
     return {
@@ -68,7 +68,14 @@ export default {
         phone: [{ required: true, message: "请输入联系方式", trigger: "blur" }]
       }
     };
-  }
+  },
+  created() {
+    vm.$on("blur", val => {
+      if (val == "saveEvent") {
+        this.$store.state.step.form.cadre = this.formValidate;
+      }
+    });
+  }, 
 };
 </script>
 

@@ -71,9 +71,6 @@ export default {
       }
     });
   },
-  mounted(){
-    this.formValidate = this.$store.state.step.findData.basicInformation;
-  },
   methods: {}
 };
 </script>
