@@ -1,41 +1,20 @@
 import fetch from "../fetch";
 import Cookies from 'js-cookie'
 
-// 评定治疗-病患危险等级
-// export const levelSaveList = data => {
-//   return fetch({
-//     url: "/jsbrgl/treatmentController/saveTreat",
-//     method: "POST",
-//     data,
-//     headers: { 
-//       "Content-Type": "application/json"
-//     }
-//   });
-// };
-// export const levelSaveLists = data => {
-//   return fetch({
-//     url: "/jsbrgl/treatmentController/saveTreat",
-//     method: "POST",
-//     data,
-//     headers: { 
-//       "Content-Type": "application/json"
-//     }
-//   });
-// };
-
-// // 评定治疗-病患住院记录
-// export const histroySaveList = data => {
-//   return fetch({
-//     url: "/jsbrgl/treatmentController/deleteTreat",
-//     method: "POST",
-//     data,
-//     headers: { 
-//       "Content-Type": "application/json"
-//     }
-//   });
-// };
+// 评定治疗
 
 export const treatSaveList = data => {
+  return fetch({
+    url: "/jsbrgl/treatmentController/saveTreat",
+    method: "POST",
+    data,
+    headers: { 
+      "Content-Type": "application/json"
+    }
+  });
+};
+
+export const treatSaveLists = data => {
   return fetch({
     url: "/jsbrgl/treatmentController/saveTreat",
     method: "POST",

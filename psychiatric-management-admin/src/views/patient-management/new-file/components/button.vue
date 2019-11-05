@@ -201,41 +201,7 @@ export default {
     // 03评定治疗保存
     treatSave(id) {
       // if (this.$store.state.step.treatStatus) {
-          // let formPatientLevel={
-          //   "archivesId": this.$store.state.step.archivesId,
-          //   "patientLevel":"123",
-          //   "hospitalName":"0",
-          //   "doctorName":"222222222222222222",
-          //   "doctorTel":"0",
-          //   "doctorEvtime":"0",
-          //   "levelRemark":"13222222222",
-          //   // "tFiles":"asdfsdf",          
-          // }
-
-          // let formPatientTreat={
-          //   "archivesId": this.$store.state.step.archivesId,
-          //   "type":"0",
-          //   "patientHospital":"wws",
-          //   "patientDoctor":"0",
-          //   "doctorTel":"222222222222222222",
-          //   "treatTime":"0",
-          //   "checkinTime":"0",            
-          //   "treatRemark":"13222222222",
-          //   "tFiles":"13222222222"
-          // }
-
-          // let formPatientZhuyuan={
-          //   "archivesId": this.$store.state.step.archivesId,
-          //   "type":"1",
-          //   "patientHospital":"123",
-          //   "doctorName":"0",
-          //   "checkinTime":"222222222222222222",
-          //   "checkoutTime":"0",
-          //   "treatRemark":"0",
-          //   "tFiles":"13222222222",
-          // }
-          
-
+         
           let formPatientInfo = 
           {
             // "id": "12",

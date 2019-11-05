@@ -111,47 +111,6 @@ const step = {
           tFiles: []
         }
       ],
-      formPatientInfo: {
-        // "id": "12",
-        archivesId: "",
-        patientLevel: "1",
-        hospitalName: "cdhjas",
-        doctorName: "xasxas",
-        doctorTel: "1111111",
-        doctorEvtime: null,
-        levelRemark: "sajdakdhask",
-        tFiles: [],
-        tTreatRecords: [
-            {
-                id: "9",
-                patientHospital: null,
-                patientDoctor: null,
-                doctorTel: null,
-                treatTime: null,
-                checkinTime: null,
-                checkoutTime: null,
-                treatRemark: null,
-                fileCode: "1572874968047",
-                treatId: "",
-                type: "0",
-                tFiles: []
-            },
-            {
-                id: "9",
-                patientHospital: null,
-                patientDoctor: null,
-                doctorTel: null,
-                treatTime: null,
-                checkinTime: null,
-                checkoutTime: null,
-                treatRemark: null,
-                fileCode: "1572874968047",
-                treatId: "",
-                type: "1",
-                tFiles: []
-            }
-        ]
-      }
     },
     // ---04四帮一页面
     helpData: {
