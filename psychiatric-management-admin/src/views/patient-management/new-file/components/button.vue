@@ -33,12 +33,12 @@ import SetUp from "./modal/setUp";
 import Return from "./modal/return";
 import mixin from "../../../../mixin/newFile";
 import vm from "../event";
-import { findSaveList } from "@/api/new-file/01find";
-import { dealSaveList } from "@/api/new-file/02deal";
-import { levelSaveList,historyTreatSaveList,historyTreatDelete,histroyLiveSaveList,histroyLiveDelete } from "@/api/new-file/03treat";
-import { helpSaveList } from "@/api/new-file/04help";
-import { againSaveList } from "@/api/new-file/05again";
-import { outControlSaveList } from "@/api/new-file/06outContrl";
+import { findSaveList,findSaveLists } from "@/api/new-file/01find";
+import { dealSaveList,dealSaveLists } from "@/api/new-file/02deal";
+import { treatSaveList,treatSaveLists } from "@/api/new-file/03treat";
+import { helpSaveList,helpSaveLists } from "@/api/new-file/04help";
+import { againSaveList,againSaveLists } from "@/api/new-file/05again";
+import { outControlSaveList,outControlSaveLists } from "@/api/new-file/06outContrl";
 export default {
   computed: {
     status: function() {
@@ -67,22 +67,22 @@ export default {
       // 上面两个表单数据
       console.log("获取数据了", this.$store.state.step.findData);
       if(this.$store.state.step.stepStatus == 0){
-        this.findSave();
+        this.findSave(id);
       }else if(this.$store.state.step.stepStatus == 1){
-        this.dealSave();
+        this.dealSave(id);
       }else if(this.$store.state.step.stepStatus == 2){
-        this.treatSave();
+        this.treatSave(id);
       }else if(this.$store.state.step.stepStatus == 3){
-        this.helpSave();
+        this.helpSave(id);
       }else if(this.$store.state.step.stepStatus == 4){
-        this.againTreatSave();
+        this.againTreatSave(id);
       }else if(this.$store.state.step.stepStatus == 5){
-        this.cureSave();
+        this.cureSave(id);
       }
     },
 
     // 01发现保存
-    findSave() {
+    findSave(id) {
       console.log(this.$store.state.step.findStatus)
       // if (this.$store.state.findStatus) {
         let obj={
@@ -132,7 +132,16 @@ export default {
 
           // obj.tFiles = data.uploadFiles;
 
-          findSaveList(obj).then(res=>{
+          id==1?findSaveList(obj).then(res=>{
+            console.log(res)  
+            this.$store.state.step.archivesId = res.data.id;
+            this.$store.state.step.findData.basicInformation.code = res.data.code;
+            this.$store.state.step.findData.basicInformation.status = res.data.status;
+            this.$store.state.step.findData.basicInformation.name = res.data.name;
+            this.$store.state.step.findData.basicInformation.checkin_dept = res.data.checkin_dept;
+            this.$store.state.step.findData.basicInformation.createDate = res.data.createDate;
+
+          }):findSaveLists(obj).then(res=>{
             console.log(res)  
             this.$store.state.step.archivesId = res.data.id;
             this.$store.state.step.findData.basicInformation.code = res.data.code;
@@ -148,12 +157,12 @@ export default {
       // }
     },
     // 02初步处理保存
-    dealSave() {
+    dealSave(id) {
       // if (this.$store.state.step.dealStatus) {
         console.log(this.$store.state.step.archivesId)
         console.log(this.$store.state.step.archivesId)
 
-          let objLocal={
+          let obj={
             "archivesId": this.$store.state.step.archivesId,
             "bIstreat":"123",
             "bIswilltreat":"0",
@@ -161,53 +170,27 @@ export default {
             "fristRemarks":"0",
             "secondRemarks":"0",
             "thirdRemarks":"13222222222",
-            "type": "0",
-            "wType": "0",
+            "type": this.$store.state.step.isLocal,
+            "wType": this.$store.state.step.isLocal
             // "tFiles":"asdfsdf",                      
           }
-
-          let objOutside={
-            "archivesId": this.$store.state.step.archivesId,
-            "wCompanyName":"123",
-            "wCompanyLeader":"0",
-            "wCompanyTel":"222222222222222222",
-            "wCompanyContactTime":"0",
-            "wDoRemarks":"0",
-            "type": "1",
-            "wType": "1",
-            // "tFiles":"13222222222",
-          }
-
           
 
 
           // 左边后台接口名称，右边本地命名（表单、通信vuex）
-          // local
-          // let vx_data_local=this.$store.state.step.dealData.formLocal;
-          // objLocal.bIstreat = vx_data_local.isTreatment;
-          // objLocal.bDoRemarks = vx_data_local.isTreatmentDescription;
-          // objLocal.fristRemarks = vx_data_local.firstVisit;
-          // objLocal.secondRemarks = vx_data_local.secondVisit;
-          // objLocal.thirdRemarks = vx_data_local.thirdVisit;
 
-          // objLocal.tFiles = vx_data_local.uploadFiles;     
-
-          // objLocal
-          dealSaveList(objLocal).then(res=>{
-            
-          })          
-
-          // outside
           // let vx_data_outside=this.$store.state.step.dealData.formOutside;
-          // objOutside.wCompanyName = vx_data_outside.name;
-          // objOutside.wCompanyLeader = vx_data_outside.principal;
-          // objOutside.wCompanyTel = vx_data_outside.phone;
-          // objOutside.wCompanyContactTime = vx_data_outside.contactTime;
-          // objOutside.wDoRemarks = vx_data_outside.description;
+          // obj.wCompanyName = vx_data_outside.name;
+          // obj.wCompanyLeader = vx_data_outside.principal;
+          // obj.wCompanyTel = vx_data_outside.phone;
+          // obj.wCompanyContactTime = vx_data_outside.contactTime;
+          // obj.wDoRemarks = vx_data_outside.description;
 
-          // objOutside.tFiles = vx_data_outside.uploadFiles;
+          // obj.tFiles = vx_data_outside.uploadFiles;
 
-          dealSaveList(objOutside).then(res=>{
+          id==1?dealSaveList(obj).then(res=>{
+            console.log(res)
+          }):dealSaveLists(obj).then(res=>{
             console.log(res)
           })
           console.log("可以掉接口保存");
@@ -216,42 +199,9 @@ export default {
       // }
     },
     // 03评定治疗保存
-    treatSave() {
+    treatSave(id) {
       // if (this.$store.state.step.treatStatus) {
-          // let formPatientLevel={
-          //   "archivesId": this.$store.state.step.archivesId,
-          //   "patientLevel":"123",
-          //   "hospitalName":"0",
-          //   "doctorName":"222222222222222222",
-          //   "doctorTel":"0",
-          //   "doctorEvtime":"0",
-          //   "levelRemark":"13222222222",
-          //   // "tFiles":"asdfsdf",          
-          // }
-
-          // let formPatientTreat={
-          //   "archivesId": this.$store.state.step.archivesId,
-          //   "type":"0",
-          //   "patientHospital":"wws",
-          //   "patientDoctor":"0",
-          //   "doctorTel":"222222222222222222",
-          //   "treatTime":"0",
-          //   "checkinTime":"0",            
-          //   "treatRemark":"13222222222",
-          //   "tFiles":"13222222222"
-          // }
-
-          // let formPatientZhuyuan={
-          //   "archivesId": this.$store.state.step.archivesId,
-          //   "type":"1",
-          //   "patientHospital":"123",
-          //   "doctorName":"0",
-          //   "checkinTime":"222222222222222222",
-          //   "checkoutTime":"0",
-          //   "treatRemark":"0",
-          //   "tFiles":"13222222222",
-          // }
-
+         
           let formPatientInfo = 
           {
             // "id": "12",
@@ -295,33 +245,23 @@ export default {
             ]
           }
 
-          let dataLevel=this.$store.state.step.treatData.formPatientLevel;
-          // formPatientLevel.patientLevel = dataLevel.status;
-          // formPatientLevel.hospitalName = dataLevel.hospital;
-          // formPatientLevel.doctorName = dataLevel.doctor;
-          // formPatientLevel.doctorTel = dataLevel.phone;
-          // formPatientLevel.doctorEvtime = dataLevel.time;
-          // formPatientLevel.levelRemark = dataLevel.description;
-          // formPatientLevel.tFiles = dataLevel.uploadFiles;       
+          let data=this.$store.state.step.treatData;
 
-          let dataTreat=this.$store.state.step.treatData.formPatientTreat;
-          // formPatientTreat.patientHospital = dataLevel.hospital;
-          // formPatientTreat.patientDoctor = dataLevel.doctors;
-          // formPatientTreat.doctorTel = dataLevel.phone;
-          // formPatientTreat.treatTime = dataLevel.dischargeTime;
-          // formPatientTreat.treatRemark = dataLevel.recording;   
-          // formPatientTreat.tFiles = dataLevel.uploadFiles;   
+            
+          formPatientInfo.patientLevel = data.formPatientLevel.status;          
+          formPatientInfo.hospitalName = data.formPatientLevel.hospital;
+          formPatientInfo.doctorName = data.formPatientLevel.doctor;
+          formPatientInfo.doctorTel = data.formPatientLevel.phone;
+          formPatientInfo.doctorEvtime = data.formPatientLevel.time;
+          formPatientInfo.levelRemark = data.formPatientLevel.description;
+          formPatientInfo.tFiles = data.formPatientLevel.uploadFiles;
 
-          let dataLive=this.$store.state.step.treatData.formPatientZhuyuan;
-          // formPatientZhuyuan.patientHospital = dataLevel.hospital;
-          // formPatientZhuyuan.doctorName = dataLevel.doctors;
-          // formPatientZhuyuan.checkinTime = dataLevel.hospitalStay;
-          // formPatientZhuyuan.checkoutTime = dataLevel.dischargeTime;
-          // formPatientZhuyuan.treatRemark = dataLevel.recording;
-          // formPatientZhuyuan.tFiles = dataLevel.uploadFiles;   
+          formPatientInfo.tTreatRecords = data.formPatientTreat.concat(data.formPatientZhuyuan);
           
-
-          levelSaveList(formPatientInfo).then(res=>{
+      
+          id==1?treatSaveList(formPatientInfo).then(res=>{
+            console.log("保存成功")
+          }):treatSaveLists(formPatientInfo).then(res=>{
             console.log("保存成功")
           })
           console.log("可以掉接口保存");
@@ -330,26 +270,8 @@ export default {
       // }
     },
     // 04四帮一保存
-    helpSave() {
-      // if (this.$store.state.step.helpStatus) {
-          let objLocal={
-            "bIstreat":"123",
-            "bIswilltreat":"0",
-            "bDoRemarks":"222222222222222222",
-            "fristRemarks":"0",
-            "secondRemarks":"0",
-            "thirdRemarks":"13222222222",
-            "tFiles":"asdfsdf",          
-          }
-
-          let objOutside={
-            "wCompanyName":"123",
-            "wCompanyLeader":"0",
-            "wCompanyTel":"222222222222222222",
-            "wCompanyContactTime":"0",
-            "wDoRemarks":"0",
-            "tFiles":"13222222222",
-          }
+    helpSave(id) {
+      // if (this.$store.state.step.helpStatus) {  
 
           let dataInfo = {
           "guardianName": "zjjjz",
@@ -369,7 +291,7 @@ export default {
         }
           
 
-          let data=this.$store.state.step.findData.checkRegistration;
+          // let data=this.$store.state.step.findData.checkRegistration;
           
           // objLocal.bIstreat = data.patientName;
           // objLocal.bIswilltreat = data.sex;
@@ -378,21 +300,22 @@ export default {
           // objLocal.secondRemarks = data.employer;
           // objLocal.thirdRemarks = data.patient;
           // objLocal.tFiles = data.village;       
-          
-          dataInfo.cadre = this.$store.state.form.treatData.cjgbbfData;
 
-          dataInfo.tHelpRecordsList = this.$store.state.form.cadreList;
-          dataInfo.tHelpRecordsList = this.$store.state.form.policeList;
-          dataInfo.tHelpRecordsList = this.$store.state.form.doctorList;
-          dataInfo.tHelpRecordsList = this.$store.state.form.guardianList;
+          console.log(this.$store.state.form.cadre)   
 
-          helpSaveList(dataInfo).then(res=>{
+          dataInfo.cadre = this.$store.state.form.cadre;       
+          dataInfo.police = this.$store.state.form.police;       
+          dataInfo.doctor = this.$store.state.form.doctor;       
+          dataInfo.guardian = this.$store.state.form.guardian;       
+          dataInfo.cadreList = this.$store.state.form.cadreList;
+          dataInfo.policeList = this.$store.state.form.policeList;
+          dataInfo.doctorList = this.$store.state.form.doctorList;
+          dataInfo.guardianList = this.$store.state.form.guardianList;
+
+          id==1?helpSaveList(dataInfo).then(res=>{
             console.log(res)
-            this.$store.state.step.findData.basicInformation = res.data.code;
-            this.$store.state.step.findData.basicInformation = res.data.status;
-            this.$store.state.step.findData.basicInformation = res.data.name;
-            this.$store.state.step.findData.basicInformation = res.data.checkin_dept;
-            this.$store.state.step.findData.basicInformation = res.data.createDate;
+          }):helpSaveLists(dataInfo).then(res=>{
+            console.log(res)
           })
           console.log("可以掉接口保存");
       // } else {
@@ -400,7 +323,7 @@ export default {
       // }
     },
     // 05再次评定保存
-    againTreatSave() {
+    againTreatSave(id) {
       // if (this.$store.state.step.againTreatStatus) {
           let formPatientLevel={
             "archivesId": "272",
@@ -422,7 +345,9 @@ export default {
           formPatientLevel.levelRemark = dataLevel.description;
           // formPatientLevel.tFiles = dataLevel.uploadFiles;                 
 
-          againSaveList(formPatientLevel).then(res=>{
+          id==1?againSaveList(formPatientLevel).then(res=>{
+            console.log("保存成功")
+          }):againSaveLists(formPatientLevel).then(res=>{
             console.log("保存成功")
           })
           console.log("可以掉接口保存");
@@ -431,7 +356,7 @@ export default {
       // }
     },
     // 06脱离管控保存
-    cureSave() {
+    cureSave(id) {
       // if (this.$store.state.step.outControlStatus) {
           let RecorderList = 
           {
@@ -457,7 +382,9 @@ export default {
           
           RecorderList.tCuteRecordsList = data.formPatientRecorder;        
 
-          outControlSaveList(RecorderList).then(res=>{
+          id==1?outControlSaveList(RecorderList).then(res=>{
+            console.log(res)  
+          }):outControlSaveLists(RecorderList).then(res=>{
             console.log(res)  
           })
           console.log("可以掉接口保存");

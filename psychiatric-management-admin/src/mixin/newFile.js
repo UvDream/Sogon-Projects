@@ -14,9 +14,18 @@ export default {
     //   this.handleSubmit("handleSubmit");
     // }
     saveForward(obj) {
+      if(this.$route.name=="newFile"){
+            obj.archivesId=this.$store.state.step.archivesId
+      }
       // debugger
       api.forward(obj).then(res=>{
+        console.log(this.$route)
+        
         this.$Message.success("转发成功!");
+        this.$store.state.step.stepStatus < 5
+        ? (this.$store.state.step.stepStatus =
+            this.$store.state.step.stepStatus + 1)
+        : "";
         this.modalForward = false;
       })
     },

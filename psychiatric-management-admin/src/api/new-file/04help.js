@@ -12,3 +12,14 @@ export const helpSaveList = data => {
     }
   });
 };
+
+export const helpSaveLists = data => {
+  return fetch({
+    url: "/jsbrgl/fourToOneController/saveHelpful",
+    method: "POST",
+    data,
+    headers: { 
+      "Content-Type": "application/json"
+    }
+  });
+};

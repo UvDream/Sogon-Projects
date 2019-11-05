@@ -12,3 +12,14 @@ export const againSaveList = data => {
       }
     });
   };
+
+  export const againSaveLists = data => {
+    return fetch({
+      url: "/jsbrgl/reEvaluateController/saveEvaluateController",
+      method: "POST",
+      data,
+      headers: { 
+        "Content-Type": "application/json"
+      }
+    });
+  };

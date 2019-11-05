@@ -1,8 +1,9 @@
 import fetch from "../fetch";
 import Cookies from 'js-cookie'
 
-// 评定治疗-病患危险等级
-export const levelSaveList = data => {
+// 评定治疗
+
+export const treatSaveList = data => {
   return fetch({
     url: "/jsbrgl/treatmentController/saveTreat",
     method: "POST",
@@ -13,10 +14,9 @@ export const levelSaveList = data => {
   });
 };
 
-// 评定治疗-病患住院记录
-export const histroyLiveSaveList = data => {
+export const treatSaveLists = data => {
   return fetch({
-    url: "/jsbrgl/treatmentController/deleteTreat",
+    url: "/jsbrgl/treatmentController/saveTreat",
     method: "POST",
     data,
     headers: { 
@@ -24,4 +24,3 @@ export const histroyLiveSaveList = data => {
     }
   });
 };
-

@@ -9,9 +9,9 @@
 <template>
   <div>
     <!-- 外地病患 -->
-    <ForeignPatients />
+    <ForeignPatients v-if="isLocal==0"/>
     <!-- 本地病患 -->
-    <LocalPatient />
+    <LocalPatient v-if="isLocal==1" />
     <Btn />
   </div>
 </template>
@@ -26,6 +26,11 @@ export default {
     ForeignPatients,
     LocalPatient,
     Btn
+  },
+  computed:{
+    isLocal:function(){
+      return this.$store.state.step.isLocal
+    }
   }
 };
 </script>

@@ -81,7 +81,7 @@ export default {
         phone:"",
         time:"",
         description:"",
-        uploadFiles:""
+        uploadFiles:[]
       },
       ruleValidate: {
         status: [
@@ -113,7 +113,7 @@ export default {
   created() {
     vm.$on("blur", val => {
       if (val == "saveEvent") {
-        this.$store.state.step.findData.dealData = this.formValidate;
+        this.$store.state.step.treatData.formPatientLevel = this.formValidate;
       }
     });
   },
