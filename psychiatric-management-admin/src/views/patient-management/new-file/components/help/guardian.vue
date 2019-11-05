@@ -59,6 +59,7 @@
 <script>
 import TopMessage from "./components/top-title";
 import cTable from "./components/table";
+import vm from "../../event";
 import { validatePhone } from "@/util/util";
 export default {
   components: {
@@ -88,6 +89,14 @@ export default {
       console.log("折叠", val);
     }
   },
+  created() {
+    vm.$on("blur", val => {
+      if (val == "saveEvent") {
+        this.$store.state.form.guardian = this.formValidate
+      }
+    });
+  }, 
+
   methods: {}
 };
 </script>

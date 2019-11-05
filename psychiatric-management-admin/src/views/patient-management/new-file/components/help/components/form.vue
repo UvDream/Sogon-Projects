@@ -91,9 +91,10 @@ code:{
   created() {
     vm.$on("blur", val => {
       if (val == "saveEvent") {
-        this.code==0?this.$store.state.step.form.cadre = this.formValidate:""
-        this.code==1?this.$store.state.step.form.police = this.formValidate:""
-        this.code==2?this.$store.state.step.form.doctor = this.formValidate:""
+        console.log(this.code)
+        this.code==0?this.$store.state.form.cadre = this.formValidate:""
+        this.code==1?this.$store.state.form.police = this.formValidate:""
+        this.code==2?this.$store.state.form.doctor = this.formValidate:""
       }
     });
   }, 

@@ -8,7 +8,12 @@ const form = {
       phone:""
     },
     // 列表信息
-    cadreSelect: {},
+    cadreSelect: {
+      name:"",
+      department:"",
+      IdNumber:"",
+      phone:""
+    },
     cadreList: [
       {
         helpDate: "2019"
@@ -18,7 +23,12 @@ const form = {
       }
     ],
     // 监护民警帮扶
-    police: {},
+    police: {
+      name:"",
+      department:"",
+      IdNumber:"",
+      phone:""
+    },
     policeSelect: {},
     policeList: [
       {
@@ -26,7 +36,12 @@ const form = {
       }
     ],
     // 医生帮扶
-    doctor: {},
+    doctor: {
+      name:"",
+      department:"",
+      IdNumber:"",
+      phone:""
+    },
     doctorSelect: {},
     doctorList: [
       {
@@ -34,7 +49,12 @@ const form = {
       }
     ],
     // 监护人监护
-    guardian: {},
+    guardian: {
+      name:"",
+      relationship:"",
+      banNumber:"",
+      phone:""
+    },
     guardianSelect: {},
     guardianList: [
       {
