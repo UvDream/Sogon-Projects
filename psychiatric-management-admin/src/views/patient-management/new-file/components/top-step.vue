@@ -98,8 +98,8 @@ export default {
       }
     }
     &-body {
-      width: 75px;
-      height: 75px;
+      width: 100px;
+      height: 100px;
       color: #fff;
       border-radius: 8px;
       background-image: url("../../../../assets/img.png");
@@ -108,8 +108,6 @@ export default {
       justify-content: center;
       align-items: center;
       & > div {
-        text-align: center;
-        width: 60px;
         text-align: center;
         font-size: 12px;
       }
