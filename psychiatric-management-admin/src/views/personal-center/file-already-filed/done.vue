@@ -37,11 +37,13 @@
             <Input v-model="formInline.name" />
           </FormItem>
           <FormItem prop="beginCreateDate" label="开始创建时间" class="form-block">
-            <DatePicker type="datetime" v-model="formInline.beginCreateDate"></DatePicker>
+            <DatePicker type="datetime" format="yyyy-MM-dd HH:mm:ss" @on-change="startTimeChange" v-model="formInline.beginCreateDate">
+            </DatePicker>
           </FormItem>
           <span>-</span>
           <FormItem prop="endCreateDate" label="结束创建时间" class="form-block">
-            <DatePicker type="datetime" v-model="formInline.endCreateDate"></DatePicker>
+            <DatePicker type="datetime" format="yyyy-MM-dd HH:mm:ss" @on-change="endTimeChange" v-model="formInline.endCreateDate"
+          ></DatePicker>
           </FormItem>
           <FormItem class="form-block" style="display: flex;align-items: flex-end;">
             <Button @click="handleReset('formInline')">取消</Button>
@@ -58,7 +60,7 @@
         </ButtonGroup>
         <ButtonGroup size="large">
           <Button @click="handlePushAll(true)">推送</Button>
-          <Button @click="handleDeleteAll(false)">删除</Button>
+          <Button v-if="isRole==0 || isRole==1" @click="handleDeleteAll(false)">删除</Button>
         </ButtonGroup>
       </div>
       <Table ref="section"
@@ -114,23 +116,23 @@
           </span>
         </template>
         <template slot-scope="{ row, index }" slot="action">
-          <Button class="my-table-handle-button" @click="handledelete(row.id,index)">删除</Button>
+          <Button class="my-table-handle-button" v-if="isRole==0 || isRole==1" @click="handledelete(row.id,index)">删除</Button>
           <Button 
             class="my-table-handle-button" 
             @click="handleforward(row.id,index)" 
-            v-if="row.status == 1 || row.status == 2 || row.status == 4 || row.status == 6"
+            v-if="(row.status == 1 || row.status == 2 || row.status == 4 || row.status == 6)&&(row.isOperRole==0)"
             >转发
           </Button>
           <Button 
             class="my-table-handle-button" 
             @click="handlereturn(row.id,index)"
-            v-if="row.status == 2 || row.status == 4 || row.status == 6 || row.status == 7">
+            v-if="(row.status == 2 || row.status == 4 || row.status == 6 || row.status == 7)&&(row.isOperRole==0)">
             退回
           </Button>
           <Button 
             class="my-table-handle-button" 
             @click="handlesetup(row.id,index)"
-            v-if="row.status == 7"
+            v-if="(row.status == 2 || row.status == 4 || row.status == 7)&&(row.isOperRole==0)"
             >办结
           </Button>
           <Button 
@@ -138,6 +140,12 @@
             @click="handlepush(row.id,index)"
             v-if="row.status == 0 || row.status == 1" >
             推送
+          </Button>
+          <Button 
+            class="my-table-handle-button" 
+            @click="handlestart(row.id,index)"
+            v-if="row.status == 3" >
+            启动
           </Button>
         </template>
       </Table>
@@ -159,6 +167,8 @@
     <SetUp :modalSetUp="modalSetUp" :indexId="indexId" @closemodal="closemodal"/>
     <!-- 退回弹窗-->
     <Return :modalReturn="modalReturn" :indexId="indexId" @closemodal="closemodal"/>
+    <!-- 启动弹窗-->
+    <Startup :modalStartUp="modalStartUp" :indexId="indexId" @closemodal="closemodal"/>
     <!-- 流程图-->
     <Flow :modalFlow="modalFlow" :indexId="indexId" :flowList="flowList" @closemodal="closemodal"/>
   </div>
@@ -168,38 +178,31 @@
 import api from "@/api/file-manage";
 import Forward from "../../patient-management/new-file/components/modal/forward";
 import SetUp from "../../patient-management/new-file/components/modal/setUp";
+import Startup from "../../patient-management/new-file/components/modal/startUp";
 import Return from "../../patient-management/new-file/components/modal/return";
 import Flow from "../../patient-management/file-management/flow";
-import mixin from "@/mixin/newFile";
+import fileList from "@/mixin/fileList";
 import { formatDate } from "@/util/util";
 export default {
-  mixins: [mixin],
+  mixins: [fileList],
   components: {
     Forward,
     SetUp,
     Return,
-    Flow
+    Flow,
+    Startup
   },
   data (){
     return {
       closed: false,
-      flowList:[],
-      indexId:0,
-      modalForward:false,
-      modalFlow:false,
-      modalSetUp:false,
-      modalReturn:false,
       formInline: {
         code: '',
         status: '',
         patientName:'',
         name: '',
-        beginCreateDate:'',
-        endCreateDate: ''
+        beginCreateDate:null,
+        endCreateDate: null
       },
-      total:0,
-      pageNum:1,
-      pageSize: 10,
       columns: [
         {
           type: 'selection',
@@ -278,177 +281,7 @@ export default {
       selectList: []
     }
   },
-  mounted() {
-    let obj = Object.assign(
-      this.formInline,
-      {pageNum:this.pageNum},
-      {pageSize:this.pageSize}
-    );
-    this.searchFunc(obj);
-  },
-  methods: {
-    //取消
-    handleReset (name) {
-      this.$refs[name].resetFields();
-    },
-    //搜索
-    search() {
-      let obj = Object.assign(
-        this.formInline,
-        {pageNum:this.pageNum},
-        {pageSize:this.pageSize}
-      );
-      this.searchFunc(obj);
-    },
-    searchFunc(data) {
-      api.checkData(data).then(res => {
-        console.log(res.data);
-        this.total = res.data.count;
-        this.tabList = res.data.data;
-      }).catch(()=>{
-      });
-    },
-    //全选中
-    handleSelectAll (status) {
-      this.$refs.section.selectAll(status);
-    },
-    //选中变化
-    Modulechange(section){
-      this.selectList = section;
-      console.log(this.selectList);
-    },
-    //删除
-    handledelete (id, index) {
-      let _this = this;
-      this.$Modal.confirm({
-        title:'删除',
-        content:'确认删除?',
-        onOk: () => {
-          let arr = [id];
-          api.deleteData({ids:arr}).then(res =>{
-            console.log(res);
-            _this.tabList.splice(index, 1);
-            _this.$Message.success("删除成功!");
-          })
-          
-        }
-      });
-    },
-    handleDeleteAll() {
-      var _this = this;
-      if(this.selectList.length==0){
-        this.$Message.error('请至少选中一项')
-      }else{
-        //操作
-        let arr = [];
-        arr = this.selectList.map((item)=>{
-          return item.id
-        });
-        console.log(arr);
-        api.deleteData({ids:arr}).then(res => {
-          console.log(res);
-          let obj = Object.assign(
-            _this.formInline,
-            {pageNum:this.pageNum},
-            {pageSize:this.pageSize}
-          );
-          _this.searchFunc(obj);
-          _this.$Message.success("删除成功!");
-        });
-      }
-    },
-    //转发
-    handleforward(id,index) {
-      //判断是否填写资料
-      api.isSave({tArchiveId:id}).then(res=>{
-        if(res.success==true){
-          this.indexId = id;
-          this.modalForward = true;
-        }else{
-          this.$Message.success("资料填写不完整，请先至档案处填写完整!");
-        }
-      });
-    },
-    //退回
-    handlereturn(id,index) {
-      this.indexId = id;
-      this.modalReturn = true;
-    },
-    //办结
-    handlesetup(id,index) {
-      api.isSave({tArchiveId:id}).then(res=>{
-        if(res.success==true){
-          this.indexId = id;
-          this.modalSetUp = true;
-        }else{
-          this.$Message.success("资料填写不完整，请先至档案处填写完整!");
-        }
-      });
-    },
-    //推送
-    handlepush(id,index) {
-      this.indexId = id;
-    },
-    handlePushAll() {
-      var _this = this;
-      if(this.selectList.length==0){
-        this.$Message.error('请至少选中一项')
-      }else{
-        //操作
-        let arr = [];
-        arr = this.selectList.map((item)=>{
-          return item.id
-        });
-        console.log(arr);
-        //缺少接口
-        /*api.deleteData({ids:arr}).then(res => {
-          console.log(res);
-          let obj = Object.assign(
-            _this.formInline,
-            {pageNum:this.pageNum},
-            {pageSize:this.pageSize}
-          );
-          _this.searchFunc(obj);
-          _this.$Message.success("信息推送成功!");
-        });*/
-      }
-    },
-    //查看流程图
-    handleStatus(id,index) {
-      api.flow({archivesId:id}).then(res=>{
-        if(res.success==true){
-          this.indexId = id;
-          this.flowList = res.data;
-          this.modalFlow = true;
-        }
-      })
-    },
-    //弹窗关闭
-    closemodal(){
-      this.modalFlow = false;
-      this.modalForward = false;
-      this.modalSetUp = false;
-      this.modalReturn = false;
-    },
-    pageChange(cur) {
-      this.pageNum = cur;
-      let obj = Object.assign(
-        this.formInline,
-        {pageNum:this.pageNum},
-        {pageSize:this.pageSize}
-      );
-      this.searchFunc(obj);
-    },
-    pageSizeChange(pagesize) {
-      this.pageSize = pagesize;
-      let obj = Object.assign(
-        this.formInline,
-        {pageNum:this.pageNum},
-        {pageSize:this.pageSize}
-      );
-      this.searchFunc(obj);
-    }
-  }
+  methods: {}
 };
 </script>
 

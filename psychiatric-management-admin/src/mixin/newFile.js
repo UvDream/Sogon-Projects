@@ -59,6 +59,20 @@ export default {
           this.$Message.success("退回成功！");
         }
       })
+    },
+    startUp() {
+      let obj = {
+        tArchiveId:this.indexId,
+        tFilesList:this.formValidate.uploadFiles
+      };
+      api.startUp(obj).then(res=>{
+        if(res.success==true){
+          this.$Message.success("启动成功！");
+        }else{
+          this.$Message.success(res.msg);
+        }
+        this.$emit('closemodal');
+      })
     }
   }
 };

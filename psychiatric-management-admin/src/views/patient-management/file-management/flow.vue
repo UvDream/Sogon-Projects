@@ -120,6 +120,8 @@ export default {
     border-radius: 20px;
     border-radius: 20px;
     padding:30px;
+    height:400px;
+    overflow:auto;
   }
   .item{
     position: relative;
