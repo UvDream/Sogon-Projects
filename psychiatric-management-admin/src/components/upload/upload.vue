@@ -51,16 +51,13 @@ export default {
   data() {
     return {
       // 上传接口地址
-      url: baseUrl + "/jsbrgl/fileUploadController/fileUpload",
+      url: baseUrl + "/jsbrgl/fileUploadController/fileUpload1",
       defaultList: [
         {
           name: "avatar.png",
           url: "https://nexmoe.com/images/avatar.png"
         }
       ],
-      headers: {
-        "Content-Type": "application/json"
-      },
       imgName: "avatar.png",
       visible: false,
       uploadList: []
@@ -68,6 +65,7 @@ export default {
   },
   methods: {
     handleView(name) {
+      console.log(name)
       this.imgName = name;
       this.visible = true;
     },
@@ -76,9 +74,26 @@ export default {
       this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
     },
     handleSuccess(res, file) {
-      console.log(res);
-      file.url = "https://nexmoe.com/images/avatar.png";
-      file.name = "avatar.png";
+      // console.log("上传文件")
+      // console.log(res.data)
+      // console.log(this.uploadList);
+      
+      let arr=[]
+      // this.uploadList.forEach(element=>{
+      //   console.log(JSON.stringify(element).url)
+      // })
+      // for(let i=0;i<this.uploadList.length;i++){
+      //   console.log(this.uploadList[i].uid)
+      // }
+      Array.from(this.uploadList).forEach(element=>{
+        console.log(element.uid)
+        console.log(element)
+      })
+      file.url = res.data.filePath;
+      file.name = res.data.fileName;
+      // console.log("33333")
+      // console.log(arr)
+      this.$emit("input",arr)
     },
     handleFormatError(file) {
       this.$Notice.warning({
