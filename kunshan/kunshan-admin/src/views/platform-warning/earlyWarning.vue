@@ -1,8 +1,8 @@
 <!--
  * @Author: wangzhongjie
  * @Date: 2019-10-11 11:03:51
- * @LastEditors: xiahongxiu
- * @LastEditTime: 2019-10-21 15:08:29
+ * @LastEditors: wangzhongjie
+ * @LastEditTime: 2019-11-06 13:46:07
  * @Description: 车辆卡扣预警
  * @Email: UvDream@163.com
  -->
@@ -15,41 +15,25 @@
           <section>车辆类型</section>
           <section>车牌号码</section>
           <section>车身颜色</section>
-          <section style="width:250px;">预警时间</section>
-          <section>预警地点</section>
+          <section style="width:220px;">预警时间</section>
+          <section style="width:250px;">预警地点</section>
           <section></section>
         </div>
         <div class="early-one-table" v-for="(item,index) in tabList" :key="index">
           <section>
-            <a-input
-              placeholder="车辆类型"
-              :disabled="disabled"
-              v-model="item.cx"
-            />
+            <a-input placeholder="车辆类型" :disabled="disabled" v-model="item.cx" />
           </section>
           <section>
-            <a-input
-              placeholder="车牌号"
-              :disabled="disabled"
-              v-model="item.cphm"
-            />
+            <a-input placeholder="车牌号" :disabled="disabled" v-model="item.cphm" />
           </section>
           <section>
-            <a-input
-              placeholder="车身颜色"
-              :disabled="disabled"
-              v-model="item.ys"
-            />
+            <a-input placeholder="车身颜色" :disabled="disabled" v-model="item.ys" />
           </section>
-          <section style="width: 250px;">
+          <section style="width: 220px;">
             <Time v-model="item.yjsj" :disabled="disabled" :format="'YYYY-MM-DD'" />
           </section>
-          <section>
-            <a-input
-              placeholder="预警地点"
-              :disabled="disabled"
-              v-model="item.yjdd"
-            />
+          <section style="width:250px;">
+            <a-input placeholder="预警地点" :disabled="disabled" v-model="item.yjdd" />
           </section>
           <section>
             <a-icon
@@ -105,7 +89,7 @@ export default {
       formdata: {
         type: 2,
         dateType: "日",
-        pcs: "昆山市公安局",
+        pcs: "昆山市公安局"
       },
       tabList: []
     };
@@ -129,26 +113,26 @@ export default {
     policeStation: function(val) {
       this.formdata.pcs = val;
       this.formdata.type = 2;
-      if(this.formdata.pcs=="昆山市公安局"){
-        this.searchFunc(this.formdata);
-      }
-    },
-    // 日,周,月变化
-    topDate: function(val) {
-      let obj = {
-        1: "日",
-        2: "周",
-        3: "月"
-      };
-      this.formdata.dateType = obj[val];
-      if(this.formdata.pcs=="昆山市公安局"){
+      if (this.formdata.pcs == "昆山市公安局") {
         this.searchFunc(this.formdata);
       }
     }
+    // 日,周,月变化
+    // topDate: function(val) {
+    //   let obj = {
+    //     1: "日",
+    //     2: "周",
+    //     3: "月"
+    //   };
+    //   this.formdata.dateType = obj[val];
+    //   if(this.formdata.pcs=="昆山市公安局"){
+    //     this.searchFunc(this.formdata);
+    //   }
+    // }
   },
   mounted() {
     this.formdata.type = 2;
-    this.searchFunc(this.formdata);  
+    this.searchFunc(this.formdata);
   },
   methods: {
     saveFunc() {
@@ -156,7 +140,7 @@ export default {
         type: this.data,
         dateType: this.formdata.dateType,
         pcs: this.policeStation,
-        carWarningList:this.tabList
+        carWarningList: this.tabList
       };
       saveList(obj).then(res => {
         if (res.code == 0) {
@@ -167,7 +151,7 @@ export default {
     searchFunc(data) {
       checkData(data).then(res => {
         this.tabList = res.data.carWarningListQuery;
-        if(res.data.carWarningListQuery.length > 0) {
+        if (res.data.carWarningListQuery.length > 0) {
           this.data = res.data.carWarningListQuery[0].type;
         }
       });
@@ -186,8 +170,8 @@ export default {
 
 <style lang="less" scoped>
 @import url("../police-quality/policeQuality");
-.dashboard-bottom-left{
-  overflow:auto;
+.dashboard-bottom-left {
+  overflow: auto;
 }
 .dashboard-bottom-right {
   &::before {
@@ -206,15 +190,15 @@ export default {
     display: flex;
     height: 40px;
     align-items: center;
-    & > section{
+    & > section {
       text-align: center;
       width: 19%;
       height: 40px;
       line-height: 40px;
       border-bottom: solid 1px #cbcbcb;
       border-left: solid 1px #cbcbcb;
-      & > input{
-        width:80%;
+      & > input {
+        width: 80%;
       }
     }
     & > section:nth-child(5) {
@@ -225,8 +209,8 @@ export default {
       border: none;
     }
   }
-  &-table:nth-child(1){
-    & > section{
+  &-table:nth-child(1) {
+    & > section {
       border-top: solid 1px #cbcbcb;
     }
     & > section:last-child {
