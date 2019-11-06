@@ -12,3 +12,14 @@ export const outControlSaveList = data => {
       }
     });
   };
+
+  export const outControlSaveLists = data => {
+    return fetch({
+      url: "/jsbrgl/rehabilitationController/saveRehabilitation",
+      method: "POST",
+      data,
+      headers: { 
+        "Content-Type": "application/json"
+      }
+    });
+  };

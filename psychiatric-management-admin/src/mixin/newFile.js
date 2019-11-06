@@ -14,12 +14,17 @@ export default {
     //   this.handleSubmit("handleSubmit");
     // }
     saveForward(obj) {
-      // debugger
+      if(this.$route.name=="newFile"){
+        obj.archivesId=this.$store.state.step.archivesId
+      }
       api.forward(obj).then(res=>{
-        if(res.success==true){
-          this.$Message.success(res.msg);
-          this.$emit('closemodal');
-        }
+        console.log(this.$route)
+        this.$Message.success("转发成功!");
+        this.$store.state.step.stepStatus < 5
+        ? (this.$store.state.step.stepStatus =
+            this.$store.state.step.stepStatus + 1)
+        : "";
+        this.$emit('closemodal');
       })
     },
     saveFinish() {
@@ -28,6 +33,9 @@ export default {
         remarks:this.formValidate.remarks,
         tFilesList:this.tFilesList
       };
+      if(this.$route.name=="newFile"){
+        obj.tArchiveId=this.$store.state.step.archivesId;
+      }
       api.finish(obj).then(res=>{
         if(res.success==true){
           this.$Message.success(res.msg);
@@ -42,6 +50,9 @@ export default {
         curPositionid:this.formValidate.curPositionid,
         tFilesList:this.tFilesList
       };
+      if(this.$route.name=="newFile"){
+        obj.tArchiveId=this.$store.state.step.archivesId;
+      }
       api.back(obj).then(res=>{
         if(res.success==true){
           this.$emit('closemodal');

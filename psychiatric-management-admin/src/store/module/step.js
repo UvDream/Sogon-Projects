@@ -1,5 +1,7 @@
 const step = {
   state: {
+    // 是否·本地·
+    isLocal:0,
     // 步骤状态
     stepStatus: 0,
     // 01发现页面
@@ -55,66 +57,63 @@ const step = {
     },
     // ---02初步处理页面
     dealData: {
-      formLocal: {
+      formData: {
         isTreatment: "",
         isTreatmentDescription: "",
         firstVisit: "",
         secondVisit: "",
         thirdVisit: "",
-        uploadFiles: ""
-      },
-      formOutside: {
-        name:"",
-        principal:"",
-        phone:"",
-        contactTime:"",
-        description:"",
-        uploadFiles:"",
-        archivesId:""
-      },
+        uploadFiles: [],
+        type: "0",
+        wType: "0",
+      }
     },
     // ---03评定治疗页面
     treatData: {
       formPatientLevel: {
-        status:"",
-        hospital:"",
-        doctor:"",
-        phone:"",
-        time:"",
-        description:"",
-        uploadFiles:""
+        status:"12",
+        hospital:"12",
+        doctor:"12",
+        phone:"12",
+        time:"12",
+        description:"12",
+        uploadFiles:[]
       },
-      formPatientTreat: {
-        hospital: "",
-        doctors: "",
-        phone: "",
-        dischargeTime: "",
-        recording: "",
-        uploadFiles: ""
-      },
-      formPatientZhuyuan: {        
-        more: [
-          {
-            hospital: "",
-            doctors: "",
-            hospitalStay: "",
-            dischargeTime: "",
-            recording: "",
-            uploadFiles: ""
-          },
-          {
-            hospital: "",
-            doctors: "",
-            hospitalStay: "",
-            dischargeTime: "",
-            recording: "",
-            uploadFiles: ""
-          }
-        ]
-      },
+      formPatientTreat: [
+        {
+          id: "9",
+          patientHospital: null,
+          patientDoctor: null,
+          doctorTel: null,
+          treatTime: null,
+          checkinTime: null,
+          checkoutTime: null,
+          treatRemark: null,
+          fileCode: "1572874968047",
+          treatId: "",
+          type: "0",
+          tFiles: []
+        }
+      ],
+      formPatientZhuyuan: [
+        {
+          id: "9",
+          patientHospital: null,
+          patientDoctor: null,
+          doctorTel: null,
+          treatTime: null,
+          checkinTime: null,
+          checkoutTime: null,
+          treatRemark: null,
+          fileCode: "1572874968047",
+          treatId: "",
+          type: "0",
+          tFiles: []
+        }
+      ],
     },
     // ---04四帮一页面
-    treatData: {
+    helpData: {
       cjgbbfData: {
         name:"",
         department:"",
@@ -127,7 +126,7 @@ const step = {
         phone: "",
         dischargeTime: "",
         recording: "",
-        uploadFiles: ""
+        uploadFiles: []
       },
       
     },    

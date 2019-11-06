@@ -61,7 +61,7 @@
         <!-- 第三排 -->
         <div class="form">
           <FormItem label="是否是外埠患者" prop="foreigner" class="form-block">
-            <Select v-model="formValidate.foreigner" placeholder="选择是否为外埠患者">
+            <Select v-model="formValidate.foreigner" placeholder="选择是否为外埠患者" @on-change="selectChange">
               <Option value="0">是</Option>
               <Option value="1">否</Option>
             </Select>
@@ -258,6 +258,10 @@ export default {
     });
   },
   methods: {
+    selectChange(e){
+      console.log(e)
+      this.$store.state.step.isLocal=e;
+    },
     handleSubmit(name) {
       this.$refs[name].validate(valid => {
         if (valid) {

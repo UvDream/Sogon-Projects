@@ -12,3 +12,13 @@ export const dealSaveList = data => {
     }
   });
 };
+export const dealSaveLists= data => {
+  return fetch({
+    url: "/jsbrgl/evaluateArchivesController/saveEvaluate",
+    method: "POST",
+    data,
+    headers: { 
+      "Content-Type": "application/json"
+    }
+  });
+};

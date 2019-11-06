@@ -63,9 +63,6 @@ export default {
           url: "https://nexmoe.com/images/avatar.png"
         }
       ],
-      headers: {
-        "Content-Type": "application/json", 
-      },
       imgName: "222.jpg",
       visible: false,
       uploadList: []

@@ -30,7 +30,7 @@
             </Select>
             <!-- <Input v-model="item.department" placeholder="输入病患就诊医院" /> -->
           </FormItem>
-          <FormItem
+          <!-- <FormItem
             label="转发人姓名"
             class="form-block"
             :prop="'forward.' + index + '.name'"
@@ -40,8 +40,8 @@
               trigger: 'blur'
             }"
           >
-            <Input v-model="item.name" placeholder="输入转发人姓名" />
-          </FormItem>
+            <Input v-model="item.name" placeholder="输入转发人姓名" /> -->
+          <!-- </FormItem> -->
           <div style="display:flex;align-items:center" @click="deleteFunc(index)">
             <img src="../../../../../assets/fonts/delete.png" alt />
           </div>
@@ -74,7 +74,7 @@ export default {
       default: false
     },
     indexId:{
-      default: 0
+      default: 69
     }
   },
   data() {
