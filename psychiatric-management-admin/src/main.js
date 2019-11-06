@@ -3,6 +3,8 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "./plugins/iview.js";
+import G2 from '@antv/g2';
+Vue.use(G2)
 
 Vue.config.productionTip = false;
 
