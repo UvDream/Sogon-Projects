@@ -85,7 +85,7 @@
               trigger: 'blur'
             }"
             >
-              <Upload />
+              <Upload v-model="item.uploadFiles"/>
             </FormItem>
           </div>
 
@@ -153,6 +153,9 @@ export default {
   created() {
     vm.$on("blur", val => {
       if (val == "saveEvent") {
+        this.formValidate.more.forEach(element=>{
+          element.type = 1;
+        })
         this.$store.state.step.treatData.formPatientZhuyuan = this.formValidate.more;
       }
     });

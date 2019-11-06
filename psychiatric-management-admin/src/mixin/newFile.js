@@ -31,7 +31,7 @@ export default {
       let obj = {
         tArchiveId:this.indexId,
         remarks:this.formValidate.remarks,
-        tFilesList:this.tFilesList
+        tFilesList:this.formValidate.uploadFiles
       };
       if(this.$route.name=="newFile"){
         obj.tArchiveId=this.$store.state.step.archivesId;
@@ -48,7 +48,7 @@ export default {
         tArchiveId:this.indexId,
         remarks:this.formValidate.remarks,
         curPositionid:this.formValidate.curPositionid,
-        tFilesList:this.tFilesList
+        tFilesList:this.formValidate.uploadFiles
       };
       if(this.$route.name=="newFile"){
         obj.tArchiveId=this.$store.state.step.archivesId;

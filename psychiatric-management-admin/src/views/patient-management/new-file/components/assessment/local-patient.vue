@@ -58,7 +58,7 @@
         </div>
         <div class="form">
           <FormItem label="本埠证明材料" prop="uploadFiles" class="form-block">
-            <Upload v-model="formValidate.uploadFiles"/>
+            <Upload v-model="formValidate.uploadFiles" />
           </FormItem>
         </div>
       </Form>
@@ -84,7 +84,7 @@ export default {
         firstVisit: "",
         secondVisit: "",
         thirdVisit: "",
-        uploadFiles: "",
+        uploadFiles: [],
         archivesId:"",
       },
       ruleValidate: {
@@ -105,7 +105,7 @@ export default {
       this.$refs[name].validate(valid => {
         if (valid) {
           // this.$Message.success("Success!");
-          this.$store.state.step.dealData.formLocal = this.formValidate;
+          this.$store.state.step.dealData.formData = this.formValidate;
           this.$store.state.step.dealStatus = true;
         } else {
           // this.$Message.error("Fail!");
