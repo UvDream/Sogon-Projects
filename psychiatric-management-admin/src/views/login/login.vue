@@ -86,7 +86,7 @@ export default {
   methods: {
     handleSubmit(name) {
       this.formInline.user = "GA";
-      this.formInline.password = "42b8753abba111e953cd5633966e1794";
+      this.formInline.password = "111111";
       let data = {
         "name": this.formInline.user,
         "pwd": this.formInline.password

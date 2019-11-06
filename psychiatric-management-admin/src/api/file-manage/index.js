@@ -33,6 +33,17 @@ const api = {
             }
         })
     },
+    //流程图
+    flow: (data)=>{
+        return fetch({
+            url: '/jsbrgl/archivesManageController/flow',
+            method: 'POST',
+            data,
+            headers: { 
+              "Content-Type": "application/json"
+            }
+        })
+    },
 }
 
 export default api

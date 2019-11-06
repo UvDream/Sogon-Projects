@@ -15,38 +15,50 @@ export default {
     // }
     saveForward(obj) {
       if(this.$route.name=="newFile"){
-            obj.archivesId=this.$store.state.step.archivesId
+        obj.archivesId=this.$store.state.step.archivesId
       }
-      // debugger
       api.forward(obj).then(res=>{
         console.log(this.$route)
-        
         this.$Message.success("转发成功!");
         this.$store.state.step.stepStatus < 5
         ? (this.$store.state.step.stepStatus =
             this.$store.state.step.stepStatus + 1)
         : "";
-        this.modalForward = false;
+        this.$emit('closemodal');
       })
     },
     saveFinish() {
       let obj = {
         tArchiveId:this.indexId,
         remarks:this.formValidate.remarks,
+        tFilesList:this.tFilesList
       };
+      if(this.$route.name=="newFile"){
+        obj.tArchiveId=this.$store.state.step.archivesId;
+      }
       api.finish(obj).then(res=>{
-        this.$Message.success("办结成功!");
+        if(res.success==true){
+          this.$Message.success(res.msg);
+          this.$emit('closemodal');
+        };
       })
     },
     saveBack() {
       let obj = {
         tArchiveId:this.indexId,
         remarks:this.formValidate.remarks,
-        curPositionid:this.formValidate.curPositionid
+        curPositionid:this.formValidate.curPositionid,
+        tFilesList:this.tFilesList
       };
+      if(this.$route.name=="newFile"){
+        obj.tArchiveId=this.$store.state.step.archivesId;
+      }
       api.back(obj).then(res=>{
-        this.$Message.success("退回成功!");
+        if(res.success==true){
+          this.$emit('closemodal');
+          this.$Message.success("退回成功！");
+        }
       })
-    },
+    }
   }
 };

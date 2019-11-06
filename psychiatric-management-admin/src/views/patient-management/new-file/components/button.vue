@@ -63,6 +63,7 @@ export default {
     // 保存
     saveFunc(id) {
       console.log("保存动作", id);
+      console.log(this.$store.state.step.stepStatus)
       vm.$emit("blur", "saveEvent");
       // 上面两个表单数据
       console.log("获取数据了", this.$store.state.step.findData);
@@ -83,6 +84,7 @@ export default {
 
     // 01发现保存
     findSave(id) {
+      console.log('findsave')
       console.log(this.$store.state.step.findStatus)
       // if (this.$store.state.findStatus) {
         let obj={
@@ -110,25 +112,27 @@ export default {
 
           let data=this.$store.state.step.findData.checkRegistration;
           
-          // obj.patientName = data.patientName;
-          // obj.patientSex = data.sex;
-          // obj.patientCode = data.IdNumber;
-          // obj.type = data.status;
-          // obj.patientCompany = data.employer;
-          // obj.patientTel = data.patient;
-          // obj.patientRusticate = data.village;
-          // obj.patientPolice = data.police;
-          // obj.isforeign = data.foreigner;
-          // obj.foreignHandle = data.processingMethod;
-          // obj.patientAddr = data.patientAddress;
-          // obj.patientStatus1 = data.patientCondition;
-          // obj.patientStatus2 = data.risk;
-          // obj.guardianName = data.guardianName;
-          // obj.guardianRel = data.relationship;
-          // obj.guardianCompany = data.guardianUnit;
-          // obj.guardianTel = data.guardianPhone;
-          // obj.causeTrouble = data.anecdote;
-          // obj.isfocal=data.isfocal;  
+          console.log(data)
+
+          obj.patientName = data.patientName;
+          obj.patientSex = data.sex;
+          obj.patientCode = data.IdNumber;
+          obj.type = data.status;
+          obj.patientCompany = data.employer;
+          obj.patientTel = data.patient;
+          obj.patientRusticate = data.village;
+          obj.patientPolice = data.police;
+          obj.isforeign = data.foreigner;
+          obj.foreignHandle = data.processingMethod;
+          obj.patientAddr = data.patientAddress;
+          obj.patientStatus1 = data.patientCondition;
+          obj.patientStatus2 = data.risk;
+          obj.guardianName = data.guardianName;
+          obj.guardianRel = data.relationship;
+          obj.guardianCompany = data.guardianUnit;
+          obj.guardianTel = data.guardianPhone;
+          obj.causeTrouble = data.anecdote;
+          obj.isfocal=data.isfocal;  
 
           // obj.tFiles = data.uploadFiles;
 
@@ -179,12 +183,12 @@ export default {
 
           // 左边后台接口名称，右边本地命名（表单、通信vuex）
 
-          // let vx_data_outside=this.$store.state.step.dealData.formOutside;
-          // obj.wCompanyName = vx_data_outside.name;
-          // obj.wCompanyLeader = vx_data_outside.principal;
-          // obj.wCompanyTel = vx_data_outside.phone;
-          // obj.wCompanyContactTime = vx_data_outside.contactTime;
-          // obj.wDoRemarks = vx_data_outside.description;
+          let vx_data_outside=this.$store.state.step.dealData.formOutside;
+          obj.wCompanyName = vx_data_outside.name;
+          obj.wCompanyLeader = vx_data_outside.principal;
+          obj.wCompanyTel = vx_data_outside.phone;
+          obj.wCompanyContactTime = vx_data_outside.contactTime;
+          obj.wDoRemarks = vx_data_outside.description;
 
           // obj.tFiles = vx_data_outside.uploadFiles;
 
@@ -291,15 +295,15 @@ export default {
         }
           
 
-          // let data=this.$store.state.step.findData.checkRegistration;
+          let data=this.$store.state.step.findData.checkRegistration;
           
-          // objLocal.bIstreat = data.patientName;
-          // objLocal.bIswilltreat = data.sex;
-          // objLocal.bDoRemarks = data.IdNumber;
-          // objLocal.fristRemarks = data.status;
-          // objLocal.secondRemarks = data.employer;
-          // objLocal.thirdRemarks = data.patient;
-          // objLocal.tFiles = data.village;       
+          objLocal.bIstreat = data.patientName;
+          objLocal.bIswilltreat = data.sex;
+          objLocal.bDoRemarks = data.IdNumber;
+          objLocal.fristRemarks = data.status;
+          objLocal.secondRemarks = data.employer;
+          objLocal.thirdRemarks = data.patient;
+          objLocal.tFiles = data.village;       
 
           console.log(this.$store.state.form.cadre)   
 
@@ -403,6 +407,7 @@ export default {
     // 办结
     setUpFunc(){
       this.setModal=true;
+      
     },
     // 退回
     returnFunc(){

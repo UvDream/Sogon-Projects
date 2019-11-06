@@ -25,7 +25,7 @@
         />
       </FormItem>
       <FormItem label="上传证明文件" prop="uploadFiles" class="form-block">
-        <Upload />
+        <Upload v-model="formValidate.uploadFiles"/>
       </FormItem>
     </Form>
     <div slot="footer" style="text-align:center">
@@ -56,6 +56,7 @@ export default {
   data() {
     return {
       modal: this.modalSetUp,
+      tFilesList:[],
       formValidate: {
         remarks: "",
         uploadFiles: ""

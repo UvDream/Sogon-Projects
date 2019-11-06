@@ -8,24 +8,41 @@
  -->
 
 <template>
-  <Modal v-model="modal" title="档案流传图" width="900" @on-cancel="cancle" class="flow">
+  <Modal v-model="modal" title="档案流传图" width="1000" @on-cancel="cancle" class="flow">
     <div class="flow-list">
-      <div class="item" v-for="(item, index) in tabList">
+      <div class="item" v-for="(item, index) in flowList">
         <div class="flow-left">
-          <section>阶段 :<span>发现</span></section>
+          <section>阶段 :
+            <span v-if="item.curPositionid==0">发现</span>
+            <span v-else-if="item.curPositionid==2">初步处理</span>
+            <span v-else-if="item.curPositionid==4">评定治疗</span>
+            <span v-else-if="item.curPositionid==6">四帮一</span>
+            <span v-else-if="item.curPositionid==7">再次评定</span>
+            <span v-else-if="item.curPositionid==8">脱离管控</span>
+            <span v-else></span>
+          </section>
         </div>
         <div class="flow-right">
           <div>
-            <section>操作人 :<span>网格员</span></section>
-            <section>操作时间 :<span>2019-10-31 19:23:23</span></section>
-            <section>操作类型 :<span>新建</span></section>
-            <section>接收人 :<span>网格员</span></section>
+            <section>操作人 :<span>{{item.curForWardDeptName}}</span></section>
+            <section>操作时间 :<span>{{item.operDate|format }}</span></section>
+            <section>操作类型 :
+              <span v-if="item.operType==0">保存/更新</span>
+              <span v-else-if="item.operType==1">转发</span>
+              <span v-else-if="item.operType==2">保存</span>
+              <span v-else-if="item.operType==3">退回</span>
+              <span v-else-if="item.operType==4">启动</span>
+              <span v-else></span>
+            </section>
+            <section>接收人 :
+              <span>{{item.targetDeptStr | splitStr}}</span>
+            </section>
           </div>
           <div>
-            <section>原因 :asjdkasjdk</section>
+            <section>原因 :{{item.remarks}}</section>
           </div>
           <div>
-            <section>证明材料 :<a>asjdkasjdk</a></section>
+            <!-- <section>证明材料 :<a>{{item.remarks}}</a></section> -->
           </div>
           <div></div>
         </div>
@@ -37,6 +54,8 @@
 </template>
 
 <script>
+import mixin from "@/mixin/newFile";
+import { formatDate } from "@/util/util";
 export default {
   props:{
     modalFlow: {
@@ -45,13 +64,41 @@ export default {
     },
     indexId:{
       default: 0
+    },
+    flowList:{
+      type:Array,
+      default:[]
     }
   },
   data() {
     return {
-      modal: this.modalFlow,
-      tabList:[{},{}]
+      modal: this.modalFlow
     };
+  },
+  filters: {
+    format: time=>{
+      return formatDate(new Date(time), "yyyy-MM-dd hh:mm");
+    },
+    splitStr: value=>{
+      if(!!value){
+        let arr = value.split(",");
+        let str = "";
+        arr.forEach((index,item)=>{
+          if(item==1){
+            str += ' 网络 ';
+          }else if(item==2){
+            str += ' 公安 ';
+          }else if(item==3){
+            str += ' 卫生 ';
+          }else{
+            str += ' 民政 ';
+          }
+        });
+        return str;
+      }else{
+        return ""
+      }
+    }
   },
   watch:{
     modalFlow:function(val){
@@ -92,9 +139,9 @@ export default {
       top: 0;
     }
     .flow-left{
-      flex: 0 0 100px;
-      font-size: 16px;
-      color: #333333;
+      flex: 0 0 130px;
+      font-size: 14px;
+      color: #FF7A45;
       section{
         span{
           margin-left:5px;

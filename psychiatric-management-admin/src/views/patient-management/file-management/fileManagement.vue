@@ -20,7 +20,7 @@
             <Option value="2">评定中</Option>
             <Option value="3">已办结</Option>
             <Option value="4">治疗中</Option>
-            <Option value="5">监护中</Option>
+            <!-- <Option value="5">监护中</Option> -->
             <Option value="6">帮扶中</Option>
             <Option value="7">已康复</Option>
           </Select>
@@ -38,11 +38,11 @@
           <Input v-model="formInline.patientCode" />
         </FormItem>
         <FormItem prop="beginCreateDate" label="开始创建时间">
-          <DatePicker type="datetime" v-model="formInline.beginCreateDate"></DatePicker>
+          <DatePicker type="datetime" v-model="formInline.beginCreateDate" format="yyyy/MM/dd"></DatePicker>
         </FormItem>
         <span>-</span>
         <FormItem prop="endCreateDate" label="结束创建时间">
-          <DatePicker type="datetime" v-model="formInline.endCreateDate"></DatePicker>
+          <DatePicker type="datetime" v-model="formInline.endCreateDate" format="yyyy/MM/dd"></DatePicker>
         </FormItem>
       </Form>
       <div class="my-form-handle">
@@ -168,7 +168,7 @@
     <!-- 退回弹窗-->
     <Return :modalReturn="modalReturn" :indexId="indexId" @closemodal="closemodal"/>
     <!-- 流程图-->
-    <Flow :modalFlow="modalFlow" :indexId="indexId" @closemodal="closemodal"/>
+    <Flow :modalFlow="modalFlow" :indexId="indexId" :flowList="flowList" @closemodal="closemodal"/>
   </div>
 </template>
 
@@ -191,6 +191,7 @@ export default {
   data() {
     return {
       indexId:0,
+      flowList:[],
       modalForward:false,
       modalFlow:false,
       modalSetUp:false,
@@ -433,13 +434,20 @@ export default {
     },
     //查看流程图
     handleStatus(id,index) {
-      this.indexId = id;
-      this.modalFlow = true;
+      api.flow({archivesId:id}).then(res=>{
+        if(res.success==true){
+          this.indexId = id;
+          this.flowList = res.data;
+          this.modalFlow = true;
+        }
+      })
     },
     //弹窗关闭
     closemodal(){
       this.modalFlow = false;
       this.modalForward = false;
+      this.modalSetUp = false;
+      this.modalReturn = false;
     },
     pageChange(cur) {
       this.pageNum = cur;
