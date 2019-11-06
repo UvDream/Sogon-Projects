@@ -59,7 +59,7 @@ export default {
       tFilesList:[],
       formValidate: {
         remarks: "",
-        uploadFiles: ""
+        uploadFiles: []
       },
       ruleValidate: {
         remarks: [{ required: true, message: "请输入办结原因" }],

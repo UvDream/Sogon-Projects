@@ -73,7 +73,7 @@ export default {
         curPositionid: "2",
         name: "",
         remarks: "",
-        uploadFiles: ""
+        uploadFiles: []
       },
       ruleValidate: {
         name: [{ required: true, message: "请输入退回至姓名" }],

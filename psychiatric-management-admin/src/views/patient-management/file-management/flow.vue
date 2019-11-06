@@ -35,7 +35,7 @@
               <span v-else></span>
             </section>
             <section>接收人 :
-              <span>{{item.targetDeptStr | splitStr}}</span>
+              <span>{{item.deptListStr | splitStr}}</span>
             </section>
           </div>
           <div>

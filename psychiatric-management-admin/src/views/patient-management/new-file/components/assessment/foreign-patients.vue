@@ -45,7 +45,7 @@
             />
           </FormItem>
           <FormItem label="外埠证明材料" prop="uploadFiles" class="form-block">
-            <Upload v-model="formValidate.uploadFiles"/>
+            <Upload v-model="formValidate.uploadFiles" />
           </FormItem>
         </div>
       </Form>
@@ -71,7 +71,7 @@ export default {
         phone:"",
         contactTime:"",
         description:"",
-        uploadFiles:"",
+        uploadFiles:[],
         archivesId:"",
 
       }
@@ -80,7 +80,7 @@ export default {
   created() {
     vm.$on("blur", val => {
       if (val == "saveEvent") {
-        this.$store.state.step.dealData.formOutside = this.formValidate;
+        this.$store.state.step.dealData.formData = this.formValidate;
       }
     });
   },  

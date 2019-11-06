@@ -85,7 +85,7 @@
               trigger: 'blur'
             }"
             >
-              <Upload />
+              <Upload v-model="item.uploadFiles"/>
             </FormItem>
           </div>
 
@@ -128,7 +128,7 @@ export default {
             phone: "",
             dischargeTime: "",
             recording: "",
-            uploadFiles: ""
+            uploadFiles: []
           },
           {
             hospital: "",
@@ -136,7 +136,7 @@ export default {
             phone: "",
             dischargeTime: "",
             recording: "",
-            uploadFiles: ""
+            uploadFiles: []
           },
           {
             hospital: "",
@@ -144,7 +144,7 @@ export default {
             phone: "",
             dischargeTime: "",
             recording: "",
-            uploadFiles: ""
+            uploadFiles: []
           }
         ]
       }
@@ -153,6 +153,9 @@ export default {
   created() {
     vm.$on("blur", val => {
       if (val == "saveEvent") {
+        this.formValidate.more.forEach(element=>{
+          element.type = 0;
+        })
         this.$store.state.step.treatData.formPatientTreat = this.formValidate.more;
       }
     });
@@ -178,7 +181,7 @@ export default {
         hospitalStay: "",
         dischargeTime: "",
         recording: "",
-        uploadFiles: ""
+        uploadFiles: []
       };
       this.formValidate.more.push(obj);
     },

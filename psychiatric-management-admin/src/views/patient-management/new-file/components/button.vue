@@ -134,7 +134,7 @@ export default {
           obj.causeTrouble = data.anecdote;
           obj.isfocal=data.isfocal;  
 
-          // obj.tFiles = data.uploadFiles;
+          obj.tFiles = data.uploadFiles;
 
           id==1?findSaveList(obj).then(res=>{
             console.log(res)  
@@ -175,22 +175,22 @@ export default {
             "secondRemarks":"0",
             "thirdRemarks":"13222222222",
             "type": this.$store.state.step.isLocal,
-            "wType": this.$store.state.step.isLocal
-            // "tFiles":"asdfsdf",                      
+            "wType": this.$store.state.step.isLocal,
+            "tFiles":"asdfsdf",                      
           }
           
 
 
           // 左边后台接口名称，右边本地命名（表单、通信vuex）
 
-          let vx_data_outside=this.$store.state.step.dealData.formOutside;
+          let vx_data_outside=this.$store.state.step.dealData.formData;
           obj.wCompanyName = vx_data_outside.name;
           obj.wCompanyLeader = vx_data_outside.principal;
           obj.wCompanyTel = vx_data_outside.phone;
           obj.wCompanyContactTime = vx_data_outside.contactTime;
           obj.wDoRemarks = vx_data_outside.description;
 
-          // obj.tFiles = vx_data_outside.uploadFiles;
+          obj.tFiles = vx_data_outside.uploadFiles;
 
           id==1?dealSaveList(obj).then(res=>{
             console.log(res)
@@ -251,7 +251,7 @@ export default {
 
           let data=this.$store.state.step.treatData;
 
-            
+          console.log(data.formPatientZhuyuan)
           formPatientInfo.patientLevel = data.formPatientLevel.status;          
           formPatientInfo.hospitalName = data.formPatientLevel.hospital;
           formPatientInfo.doctorName = data.formPatientLevel.doctor;
@@ -261,8 +261,7 @@ export default {
           formPatientInfo.tFiles = data.formPatientLevel.uploadFiles;
 
           formPatientInfo.tTreatRecords = data.formPatientTreat.concat(data.formPatientZhuyuan);
-          
-      
+                
           id==1?treatSaveList(formPatientInfo).then(res=>{
             console.log("保存成功")
           }):treatSaveLists(formPatientInfo).then(res=>{

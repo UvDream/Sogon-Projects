@@ -77,7 +77,7 @@ export default {
       let arr = [];
       fileList.forEach(element => {
         setTimeout(() => {
-          arr.push(element.url);
+          arr.push({"filepath":element.url});
         }, 1000);
       });
       file.url = res.data.filePath;
