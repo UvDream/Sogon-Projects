@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 10:24:15
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-23 14:10:10
+ * @LastEditTime: 2019-11-06 09:41:06
  * @Description: 警情质态分析
  * @Email: UvDream@163.com
  -->
@@ -23,14 +23,14 @@
           ></MoreInput>
         </div>
       </div>
-      <div class="dashboard-bottom-left-title"  v-show="formdata.pcs=='昆山市公安局'">
+      <div class="dashboard-bottom-left-title" v-show="formdata.pcs=='昆山市公安局'">
         <a-icon
           type="file-text"
           style="margin:0 10px 0px 20px;font-size:18px;position:relative;top:3px;"
         />
         <span style="font-size:12px">警情数据质量</span>
       </div>
-      <div class="table"  v-show="formdata.pcs=='昆山市公安局'">
+      <div class="table" v-show="formdata.pcs=='昆山市公安局'">
         <div class="table-left">
           <div>/</div>
           <div>区域评估错误</div>
@@ -44,13 +44,27 @@
         <div class="table-right">
           <div v-for="(item,index) in  tableList" :key="index">
             <div style="padding: 0 5px;">{{item.name}}</div>
-            <div style="padding: 0 5px;"><a-input v-model="item.qypgcw" :disabled="disabled" /></div>
-            <div style="padding: 0 5px;"><a-input v-model="item.ylbbyz" :disabled="disabled" /></div>
-            <div style="padding: 0 5px;"><a-input v-model="item.jqbws" :disabled="disabled" /></div>
-            <div style="padding: 0 5px;"><a-input v-model="item.wpwsr" :disabled="disabled" /></div>
-            <div style="padding: 0 5px;"><a-input v-model="item.bzth" :disabled="disabled" /></div>
-            <div style="padding: 0 5px;"><a-input v-model="item.rywsr" :disabled="disabled" /></div>
-            <div style="padding: 0 5px;"><a-input v-model="item.lbbqd" :disabled="disabled" /></div>
+            <div style="padding: 0 5px;">
+              <a-input v-model="item.qypgcw" :disabled="disabled" />
+            </div>
+            <div style="padding: 0 5px;">
+              <a-input v-model="item.ylbbyz" :disabled="disabled" />
+            </div>
+            <div style="padding: 0 5px;">
+              <a-input v-model="item.jqbws" :disabled="disabled" />
+            </div>
+            <div style="padding: 0 5px;">
+              <a-input v-model="item.wpwsr" :disabled="disabled" />
+            </div>
+            <div style="padding: 0 5px;">
+              <a-input v-model="item.bzth" :disabled="disabled" />
+            </div>
+            <div style="padding: 0 5px;">
+              <a-input v-model="item.rywsr" :disabled="disabled" />
+            </div>
+            <div style="padding: 0 5px;">
+              <a-input v-model="item.lbbqd" :disabled="disabled" />
+            </div>
           </div>
         </div>
       </div>
@@ -93,18 +107,7 @@ export default {
       },
       radioVal: 1,
       numberList: [],
-      tableList: [
-        {
-          name: "青阳",
-          qypgcw: "12",
-          ylbbyz: "13",
-          jqbws: "22",
-          wpwsr: "44",
-          bzth: "55",
-          rywsr: "33",
-          lbbqd: "66"
-        }
-      ]
+      tableList: []
     };
   },
   computed: {
@@ -198,7 +201,7 @@ export default {
     display: flex;
 
     & > div > div {
-      width: 60px;
+      // width: 60px;
       height: 40px;
       line-height: 40px;
       border-left: 1px solid #cbcbcb;

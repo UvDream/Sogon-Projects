@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-10 11:43:39
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-23 14:02:58
+ * @LastEditTime: 2019-11-06 09:52:03
  * @Description: 重大警情
  * @Email: UvDream@163.com
  -->
@@ -10,7 +10,10 @@
   <div class="dashboard-bottom">
     <div class="dashboard-bottom-left">
       <Title title="重大警情" v-model="data" />
-      <div class="dashboard-bottom-left-content" style="margin-left:10px">
+      <div
+        class="dashboard-bottom-left-content"
+        style="margin-left:10px;height:400px; overflow-y: scroll;"
+      >
         <div class="dashboard-bottom-left-content-great">
           <section>事件时间</section>
           <section style="margin-left:20px">事件类型</section>
@@ -43,25 +46,20 @@
         <!-- ---- -->
         <div class="dashboard-bottom-left-content-great" v-show="formdata.pcs=='昆山市公安局'">
           <section>派出所</section>
-          <section style="margin-left:20px">详情</section>
+          <section>详情</section>
           <section></section>
         </div>
-        <div v-show="formdata.pcs=='昆山市公安局'"
+        <div
+          v-show="formdata.pcs=='昆山市公安局'"
           class="dashboard-bottom-left-content-great"
-          v-for="item in greatList">
+          v-for="(item,index) in greatList"
+          :key="index"
+        >
           <section>
-            <a-input
-              placeholder=""
-              :disabled="disabled"
-              v-model="item.pcs"
-            />
+            <a-input placeholder :disabled="disabled" v-model="item.pcs" />
           </section>
-          <section style="margin-left:20px">
-            <a-input
-              placeholder=""
-              :disabled="disabled"
-              v-model="item.jqxq"
-            />
+          <section>
+            <a-input placeholder :disabled="disabled" v-model="item.jqxq" />
           </section>
           <section></section>
         </div>
@@ -73,7 +71,11 @@
         />
         <span style="font-size:12px">重要性通知</span>
       </div>
-      <div class="dashboard-bottom-left-content-great" style="margin-left:10px" v-show="formdata.pcs!=='昆山市公安局'">
+      <div
+        class="dashboard-bottom-left-content-great"
+        style="margin-left:10px"
+        v-show="formdata.pcs!=='昆山市公安局'"
+      >
         <section>标题</section>
         <section>接收时间</section>
         <section></section>
@@ -170,17 +172,17 @@ export default {
       this.formdata.type = 2;
 
       this.searchFunc(this.formdata);
-    },
-    // 日,周,月变化
-    topDate: function(val) {
-      let obj = {
-        1: "日",
-        2: "周",
-        3: "月"
-      };
-      this.formdata.dateType = obj[val];
-      this.searchFunc(this.formdata);
     }
+    // 日,周,月变化
+    // topDate: function(val) {
+    //   let obj = {
+    //     1: "日",
+    //     2: "周",
+    //     3: "月"
+    //   };
+    //   this.formdata.dateType = obj[val];
+    //   this.searchFunc(this.formdata);
+    // }
   },
   mounted() {
     this.formdata.type = 2;

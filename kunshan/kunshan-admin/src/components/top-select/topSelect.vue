@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-11 08:47:45
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-23 11:11:27
+ * @LastEditTime: 2019-11-06 09:37:18
  * @Description: 顶部下拉选择框
  * @Email: UvDream@163.com
  -->
@@ -20,7 +20,7 @@
         :value="item.value"
       >{{item.value}}</a-select-option>
     </a-select>
-    <div style="padding-right:14px" class="dashboard-top-week">
+    <div style="padding-right:14px" class="dashboard-top-week" v-if="$route.name!='dashboard'">
       <section @click="tabCLick(1)" :class="{ 'dashboard-top-week-click': tab === 1 }">日</section>
       <section @click="tabCLick(2)" :class="{ 'dashboard-top-week-click': tab === 2 }">周</section>
       <section @click="tabCLick(3)" :class="{ 'dashboard-top-week-click': tab === 3 }">月</section>
@@ -35,6 +35,9 @@ export default {
     tabVal: {
       default: 1
     }
+  },
+  mounted() {
+    console.log(this.$route.name);
   },
   data() {
     return {
@@ -110,7 +113,7 @@ export default {
           value: "综合保税区派出所"
         },
         {
-          value: "科教园派出所"
+          value: "科技教育园派出所"
         },
         {
           value: "曹安派出所"

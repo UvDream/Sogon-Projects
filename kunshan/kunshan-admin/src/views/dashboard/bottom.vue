@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-23 11:45:44
+ * @LastEditTime: 2019-11-06 09:38:11
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
@@ -167,52 +167,52 @@ export default {
         pcs: this.$store.state.topSelect
       },
       list: {
-        "zbll": {},
-        "zzbz": [
-            {
-                "name": "李四",
-                "phone": "333",
-                "type": 0
-            }
+        zbll: {},
+        zzbz: [
+          {
+            name: "李四",
+            phone: "333",
+            type: 0
+          }
         ],
-        "bqll": {
-            "mj": 0,
-            "fj": 31,
-            "type": 0
+        bqll: {
+          mj: 0,
+          fj: 31,
+          type: 0
         },
-        "jld": [
-            {
-                "name": "李康",
-                "phone": "133",
-                "type": 0
-            },
-            {
-                "name": "流量",
-                "phone": "123",
-                "type": 0
-            }
+        jld: [
+          {
+            name: "李康",
+            phone: "133",
+            type: 0
+          },
+          {
+            name: "流量",
+            phone: "123",
+            type: 0
+          }
         ],
-        "drqwll": {
-            "mj": 0,
-            "fj": 45,
-            "type": 0
+        drqwll: {
+          mj: 0,
+          fj: 45,
+          type: 0
         },
-        "zbsld": [
-            {
-                "name": "侯杰",
-                "phone": "341",
-                "type": 0
-            }
+        zbsld: [
+          {
+            name: "侯杰",
+            phone: "341",
+            type: 0
+          }
         ],
-        "zbmj": [
-            {
-                "name": "程辉",
-                "phone": "94",
-                "type": 0
-            }
+        zbmj: [
+          {
+            name: "程辉",
+            phone: "94",
+            type: 0
+          }
         ],
-        "lzz": []
-    }
+        lzz: []
+      }
     };
   },
   computed: {
@@ -227,24 +227,24 @@ export default {
   },
   watch: {
     data: function(val) {
-      this.formdata.type = val;            
+      this.formdata.type = val;
       this.searchFunc(this.formdata);
     },
     // 警局下拉框变化
     policeStation: function(val) {
       this.formdata.pcs = val;
       this.searchFunc(this.formdata);
-    },
-    // 日,周,月变化
-    topDate: function(val) {
-      let obj = {
-        1: "日",
-        2: "周",
-        3: "月"
-      };
-      this.formdata.dateType = obj[val];
-      this.searchFunc(this.formdata);
     }
+    // 日,周,月变化
+    // topDate: function(val) {
+    //   let obj = {
+    //     1: "日",
+    //     2: "周",
+    //     3: "月"
+    //   };
+    //   this.formdata.dateType = obj[val];
+    //   this.searchFunc(this.formdata);
+    // }
   },
   mounted() {
     this.formdata.type = 2;
@@ -270,7 +270,7 @@ export default {
         console.log("底部", res);
         // this.data = res.data.bqll.type;
         this.list = res.data;
-        if(res.data.jld.length > 0) {
+        if (res.data.jld.length > 0) {
           this.data = res.data.jld[0].type;
         }
       });

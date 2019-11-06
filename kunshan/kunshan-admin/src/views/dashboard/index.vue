@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 09:24:16
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-23 11:44:07
+ * @LastEditTime: 2019-11-06 09:37:45
  * @Description: 值班情况
  * @Email: UvDream@163.com
  -->
@@ -142,7 +142,7 @@
         </div>
       </div>
     </div>
-    <Bottom v-if="formdata.pcs!=='昆山市公安局'"/>
+    <Bottom v-if="formdata.pcs!=='昆山市公安局'" />
   </div>
 </template>
 
@@ -170,52 +170,52 @@ export default {
         pcs: this.$store.state.topSelect
       },
       list: {
-        "zbll": {},
-        "zzbz": [
-            {
-                "name": "李四",
-                "phone": "333",
-                "type": 0
-            }
+        zbll: {},
+        zzbz: [
+          {
+            name: "李四",
+            phone: "333",
+            type: 0
+          }
         ],
-        "bqll": {
-            "mj": 0,
-            "fj": 31,
-            "type": 0
+        bqll: {
+          mj: 0,
+          fj: 31,
+          type: 0
         },
-        "jld": [
-            {
-                "name": "李康",
-                "phone": "133",
-                "type": 0
-            },
-            {
-                "name": "流量",
-                "phone": "123",
-                "type": 0
-            }
+        jld: [
+          {
+            name: "李康",
+            phone: "133",
+            type: 0
+          },
+          {
+            name: "流量",
+            phone: "123",
+            type: 0
+          }
         ],
-        "drqwll": {
-            "mj": 0,
-            "fj": 45,
-            "type": 0
+        drqwll: {
+          mj: 0,
+          fj: 45,
+          type: 0
         },
-        "zbsld": [
-            {
-                "name": "侯杰",
-                "phone": "341",
-                "type": 0
-            }
+        zbsld: [
+          {
+            name: "侯杰",
+            phone: "341",
+            type: 0
+          }
         ],
-        "zbmj": [
-            {
-                "name": "程辉",
-                "phone": "94",
-                "type": 0
-            }
+        zbmj: [
+          {
+            name: "程辉",
+            phone: "94",
+            type: 0
+          }
         ],
-        "lzz": []
-    }
+        lzz: []
+      }
     };
   },
   computed: {
@@ -237,20 +237,20 @@ export default {
     policeStation: function(val) {
       this.formdata.pcs = val;
       this.searchFunc(this.formdata);
-    },
-    // 日,周,月变化
-    topDate: function(val) {
-      let obj = {
-        1: "日",
-        2: "周",
-        3: "月"
-      };
-      this.formdata.dateType = obj[val];
-      this.searchFunc(this.formdata);
     }
+    // 日,周,月变化
+    // topDate: function(val) {
+    //   let obj = {
+    //     1: "日",
+    //     2: "周",
+    //     3: "月"
+    //   };
+    //   this.formdata.dateType = obj[val];
+    //   this.searchFunc(this.formdata);
+    // }
   },
   mounted() {
-    this.formdata.type = 2;  
+    this.formdata.type = 2;
     this.searchFunc(this.formdata);
   },
   methods: {
@@ -273,7 +273,7 @@ export default {
         console.log("上面", res);
         // this.data = res.data.zbll.type;
         this.list = res.data;
-        if(res.data.zzbz.length > 0) {
+        if (res.data.zzbz.length > 0) {
           this.data = res.data.zzbz[0].type;
         }
       });

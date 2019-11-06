@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-09 13:55:27
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-10-12 11:24:07
+ * @LastEditTime: 2019-11-06 09:54:08
  * @Description: 科技技防运行
  * @Email: UvDream@163.com
  -->
@@ -63,7 +63,7 @@ import Title from "../../components/two-title/twoTitle";
 import MoreInput from "../../components/more-input/index";
 import data from "../../mixin/data";
 import BottomStatus from "./bottom-status";
-import api from "./api1"
+import api from "./api1";
 export default {
   mixins: [data],
   components: {
@@ -87,7 +87,7 @@ export default {
         3: "月"
       },
       numberList1: [],
-      numberList2: [],
+      numberList2: []
     };
   },
   computed: {
@@ -100,7 +100,7 @@ export default {
       return this.$store.state.topDate;
     }
   },
-   watch: {
+  watch: {
     data: function(val) {
       if (val == 1) {
         // EmptyObjVal(this.numberList, "num");
@@ -117,33 +117,33 @@ export default {
     policeStation: function(val) {
       this.formdata.pcs = val;
       this.searchFunc(this.formdata);
-    },
-    // 日,周,月变化
-    topDate: function(val) {
-      let obj = {
-        1: "日",
-        2: "周",
-        3: "月"
-      };
-      this.formdata.dateType = obj[val];
-      this.searchFunc(this.formdata);
     }
+    // 日,周,月变化
+    // topDate: function(val) {
+    //   let obj = {
+    //     1: "日",
+    //     2: "周",
+    //     3: "月"
+    //   };
+    //   this.formdata.dateType = obj[val];
+    //   this.searchFunc(this.formdata);
+    // }
   },
   mounted() {
     this.formdata.type = 2;
-    this.searchFunc(this.formdata);    
+    this.searchFunc(this.formdata);
   },
   methods: {
     searchFunc(data) {
-      console.log(data)
-      api.fetchTablePaiming(data).then(res=>{
-        console.log(res.data.penrecordnumpm)
+      console.log(data);
+      api.fetchTablePaiming(data).then(res => {
+        console.log(res.data.penrecordnumpm);
         this.numberList1 = res.data.kjjf;
         this.numberList2 = res.data.jysb;
-        if(res.data.kjjf.length > 0) {
-          this.data = res.data.kjjf[0].type;    
+        if (res.data.kjjf.length > 0) {
+          this.data = res.data.kjjf[0].type;
         }
-      })
+      });
     },
     saveFunc() {
       let param = {
@@ -154,12 +154,12 @@ export default {
         jysb: this.numberList2
       };
 
-      console.log(FormData)
-      api.saveTablePaiming(param).then(res=>{
+      console.log(FormData);
+      api.saveTablePaiming(param).then(res => {
         if (res.code == 0) {
           this.$message.success("保存成功!");
         }
-      })
+      });
     }
   },
   // 顶部派出所
