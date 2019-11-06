@@ -107,7 +107,7 @@
 <script>
 import TopTitle from "@/components/top-title/top-title";
 import Upload from "@/components/upload/upload";
-
+import vm from "./../../event";
 export default {
   components: {
     TopTitle,
@@ -123,11 +123,21 @@ export default {
             patientCuteType: "",
             patientCompany: "",
             patientRemarks: "",
-            uploadFiles: ""
+            uploadFiles: []
           }
         ]
       }
     };
+  },
+  created() {
+    vm.$on("blur", val => {
+      if (val == "saveEvent") {
+        // this.formValidate.more.forEach(element=>{
+        //   element.type = 1;
+        // })
+        this.$store.state.step.outControlData.formPatientRecorder = this.ruleForm.more;
+      }
+    });
   },
   methods: {
     handleSubmit(name) {

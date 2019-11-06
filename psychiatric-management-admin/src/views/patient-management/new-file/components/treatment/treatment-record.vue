@@ -129,22 +129,6 @@ export default {
             dischargeTime: "",
             recording: "",
             uploadFiles: []
-          },
-          {
-            hospital: "",
-            doctors: "",
-            phone: "",
-            dischargeTime: "",
-            recording: "",
-            uploadFiles: []
-          },
-          {
-            hospital: "",
-            doctors: "",
-            phone: "",
-            dischargeTime: "",
-            recording: "",
-            uploadFiles: []
           }
         ]
       }

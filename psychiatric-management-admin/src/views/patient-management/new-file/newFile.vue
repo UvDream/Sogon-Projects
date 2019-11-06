@@ -49,7 +49,7 @@ export default {
     AgainAssessment
   },
   mounted() {
-    this.$store.state.step.stepStatus = 1;
+    this.$store.state.step.stepStatus = 5;
   },
   computed: {
     status: function() {
