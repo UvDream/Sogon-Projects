@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-24 11:25:58
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-11-06 10:06:10
+ * @LastEditTime: 2019-11-06 11:08:09
  * @Description: 文件上传
  * @Email: UvDream@163.com
  -->
@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     handleView(name) {
-      console.log(name)
+      console.log(name);
       this.imgName = name;
       this.visible = true;
     },
@@ -73,27 +73,17 @@ export default {
       const fileList = this.$refs.upload.fileList;
       this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
     },
-    handleSuccess(res, file) {
-      // console.log("上传文件")
-      // console.log(res.data)
-      // console.log(this.uploadList);
-      
-      let arr=[]
-      // this.uploadList.forEach(element=>{
-      //   console.log(JSON.stringify(element).url)
-      // })
-      // for(let i=0;i<this.uploadList.length;i++){
-      //   console.log(this.uploadList[i].uid)
-      // }
-      Array.from(this.uploadList).forEach(element=>{
-        console.log(element.uid)
-        console.log(element)
-      })
+    handleSuccess(res, file, fileList) {
+      let arr = [];
+      fileList.forEach(element => {
+        setTimeout(() => {
+          arr.push(element.url);
+        }, 1000);
+      });
       file.url = res.data.filePath;
       file.name = res.data.fileName;
-      // console.log("33333")
-      // console.log(arr)
-      this.$emit("input",arr)
+
+      this.$emit("input", arr);
     },
     handleFormatError(file) {
       this.$Notice.warning({
