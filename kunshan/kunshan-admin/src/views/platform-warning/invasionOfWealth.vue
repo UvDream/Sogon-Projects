@@ -1,19 +1,17 @@
 <!--
  * @Author: wangzhongjie
  * @Date: 2019-10-11 11:09:48
- * @LastEditors: xiahongxiu
- * @LastEditTime: 2019-10-21 15:43:42
+ * @LastEditors: wangzhongjie
+ * @LastEditTime: 2019-11-06 13:58:39
  * @Description:  侵财关注人员维护、预警处置情况
  * @Email: UvDream@163.com
  -->
 
 <template>
-  <div class="dashboard-bottom" style="height:360px" v-if="formdata.pcs=='昆山市公安局'">
+  <div class="dashboard-bottom" style="height:520px" v-if="formdata.pcs=='昆山市公安局'">
     <div class="dashboard-bottom-left">
-      <Title 
-      title="侵财关注人员维护、预警处置情况" 
-      v-model="data"/>
-      <div class="table">
+      <Title title="侵财关注人员维护、预警处置情况" v-model="data" />
+      <div class="table" style="height:400px;overflow-y:auto">
         <div class="table-row">
           <section style="border-top: solid 1px #cbcbcb;color:#999;">类型\派出所</section>
           <section style="border-top: solid 1px #cbcbcb;color:#999;">维护任务数</section>
@@ -35,11 +33,10 @@
           <section>
             <a-input v-model="item.czfknum" :disabled="disabled" />
           </section>
-          
         </div>
       </div>
       <div class="dashboard-bottom-left-content-btn">
-        <a-button type="primary"  @click="saveFunc">保存</a-button>
+        <a-button type="primary" @click="saveFunc">保存</a-button>
       </div>
     </div>
     <div class="dashboard-bottom-right">
@@ -58,7 +55,10 @@
 import TopSelect from "../../components/top-select/topSelect";
 import Title from "../../components/two-title/twoTitle";
 import data from "../../mixin/data";
-import { checkData, saveList } from "../../api/platform-warning/invasion-ofwealth";
+import {
+  checkData,
+  saveList
+} from "../../api/platform-warning/invasion-ofwealth";
 import axios from "axios";
 
 export default {
@@ -75,7 +75,7 @@ export default {
       formdata: {
         type: 2,
         dateType: "日",
-        pcs: "昆山市公安局",
+        pcs: "昆山市公安局"
       },
       tableList: []
     };
@@ -99,29 +99,29 @@ export default {
     policeStation: function(val) {
       this.formdata.pcs = val;
       this.formdata.type = 2;
-      if(val=="昆山市公安局"){
-        this.searchFunc(this.formdata);
-      }
-    },
-    // 日,周,月变化
-    topDate: function(val) {
-      let obj = {
-        1: "日",
-        2: "周",
-        3: "月"
-      };
-      this.formdata.dateType = obj[val];
-      if(this.formdata.pcs=="昆山市公安局"){
+      if (val == "昆山市公安局") {
         this.searchFunc(this.formdata);
       }
     }
+    // 日,周,月变化
+    // topDate: function(val) {
+    //   let obj = {
+    //     1: "日",
+    //     2: "周",
+    //     3: "月"
+    //   };
+    //   this.formdata.dateType = obj[val];
+    //   if (this.formdata.pcs == "昆山市公安局") {
+    //     this.searchFunc(this.formdata);
+    //   }
+    // }
   },
   mounted() {
     // if(this.formdata.pcs=="昆山市公安局"){
     //   this.searchFunc(this.formdata);
     // }
     this.formdata.type = 2;
-    this.searchFunc(this.formdata);  
+    this.searchFunc(this.formdata);
   },
   methods: {
     saveFunc() {
@@ -140,7 +140,7 @@ export default {
     searchFunc(data) {
       checkData(data).then(res => {
         this.tableList = res.data.qcgzrywhyjczqkListQuery;
-        if(res.data.qcgzrywhyjczqkListQuery.length > 0) {
+        if (res.data.qcgzrywhyjczqkListQuery.length > 0) {
           this.data = res.data.qcgzrywhyjczqkListQuery[0].type;
         }
       });
@@ -157,7 +157,7 @@ export default {
     position: absolute;
     top: 70px;
     width: 1px;
-    height: 250px;
+    height: 350px;
     background-color: #b3b3b3;
   }
 }
@@ -165,15 +165,15 @@ export default {
   margin: 0 20px;
   &-row {
     display: flex;
-    & > section{
+    & > section {
       text-align: center;
       width: 20%;
       height: 40px;
       line-height: 40px;
       border-bottom: solid 1px #cbcbcb;
       border-left: solid 1px #cbcbcb;
-      & > input{
-        width:80%;
+      & > input {
+        width: 80%;
       }
     }
     & > section:last-child {

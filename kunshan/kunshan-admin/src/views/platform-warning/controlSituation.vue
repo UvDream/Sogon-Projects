@@ -1,8 +1,8 @@
 <!--
  * @Author: wangzhongjie
  * @Date: 2019-10-11 11:07:08
- * @LastEditors: xiahongxiu
- * @LastEditTime: 2019-10-21 17:38:22
+ * @LastEditors: wangzhongjie
+ * @LastEditTime: 2019-11-06 13:42:31
  * @Description: 布控
  * @Email: UvDream@163.com
  -->
@@ -38,7 +38,10 @@ import TopSelect from "../../components/top-select/topSelect";
 import Title from "../../components/two-title/twoTitle";
 import MoreInput from "../../components/more-input/index";
 import data from "../../mixin/data";
-import { checkData, saveList } from "../../api/platform-warning/control-situation";
+import {
+  checkData,
+  saveList
+} from "../../api/platform-warning/control-situation";
 import axios from "axios";
 
 export default {
@@ -56,13 +59,13 @@ export default {
       formdata: {
         type: 2,
         dateType: "日",
-        pcs: "昆山市公安局",
+        pcs: "昆山市公安局"
       },
       bkqkList: {
-         bkrsnum: "11",
-         dtbkclnum: "22", 
-         dtbkrsnum: "22", 
-         bkclnum: "22" 
+        bkrsnum: "11",
+        dtbkclnum: "22",
+        dtbkrsnum: "22",
+        bkclnum: "22"
       }
     };
   },
@@ -85,26 +88,26 @@ export default {
     policeStation: function(val) {
       this.formdata.pcs = val;
       this.formdata.type = 2;
-      if(this.formdata.pcs=="昆山市公安局"){
-        this.searchFunc(this.formdata);
-      }
-    },
-    // 日,周,月变化
-    topDate: function(val) {
-      let obj = {
-        1: "日",
-        2: "周",
-        3: "月"
-      };
-      this.formdata.dateType = obj[val];
-      if(this.formdata.pcs=="昆山市公安局"){
+      if (this.formdata.pcs == "昆山市公安局") {
         this.searchFunc(this.formdata);
       }
     }
+    // 日,周,月变化
+    // topDate: function(val) {
+    //   let obj = {
+    //     1: "日",
+    //     2: "周",
+    //     3: "月"
+    //   };
+    //   this.formdata.dateType = obj[val];
+    //   if(this.formdata.pcs=="昆山市公安局"){
+    //     this.searchFunc(this.formdata);
+    //   }
+    // }
   },
   mounted() {
     this.formdata.type = 2;
-    this.searchFunc(this.formdata);  
+    this.searchFunc(this.formdata);
   },
   methods: {
     saveFunc() {
