@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-24 11:25:58
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-11-06 11:08:09
+ * @LastEditTime: 2019-11-06 11:11:42
  * @Description: 文件上传
  * @Email: UvDream@163.com
  -->
@@ -12,7 +12,7 @@
       <template v-if="item.status === 'finished'">
         <img :src="item.url" />
         <div class="demo-upload-list-cover">
-          <Icon type="ios-eye-outline" @click.native="handleView(item.name)"></Icon>
+          <Icon type="ios-eye-outline" @click.native="handleView(item.url)"></Icon>
           <Icon type="ios-trash-outline" @click.native="handleRemove(item)"></Icon>
         </div>
       </template>
@@ -41,7 +41,7 @@
       </div>
     </Upload>
     <Modal title="View Image" v-model="visible">
-      <img :src="'https://nexmoe.com/images/' + imgName" v-if="visible" style="width: 100%" />
+      <img :src="imgName" v-if="visible" style="width: 100%" />
     </Modal>
   </div>
 </template>
