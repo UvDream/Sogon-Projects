@@ -18,15 +18,15 @@
     >
       <div class="form">
         <FormItem label="退回至部门" prop="curPositionid" class="form-block">
-          <Select v-model="formValidate.curPositionid">
+          <Select v-model="formValidate.curPositionid" disabled>
             <Option value="1">网格</Option>
             <Option value="2">公安</Option>
             <Option value="3">卫生</Option>
             <Option value="4">民政</Option>
           </Select>
         </FormItem>
-        <FormItem label="退回至姓名" prop="name" class="form-block">
-          <Input v-model="formValidate.name" placeholder="输入办结原因说明" />
+        <FormItem label="退回的状态" prop="name" class="form-block">
+          <Input v-model="formValidate.name" placeholder="输入办结原因说明" disabled/>
         </FormItem>
       </div>
       <FormItem style="margin-left:30px" label="退回原因说明" prop="remarks" class="form-blocks">
@@ -52,6 +52,8 @@
 <script>
 import Upload from "@/components/upload/upload";
 import mixin from "@/mixin/newFile";
+import { returnSaveList } from "@/api/return/index";
+
 export default {
   mixins: [mixin],
   components: {
@@ -87,6 +89,16 @@ export default {
     modalReturn:function(val){
       this.modal = val;
     }
+  },
+  mounted(){
+    let obj = {"tArchivesId": "404"};
+    returnSaveList(obj).then(res => {
+      console.log(res)
+      this.formValidate.curPositionid = "2";
+      this.formValidate.name = res.data.curPosit;
+      // this.formValidate.curPositionid = res.data.deptName;
+      // this.formValidate.name = res.data.curPosit;
+    });
   },
   methods: {
     cancle() {

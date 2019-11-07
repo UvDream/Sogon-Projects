@@ -88,6 +88,7 @@ export default {
       console.log(this.$store.state.step.findStatus)
       // if (this.$store.state.findStatus) {
         let obj={
+          "id":"222",
           "patientName":"123",
           "patientSex":"0",
           "patientCode":"222222222222222222",
@@ -115,25 +116,25 @@ export default {
           console.log(data)
 
           // obj.archivesId = "",
-          obj.patientName = data.patientName;
-          obj.patientSex = data.sex;
-          obj.patientCode = data.IdNumber;
-          obj.type = data.status;
-          obj.patientCompany = data.employer;
-          obj.patientTel = data.patient;
-          obj.patientRusticate = data.village;
-          obj.patientPolice = data.police;
-          obj.isforeign = data.foreigner;
-          obj.foreignHandle = data.processingMethod;
-          obj.patientAddr = data.patientAddress;
-          obj.patientStatus1 = data.patientCondition;
-          obj.patientStatus2 = data.risk;
-          obj.guardianName = data.guardianName;
-          obj.guardianRel = data.relationship;
-          obj.guardianCompany = data.guardianUnit;
-          obj.guardianTel = data.guardianPhone;
-          obj.causeTrouble = data.anecdote;
-          obj.isfocal=data.isfocal;  
+          // obj.patientName = data.patientName;
+          // obj.patientSex = data.sex;
+          // obj.patientCode = data.IdNumber;
+          // obj.type = data.status;
+          // obj.patientCompany = data.employer;
+          // obj.patientTel = data.patient;
+          // obj.patientRusticate = data.village;
+          // obj.patientPolice = data.police;
+          // obj.isforeign = data.foreigner;
+          // obj.foreignHandle = data.processingMethod;
+          // obj.patientAddr = data.patientAddress;
+          // obj.patientStatus1 = data.patientCondition;
+          // obj.patientStatus2 = data.risk;
+          // obj.guardianName = data.guardianName;
+          // obj.guardianRel = data.relationship;
+          // obj.guardianCompany = data.guardianUnit;
+          // obj.guardianTel = data.guardianPhone;
+          // obj.causeTrouble = data.anecdote;
+          // obj.isfocal=data.isfocal;  
 
           obj.tFiles = data.uploadFiles;
 
@@ -278,43 +279,46 @@ export default {
       // if (this.$store.state.step.helpStatus) {  
 
           let dataInfo = {
-          "guardianName": "zjjjz",
-          "guardianRel": "1",
-          "guardianBankCardNumber": "sdssss",
-          "guardianTelephone": "daadadsa",
-          "archivesId": "56",
-          "tHelpRecordsList": [{
-            "isubsidy": "0",
-            "istilltreat": "0",
-            "isguardianduty": "0",
-            "causeTrouble": "sjsjsjjs",
-            "recureinfo": "ssss",
-            "archivesId": "56",
-            "type": "3"
-          }]
-        }
+            "archivesId": this.$store.state.step.archivesId,
+            "gridUserId": "zjjjz",
+            "policeUserId": "1",
+            "doctorUserId": "sdssss",
+            "guardianName": "daadadsa",
+            "guardianRel": "daadadsa",
+            "guardianBankCardNumber": "daadadsa",
+            "guardianTelephone": "daadadsa",
+            "tHelpRecordsList": [{
+              "isubsidy": "0",
+              "istilltreat": "0",
+              "isguardianduty": "0",
+              "causeTrouble": "sjsjsjjs",
+              "recureinfo": "ssss",
+              "archivesId": "56",
+              "type": "3",
+              "tFiles": []
+            },
+            {
+              "isubsidy": "0",
+              "istilltreat": "0",
+              "isguardianduty": "0",
+              "causeTrouble": "sjsjsjjs",
+              "recureinfo": "ssss",
+              "archivesId": "56",
+              "type": "3",
+              "tFiles": []
+            }]
+          }          
+
+          let data=this.$store.state.form;
           
-
-          let data=this.$store.state.form.cadre;
-          
-          dataInfo.bIstreat = data.patientName;
-          dataInfo.bIswilltreat = data.sex;
-          dataInfo.bDoRemarks = data.IdNumber;
-          dataInfo.fristRemarks = data.status;
-          dataInfo.secondRemarks = data.employer;
-          dataInfo.thirdRemarks = data.patient;
-          dataInfo.tFiles = data.village;       
-
-          console.log(this.$store.state.form.cadre)  
-
-          dataInfo.cadre = this.$store.state.form.cadre;       
-          dataInfo.police = this.$store.state.form.police;       
-          dataInfo.doctor = this.$store.state.form.doctor;       
-          dataInfo.guardian = this.$store.state.form.guardian;       
-          dataInfo.cadreList = this.$store.state.form.cadreList;
-          dataInfo.policeList = this.$store.state.form.policeList;
-          dataInfo.doctorList = this.$store.state.form.doctorList;
-          dataInfo.guardianList = this.$store.state.form.guardianList;
+          dataInfo.gridUserId = data.cadre.userId;
+          dataInfo.policeUserId = data.police.userId;
+          dataInfo.doctorUserId = data.doctor.userId;
+          dataInfo.guardianName = data.guardian.name;
+          dataInfo.guardianTelephone = data.guardian.phone;
+          dataInfo.guardianRel = data.guardian.relationship;
+          dataInfo.guardianBankCardNumber = data.guardian.banNumber;
+          dataInfo.tHelpRecordsList = data.cadreList.concat(data.policeList).concat(data.doctorList).concat(data.guardianList);
 
           id==1?helpSaveList(dataInfo).then(res=>{
             console.log(res)
@@ -397,7 +401,7 @@ export default {
     },    
     // 转发
     pushFunc() {
-      this.modalStatus=true
+      this.modalStatus=true;
       // this.$store.state.step.stepStatus < 5
       //   ? (this.$store.state.step.stepStatus =
       //       this.$store.state.step.stepStatus + 1)

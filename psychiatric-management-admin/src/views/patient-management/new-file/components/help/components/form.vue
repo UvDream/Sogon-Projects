@@ -69,7 +69,9 @@ code:{
         name: "",
         department: "",
         IdNumber: "",
-        phone: ""
+        phone: "",
+        userId: "",
+        // type: ""
       },
       ruleValidate: {
         name: [{ required: true, message: "请输入姓名", trigger: "blur" }],
@@ -120,6 +122,7 @@ code:{
         ) {
           this.formValidate.IdNumber = element.idCode;
           this.formValidate.phone = element.telephone;
+          this.formValidate.userId = element.id;
         }
       });
     }

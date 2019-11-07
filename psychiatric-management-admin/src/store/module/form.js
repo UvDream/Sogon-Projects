@@ -5,7 +5,9 @@ const form = {
       name:"",
       department:"",
       IdNumber:"",
-      phone:""
+      phone:"",
+      userId:"",
+      type:"0"
     },
     // 列表信息
     cadreSelect: {
@@ -15,51 +17,56 @@ const form = {
       phone:""
     },
     cadreList: [
-      {
-        helpDate: "2019"
-      },
-      {
-        helpDate: "222"
-      }
+      // {
+      //   helpDate: "2019"
+      // },
+      // {
+      //   helpDate: "222"
+      // }
     ],
     // 监护民警帮扶
     police: {
       name:"",
       department:"",
       IdNumber:"",
-      phone:""
+      phone:"",
+      userId:"",
+      type:"1"
     },
     policeSelect: {},
     policeList: [
-      {
-        helpDate: "2020"
-      }
+      // {
+      //   helpDate: "2020"
+      // }
     ],
     // 医生帮扶
     doctor: {
       name:"",
       department:"",
       IdNumber:"",
-      phone:""
+      phone:"",
+      userId:"",
+      type:"2"
     },
     doctorSelect: {},
     doctorList: [
-      {
-        helpDate: "2021"
-      }
+      // {
+      //   helpDate: "2021"
+      // }
     ],
     // 监护人监护
     guardian: {
       name:"",
       relationship:"",
       banNumber:"",
-      phone:""
+      phone:"",
+      type:"3"
     },
     guardianSelect: {},
     guardianList: [
-      {
-        helpDate: "2022"
-      }
+      // {
+      //   helpDate: "2022"
+      // }
     ]
   }
 };

@@ -29,6 +29,7 @@ const step = {
       },
       checkRegistration: {
          // 1
+         id: "222",
          patientName: "",
          sex: "",
          IdNumber: "",
