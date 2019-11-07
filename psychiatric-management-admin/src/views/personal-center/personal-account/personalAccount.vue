@@ -24,10 +24,10 @@
           <div class="form">
             <FormItem label="所属部门" prop="deptname" class="form-block">
               <!-- <Select v-model="formValidate.deptId" disabled>
-                <Option value="2">公安</Option>
-                <Option value="4">民政</Option>
-                <Option value="1">网格</Option>
-                <Option value="3">卫生</Option>
+                  <Option value="1">网格员</Option>
+                  <Option value="2">公安</Option>
+                  <Option value="3">卫生</Option>
+                  <Option value="4">民政</Option>
               </Select> -->
               <Input v-model="formValidate.deptname" disabled />
             </FormItem>

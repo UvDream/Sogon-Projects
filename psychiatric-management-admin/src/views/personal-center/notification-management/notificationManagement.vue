@@ -147,7 +147,7 @@ export default {
         endTime:null,
         pageNum:1,
         pageSize:10
-        },
+      },
       ruleValidate: {},
       columns: [
         {
