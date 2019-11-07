@@ -93,17 +93,23 @@ export default {
         "pwd": this.formInline.password
       }
       login(data).then(res=>{
-        Cookies.set('token',res.data.token);
-        this.$store.state.role = res.data.tUsers.role;
-        this.$router.push({ path: '/dashboard' })
-      })
-      this.$refs[name].validate(valid => {
-        if (valid) {
+        console.log(res)
+        if(res.msg == 1){
           this.$Message.success("Success!");
-        } else {
+          Cookies.set('token',res.data.token);
+          this.$store.state.role = res.data.tUsers.role;
+          this.$router.push({ path: '/dashboard' })
+        }else{
           this.$Message.error("Fail!");
         }
-      });
+      })
+      // this.$refs[name].validate(valid => {
+      //   if (valid) {
+      //     this.$Message.success("Success!");
+      //   } else {
+      //     this.$Message.error("Fail!");
+      //   }
+      // });
     }
   }
 };
