@@ -62,7 +62,7 @@ export default {
         uploadFiles: []
       },
       ruleValidate: {
-        remarks: [{ required: true, message: "请输入办结原因" }],
+        remarks: [{ required: true, message: "请输入办结原因,不超过300个字符",max:300 }],
         uploadFiles: [{ required: true, message: "请上传证明材料" }]
       }
     };

@@ -25,7 +25,6 @@
       :show-upload-list="false"
       :default-file-list="defaultList"
       :on-success="handleSuccess"
-      :headers="headers"
       :format="['jpg', 'jpeg', 'png']"
       :max-size="2048"
       :on-format-error="handleFormatError"

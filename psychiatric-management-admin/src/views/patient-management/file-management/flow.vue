@@ -85,7 +85,7 @@ export default {
         let str = "";
         arr.forEach((index,item)=>{
           if(item==1){
-            str += ' 网格 ';
+            str += ' 网格员 ';
           }else if(item==2){
             str += ' 公安 ';
           }else if(item==3){

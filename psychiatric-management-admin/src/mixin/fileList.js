@@ -2,7 +2,11 @@ import api from "@/api/file-manage";
 export default {
   data() {
     return {
-      indexId:0,
+      indexId:404,
+      statusObj:{
+        curPosit:"2",
+        deptName:"3"
+      },
       flowList:[],
       modalForward:false,
       modalFlow:false,
@@ -51,7 +55,6 @@ export default {
         {pageNum:this.pageNum},
         {pageSize:this.pageSize}
       );
-      debugger
       this.searchFunc(obj);
     },
     searchFunc(data) {
@@ -129,7 +132,15 @@ export default {
     //退回
     handlereturn(id,index) {
       this.indexId = id;
-      this.modalReturn = true;
+      api.backDept({tArchivesId:id}).then(res=>{
+        if(res.success==true){
+          this.statusObj = {
+            curPosit:res.data.curPosit,
+            deptName:res.data.deptName
+          };
+          this.modalReturn = true;
+        }
+      })
     },
     //办结
     handlesetup(id,index) {

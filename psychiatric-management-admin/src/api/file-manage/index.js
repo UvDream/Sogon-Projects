@@ -44,6 +44,17 @@ const api = {
             }
         })
     },
+    //退回前的调用
+    backDept: (data)=>{
+        return fetch({
+            url: '/jsbrgl/functionController/backDept',
+            method: 'POST',
+            data,
+            headers: { 
+              "Content-Type": "application/json"
+            }
+        })
+    },
 }
 
 export default api

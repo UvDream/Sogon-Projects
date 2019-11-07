@@ -25,12 +25,13 @@
             <Select v-model="formInline.status">
               <Option value="0">发现中</Option>
               <Option value="1">已推送</Option>
-              <Option value="2">评定中</Option>
+              <Option value="2">初步处理中</Option>
               <Option value="3">已办结</Option>
-              <Option value="4">治疗中</Option>
-              <!-- <Option value="5">监护中</Option> -->
+              <Option value="4">评定治疗中</Option>
+              <Option value="5">监护中</Option>
               <Option value="6">帮扶中</Option>
-              <Option value="7">已康复</Option>
+              <Option value="7">再次评定</Option>
+              <Option value="8">脱离管控</Option>
             </Select>
           </FormItem>
           <FormItem label="档案名称" class="form-block" prop="name">
@@ -101,16 +102,16 @@
             已推送
           </span>
           <span v-if="row.status == 2" @click="handleStatus(row.id,index)">
-            <img src="../../../assets/fonts/file-manage/pingding.png" style="margin-right:5px;vertical-align: middle;">
-            评定中
+            <img src="../../../assets/fonts/file-manage/chubuchuli.png" style="margin-right:5px;vertical-align: middle;">
+            初步处理中
           </span>
           <span v-if="row.status == 3" @click="handleStatus(row.id,index)">
-            <img src="../../../assets/fonts/file-manage/bangfu.png" style="margin-right:5px;vertical-align: middle;">
+            <img src="../../../assets/fonts/file-manage/banjie.png" style="margin-right:5px;vertical-align: middle;">
             已办结
           </span>
           <span v-if="row.status == 4" @click="handleStatus(row.id,index)">
             <img src="../../../assets/fonts/file-manage/zhiliao.png" style="margin-right:5px;vertical-align: middle;">
-            治疗中
+            评定治疗中
           </span>
           <span v-if="row.status == 5" @click="handleStatus(row.id,index)">
             <img src="../../../assets/fonts/file-manage/jianhu.png" style="margin-right:5px;vertical-align: middle;">
@@ -121,8 +122,12 @@
             帮扶中
           </span>
           <span v-if="row.status == 7" @click="handleStatus(row.id,index)">
-            <img src="../../../assets/fonts/file-manage/bangfu.png" style="margin-right:5px;vertical-align: middle;">
-            已康复
+            <img src="../../../assets/fonts/file-manage/zaici.png" style="margin-right:5px;vertical-align: middle;">
+            再次评定
+          </span>
+          <span v-if="row.status == 8" @click="handleStatus(row.id,index)">
+            <img src="../../../assets/fonts/file-manage/tuoli.png" style="margin-right:5px;vertical-align: middle;">
+            脱离管控
           </span>
         </template>
         <template slot-scope="{ row, index}" slot="isfocal">
@@ -184,7 +189,7 @@
     <!-- 办结弹窗 -->
     <SetUp :modalSetUp="modalSetUp" :indexId="indexId" @closemodal="closemodal"/>
     <!-- 退回弹窗-->
-    <Return :modalReturn="modalReturn" :indexId="indexId" @closemodal="closemodal"/>
+    <Return :modalReturn="modalReturn" :indexId="indexId" :statusObj="statusObj" @closemodal="closemodal"/>
     <!-- 启动弹窗-->
     <Startup :modalStartUp="modalStartUp" :indexId="indexId" @closemodal="closemodal"/>
     <!-- 流程图-->
@@ -258,7 +263,7 @@ export default {
         },
         {
           title: '档案状态',
-          width: 120,
+          width: 150,
           slot: 'status',
           key: 'status'
         },
