@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 11:52:31
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-11-07 19:06:42
+ * @LastEditTime: 2019-11-07 19:08:18
  * @Description: 首页
  * @Email: UvDream@163.com
  -->
@@ -40,7 +40,7 @@
             <section>{{item.name}}</section>
             <section>{{item.date}}</section>
             <section>
-              <a href="/">档案编号</a>
+              <span style="color:#53A7A9">档案编号</span>
             </section>
           </div>
         </div>
