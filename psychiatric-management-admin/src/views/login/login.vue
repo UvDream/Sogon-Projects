@@ -51,6 +51,7 @@
 <script>
 import { login } from "@/api/login/index";
 import Cookies from 'js-cookie'
+// import store from '@/store'
 export default {
   data() {
     return {
@@ -92,7 +93,8 @@ export default {
         "pwd": this.formInline.password
       }
       login(data).then(res=>{
-        Cookies.set('token',res.data.token)
+        Cookies.set('token',res.data.token);
+        this.$store.state.role = res.data.tUsers.role;
         this.$router.push({ path: '/dashboard' })
       })
       this.$refs[name].validate(valid => {

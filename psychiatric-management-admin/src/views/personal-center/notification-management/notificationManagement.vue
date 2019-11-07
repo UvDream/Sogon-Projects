@@ -54,16 +54,18 @@
                 <DatePicker
                   type="datetime"
                   placeholder="选择通知时间"
-                  format="yyyy/MM/dd"
                   v-model="formValidate.beginTime"
+                  format="yyyy-MM-dd HH:mm:ss"
+                  @on-change="startTimeChange"
                 ></DatePicker>
               </FormItem>
               <FormItem label="通知结束时间" prop="endTime" class="form-block">
                 <DatePicker
                   type="datetime"
                   placeholder="选择通知时间"
-                  format="yyyy/MM/dd"
+                  format="yyyy-MM-dd HH:mm:ss"
                   v-model="formValidate.endTime"
+                  @on-change="endTimeChange"
                 ></DatePicker>
               </FormItem>
               <FormItem class="form-block" style="display: flex;align-items: flex-end;">
@@ -141,8 +143,8 @@ export default {
         patientName:"",
         isLook:"",
         type:"",
-        beginTime:"",
-        endTime:"",
+        beginTime:null,
+        endTime:null,
         pageNum:1,
         pageSize:10
         },
@@ -221,40 +223,15 @@ export default {
           align: 'center'
         }
       ],
-      tabList: [
-        {
-          "id": 10,
-          "context": "您接到来自null部门转发档案，请及时查看！",
-          "islook": 0,
-          "userId": 1,
-          "type": 0,
-          "createDate": "2019-10-25T19:38:00.000+0000",
-          "archivesId": 55,
-          "isDo": null,
-          "code": "XZ320623198807064421",
-          "patientName": "WG",
-          "patientCode": "320623198807064421"
-        },
-        {
-          "id": 11,
-          "context": "您接到来自null部门转发档案，请及时查看！",
-          "islook": 1,
-          "userId": 2,
-          "type": 0,
-          "createDate": "2019-10-25T19:38:00.000+0000",
-          "archivesId": 55,
-          "isDo": null,
-          "code": "XZ320623198807064421",
-          "patientName": "WG",
-          "patientCode": "320623198807064421"
-        }
-      ],
+      tabList: [],
       selectList:[]
     }
   },
   mounted() {
     let obj = Object.assign(
       this.formValidate,
+      {beginTime:null},
+      {endTime: null},
       {pageNum:this.pageNum},
       {pageSize:this.pageSize}
     );
@@ -263,6 +240,12 @@ export default {
   watch:{
   },
   methods: {
+    startTimeChange(e){
+      this.formValidate.beginTime = e == "" ? null : new Date(e);
+    },
+    endTimeChange(e){
+      this.formValidate.endTime = e == "" ? null : new Date(e);
+    },
     //取消
     handleReset (name) {
       this.$refs[name].resetFields();
@@ -270,8 +253,6 @@ export default {
     //搜索
     search() {
       debugger
-      let ss = formatDate(new Date(this.formValidate.beginTime),'yyyy-MM-dd hh:mm:ss');
-      let aa = formatDate(new Date(this.formValidate.endTime),'yyyy-MM-dd hh:mm:ss');
       let obj = Object.assign(
         this.formValidate,
         {pageNum:this.pageNum},

@@ -10,10 +10,14 @@
   <div class="filed">
     <Tabs :animated="false" class="demo-tabs-style1">
         <TabPane label="待办档案" icon="logo-apple">
-          <Todo />
+          <transition name="slide">
+            <Todo v-if="!status" />
+          </transition>
         </TabPane>
         <TabPane label="已办档案" icon="logo-windows">
-          <Done />
+          <transition name="slide">
+            <Done v-if="!status" />
+          </transition>
         </TabPane>
     </Tabs>
     <Icon

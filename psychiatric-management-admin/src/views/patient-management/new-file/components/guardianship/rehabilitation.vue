@@ -81,7 +81,7 @@
               trigger: 'blur'
             }"
             >
-              <Upload />
+              <Upload v-model="item.uploadFiles"/>
             </FormItem>
           </div>
 
@@ -159,7 +159,7 @@ export default {
         patientCuteType: "",
         patientCompany: "",
         patientRemarks: "",
-        uploadFiles: ""
+        uploadFiles: []
       };
       this.ruleForm.more.push(obj);
     },
