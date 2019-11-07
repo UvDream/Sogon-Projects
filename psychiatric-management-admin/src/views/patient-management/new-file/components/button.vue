@@ -115,26 +115,26 @@ export default {
           
           console.log(data)
 
-          // obj.archivesId = "",
-          // obj.patientName = data.patientName;
-          // obj.patientSex = data.sex;
-          // obj.patientCode = data.IdNumber;
-          // obj.type = data.status;
-          // obj.patientCompany = data.employer;
-          // obj.patientTel = data.patient;
-          // obj.patientRusticate = data.village;
-          // obj.patientPolice = data.police;
-          // obj.isforeign = data.foreigner;
-          // obj.foreignHandle = data.processingMethod;
-          // obj.patientAddr = data.patientAddress;
-          // obj.patientStatus1 = data.patientCondition;
-          // obj.patientStatus2 = data.risk;
-          // obj.guardianName = data.guardianName;
-          // obj.guardianRel = data.relationship;
-          // obj.guardianCompany = data.guardianUnit;
-          // obj.guardianTel = data.guardianPhone;
-          // obj.causeTrouble = data.anecdote;
-          // obj.isfocal=data.isfocal;  
+          obj.archivesId = "",
+          obj.patientName = data.patientName;
+          obj.patientSex = data.sex;
+          obj.patientCode = data.IdNumber;
+          obj.type = data.status;
+          obj.patientCompany = data.employer;
+          obj.patientTel = data.patient;
+          obj.patientRusticate = data.village;
+          obj.patientPolice = data.police;
+          obj.isforeign = data.foreigner;
+          obj.foreignHandle = data.processingMethod;
+          obj.patientAddr = data.patientAddress;
+          obj.patientStatus1 = data.patientCondition;
+          obj.patientStatus2 = data.risk;
+          obj.guardianName = data.guardianName;
+          obj.guardianRel = data.relationship;
+          obj.guardianCompany = data.guardianUnit;
+          obj.guardianTel = data.guardianPhone;
+          obj.causeTrouble = data.anecdote;
+          obj.isfocal=data.isfocal;  
 
           obj.tFiles = data.uploadFiles;
 
