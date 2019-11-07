@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-11-07 10:21:36
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-11-07 10:37:09
+ * @LastEditTime: 2019-11-07 14:31:05
  * @Description: 病患档案总数变化趋势
  * @Email: UvDream@163.com
  -->
@@ -78,12 +78,16 @@ export default {
           type: "line"
         }
       });
-      chart.line().position("year*value");
+      chart
+        .line()
+        .position("year*value")
+        .color("#ff9d6f");
       chart
         .point()
         .position("year*value")
         .size(4)
         .shape("circle")
+        .color("#ff9d6f")
         .style({
           stroke: "#fff",
           lineWidth: 1

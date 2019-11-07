@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-11-06 17:28:34
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-11-07 10:27:20
+ * @LastEditTime: 2019-11-07 13:56:57
  * @Description: 饼图
  * @Email: UvDream@163.com
  -->
@@ -51,7 +51,7 @@ export default {
     initComponent() {
       const chart = new G2.Chart({
         container: "pie",
-        width: 350,
+        width: 400,
         height: 300
       });
 

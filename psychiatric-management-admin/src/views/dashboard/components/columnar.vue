@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 11:52:31
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-11-07 11:37:29
+ * @LastEditTime: 2019-11-07 15:04:12
  * @Description: 柱状图
  * @Email: UvDream@163.com
  -->
@@ -64,13 +64,23 @@ export default {
       chart
         .interval()
         .position("月份*月均降雨量")
-        .color("name")
+        .color("name", function(val) {
+          console.log(val);
+          if (val == "已办档案") {
+            return "#50c41a";
+          }
+
+          if (val == "待办档案") {
+            return "#fb8d15";
+          }
+        })
         .adjust([
           {
             type: "dodge",
             marginRatio: 1 / 32
           }
         ]);
+
       // ---------
       this.chart = chart;
       this.chart.render();
