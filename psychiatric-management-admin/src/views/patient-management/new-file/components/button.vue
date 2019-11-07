@@ -318,6 +318,18 @@ export default {
           dataInfo.guardianTelephone = data.guardian.phone;
           dataInfo.guardianRel = data.guardian.relationship;
           dataInfo.guardianBankCardNumber = data.guardian.banNumber;
+          data.cadreList.forEach(element => {
+            element.type = 0;
+          });
+          data.policeList.forEach(element => {
+            element.type = 1;
+          });
+          data.doctorList.forEach(element => {
+            element.type = 2;
+          });
+          data.guardianList.forEach(element => {
+            element.type = 3;
+          });
           dataInfo.tHelpRecordsList = data.cadreList.concat(data.policeList).concat(data.doctorList).concat(data.guardianList);
 
           id==1?helpSaveList(dataInfo).then(res=>{
