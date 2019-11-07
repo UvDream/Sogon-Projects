@@ -98,8 +98,39 @@
                 &-title {
                     font-size    : 15px;
                     margin-bottom: 10px;
+                    position     : relative;
+
+                    &>div {
+                        position        : absolute;
+                        color           : #303133;
+                        right           : 20px;
+                        top             : -15px;
+                        display         : flex;
+                        width           : 120px;
+                        background-color: #ebf0f1;
+                        border-radius   : 4px;
+                        height          : 30px;
+
+                        align-items    : center;
+                        justify-content: center;
+
+                        &>section {
+                            width     : 50%;
+                            text-align: center;
+                            cursor    : default;
+                        }
+                    }
                 }
             }
         }
+    }
+
+    .isTab {
+        background-color: #fff;
+        color           : #53A7A9;
+        width           : 58px;
+        height          : 28px;
+        border-radius   : 4px;
+        line-height     : 28px;
     }
 }

@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 11:52:31
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-11-07 10:31:58
+ * @LastEditTime: 2019-11-07 10:50:09
  * @Description: 首页
  * @Email: UvDream@163.com
  -->
@@ -42,7 +42,13 @@
           </div>
         </div>
         <div class="dashboard-file-content-chart">
-          <div class="dashboard-file-content-chart-title" style="padding-left:60px">病患档案总数变化趋势</div>
+          <div class="dashboard-file-content-chart-title" style="padding-left:60px">
+            病患档案总数变化趋势
+            <div>
+              <section :class="{'isTab':tab==0}">月</section>
+              <section :class="{'isTab':tab==1}">年</section>
+            </div>
+          </div>
           <div style="text-align:left">
             <Polylines />
           </div>
@@ -61,7 +67,7 @@
           </div>
         </div>
         <div class="dashboard-file-content-chart">
-          <div class="dashboard-file-content-chart-title">各部门办理病患档案数量</div>
+          <div class="dashboard-file-content-chart-title" style="padding-left:60px">各部门办理病患档案数量</div>
           <Columnar />
         </div>
       </div>
@@ -89,6 +95,16 @@
         </div>
         <div class="dashboard-file-content-chart">
           <!-- <Columnar /> -->
+          <div class="dashboard-file-content-chart-title" style="padding-left:60px">
+            补助金发放金额变化趋势
+            <div>
+              <section :class="{'isTab':tab==0}">月</section>
+              <section :class="{'isTab':tab==1}">年</section>
+            </div>
+          </div>
+          <div style="text-align:left">
+            <PolylineC />
+          </div>
         </div>
       </div>
     </div>
@@ -116,15 +132,19 @@ import api from "@/api/home/index";
 import Columnar from "./components/columnar";
 import PieChart from "./components/pie-chart";
 import Polylines from "./components/polyline";
+import PolylineC from "./components/polylineC";
+
 export default {
   components: {
     Columnar,
     PieChart,
-    Polylines
+    Polylines,
+    PolylineC
   },
   data() {
     return {
       modal: false,
+      tab: 0,
       list: [
         {
           img: require("../../assets/file.png"),
