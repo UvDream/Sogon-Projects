@@ -24,12 +24,12 @@
           <div class="form">
             <FormItem label="所属部门" prop="deptname" class="form-block">
               <!-- <Select v-model="formValidate.deptId" disabled>
-                <Option value="2">公安</Option>
-                <Option value="4">民政</Option>
-                <Option value="1">网格</Option>
-                <Option value="3">卫生</Option>
+                  <Option value="1">网格员</Option>
+                  <Option value="2">公安</Option>
+                  <Option value="3">卫生</Option>
+                  <Option value="4">民政</Option>
               </Select> -->
-              <Input v-model="formValidate.deptname" placeholder="输入联系电话" disabled />
+              <Input v-model="formValidate.deptname" disabled />
             </FormItem>
             <FormItem label="联系电话" prop="telephone" class="form-block">
               <Input v-model="formValidate.telephone" placeholder="输入联系电话" disabled />
@@ -158,11 +158,11 @@ export default {
       modalI: false,
       closed: false,
       formValidate: {
-        deptId: "1",
+        deptId: "",
         deptname: "",
-        telephone: "18661910020",
-        name: "2222",
-        pwd: "111111"
+        telephone: "",
+        name: "",
+        pwd: ""
       },
       formValidate2: {
         oldPassWord: "",
@@ -180,7 +180,7 @@ export default {
       },
       ruleValidate3: {
         telephone: [{ required: true, validator: checkTel, trigger: "blur" }],
-        name: [{ required: true, message: "请输入用户名", trigger: "blur" }]
+        name: [{ required: true, message: "请输入用户名", trigger: "blur",max:20}]
       }
     }
   },

@@ -43,11 +43,12 @@ export default {
         };
       })
     },
+    //退回
     saveBack() {
       let obj = {
         tArchiveId:this.indexId,
         remarks:this.formValidate.remarks,
-        curPositionid:this.formValidate.curPositionid,
+        curPositionid:this.curPositionid,
         tFilesList:this.formValidate.uploadFiles
       };
       if(this.$route.name=="newFile"){
@@ -58,6 +59,20 @@ export default {
           this.$emit('closemodal');
           this.$Message.success("退回成功！");
         }
+      })
+    },
+    startUp() {
+      let obj = {
+        tArchiveId:this.indexId,
+        tFilesList:this.formValidate.uploadFiles
+      };
+      api.startUp(obj).then(res=>{
+        if(res.success==true){
+          this.$Message.success("启动成功！");
+        }else{
+          this.$Message.success(res.msg);
+        }
+        this.$emit('closemodal');
       })
     }
   }

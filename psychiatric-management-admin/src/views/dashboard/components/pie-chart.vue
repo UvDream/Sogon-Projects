@@ -2,14 +2,12 @@
  * @Author: wangzhongjie
  * @Date: 2019-11-06 17:28:34
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-11-06 17:33:05
+ * @LastEditTime: 2019-11-07 13:56:57
  * @Description: 饼图
  * @Email: UvDream@163.com
  -->
 <template>
-  <div>
-    <div id="pie"></div>
-  </div>
+  <div id="pie"></div>
 </template>
 
 <script>
@@ -53,7 +51,7 @@ export default {
     initComponent() {
       const chart = new G2.Chart({
         container: "pie",
-        width: 600,
+        width: 400,
         height: 300
       });
 

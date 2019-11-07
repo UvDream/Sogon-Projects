@@ -23,25 +23,12 @@
             }"
           >
             <Select v-model="item.deptId">
-              <Option value="1">网络</Option>
+              <Option value="1">网格员</Option>
               <Option value="2">公安</Option>
               <Option value="3">卫生</Option>
               <Option value="4">民政</Option>
             </Select>
-            <!-- <Input v-model="item.department" placeholder="输入病患就诊医院" /> -->
           </FormItem>
-          <!-- <FormItem
-            label="转发人姓名"
-            class="form-block"
-            :prop="'forward.' + index + '.name'"
-            :rules="{
-              required: true,
-              message: '请输入转发人姓名',
-              trigger: 'blur'
-            }"
-          >
-            <Input v-model="item.name" placeholder="输入转发人姓名" /> -->
-          <!-- </FormItem> -->
           <div style="display:flex;align-items:center" @click="deleteFunc(index)">
             <img src="../../../../../assets/fonts/delete.png" alt />
           </div>
@@ -82,8 +69,7 @@ export default {
       modal: false,
       ruleForm: {
         forward: [
-          { deptId: "1", name: "小明" },
-          { deptId: "2", name: "小红" }
+          { deptId: "1"}
         ]
       },
     };

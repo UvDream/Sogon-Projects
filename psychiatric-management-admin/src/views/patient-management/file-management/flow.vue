@@ -85,7 +85,7 @@ export default {
         let str = "";
         arr.forEach((index,item)=>{
           if(item==1){
-            str += ' 网格 ';
+            str += ' 网格员 ';
           }else if(item==2){
             str += ' 公安 ';
           }else if(item==3){
@@ -120,6 +120,8 @@ export default {
     border-radius: 20px;
     border-radius: 20px;
     padding:30px;
+    height:400px;
+    overflow:auto;
   }
   .item{
     position: relative;

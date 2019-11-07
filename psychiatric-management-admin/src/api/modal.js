@@ -34,6 +34,17 @@ const api = {
               "Content-Type": "application/json"
             }
         })
+    },
+    //启动
+    startUp: (data)=>{
+        return fetch({
+            url: '/jsbrgl/functionController/startUp',
+            method: 'POST',
+            data,
+            headers: { 
+              "Content-Type": "application/json"
+            }
+        })
     }
 }
 
