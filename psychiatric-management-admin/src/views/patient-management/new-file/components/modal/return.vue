@@ -62,6 +62,8 @@
 <script>
 import Upload from "@/components/upload/upload";
 import mixin from "@/mixin/newFile";
+import { returnSaveList } from "@/api/return/index";
+
 export default {
   mixins: [mixin],
   components: {
@@ -101,6 +103,16 @@ export default {
     modalReturn:function(val){
       this.modal = val;
     }
+  },
+  mounted(){
+    let obj = {"tArchivesId": "404"};
+    returnSaveList(obj).then(res => {
+      console.log(res)
+      this.formValidate.curPositionid = "2";
+      this.formValidate.name = res.data.curPosit;
+      // this.formValidate.curPositionid = res.data.deptName;
+      // this.formValidate.name = res.data.curPosit;
+    });
   },
   methods: {
     cancle() {
