@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 11:52:31
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-11-07 15:04:12
+ * @LastEditTime: 2019-11-07 15:15:22
  * @Description: 柱状图
  * @Email: UvDream@163.com
  -->
@@ -21,33 +21,33 @@ export default {
       data: [
         {
           name: "已办档案",
-          月份: "公安",
-          月均降雨量: 18.9
+          机构: "公安",
+          档案数量: 18.9
         },
         {
           name: "已办档案",
-          月份: "民政",
-          月均降雨量: 28.8
+          机构: "民政",
+          档案数量: 28.8
         },
         {
           name: "已办档案",
-          月份: "卫生",
-          月均降雨量: 39.3
+          机构: "卫生",
+          档案数量: 39.3
         },
         {
           name: "待办档案",
-          月份: "公安",
-          月均降雨量: 12.4
+          机构: "公安",
+          档案数量: 12.4
         },
         {
           name: "待办档案",
-          月份: "民政",
-          月均降雨量: 23.2
+          机构: "民政",
+          档案数量: 23.2
         },
         {
           name: "待办档案",
-          月份: "卫生",
-          月均降雨量: 34.5
+          机构: "卫生",
+          档案数量: 34.5
         }
       ]
     };
@@ -63,7 +63,7 @@ export default {
       // ------
       chart
         .interval()
-        .position("月份*月均降雨量")
+        .position("机构*档案数量")
         .color("name", function(val) {
           console.log(val);
           if (val == "已办档案") {
