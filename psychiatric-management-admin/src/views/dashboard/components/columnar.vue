@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 11:52:31
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-11-06 17:30:51
+ * @LastEditTime: 2019-11-07 10:20:18
  * @Description: 柱状图
  * @Email: UvDream@163.com
  -->
@@ -21,11 +21,36 @@ export default {
     return {
       chart: null,
       data: [
-        { genre: "1号", sold: 275 },
-        { genre: "2号", sold: 115 },
-        { genre: "3号", sold: 120 },
-        { genre: "4号", sold: 350 },
-        { genre: "5号", sold: 150 }
+        {
+          name: "已办档案",
+          月份: "公安",
+          月均降雨量: 18.9
+        },
+        {
+          name: "已办档案",
+          月份: "民政",
+          月均降雨量: 28.8
+        },
+        {
+          name: "已办档案",
+          月份: "卫生",
+          月均降雨量: 39.3
+        },
+        {
+          name: "待办档案",
+          月份: "公安",
+          月均降雨量: 12.4
+        },
+        {
+          name: "待办档案",
+          月份: "民政",
+          月均降雨量: 23.2
+        },
+        {
+          name: "待办档案",
+          月份: "卫生",
+          月均降雨量: 34.5
+        }
       ]
     };
   },
@@ -37,10 +62,18 @@ export default {
         height: 300
       });
       chart.source(this.data);
+      // ------
       chart
         .interval()
-        .position("genre*sold")
-        .color("genre");
+        .position("月份*月均降雨量")
+        .color("name")
+        .adjust([
+          {
+            type: "dodge",
+            marginRatio: 1 / 32
+          }
+        ]);
+      // ---------
       this.chart = chart;
       this.chart.render();
     }
