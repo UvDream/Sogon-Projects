@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-11-07 10:21:36
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-11-07 15:40:39
+ * @LastEditTime: 2019-11-07 19:03:11
  * @Description: 病患档案总数变化趋势
  * @Email: UvDream@163.com
  -->
@@ -17,40 +17,52 @@ export default {
       chart: null,
       data: [
         {
-          month: "1",
+          month: "1月",
           value: 3
         },
         {
-          month: "1992",
+          month: "2月",
           value: 4
         },
         {
-          month: "1993",
+          month: "3月",
           value: 3.5
         },
         {
-          month: "1994",
+          month: "4月",
           value: 5
         },
         {
-          month: "1995",
+          month: "5月",
           value: 4.9
         },
         {
-          month: "1996",
+          month: "6月",
           value: 6
         },
         {
-          month: "1997",
+          month: "7月",
           value: 7
         },
         {
-          month: "1998",
+          month: "8月",
           value: 9
         },
         {
-          month: "1999",
+          month: "9月",
           value: 13
+        },
+        {
+          month: "10月",
+          value: 1
+        },
+        {
+          month: "11月",
+          value: 5
+        },
+        {
+          month: "12月",
+          value: 2
         }
       ]
     };

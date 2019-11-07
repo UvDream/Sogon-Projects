@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 11:52:31
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-11-07 15:35:07
+ * @LastEditTime: 2019-11-07 19:06:42
  * @Description: 首页
  * @Email: UvDream@163.com
  -->
@@ -90,16 +90,14 @@
           </div>
           <div
             class="list"
-            v-for="(item,index) in tableList"
+            v-for="(item,index) in tableLists"
             :key="index"
             :class="{'gray':index%2===0}"
           >
             <section>{{index+1}}</section>
             <section>{{item.name}}</section>
             <section>{{item.date}}</section>
-            <section>
-              <a href="/">档案编号</a>
-            </section>
+            <section>{{item.price}}</section>
           </div>
           <!-- <PieChart /> -->
         </div>
@@ -185,6 +183,18 @@ export default {
         { id: "8", name: "王增平", date: "2019-10-22" },
         { id: "9", name: "王增平", date: "2019-10-22" },
         { id: "10", name: "王增平", date: "2019-10-22" }
+      ],
+      tableLists: [
+        { id: "1", name: "王增平", date: "2019-10-22", price: 2000 },
+        { id: "2", name: "王增平", date: "2019-10-22", price: 2000 },
+        { id: "3", name: "王增平", date: "2019-10-22", price: 2000 },
+        { id: "4", name: "王增平", date: "2019-10-22", price: 2000 },
+        { id: "5", name: "王增平", date: "2019-10-22", price: 2000 },
+        { id: "6", name: "王增平", date: "2019-10-22", price: 2000 },
+        { id: "7", name: "王增平", date: "2019-10-22", price: 2000 },
+        { id: "8", name: "王增平", date: "2019-10-22", price: 2000 },
+        { id: "9", name: "王增平", date: "2019-10-22", price: 2000 },
+        { id: "10", name: "王增平", date: "2019-10-22", price: 2000 }
       ]
     };
   },
