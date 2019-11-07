@@ -43,11 +43,12 @@ export default {
         };
       })
     },
+    //退回
     saveBack() {
       let obj = {
         tArchiveId:this.indexId,
         remarks:this.formValidate.remarks,
-        curPositionid:this.formValidate.curPositionid,
+        curPositionid:this.curPositionid,
         tFilesList:this.formValidate.uploadFiles
       };
       if(this.$route.name=="newFile"){
