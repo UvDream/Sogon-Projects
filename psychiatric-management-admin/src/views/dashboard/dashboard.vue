@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 11:52:31
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-11-07 13:49:28
+ * @LastEditTime: 2019-11-07 15:35:07
  * @Description: 首页
  * @Email: UvDream@163.com
  -->
@@ -49,8 +49,8 @@
             <img src="../../assets/fonts/2.png" alt />
             病患档案总数变化趋势
             <div>
-              <section :class="{'isTab':tab==0}">月</section>
-              <section :class="{'isTab':tab==1}">年</section>
+              <section :class="{'isTab':tab==0}" @click="tabClick(0)">月</section>
+              <section :class="{'isTab':tab==1}" @click="tabClick(1)">年</section>
             </div>
           </div>
           <div style="text-align:left">
@@ -109,8 +109,8 @@
             <img src="../../assets/fonts/2.png" alt />
             补助金发放金额变化趋势
             <div>
-              <section :class="{'isTab':tab==0}">月</section>
-              <section :class="{'isTab':tab==1}">年</section>
+              <section :class="{'isTab':tabs==0}" @click="tabsClick(0)">月</section>
+              <section :class="{'isTab':tabs==1}" @click="tabsClick(1)">年</section>
             </div>
           </div>
           <div style="text-align:left">
@@ -155,6 +155,7 @@ export default {
   data() {
     return {
       modal: false,
+      tabs: 0,
       tab: 0,
       list: [
         {
@@ -196,6 +197,12 @@ export default {
     });
   },
   methods: {
+    tabClick(id) {
+      this.tab = id;
+    },
+    tabsClick(id) {
+      this.tabs = id;
+    },
     cancelModal() {
       this.modal = false;
     },
