@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 11:52:31
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-11-07 10:10:17
+ * @LastEditTime: 2019-11-07 10:31:58
  * @Description: 首页
  * @Email: UvDream@163.com
  -->
@@ -42,8 +42,10 @@
           </div>
         </div>
         <div class="dashboard-file-content-chart">
-          <div class="dashboard-file-content-chart-title">病患档案总数变化趋势</div>
-
+          <div class="dashboard-file-content-chart-title" style="padding-left:60px">病患档案总数变化趋势</div>
+          <div style="text-align:left">
+            <Polylines />
+          </div>
           <!-- <Columnar /> -->
         </div>
       </div>
@@ -113,7 +115,13 @@
 import api from "@/api/home/index";
 import Columnar from "./components/columnar";
 import PieChart from "./components/pie-chart";
+import Polylines from "./components/polyline";
 export default {
+  components: {
+    Columnar,
+    PieChart,
+    Polylines
+  },
   data() {
     return {
       modal: false,
@@ -148,10 +156,7 @@ export default {
       ]
     };
   },
-  components: {
-    Columnar,
-    PieChart
-  },
+
   mounted() {
     api.isNeedDo().then(res => {
       if (res.success == true) {
