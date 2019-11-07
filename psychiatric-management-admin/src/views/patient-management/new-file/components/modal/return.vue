@@ -18,7 +18,7 @@
     >
       <div class="form">
         <FormItem label="退回至部门" class="form-block">
-          <Select v-model="curPositionid" disabled>
+          <Select v-model="deptName" disabled>
             <Option value="1">网格员</Option>
             <Option value="2">公安</Option>
             <Option value="3">卫生</Option>
@@ -26,16 +26,16 @@
           </Select>
         </FormItem>
         <FormItem label="退回档案状态" class="form-block">
-          <Select v-model="status" disabled>
+          <Select v-model="curPositionid" disabled>
             <Option value="0">发现中</Option>
-            <Option value="1">已推送</Option>
-            <Option value="2">初步处理中</Option>
-            <Option value="3">已办结</Option>
-            <Option value="4">评定治疗中</Option>
-            <Option value="5">监护中</Option>
-            <Option value="6">帮扶中</Option>
-            <Option value="7">再次评定</Option>
-            <Option value="8">脱离管控</Option>
+            <!-- <Option value="1">已推送</Option> -->
+            <Option value="1">初步处理中</Option>
+            <!-- <Option value="3">已办结</Option> -->
+            <Option value="2">评定治疗中</Option>
+            <!-- <Option value="5">监护中</Option> -->
+            <Option value="3">帮扶中</Option>
+            <Option value="4">再次评定</Option>
+            <Option value="5">脱离管控</Option>
           </Select>
         </FormItem>
       </div>
@@ -85,8 +85,8 @@ export default {
   data() {
     return {
       modal: this.modalReturn,
-      curPositionid: this.statusObj.deptName,
-      status: this.statusObj.curPosit,
+      deptName: this.statusObj.deptName,
+      curPositionid: this.statusObj.curPosit,
       formValidate: {
         remarks: "",
         uploadFiles: []
