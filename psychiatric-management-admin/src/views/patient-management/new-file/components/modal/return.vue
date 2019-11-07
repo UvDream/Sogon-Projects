@@ -19,7 +19,7 @@
       <div class="form">
         <FormItem label="退回至部门" prop="curPositionid" class="form-block">
           <Select v-model="formValidate.curPositionid">
-            <Option value="1">网络</Option>
+            <Option value="1">网格</Option>
             <Option value="2">公安</Option>
             <Option value="3">卫生</Option>
             <Option value="4">民政</Option>

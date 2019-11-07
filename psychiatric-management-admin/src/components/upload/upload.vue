@@ -53,10 +53,6 @@ export default {
       // 上传接口地址
       url: baseUrl + "/jsbrgl/fileUploadController/fileUpload1",
       defaultList: [
-        {
-          name: "avatar.png",
-          url: "https://nexmoe.com/images/avatar.png"
-        }
       ],
       imgName: "avatar.png",
       visible: false,

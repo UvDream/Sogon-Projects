@@ -26,7 +26,7 @@
               <!-- <Select v-model="formValidate.deptId" disabled>
                 <Option value="2">公安</Option>
                 <Option value="4">民政</Option>
-                <Option value="1">网络</Option>
+                <Option value="1">网格</Option>
                 <Option value="3">卫生</Option>
               </Select> -->
               <Input v-model="formValidate.deptname" placeholder="输入联系电话" disabled />
