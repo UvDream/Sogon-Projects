@@ -2,11 +2,11 @@
   <div class="white-block btn" style="height:100px">
     <div>
       <!-- 转发弹窗 -->
-      <Forward :modalForward="modalStatus" />
+      <Forward v-model="modalStatus" />
       <!-- 办结弹窗 -->
-      <SetUp  :modalSetUp="setModal"/>
+      <SetUp  v-model="setModal"/>
       <!-- 退回弹窗-->
-      <Return :modalReturn="returnModal" />
+      <Return v-model="returnModal" />
       <Button type="info" @click="cancelFunc">返回列表</Button>
       <Button type="primary" @click="saveFunc(1)">保存</Button>
       <Button type="primary" v-if="status==0" @click="saveFunc(2)">保存并推送</Button>

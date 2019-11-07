@@ -18,12 +18,13 @@
     >
       <div class="form">
         <FormItem label="退回至部门" class="form-block">
-          <Select v-model="deptName" disabled>
+          <!-- <Select v-model="deptName" disabled>
             <Option value="1">网格员</Option>
             <Option value="2">公安</Option>
             <Option value="3">卫生</Option>
             <Option value="4">民政</Option>
-          </Select>
+          </Select> -->
+          <i-input :value.sync="value" placeholder="请输入..." style="width: 300px"></i-input>
         </FormItem>
         <FormItem label="退回档案状态" class="form-block">
           <Select v-model="curPositionid" disabled>
@@ -68,7 +69,7 @@ export default {
     Upload
   },
   props:{
-    modalReturn: {
+    value: {
       type: Boolean,
       default: false
     },
@@ -98,13 +99,13 @@ export default {
     };
   },
   watch:{
-    modalReturn:function(val){
+    value:function(val){
       this.modal = val;
     }
   },
   methods: {
     cancle() {
-      this.$emit('closemodal');
+      this.$emit('input',this.modal);
     }
   }
 };
