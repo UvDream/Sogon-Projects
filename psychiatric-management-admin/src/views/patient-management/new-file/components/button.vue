@@ -114,6 +114,7 @@ export default {
           
           console.log(data)
 
+          // obj.archivesId = "",
           obj.patientName = data.patientName;
           obj.patientSex = data.sex;
           obj.patientCode = data.IdNumber;
@@ -294,17 +295,17 @@ export default {
         }
           
 
-          let data=this.$store.state.step.findData.checkRegistration;
+          let data=this.$store.state.form.cadre;
           
-          objLocal.bIstreat = data.patientName;
-          objLocal.bIswilltreat = data.sex;
-          objLocal.bDoRemarks = data.IdNumber;
-          objLocal.fristRemarks = data.status;
-          objLocal.secondRemarks = data.employer;
-          objLocal.thirdRemarks = data.patient;
-          objLocal.tFiles = data.village;       
+          dataInfo.bIstreat = data.patientName;
+          dataInfo.bIswilltreat = data.sex;
+          dataInfo.bDoRemarks = data.IdNumber;
+          dataInfo.fristRemarks = data.status;
+          dataInfo.secondRemarks = data.employer;
+          dataInfo.thirdRemarks = data.patient;
+          dataInfo.tFiles = data.village;       
 
-          console.log(this.$store.state.form.cadre)   
+          console.log(this.$store.state.form.cadre)  
 
           dataInfo.cadre = this.$store.state.form.cadre;       
           dataInfo.police = this.$store.state.form.police;       
@@ -336,17 +337,19 @@ export default {
             "doctorTel":"0",
             "doctorEvtime":"0",
             "levelRemark":"13222222222",
-            // "tFiles":"asdfsdf",          
+            "tFiles":[],          
           }
+
+          console.log(this.$store.state.step.againTreatData.formPatientLevel)
 
           let dataLevel=this.$store.state.step.againTreatData.formPatientLevel;
           formPatientLevel.patientLevel = dataLevel.status;
           formPatientLevel.hospitalName = dataLevel.hospital;
           formPatientLevel.doctorName = dataLevel.doctor;
           formPatientLevel.doctorTel = dataLevel.phone;
-          formPatientLevel.doctorEvtime = dataLevel.time;
+          formPatientLevel.doctorEvtime = dataLevel.date;
           formPatientLevel.levelRemark = dataLevel.description;
-          // formPatientLevel.tFiles = dataLevel.uploadFiles;                 
+          formPatientLevel.tFiles = dataLevel.uploadFiles;                 
 
           id==1?againSaveList(formPatientLevel).then(res=>{
             console.log("保存成功")
@@ -370,19 +373,16 @@ export default {
                       "patientCuteDate": "",
                       "patientCuteType": "1", 
                       "patientCompany": "曙光", 
-                      "patientRemarks": "sssss"
-                  },
-                  {
-                      "patientCuteDate": "",
-                      "patientCuteType": "1", 
-                      "patientCompany": "曙光", 
-                      "patientRemarks": "sssss"
+                      "patientRemarks": "sssss",
+                      "uploadFiles": []
                   }
               ]
           }
 
           let data=this.$store.state.step.outControlData;
           
+          console.log(data.formPatientRecorder)
+
           RecorderList.tCuteRecordsList = data.formPatientRecorder;        
 
           id==1?outControlSaveList(RecorderList).then(res=>{

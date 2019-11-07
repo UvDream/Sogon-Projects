@@ -134,12 +134,12 @@ const step = {
     againTreatData: {
       formPatientLevel: {
         status:"",
-        hospital:"",
+        hospital:"222",
         doctor:"",
         phone:"",
-        time:"",
+        date:"",
         description:"",
-        uploadFiles:""
+        uploadFiles:[]
       },
     },
     // ---06脱离管控
@@ -150,6 +150,7 @@ const step = {
           patientCuteType:"",
           patientCompany:"",
           patientRemarks:"",
+          uploadFiles:""
         }
       ]
     }

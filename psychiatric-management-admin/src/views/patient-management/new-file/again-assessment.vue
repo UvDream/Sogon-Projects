@@ -54,7 +54,7 @@
             />
           </FormItem>
           <FormItem label="外埠证明材料" prop="uploadFiles" class="form-block">
-            <Upload />
+            <Upload v-model="formValidate.uploadFiles"/>
           </FormItem>
         </div>
       </Form>
@@ -68,6 +68,7 @@
 import TopTitle from "@/components/top-title/top-title";
 import Upload from "@/components/upload/upload";
 import Btn from "./components/button";
+import vm from "./event";
 import { validatePhone } from "@/util/util";
 
 export default {
@@ -86,7 +87,7 @@ export default {
         phone:"",
         date:"",
         description:"",
-        uploadFiles:""
+        uploadFiles:[]
       },
       ruleValidate: {
         status: [
@@ -114,7 +115,14 @@ export default {
         ]
       }
     };
-  }
+  },
+  created() {
+    vm.$on("blur", val => {
+      if (val == "saveEvent") {
+        this.$store.state.step.againTreatData.formPatientLevel = this.formValidate;
+      }
+    });
+  }  
 };
 </script>
 
