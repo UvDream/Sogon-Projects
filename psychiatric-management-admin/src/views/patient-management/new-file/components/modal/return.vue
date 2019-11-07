@@ -17,25 +17,25 @@
       :label-width="200"
     >
       <div class="form">
-        <FormItem label="退回至部门" prop="curPositionid" class="form-block">
-          <Select v-model="formValidate.curPositionid" disabled>
-            <Option value="1">网格</Option>
+        <FormItem label="退回至部门" class="form-block">
+          <Select v-model="deptName" disabled>
+            <Option value="1">网格员</Option>
             <Option value="2">公安</Option>
             <Option value="3">卫生</Option>
             <Option value="4">民政</Option>
           </Select>
         </FormItem>
         <FormItem label="退回档案状态" class="form-block">
-          <Select v-model="status" disabled>
+          <Select v-model="curPositionid" disabled>
             <Option value="0">发现中</Option>
-            <Option value="1">已推送</Option>
-            <Option value="2">初步处理中</Option>
-            <Option value="3">已办结</Option>
-            <Option value="4">评定治疗中</Option>
-            <Option value="5">监护中</Option>
-            <Option value="6">帮扶中</Option>
-            <Option value="7">再次评定</Option>
-            <Option value="8">脱离管控</Option>
+            <!-- <Option value="1">已推送</Option> -->
+            <Option value="1">初步处理中</Option>
+            <!-- <Option value="3">已办结</Option> -->
+            <Option value="2">评定治疗中</Option>
+            <!-- <Option value="5">监护中</Option> -->
+            <Option value="3">帮扶中</Option>
+            <Option value="4">再次评定</Option>
+            <Option value="5">脱离管控</Option>
           </Select>
         </FormItem>
       </div>
@@ -62,8 +62,6 @@
 <script>
 import Upload from "@/components/upload/upload";
 import mixin from "@/mixin/newFile";
-import { returnSaveList } from "@/api/return/index";
-
 export default {
   mixins: [mixin],
   components: {
@@ -87,8 +85,8 @@ export default {
   data() {
     return {
       modal: this.modalReturn,
-      curPositionid: this.statusObj.deptName,
-      status: this.statusObj.curPosit,
+      deptName: this.statusObj.deptName,
+      curPositionid: this.statusObj.curPosit,
       formValidate: {
         remarks: "",
         uploadFiles: []
@@ -103,16 +101,6 @@ export default {
     modalReturn:function(val){
       this.modal = val;
     }
-  },
-  mounted(){
-    let obj = {"tArchivesId": "404"};
-    returnSaveList(obj).then(res => {
-      console.log(res)
-      this.formValidate.curPositionid = "2";
-      this.formValidate.name = res.data.curPosit;
-      // this.formValidate.curPositionid = res.data.deptName;
-      // this.formValidate.name = res.data.curPosit;
-    });
   },
   methods: {
     cancle() {
