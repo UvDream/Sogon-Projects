@@ -58,7 +58,7 @@ import mixin from "@/mixin/newFile";
 import { formatDate } from "@/util/util";
 export default {
   props:{
-    modalFlow: {
+    value: {
       type: Boolean,
       default: false
     },
@@ -72,7 +72,7 @@ export default {
   },
   data() {
     return {
-      modal: this.modalFlow
+      modal: false
     };
   },
   filters: {
@@ -101,13 +101,16 @@ export default {
     }
   },
   watch:{
-    modalFlow:function(val){
+    value:function(val){
       this.modal = val;
+    },
+    modal:function(val){
+      this.$emit('input',val);
     }
   },
   methods: {
     cancle() {
-      this.$emit('closemodal')
+      this.modal=false;
     }
   }
 };

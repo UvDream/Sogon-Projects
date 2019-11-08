@@ -68,7 +68,7 @@
           <Button @click="handleSelectAll(false)">取消全选</Button>
         </ButtonGroup>
         <ButtonGroup size="large">
-          <Button @click="handlePushAll()">推送</Button>
+          <!-- <Button @click="handlePushAll()">推送</Button> -->
           <Button v-if="isRole" @click="handleDeleteAll()">删除</Button>
         </ButtonGroup>
       </div>

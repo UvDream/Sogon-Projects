@@ -160,31 +160,18 @@ export default {
     },
     //推送
     handlepush(id,index) {
-      this.indexId = id;
-    },
-    handlePushAll() {
-      var _this = this;
-      if(this.selectList.length==0){
-        this.$Message.error('请至少选中一项')
-      }else{
-        //操作
-        let arr = [];
-        arr = this.selectList.map((item)=>{
-          return item.id
-        });
-        console.log(arr);
-        //缺少接口
-        /*api.deleteData({ids:arr}).then(res => {
-          console.log(res);
+      api.pushMessage({tArchiveId:id}).then(res => {
+        console.log(res);
+        if(res.success==true){
+          _this.$Message.success("信息推送成功!");
           let obj = Object.assign(
             _this.formInline,
             {pageNum:this.pageNum},
             {pageSize:this.pageSize}
           );
           _this.searchFunc(obj);
-          _this.$Message.success("信息推送成功!");
-        });*/
-      }
+        }
+      });
     },
     //查看流程图
     handleStatus(id,index) {
@@ -196,13 +183,6 @@ export default {
         }
       })
     },
-    //弹窗关闭
-    // closemodal(){
-    //   this.modalFlow = false;
-    //   this.modalForward = false;
-    //   this.modalSetUp = false;
-    //   this.modalReturn = false;
-    // },
     pageChange(cur) {
       this.pageNum = cur;
       let obj = Object.assign(

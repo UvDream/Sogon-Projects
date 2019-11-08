@@ -55,6 +55,17 @@ const api = {
             }
         })
     },
+    //推送
+    pushMessage: (data)=>{
+        return fetch({
+            url: '/jsbrgl/functionController/pushMessage',
+            method: 'POST',
+            data,
+            headers: { 
+              "Content-Type": "application/json"
+            }
+        })
+    }
 }
 
 export default api
