@@ -257,6 +257,21 @@ export default {
       }
     });
   },
+  mounted() {
+    // 如果是点进来修改
+    if(true) {
+      console.log(this.$store.state.oldData.findData.checkRegistration)
+      this.formValidate = JSON.parse(JSON.stringify(this.$store.state.oldData.findData.checkRegistration));
+      this.formValidate.sex = (this.$store.state.oldData.findData.checkRegistration.sex || 0) + "";
+      this.formValidate.status = (this.$store.state.oldData.findData.checkRegistration.status || 0) + "";
+      this.formValidate.foreigner = (this.$store.state.oldData.findData.checkRegistration.foreigner || 0) + "";
+      this.formValidate.processingMethod = (this.$store.state.oldData.findData.checkRegistration.processingMethod || 0) + "";
+      this.formValidate.patientCondition = (this.$store.state.oldData.findData.checkRegistration.patientCondition || 0) + "";
+      this.formValidate.risk = (this.$store.state.oldData.findData.checkRegistration.risk || 0) + "";
+      this.formValidate.relationship = (this.$store.state.oldData.findData.checkRegistration.relationship || 0) + "";
+    
+    }
+  },
   methods: {
     selectChange(e){
       console.log(e)

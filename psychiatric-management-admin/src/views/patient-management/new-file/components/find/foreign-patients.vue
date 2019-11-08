@@ -71,6 +71,13 @@ export default {
       }
     });
   },
+  mounted() {
+    // 如果是点进来修改
+    if(true) {
+      console.log(this.$store.state.oldData.findData.basicInformation)
+      this.formValidate = this.$store.state.oldData.findData.basicInformation;
+    }
+  },
   methods: {}
 };
 </script>

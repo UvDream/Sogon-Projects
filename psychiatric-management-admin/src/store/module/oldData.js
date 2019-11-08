@@ -1,5 +1,5 @@
-const step = {
-  state: {    
+const oldData = {
+  state: {        
     // 是否·本地·
     isLocal:0,
     // 步骤状态
@@ -69,6 +69,11 @@ const step = {
         uploadFiles: [],
         type: "0",
         wType: "0",
+        name:"",
+        principal:"",
+        phone:"",
+        contactTime:"",
+        description:"",
       }
     },
     // ---03评定治疗页面
@@ -159,4 +164,4 @@ const step = {
     }
   }
 };
-export default step;
+export default oldData;

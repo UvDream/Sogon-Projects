@@ -9,6 +9,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import step from "./module/step";
+import oldData from "./module/oldData";
 import form from "./module/form";
 Vue.use(Vuex);
 
@@ -20,6 +21,7 @@ export default new Vuex.Store({
   actions: {},
   modules: {
     step,
+    oldData,
     form
   }
 });

@@ -1,7 +1,9 @@
 import api from "@/api/modal";
 export default {
   data() {
-    return {};
+    return {
+      
+    };
   },
   methods: {
     // 保存/转发
@@ -59,6 +61,7 @@ export default {
       api.back(obj).then(res=>{
         if(res.success==true){
           this.modal=false
+          this.$store.state.step.authOnOff = res.data;
           this.$Message.success("退回成功！");
         }
       })
@@ -70,6 +73,8 @@ export default {
       };
       api.startUp(obj).then(res=>{
         if(res.success==true){
+          this.$store.state.step.authOnOff = res.data;
+          alert(res.data)
           this.$Message.success("启动成功！");
         }else{
           this.$Message.success(res.msg);

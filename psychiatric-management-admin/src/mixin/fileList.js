@@ -133,6 +133,7 @@ export default {
     handlereturn(id,index) {
       this.indexId = id;
       api.backDept({tArchivesId:id}).then(res=>{
+        alert('dsf')
         if(res.success==true){
           this.statusObj = {
             curPosit:res.data.curPosit,

@@ -8,21 +8,21 @@
       <!-- 退回弹窗-->
       <Return v-model="returnModal" :statusObj="statusObj"/>
       <Button type="info" @click="cancelFunc">返回列表</Button>
-      <Button type="primary" @click="saveFunc(1)">保存</Button>
-      <Button type="primary" v-if="status==0" @click="saveFunc(2)">保存并推送</Button>
+      <Button type="primary" @click="saveFunc(1)" :disabled="auth">保存</Button>
+      <Button type="primary" v-if="status==0" @click="saveFunc(2)" :disabled="auth">保存并推送</Button>
       <Button
         type="primary"
         ghost
         @click="pushFunc"
         v-if="status==0 || status ==1 || status==2 || status==3||status==4"        
-      >转发</Button>
-      <Button type="primary" v-if=" status ==1 || status==2 ||status==4||status==5" @click="setUpFunc" :disabled="isOperRole !== 1">办结</Button>
+       :disabled="auth">转发</Button>
+      <Button type="primary" v-if=" status ==1 || status==2 ||status==4||status==5" @click="setUpFunc" :disabled="auth">办结</Button>
       <Button
         type="primary"
         ghost
         v-if=" status ==1||status==2 ||status==3 ||status==4||status==5"
         @click="returnFunc"
-        :disabled="isOperRole !== 1"
+        :disabled="auth"
       >退回</Button>
     </div>
   </div>
@@ -45,11 +45,15 @@ export default {
   computed: {
     status: function() {
       return this.$store.state.step.stepStatus;
+    },
+    listenAuth() {
+      return this.$store.state.step.authOnOff;
     }
   },
   mixins: [mixin],
   data(){
     return{
+      auth: false,
       modalStatus:false,
       setModal:false,
       returnModal:false,
@@ -64,8 +68,21 @@ export default {
     SetUp,
     Return
   },
-  methods: {
-    
+  watch: {
+    listenAuth: function(oldVal,newVal){
+      this.auth = newVal;
+    }
+  },
+  mounted(){
+    console.log(this.auth)
+    console.log(this.$store.state.authOnOff )
+    if(this.$store.state.authOnOff == 1){
+      this.auth = true;
+    }else {
+      this.auth = false;
+    }
+  },
+  methods: {    
     // 保存
     saveFunc(id) {
       console.log("保存动作", id);
@@ -95,9 +112,9 @@ export default {
       // if (this.$store.state.findStatus) {
         let obj={
           // "id":"",
-          "patientName":"123",
+          "patientName":"",
           "patientSex":"0",
-          "patientCode":"222222222222222222",
+          "patientCode":"",
           "type":"0",
           "patientCompany":"0",
           "patientTel":"13222222222",
@@ -154,7 +171,7 @@ export default {
             this.$store.state.step.findData.basicInformation.checkin_dept = res.data.checkin_dept;
             this.$store.state.step.findData.basicInformation.createDate = res.data.createDate;
 
-            this.isOperRole = res.data.isOperRole;
+            
 
           }):findSaveLists(obj).then(res=>{
             console.log(res)  
@@ -164,7 +181,7 @@ export default {
             this.$store.state.step.findData.basicInformation.name = res.data.name;
             this.$store.state.step.findData.basicInformation.checkin_dept = res.data.checkin_dept;
             this.$store.state.step.findData.basicInformation.createDate = res.data.createDate;
-            this.isOperRole = res.data.isOperRole;
+            
             
 
           })
@@ -205,10 +222,17 @@ export default {
 
           obj.tFiles = vx_data_outside.uploadFiles;
 
+
+          obj.bIstreat = vx_data_outside.isTreatment
+          obj.bDoRemarks = vx_data_outside.isTreatmentDescription
+          obj.fristRemarks = vx_data_outside.firstVisit
+          obj.secondRemarks = vx_data_outside.secondVisit
+          obj.thirdRemarks = vx_data_outside.thirdVisit
+
           id==1?dealSaveList(obj).then(res=>{
-            this.isOperRole = res.data.isOperRole;
+            
           }):dealSaveLists(obj).then(res=>{
-            this.isOperRole = res.data.isOperRole;
+            
           })
           console.log("可以掉接口保存");
       // } else {
@@ -276,10 +300,10 @@ export default {
           formPatientInfo.tTreatRecords = data.formPatientTreat.concat(data.formPatientZhuyuan);
                 
           id==1?treatSaveList(formPatientInfo).then(res=>{
-            this.isOperRole = res.data.isOperRole;
+            
             console.log("保存成功")
           }):treatSaveLists(formPatientInfo).then(res=>{
-            this.isOperRole = res.data.isOperRole;
+            
             console.log("保存成功")
           })
           console.log("可以掉接口保存");
@@ -346,10 +370,10 @@ export default {
           dataInfo.tHelpRecordsList = data.cadreList.concat(data.policeList).concat(data.doctorList).concat(data.guardianList);
 
           id==1?helpSaveList(dataInfo).then(res=>{
-            this.isOperRole = res.data.isOperRole;
+            
             console.log(res)
           }):helpSaveLists(dataInfo).then(res=>{
-            this.isOperRole = res.data.isOperRole;
+            
             console.log(res)
           })
           console.log("可以掉接口保存");
@@ -383,10 +407,10 @@ export default {
           formPatientLevel.tFiles = dataLevel.uploadFiles;                 
 
           id==1?againSaveList(formPatientLevel).then(res=>{
-            this.isOperRole = res.data.isOperRole;
+            
             console.log("保存成功")
           }):againSaveLists(formPatientLevel).then(res=>{
-            this.isOperRole = res.data.isOperRole;
+            
             console.log("保存成功")
           })
           console.log("可以掉接口保存");
@@ -419,10 +443,10 @@ export default {
           RecorderList.tCuteRecordsList = data.formPatientRecorder;        
 
           id==1?outControlSaveList(RecorderList).then(res=>{
-            this.isOperRole = res.data.isOperRole;
+            
             console.log(res)  
           }):outControlSaveLists(RecorderList).then(res=>{
-            this.isOperRole = res.data.isOperRole;
+            
             console.log(res)  
           })
           console.log("可以掉接口保存");

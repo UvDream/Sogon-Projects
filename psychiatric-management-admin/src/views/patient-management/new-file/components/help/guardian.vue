@@ -92,8 +92,7 @@ export default {
         this.$store.state.form.guardian = this.formValidate
       }
     });
-  }, 
-
+  },   
   methods: {}
 };
 </script>
