@@ -67,7 +67,7 @@
             </Select>
           </FormItem>
           <FormItem label="外籍患者处理" prop="processingMethod" class="form-block">
-            <Select v-model="formValidate.processingMethod" placeholder="选择外籍患者处理">
+            <Select v-model="formValidate.processingMethod" placeholder="选择外籍患者处理" :disabled="formValidate.foreigner != 0">
               <Option value="0">联系亲属领回</Option>
               <Option value="1">联系原籍公安</Option>
               <Option value="2">联系原籍医院</Option>
@@ -261,6 +261,12 @@ export default {
     selectChange(e){
       console.log(e)
       this.$store.state.step.isLocal=e;
+      if(this.formValidate.foreigner != 0){
+        this.ruleValidate.processingMethod = false;
+        this.formValidate.processingMethod = "";
+      }else {
+        this.ruleValidate.processingMethod = true;
+      }
     },
     handleSubmit(name) {
       this.$refs[name].validate(valid => {
