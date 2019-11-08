@@ -44,9 +44,6 @@
               <FormItem label="联系电话" prop="phone" class="form-block">
                 <Input v-model="formValidate.phone" placeholder="输入联系电话" />
               </FormItem>
-              <FormItem style="width:100px">
-                <Button type="primary" style="margin-top:25px">保存</Button>
-              </FormItem>
             </div>
           </Form>
         </div>

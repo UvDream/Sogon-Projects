@@ -86,6 +86,9 @@ export default {
     value:function(val){
       this.modal = val;
     },
+    modal:function(val){
+      this.$emit("input",val)
+    },
     ruleForm:function(val){
       this.deptIds = this.ruleForm.forward.map((item,index)=>{
         return {deptId:item.deptId}
@@ -106,7 +109,7 @@ export default {
       this.ruleForm.forward.push(obj);
     },
     cancle() {
-      this.$emit('input',this.modal)
+      this.modal=false;
     },
     btnFunc(){
       
