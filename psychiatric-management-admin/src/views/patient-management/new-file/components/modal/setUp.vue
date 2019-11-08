@@ -45,7 +45,7 @@ export default {
     Upload
   },
   props:{
-    modalSetUp: {
+    value: {
       type: Boolean,
       default: false
     },
@@ -68,13 +68,13 @@ export default {
     };
   },
   watch:{
-    modalSetUp:function(val){
+    value:function(val){
       this.modal = val;
     }
   },
   methods: {
     cancle() {
-      this.$emit('closemodal');
+      this.$emit('input',this.modal);
     }
   }
 };

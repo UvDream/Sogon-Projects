@@ -2,11 +2,11 @@
   <div class="white-block btn" style="height:100px">
     <div>
       <!-- 转发弹窗 -->
-      <Forward :modalForward="modalStatus" />
+      <Forward v-model="modalStatus" />
       <!-- 办结弹窗 -->
-      <SetUp  :modalSetUp="setModal"/>
+      <SetUp  v-model="setModal"/>
       <!-- 退回弹窗-->
-      <Return :modalReturn="returnModal" />
+      <Return v-model="returnModal" />
       <Button type="info" @click="cancelFunc">返回列表</Button>
       <Button type="primary" @click="saveFunc(1)">保存</Button>
       <Button type="primary" v-if="status==0" @click="saveFunc(2)">保存并推送</Button>
@@ -318,6 +318,18 @@ export default {
           dataInfo.guardianTelephone = data.guardian.phone;
           dataInfo.guardianRel = data.guardian.relationship;
           dataInfo.guardianBankCardNumber = data.guardian.banNumber;
+          data.cadreList.forEach(element => {
+            element.type = 0;
+          });
+          data.policeList.forEach(element => {
+            element.type = 1;
+          });
+          data.doctorList.forEach(element => {
+            element.type = 2;
+          });
+          data.guardianList.forEach(element => {
+            element.type = 3;
+          });
           dataInfo.tHelpRecordsList = data.cadreList.concat(data.policeList).concat(data.doctorList).concat(data.guardianList);
 
           id==1?helpSaveList(dataInfo).then(res=>{

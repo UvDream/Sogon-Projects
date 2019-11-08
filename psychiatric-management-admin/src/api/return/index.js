@@ -1,6 +1,6 @@
 import fetch from "../fetch";
 // 退回
-export const returnSaveList = data => {
+export const backDept = data => {
   return fetch({
     url: "/jsbrgl/functionController/backDept",
     method: "POST",

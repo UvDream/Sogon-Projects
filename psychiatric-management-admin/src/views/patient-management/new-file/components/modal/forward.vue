@@ -56,7 +56,7 @@ import mixin from "@/mixin/newFile";
 export default {
   mixins: [mixin],
   props:{
-    modalForward: {
+    value: {
       type: Boolean,
       default: false
     },
@@ -83,7 +83,7 @@ export default {
     }
   },
   watch:{
-    modalForward:function(val){
+    value:function(val){
       this.modal = val;
     },
     ruleForm:function(val){
@@ -106,7 +106,7 @@ export default {
       this.ruleForm.forward.push(obj);
     },
     cancle() {
-      this.$emit('closemodal');
+      this.$emit('input',this.modal)
     },
     btnFunc(){
       
