@@ -112,7 +112,7 @@
             帮扶中
           </span>
           <span v-if="row.status == 7" @click="handleStatus(row.id,index)">
-            <img src="../../../assets/fonts/file-manage/zaici.png" style="margin-right:5px;vertical-align: middle;">
+            <!-- <img src="../../../assets/fonts/file-manage/zaici.png" style="margin-right:5px;vertical-align: middle;"> -->
             再次评定
           </span>
           <span v-if="row.status == 8" @click="handleStatus(row.id,index)">
