@@ -97,6 +97,7 @@ export default {
         if(res.msg == 1){
           this.$Message.success("Success!");
           Cookies.set('token',res.data.token);
+          sessionStorage.setItem('username', res.data.tUsers.name);
           if(res.data.tUsers.role==0||res.data.tUsers.role==1){
             sessionStorage.setItem('role', true);
           }else{
