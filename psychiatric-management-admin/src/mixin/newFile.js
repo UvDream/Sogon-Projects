@@ -24,7 +24,8 @@ export default {
         ? (this.$store.state.step.stepStatus =
             this.$store.state.step.stepStatus + 1)
         : "";
-        this.$emit('closemodal');
+        // this.$emit('closemodal');
+        this.modal=false
       })
     },
     saveFinish() {
@@ -39,7 +40,8 @@ export default {
       api.finish(obj).then(res=>{
         if(res.success==true){
           this.$Message.success(res.msg);
-          this.$emit('closemodal');
+          // this.$emit('closemodal');
+          this.modal=false;
         };
       })
     },
@@ -56,7 +58,7 @@ export default {
       }
       api.back(obj).then(res=>{
         if(res.success==true){
-          this.$emit('closemodal');
+          this.modal=false
           this.$Message.success("退回成功！");
         }
       })
@@ -72,7 +74,8 @@ export default {
         }else{
           this.$Message.success(res.msg);
         }
-        this.$emit('closemodal');
+        // this.$emit('closemodal');
+        this.modal=false
       })
     }
   }

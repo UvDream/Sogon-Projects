@@ -100,11 +100,14 @@ export default {
   watch:{
     value:function(val){
       this.modal = val;
-    }
+    },
+    modal:function(val){
+      this.$emit("input",val)
+    },
   },
   methods: {
     cancle() {
-      this.$emit('input',this.modal);
+      this.modal=false
     }
   }
 };
