@@ -39,14 +39,14 @@
               <div class="header-user">
                 <div class="header-user-left">
                   <img src="../assets/fonts/avatar.png" alt />
-                  <span>
+                  <span style="margin-left: 20px ">
                     您好!
-                    <span style="color:#53A7A9">民政局张云满</span>
+                    <span style="color:#53A7A9">{{username}}</span>
                   </span>
-                  <div>
+                  <!-- <div>
                     <img src="../assets/fonts/message.png" alt />
                     <div>11</div>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="header-user-right">
                   <img src="../assets/fonts/closed.png" alt />
@@ -146,6 +146,9 @@ export default {
   computed: {
     isCollapsed: function() {
       return this.$store.state.isCollapsed;
+    },
+    username:function(){
+      return sessionStorage.getItem('username')
     }
   },
   methods: {}
@@ -175,7 +178,7 @@ export default {
       height: 50px;
       background-color: #fff;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
       border-radius: 50px;
       & > img {
         width: 50px;
