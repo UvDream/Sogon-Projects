@@ -68,7 +68,7 @@
         </ButtonGroup>
         <ButtonGroup size="large">
           <Button @click="handlePushAll(true)">推送</Button>
-          <Button v-if="isRole==0 || isRole==1" @click="handleDeleteAll(false)">删除</Button>
+          <Button v-if="isRole" @click="handleDeleteAll(false)">删除</Button>
         </ButtonGroup>
       </div>
       <Table ref="section"
@@ -88,7 +88,7 @@
           </span>
         </template>
         <template slot-scope="{ row, index}" slot="code">
-          <router-link :to="{name:'newFile', params: { id : row.code }}">
+          <router-link :to="{name:'newFile', params: { status : row.status }}">
             {{row.code}}
           </router-link>
         </template>
@@ -122,7 +122,7 @@
             帮扶中
           </span>
           <span v-if="row.status == 7" @click="handleStatus(row.id,index)">
-            <!-- <img src="../../../assets/fonts/file-manage/zaici.png" style="margin-right:5px;vertical-align: middle;"> -->
+            <img src="../../../assets/fonts/file-manage/zaici.png" style="margin-right:5px;vertical-align: middle;">
             再次评定
           </span>
           <span v-if="row.status == 8" @click="handleStatus(row.id,index)">
@@ -139,7 +139,7 @@
           </span>
         </template>
         <template slot-scope="{ row, index }" slot="action">
-          <Button class="my-table-handle-button" v-if="isRole==0 || isRole==1" @click="handledelete(row.id,index)">删除</Button>
+          <Button class="my-table-handle-button" v-if="isRole" @click="handledelete(row.id,index)">删除</Button>
           <Button 
             class="my-table-handle-button" 
             @click="handleforward(row.id,index)" 
@@ -185,15 +185,15 @@
       />
     </div>
     <!-- 转发弹窗 -->
-    <Forward :modalForward="modalForward" :indexId="indexId" @closemodal="closemodal"/>
+    <Forward v-model="modalForward" :indexId="indexId" />
     <!-- 办结弹窗 -->
-    <SetUp :modalSetUp="modalSetUp" :indexId="indexId" @closemodal="closemodal"/>
+    <SetUp v-model="modalSetUp" :indexId="indexId" />
     <!-- 退回弹窗-->
-    <Return :modalReturn="modalReturn" :indexId="indexId" :statusObj="statusObj" @closemodal="closemodal"/>
+    <Return v-model="modalReturn" :indexId="indexId" :statusObj="statusObj" />
     <!-- 启动弹窗-->
-    <Startup :modalStartUp="modalStartUp" :indexId="indexId" @closemodal="closemodal"/>
+    <Startup v-model="modalStartUp" :indexId="indexId" />
     <!-- 流程图-->
-    <Flow :modalFlow="modalFlow" :indexId="indexId" :flowList="flowList" @closemodal="closemodal"/>
+    <Flow v-model="modalFlow" :indexId="indexId" :flowList="flowList" />
   </div>
 </template>
 

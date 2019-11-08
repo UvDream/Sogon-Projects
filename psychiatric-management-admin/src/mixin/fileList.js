@@ -2,10 +2,10 @@ import api from "@/api/file-manage";
 export default {
   data() {
     return {
-      indexId:404,
+      indexId:0,
       statusObj:{
-        curPosit:"2",
-        deptName:"3"
+        curPosit:"",
+        deptName:""
       },
       flowList:[],
       modalForward:false,
@@ -20,10 +20,10 @@ export default {
   },
   computed:{
     isRole:function(){
-      if(this.$store.state.role==0||this.$store.state.role ==1){
-        return true
+      if( sessionStorage.getItem('role')=="true" ){
+        return true;
       }else{
-        return false
+        return false;
       }
     }
   },
@@ -197,12 +197,12 @@ export default {
       })
     },
     //弹窗关闭
-    closemodal(){
-      this.modalFlow = false;
-      this.modalForward = false;
-      this.modalSetUp = false;
-      this.modalReturn = false;
-    },
+    // closemodal(){
+    //   this.modalFlow = false;
+    //   this.modalForward = false;
+    //   this.modalSetUp = false;
+    //   this.modalReturn = false;
+    // },
     pageChange(cur) {
       this.pageNum = cur;
       let obj = Object.assign(

@@ -97,7 +97,11 @@ export default {
         if(res.msg == 1){
           this.$Message.success("Success!");
           Cookies.set('token',res.data.token);
-          this.$store.state.role = res.data.tUsers.role;
+          if(res.data.tUsers.role==0||res.data.tUsers.role==1){
+            sessionStorage.setItem('role', true);
+          }else{
+            sessionStorage.setItem('role', false);
+          }
           this.$router.push({ path: '/dashboard' })
         }else{
           this.$Message.error("Fail!");

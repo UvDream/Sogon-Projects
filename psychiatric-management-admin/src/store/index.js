@@ -14,8 +14,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    isCollapsed: false,
-    role:""
+    isCollapsed: false
   },
   mutations: {},
   actions: {},

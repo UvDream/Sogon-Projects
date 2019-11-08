@@ -55,7 +55,7 @@ export default {
   },
   data() {
     return {
-      modal: this.modalSetUp,
+      modal: false,
       tFilesList:[],
       formValidate: {
         remarks: "",

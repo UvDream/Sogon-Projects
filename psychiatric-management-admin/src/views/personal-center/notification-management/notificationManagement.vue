@@ -98,7 +98,7 @@
               </span>
             </template>
             <template slot-scope="{ row, index}" slot="code">
-              <router-link :to="{name:'newFile', params: {id:row.code}}">
+              <router-link :to="{name:'newFile', params: { status : row.status }}">
                 {{row.code}}
               </router-link>
             </template>
@@ -163,7 +163,7 @@ export default {
         },
         {
           title: '状态',
-          width: 150,
+          width: 100,
           slot: 'islook',
           key: 'islook'
         },
@@ -200,7 +200,7 @@ export default {
         },
         {
           title: '档案编号',
-          width: 150,
+          width: 200,
           key: 'code',
           slot:'code'
         },

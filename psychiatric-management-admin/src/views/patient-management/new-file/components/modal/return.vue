@@ -18,12 +18,13 @@
     >
       <div class="form">
         <FormItem label="退回至部门" class="form-block">
-          <Select v-model="deptName" disabled>
+          <!-- <Select v-model="deptName" disabled>
             <Option value="1">网格员</Option>
             <Option value="2">公安</Option>
             <Option value="3">卫生</Option>
             <Option value="4">民政</Option>
-          </Select>
+          </Select> -->
+          <Input v-model="deptName" disabled />
         </FormItem>
         <FormItem label="退回档案状态" class="form-block">
           <Select v-model="curPositionid" disabled>
@@ -84,9 +85,7 @@ export default {
   },
   data() {
     return {
-      modal: this.modalReturn,
-      deptName: this.statusObj.deptName,
-      curPositionid: this.statusObj.curPosit,
+      modal: false,
       formValidate: {
         remarks: "",
         uploadFiles: []
@@ -97,13 +96,21 @@ export default {
       }
     };
   },
+  computed:{
+    deptName:function(){
+      return this.statusObj.deptName
+    },
+    curPositionid:function(){
+      return this.statusObj.curPosit
+    }
+  },
   watch:{
     value:function(val){
       this.modal = val;
     },
     modal:function(val){
       this.$emit("input",val)
-    },
+    }
   },
   methods: {
     cancle() {
