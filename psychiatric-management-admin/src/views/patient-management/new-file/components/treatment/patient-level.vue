@@ -111,8 +111,8 @@ export default {
     };
   },
   mounted(){
-    this.formValidate = this.$store.state.oldData.treatData.formPatientLevel;
-    console.log(this.$store.state.oldData.treatData.formPatientLevel)
+    this.formValidate = this.$store.state.step.treatData.formPatientLevel;
+    console.log(this.$store.state.step.treatData.formPatientLevel)
   },
   created() {
     vm.$on("blur", val => {

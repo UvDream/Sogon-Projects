@@ -145,7 +145,7 @@ export default {
     });
   },
   mounted(){
-    this.formValidate.more = this.$store.state.oldData.treatData.formPatientZhuyuan;
+    this.formValidate.more = this.$store.state.step.treatData.formPatientZhuyuan;
   },
   methods: {
     handleSubmit(name) {

@@ -132,7 +132,7 @@ export default {
   mounted(){
     let self = this;
     setTimeout(function(){
-      self.ruleForm.more = self.$store.state.oldData.outControlData.formPatientRecorder;
+      self.ruleForm.more = self.$store.state.step.outControlData.formPatientRecorder;
     },500)
   },
   created() {

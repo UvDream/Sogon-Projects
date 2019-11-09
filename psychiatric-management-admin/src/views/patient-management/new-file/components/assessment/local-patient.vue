@@ -101,7 +101,7 @@ export default {
     });
   },
   mounted() {
-    this.formValidate = this.$store.state.oldData.dealData.formData;
+    this.formValidate = this.$store.state.step.dealData.formData;
   },  
   methods: {
     handleSubmit(name) {

@@ -145,7 +145,7 @@ export default {
     });
   },
   mounted(){
-    this.formValidate.more = this.$store.state.oldData.treatData.formPatientTreat;
+    this.formValidate.more = this.$store.state.step.treatData.formPatientTreat;
   },
   methods: {
     handleSubmit(name) {

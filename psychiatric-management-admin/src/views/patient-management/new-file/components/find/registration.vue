@@ -261,17 +261,17 @@ export default {
   mounted() {
     // 如果是点进来修改
     if(true) {
-      console.log(this.$store.state.oldData.findData.checkRegistration)
-      this.formValidate = JSON.parse(JSON.stringify(this.$store.state.oldData.findData.checkRegistration));
-      this.formValidate.sex = (this.$store.state.oldData.findData.checkRegistration.sex || 0) + "";
-      this.formValidate.patientPhone = (this.$store.state.oldData.findData.checkRegistration.patientPhone || 0) + "";
-      this.formValidate.status = (this.$store.state.oldData.findData.checkRegistration.status || 0) + "";
-      this.formValidate.foreigner = (this.$store.state.oldData.findData.checkRegistration.foreigner || 0) + "";
-      this.formValidate.processingMethod = (this.$store.state.oldData.findData.checkRegistration.processingMethod || 0) + "";
-      this.formValidate.patientCondition = (this.$store.state.oldData.findData.checkRegistration.patientCondition || 0) + "";
-      this.formValidate.risk = (this.$store.state.oldData.findData.checkRegistration.risk || 0) + "";
-      this.formValidate.guardianPhone = (this.$store.state.oldData.findData.checkRegistration.guardianPhone || 0) + "";
-      this.formValidate.relationship = (this.$store.state.oldData.findData.checkRegistration.relationship || 0) + "";
+      console.log(this.$store.state.step.findData.checkRegistration)
+      this.formValidate = JSON.parse(JSON.stringify(this.$store.state.step.findData.checkRegistration));
+      this.formValidate.sex = (this.$store.state.step.findData.checkRegistration.sex || 0) + "";
+      this.formValidate.patientPhone = (this.$store.state.step.findData.checkRegistration.patientPhone || 0) + "";
+      this.formValidate.status = (this.$store.state.step.findData.checkRegistration.status || 0) + "";
+      this.formValidate.foreigner = (this.$store.state.step.findData.checkRegistration.foreigner || 0) + "";
+      this.formValidate.processingMethod = (this.$store.state.step.findData.checkRegistration.processingMethod || 0) + "";
+      this.formValidate.patientCondition = (this.$store.state.step.findData.checkRegistration.patientCondition || 0) + "";
+      this.formValidate.risk = (this.$store.state.step.findData.checkRegistration.risk || 0) + "";
+      this.formValidate.guardianPhone = (this.$store.state.step.findData.checkRegistration.guardianPhone || 0) + "";
+      this.formValidate.relationship = (this.$store.state.step.findData.checkRegistration.relationship || 0) + "";
     
     }
   },

@@ -69,8 +69,8 @@ export default {
         console.log(res)
         let data = res.data;           
         // 发现
-        let obj_checkRegistration=this.$store.state.oldData.findData.checkRegistration; 
-        let obj_basicInformation=this.$store.state.oldData.findData.basicInformation; 
+        let obj_checkRegistration=this.$store.state.step.findData.checkRegistration; 
+        let obj_basicInformation=this.$store.state.step.findData.basicInformation; 
 
             obj_basicInformation.code = data[0].code;
             obj_basicInformation.status = data[0].status;
@@ -78,7 +78,7 @@ export default {
             // obj_basicInformation.createDate = data[0].createDate;
 
             // obj.archivesId = "",
-            this.$store.state.oldData.findData.id = data[0].id;
+            this.$store.state.step.findData.id = data[0].id;
             obj_checkRegistration.patientName = data[0].patientName;
             obj_checkRegistration.sex = data[0].patientSex;
             obj_checkRegistration.patientPhone = data[0].patientPhone;
@@ -103,8 +103,8 @@ export default {
             
 
         // 初步处理
-            let obj_dealData=this.$store.state.oldData.dealData.formData; 
-            this.$store.state.oldData.dealData.id = data[1].id;
+            let obj_dealData=this.$store.state.step.dealData.formData; 
+            this.$store.state.step.dealData.id = data[1].id;
             obj_dealData.name = data[1].wCompanyName;
             obj_dealData.principal = data[1].wCompanyLeader;
             obj_dealData.phone = data[1].wCompanyTel;
@@ -120,8 +120,8 @@ export default {
             obj_dealData.type = data[1].type;          
 
         // 评定治疗
-            let obj_treatData = this.$store.state.oldData.treatData;
-            this.$store.state.oldData.treatData.id = data[2].id;
+            let obj_treatData = this.$store.state.step.treatData;
+            this.$store.state.step.treatData.id = data[2].id;
             // obj_treatData.formPatientLevel.time = data[2].doctorEvtime;
             obj_treatData.formPatientLevel.doctor = data[2].doctorName;
             obj_treatData.formPatientLevel.phone = data[2].doctorTel;
@@ -187,8 +187,8 @@ export default {
 
 
         // 再次评定
-        let obj_againTreat = this.$store.state.oldData.againTreatData;
-            this.$store.state.oldData.againTreatData.id = data[4].id;
+        let obj_againTreat = this.$store.state.step.againTreatData;
+            this.$store.state.step.againTreatData.id = data[4].id;
             // obj_againTreat.formPatientLevel.time = data[2].doctorEvtime;
             obj_againTreat.formPatientLevel.doctor = data[4].doctorName;
             obj_againTreat.formPatientLevel.phone = data[4].doctorTel;
@@ -198,8 +198,8 @@ export default {
             obj_againTreat.formPatientLevel.uploadFiles = data[4].tFiles;
 
         // 脱离管控
-        let obj_outControl = this.$store.state.oldData.outControlData;
-            this.$store.state.oldData.outControlData.id = data[5].id;
+        let obj_outControl = this.$store.state.step.outControlData;
+            this.$store.state.step.outControlData.id = data[5].id;
             // obj_againTreat.formPatientLevel.time = data[2].doctorEvtime;
             console.log(data[5].tCuteRecordsList)
             obj_outControl.formPatientRecorder = data[5].tCuteRecordsList;
