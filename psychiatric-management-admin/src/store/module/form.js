@@ -1,5 +1,6 @@
 const form = {
   state: {
+    id: "",
     //   村居干部帮扶
     cadre: {
       name:"",

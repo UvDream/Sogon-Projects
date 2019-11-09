@@ -36,6 +36,7 @@
         :key="index"
         :name="items.id"
         :to="items.url"
+        @click.native="resetMenuInfo"
       >{{ items.name }}</MenuItem>
     </Submenu>
   </Menu>
@@ -67,6 +68,10 @@ export default {
     this.activeName = this.activeFunc(this.$route.path);
   },
   methods: {
+    // 点击菜单触发事件
+    resetMenuInfo(){
+      
+    },
     activeFunc(path) {
       let num;
       this.menusList.forEach(element => {

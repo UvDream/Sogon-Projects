@@ -110,6 +110,10 @@ export default {
       }
     };
   },
+  mounted(){
+    this.formValidate = this.$store.state.oldData.treatData.formPatientLevel;
+    console.log(this.$store.state.oldData.treatData.formPatientLevel)
+  },
   created() {
     vm.$on("blur", val => {
       if (val == "saveEvent") {

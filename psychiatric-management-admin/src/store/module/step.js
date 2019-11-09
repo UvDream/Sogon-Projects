@@ -1,5 +1,5 @@
 const step = {
-  state: {    
+  state: {        
     // 是否·本地·
     isLocal:0,
     // 步骤状态
@@ -22,6 +22,7 @@ const step = {
     authOnOff: 1,
     // ---01发现页面
     findData: {
+      id: "",
       basicInformation: {
         code: "",
         status: "",
@@ -60,6 +61,7 @@ const step = {
     },
     // ---02初步处理页面
     dealData: {
+      id: "",
       formData: {
         isTreatment: "",
         isTreatmentDescription: "",
@@ -73,6 +75,7 @@ const step = {
     },
     // ---03评定治疗页面
     treatData: {
+      id: "",
       formPatientLevel: {
         status:"12",
         hospital:"12",
@@ -115,29 +118,13 @@ const step = {
         }
       ],
     },
-    // ---04四帮一页面
-    helpData: {
-      cjgbbfData: {
-        name:"",
-        department:"",
-        IdNumber:"",
-        phone:""       
-      },
-      jhmjbfData: {
-        hospital: "",
-        doctors: "",
-        phone: "",
-        dischargeTime: "",
-        recording: "",
-        uploadFiles: []
-      },
-      
-    },    
+     
     // ---05再次评定页面
     againTreatData: {
+      id: "",
       formPatientLevel: {
         status:"",
-        hospital:"222",
+        hospital:"",
         doctor:"",
         phone:"",
         date:"",
@@ -147,6 +134,7 @@ const step = {
     },
     // ---06脱离管控
     outControlData: {
+      id: "",
       formPatientRecorder: [
         {
           patientCuteDate:"",

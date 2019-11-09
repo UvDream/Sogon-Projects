@@ -111,27 +111,27 @@ export default {
       console.log(this.$store.state.step.findStatus)
       // if (this.$store.state.findStatus) {
         let obj={
-          // "id":"",
+          "id":"",
           "patientName":"",
-          "patientSex":"0",
+          "patientSex":"",
           "patientCode":"",
-          "type":"0",
-          "patientCompany":"0",
-          "patientTel":"13222222222",
-          "patientRusticate":"asdfsdf",
-          "patientPolice":"asdfa",
-          "isforeign":"0",
-          "foreignHandle":"1",
-          "patientAddr":"asfadsfasdfdsa",
-          "patientStatus1":"2",
-          "patientStatus2":"2",
-          "guardianName":"范范",
-          "guardianRel":"0",
-          "guardianCompany":"0",
-          "guardianTel":"13222222222",
-          "causeTrouble":"sadfasfsdafdasf",
-          "tFiles":[{"filepath":"D://file"},{"filepath":"D://Filetwo"}],
-          "isfocal":"0"
+          "type":"",
+          "patientCompany":"",
+          "patientTel":"",
+          "patientRusticate":"",
+          "patientPolice":"",
+          "isforeign":"",
+          "foreignHandle":"",
+          "patientAddr":"",
+          "patientStatus1":"",
+          "patientStatus2":"",
+          "guardianName":"",
+          "guardianRel":"",
+          "guardianCompany":"",
+          "guardianTel":"",
+          "causeTrouble":"",
+          "tFiles":[],
+          "isfocal":""
           }
 
           let data=this.$store.state.step.findData.checkRegistration;
@@ -139,6 +139,7 @@ export default {
           console.log(data)
 
           // obj.archivesId = "",
+          obj.id = this.$store.state.step.findData.id;
           obj.patientName = data.patientName;
           obj.patientSex = data.sex;
           obj.patientCode = data.IdNumber;
@@ -158,6 +159,7 @@ export default {
           obj.guardianTel = data.guardianPhone;
           obj.causeTrouble = data.anecdote;
           obj.isfocal=data.isfocal;  
+
 
           obj.tFiles = data.uploadFiles;
 
@@ -197,6 +199,7 @@ export default {
         console.log(this.$store.state.step.archivesId)
 
           let obj={
+            "id":"",
             "archivesId": this.$store.state.step.archivesId,
             "bIstreat":"123",
             "bIswilltreat":"0",
@@ -207,13 +210,12 @@ export default {
             "type": this.$store.state.step.isLocal,
             "wType": this.$store.state.step.isLocal,
             "tFiles":"asdfsdf",                      
-          }
-          
-
+          }        
 
           // 左边后台接口名称，右边本地命名（表单、通信vuex）
 
           let vx_data_outside=this.$store.state.step.dealData.formData;
+          obj.id = this.$store.state.step.dealData.id;
           obj.wCompanyName = vx_data_outside.name;
           obj.wCompanyLeader = vx_data_outside.principal;
           obj.wCompanyTel = vx_data_outside.phone;
@@ -223,11 +225,11 @@ export default {
           obj.tFiles = vx_data_outside.uploadFiles;
 
 
-          obj.bIstreat = vx_data_outside.isTreatment
-          obj.bDoRemarks = vx_data_outside.isTreatmentDescription
-          obj.fristRemarks = vx_data_outside.firstVisit
-          obj.secondRemarks = vx_data_outside.secondVisit
-          obj.thirdRemarks = vx_data_outside.thirdVisit
+          obj.bIstreat = vx_data_outside.isTreatment;
+          obj.bDoRemarks = vx_data_outside.isTreatmentDescription;
+          obj.fristRemarks = vx_data_outside.firstVisit;
+          obj.secondRemarks = vx_data_outside.secondVisit;
+          obj.thirdRemarks = vx_data_outside.thirdVisit;
 
           id==1?dealSaveList(obj).then(res=>{
             
@@ -245,7 +247,7 @@ export default {
          
           let formPatientInfo = 
           {
-            // "id": "12",
+            "id": "",
             "archivesId": this.$store.state.step.archivesId,
             "patientLevel": "1",
             "hospitalName": "cdhjas",
@@ -289,6 +291,7 @@ export default {
           let data=this.$store.state.step.treatData;
 
           console.log(data.formPatientZhuyuan)
+          formPatientInfo.id = this.$store.state.step.treatData.id;
           formPatientInfo.patientLevel = data.formPatientLevel.status;          
           formPatientInfo.hospitalName = data.formPatientLevel.hospital;
           formPatientInfo.doctorName = data.formPatientLevel.doctor;
@@ -316,6 +319,7 @@ export default {
       // if (this.$store.state.step.helpStatus) {  
 
           let dataInfo = {
+            "id":"",
             "archivesId": this.$store.state.step.archivesId,
             "gridUserId": "zjjjz",
             "policeUserId": "1",
@@ -347,7 +351,7 @@ export default {
           }          
 
           let data=this.$store.state.form;
-          
+          dataInfo.id = this.$store.state.form.id;
           dataInfo.gridUserId = data.cadre.userId;
           dataInfo.policeUserId = data.police.userId;
           dataInfo.doctorUserId = data.doctor.userId;
@@ -385,6 +389,7 @@ export default {
     againTreatSave(id) {
       // if (this.$store.state.step.againTreatStatus) {
           let formPatientLevel={
+            "id":"",
             "archivesId": this.$store.state.step.archivesId,
             "patientLevel":"123",
             "hospitalName":"0",
@@ -398,6 +403,7 @@ export default {
           console.log(this.$store.state.step.againTreatData.formPatientLevel)
 
           let dataLevel=this.$store.state.step.againTreatData.formPatientLevel;
+          formPatientLevel.id = this.$store.state.step.againTreatData.id;
           formPatientLevel.patientLevel = dataLevel.status;
           formPatientLevel.hospitalName = dataLevel.hospital;
           formPatientLevel.doctorName = dataLevel.doctor;
@@ -424,6 +430,7 @@ export default {
           let RecorderList = 
           {
               // "archivesId": this.$store.state.step.archivesId,
+              "id":"",
               "archivesId": this.$store.state.step.archivesId,
               "tCuteRecordsList": [
                   {
@@ -439,6 +446,8 @@ export default {
           let data=this.$store.state.step.outControlData;
           
           console.log(data.formPatientRecorder)
+
+          RecorderList.id = this.$store.state.step.outControlData.id;
 
           RecorderList.tCuteRecordsList = data.formPatientRecorder;        
 
@@ -470,7 +479,6 @@ export default {
     // 退回
     returnFunc(){
       this.returnModal=true;
-      alert('sdf')
       backDept({tArchivesId:this.$store.state.step.archivesId}).then(res=>{
         if(res.success==true){
           this.statusObj = {

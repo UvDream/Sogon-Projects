@@ -50,7 +50,7 @@ export default {
     Guardianship,
     Help,
     AgainAssessment
-  },
+  },  
   mounted() {
     // status : row.status,id: row.id,isOperRole: row.isOperRole
     // this.$store.state.step.stepStatus = this.$route.params.status == undefined?0:this.$route.params.status;
@@ -60,11 +60,13 @@ export default {
     this.$store.state.archivesId = this.$route.params.id;
     console.log(this.$route.params.id)
     console.log(this.$store.state)
+    // this.$route.params = {}
+
+    console.log(this.$route)
     // 如果是修改则执行下面
     if(this.$route.params.status !== undefined) {
       findAllMessage({"archivesId":this.$store.state.archivesId}).then(res=>{
         console.log(res)
-        debugger
         let data = res.data;           
         // 发现
         let obj_checkRegistration=this.$store.state.oldData.findData.checkRegistration; 
@@ -76,8 +78,10 @@ export default {
             // obj_basicInformation.createDate = data[0].createDate;
 
             // obj.archivesId = "",
+            this.$store.state.oldData.findData.id = data[0].id;
             obj_checkRegistration.patientName = data[0].patientName;
             obj_checkRegistration.sex = data[0].patientSex;
+            obj_checkRegistration.patientPhone = data[0].patientPhone;
             obj_checkRegistration.IdNumber = data[0].patientCode;
             obj_checkRegistration.status = data[0].type;
             obj_checkRegistration.employer = data[0].patientCompany;
@@ -97,44 +101,108 @@ export default {
             obj_checkRegistration.isfocal= data[0].isfocal;
             obj_checkRegistration.uploadFiles = data[0].tFiles;       
             
+
         // 初步处理
             let obj_dealData=this.$store.state.oldData.dealData.formData; 
+            this.$store.state.oldData.dealData.id = data[1].id;
             obj_dealData.name = data[1].wCompanyName;
             obj_dealData.principal = data[1].wCompanyLeader;
             obj_dealData.phone = data[1].wCompanyTel;
             obj_dealData.contactTime = data[1].wCompanyContactTime;
             obj_dealData.description = data[1].wDoRemarks;
 
-            obj_dealData.name = data[1].bIstreat;
-            obj_dealData.principal = data[1].bDoRemarks;
-            obj_dealData.phone = data[1].fristRemarks;
-            obj_dealData.contactTime = data[1].secondRemarks;
-            obj_dealData.description = data[1].thirdRemarks;
-            
-            // obj_dealData.isTreatment = data[1].bIstreat;
-            // obj_dealData.isTreatmentDescription = data[1].bDoRemarks;
-            // obj_dealData.firstVisit = data[1].
-            // obj_dealData.secondVisit = 
-            // obj_dealData.thirdVisit = 
-            // obj_dealData.uploadFiles = 
-
-            // obj_dealData.name = data[1].
-            // obj_dealData.principal = data[1].
-            // obj_dealData.phone = data[1].
-            // obj_dealData.contactTime = data[1].
-            // obj_dealData.description = data[1].
-            // obj_dealData.uploadFiles = data[1].
+            obj_dealData.isTreatment = data[1].bIstreat;
+            obj_dealData.isTreatmentDescription = data[1].bDoRemarks;
+            obj_dealData.firstVisit = data[1].fristRemarks;
+            obj_dealData.secondVisit = data[1].secondRemarks;
+            obj_dealData.thirdVisit = data[1].thirdRemarks;     
+            obj_dealData.wType = data[1].wType;
+            obj_dealData.type = data[1].type;          
 
         // 评定治疗
-            // let obj_treatData_formPatientLevel = this.$store.state.oldData.treatData.formPatientLevel; 
-            // let obj_treatData_formPatientTreat = this.$store.state.oldData.treatData.formPatientTreat
+            let obj_treatData = this.$store.state.oldData.treatData;
+            this.$store.state.oldData.treatData.id = data[2].id;
+            // obj_treatData.formPatientLevel.time = data[2].doctorEvtime;
+            obj_treatData.formPatientLevel.doctor = data[2].doctorName;
+            obj_treatData.formPatientLevel.phone = data[2].doctorTel;
+            obj_treatData.formPatientLevel.hospital = data[2].hospitalName;
+            obj_treatData.formPatientLevel.description = data[2].levelRemark;
+            obj_treatData.formPatientLevel.status = data[2].patientLevel;
+            obj_treatData.formPatientLevel.uploadFiles = data[2].tFiles;
+            let formPatientTreatArr = [];
+            let formPatientZhuyuanArr = [];
+            data[2].tTreatRecords.forEach((element,index) => {              
+              // 0 是 治疗
+              if(element.type == 0) {
+                formPatientTreatArr.push(data[2].tTreatRecords[index])
+              }else if(element.type == 1){
+                formPatientZhuyuanArr.push(data[2].tTreatRecords[index])
+              }
+            });
+
+            obj_treatData.formPatientTreat = formPatientTreatArr;
+            obj_treatData.formPatientZhuyuan = formPatientZhuyuanArr;
+                       
 
         // 四帮一
+            let obj_helpData = this.$store.state.form; 
+            // gridUserId
+            // policeUserId
+            // doctorUserId
+            // guardianName
+            // guardianRel
+            // guardianBankCardNumber
+            // guardianTelephone
+       
+            
+            this.$store.state.form.id = data[3].id;
+            obj_helpData.guardian.name = data[3].guardianName;
+            obj_helpData.guardian.relationship = data[3].guardianRel;
+            obj_helpData.guardian.banNumber = data[3].guardianBankCardNumber;
+            obj_helpData.guardian.phone = data[3].guardianTelephone;
+
+            let cadreListArr = [];
+            let policeList = [];
+            let doctorList = [];
+            let guardianList = [];
+
+            data[3].tHelpRecordsList.forEach((element,index) => {
+              console.log(element)
+              // 0 是 治疗
+              if(element.type == 0) {
+                cadreListArr.push(data[3].tHelpRecordsList[index]);
+              }else if(element.type == 1){
+                policeList.push(data[3].tHelpRecordsList[index]);
+              }else if(element.type == 2){
+                doctorList.push(data[3].tHelpRecordsList[index]);
+              }else if(element.type == 3){
+                guardianList.push(data[3].tHelpRecordsList[index]);
+              }
+            });
+
+            obj_helpData.cadreList = cadreListArr;
+            obj_helpData.policeList = policeList;
+            obj_helpData.doctorList = doctorList;
+            obj_helpData.guardianList = guardianList;
+
 
         // 再次评定
+        let obj_againTreat = this.$store.state.oldData.againTreatData;
+            this.$store.state.oldData.againTreatData.id = data[4].id;
+            // obj_againTreat.formPatientLevel.time = data[2].doctorEvtime;
+            obj_againTreat.formPatientLevel.doctor = data[4].doctorName;
+            obj_againTreat.formPatientLevel.phone = data[4].doctorTel;
+            obj_againTreat.formPatientLevel.hospital = data[4].hospitalName;
+            obj_againTreat.formPatientLevel.description = data[4].levelRemark;
+            obj_againTreat.formPatientLevel.status = data[4].patientLevel;
+            obj_againTreat.formPatientLevel.uploadFiles = data[4].tFiles;
 
         // 脱离管控
-
+        let obj_outControl = this.$store.state.oldData.outControlData;
+            this.$store.state.oldData.outControlData.id = data[5].id;
+            // obj_againTreat.formPatientLevel.time = data[2].doctorEvtime;
+            console.log(data[5].tCuteRecordsList)
+            obj_outControl.formPatientRecorder = data[5].tCuteRecordsList;
       })
     }
   },

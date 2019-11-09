@@ -1,5 +1,5 @@
 const oldData = {
-  state: {        
+  state: {           
     // 是否·本地·
     isLocal:0,
     // 步骤状态
@@ -22,6 +22,7 @@ const oldData = {
     authOnOff: 1,
     // ---01发现页面
     findData: {
+      id: "",
       basicInformation: {
         code: "",
         status: "",
@@ -60,6 +61,7 @@ const oldData = {
     },
     // ---02初步处理页面
     dealData: {
+      id: "",
       formData: {
         isTreatment: "",
         isTreatmentDescription: "",
@@ -74,10 +76,12 @@ const oldData = {
         phone:"",
         contactTime:"",
         description:"",
+        id:"",
       }
     },
     // ---03评定治疗页面
     treatData: {
+      id: "",
       formPatientLevel: {
         status:"12",
         hospital:"12",
@@ -121,25 +125,51 @@ const oldData = {
       ],
     },
     // ---04四帮一页面
-    helpData: {
-      cjgbbfData: {
-        name:"",
-        department:"",
-        IdNumber:"",
-        phone:""       
-      },
-      jhmjbfData: {
-        hospital: "",
-        doctors: "",
-        phone: "",
-        dischargeTime: "",
-        recording: "",
-        uploadFiles: []
-      },
-      
-    },    
+    // helpData: {      
+    //   // 村居干部帮扶
+    //   cjgbbf: {
+    //     guardianRel:"",
+    //     relationship:"",
+    //     banNumber:"",
+    //     phone:"",
+    //   },
+    //   // 监护民警帮扶 
+    //   jhmjbf: {
+    //     guardianRel:"",
+    //     relationship:"",
+    //     banNumber:"",
+    //     phone:"",
+    //   },
+    //   // 防治医生帮扶
+    //   fzysbf: {
+    //     guardianRel:"",
+    //     relationship:"",
+    //     banNumber:"",
+    //     phone:"",
+    //   },
+    //   // 监护人监护
+    //   jhrjh: {
+    //     guardianRel:"",
+    //     relationship:"",
+    //     banNumber:"",
+    //     phone:"",
+    //   },      
+    //   cadreList: [
+       
+    //   ],
+    //   policeList: [
+        
+    //   ],
+    //   doctorList: [
+       
+    //   ],
+    //   guardianList: [
+       
+    //   ]
+    // },    
     // ---05再次评定页面
     againTreatData: {
+      id: "",
       formPatientLevel: {
         status:"",
         hospital:"222",
@@ -152,13 +182,14 @@ const oldData = {
     },
     // ---06脱离管控
     outControlData: {
+      id: "",
       formPatientRecorder: [
         {
           patientCuteDate:"",
           patientCuteType:"",
           patientCompany:"",
           patientRemarks:"",
-          uploadFiles:""
+          tFiles:""
         }
       ]
     }

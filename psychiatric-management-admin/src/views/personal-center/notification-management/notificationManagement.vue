@@ -252,7 +252,6 @@ export default {
     },
     //搜索
     search() {
-      debugger
       let obj = Object.assign(
         this.formValidate,
         {pageNum:this.pageNum},

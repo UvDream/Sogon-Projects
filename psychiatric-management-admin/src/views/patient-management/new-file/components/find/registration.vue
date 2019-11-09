@@ -75,7 +75,7 @@
             </Select>
           </FormItem>
           <FormItem label="患者住址" prop="patientAddress" class="form-blocks">
-            <Input v-model="formValidate.address" placeholder="输入患者住址" />
+            <Input v-model="formValidate.patientAddress" placeholder="输入患者住址" />
           </FormItem>
         </div>
         <!-- 第四排 -->
@@ -168,6 +168,7 @@ export default {
         // 1
         patientName: "",
         sex: "",
+        patientPhone: "",
         IdNumber: "",
         status: "",
         // 2
@@ -263,11 +264,13 @@ export default {
       console.log(this.$store.state.oldData.findData.checkRegistration)
       this.formValidate = JSON.parse(JSON.stringify(this.$store.state.oldData.findData.checkRegistration));
       this.formValidate.sex = (this.$store.state.oldData.findData.checkRegistration.sex || 0) + "";
+      this.formValidate.patientPhone = (this.$store.state.oldData.findData.checkRegistration.patientPhone || 0) + "";
       this.formValidate.status = (this.$store.state.oldData.findData.checkRegistration.status || 0) + "";
       this.formValidate.foreigner = (this.$store.state.oldData.findData.checkRegistration.foreigner || 0) + "";
       this.formValidate.processingMethod = (this.$store.state.oldData.findData.checkRegistration.processingMethod || 0) + "";
       this.formValidate.patientCondition = (this.$store.state.oldData.findData.checkRegistration.patientCondition || 0) + "";
       this.formValidate.risk = (this.$store.state.oldData.findData.checkRegistration.risk || 0) + "";
+      this.formValidate.guardianPhone = (this.$store.state.oldData.findData.checkRegistration.guardianPhone || 0) + "";
       this.formValidate.relationship = (this.$store.state.oldData.findData.checkRegistration.relationship || 0) + "";
     
     }

@@ -77,6 +77,9 @@ export default {
       }
     };
   },
+  mounted() {
+    this.formValidate = this.$store.state.oldData.dealData.formData;
+  },
   created() {
     vm.$on("blur", val => {
       if (val == "saveEvent") {
