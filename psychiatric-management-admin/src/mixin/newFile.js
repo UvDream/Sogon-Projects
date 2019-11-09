@@ -52,7 +52,7 @@ export default {
       let obj = {
         tArchiveId:this.indexId,
         remarks:this.formValidate.remarks,
-        curPositionid:this.curPositionid,
+        curPositionid:this.$store.state.step.stepStatus,
         tFilesList:this.formValidate.uploadFiles
       };
       if(this.$route.name=="newFile"){
@@ -62,6 +62,10 @@ export default {
         if(res.success==true){
           this.modal=false
           this.$store.state.step.authOnOff = res.data;
+          this.$store.state.step.stepStatus < 5
+          ? (this.$store.state.step.stepStatus =
+              this.$store.state.step.stepStatus - 1)
+          : "";
           this.$Message.success("退回成功！");
         }
       })

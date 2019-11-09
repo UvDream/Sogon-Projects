@@ -17,7 +17,7 @@ const oldData = {
     // 06再次评定页面
     outControlStatus: false,
     // archivesId
-    archivesId: "276",
+    archivesId: "",
     // 是否有权限
     authOnOff: 1,
     // ---01发现页面
@@ -56,7 +56,7 @@ const oldData = {
          guardianPhone: "",
          // 6
          anecdote: "",
-         uploadFiles: [{"filepath":"D://file"},{"filepath":"D://Filetwo"}]
+         uploadFiles: []
       }
     },
     // ---02初步处理页面

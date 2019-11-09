@@ -70,7 +70,10 @@ export default {
   methods: {
     // 点击菜单触发事件
     resetMenuInfo(){
-      
+      if(this.$route.name=="newFile") {
+        this.$store.state.step.stepStatus = 0;
+         history.go(0);
+      }
     },
     activeFunc(path) {
       let num;

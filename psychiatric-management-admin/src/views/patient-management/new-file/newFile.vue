@@ -54,8 +54,23 @@ export default {
   mounted() {
     // status : row.status,id: row.id,isOperRole: row.isOperRole
     // this.$store.state.step.stepStatus = this.$route.params.status == undefined?0:this.$route.params.status;
+    if(this.$route.params.status == undefined?0:this.$route.params.status) {
+      if(this.$route.params.status == 0){
+        this.$store.state.step.stepStatus = 0;
+      }else if(this.$route.params.status == 2){
+        this.$store.state.step.stepStatus = 1;
+      }else if(this.$route.params.status == 4){
+        this.$store.state.step.stepStatus = 2;
+      }else if(this.$route.params.status == 6){
+        this.$store.state.step.stepStatus = 3;
+      }else if(this.$route.params.status == 7){
+        this.$store.state.step.stepStatus = 4;
+      }else if(this.$route.params.status == 8){
+        this.$store.state.step.stepStatus = 5;
+      }
+    }
     // this.$store.state.step.stepStatus = this.$route.params.status == undefined?0:this.$route.params.status;
-    this.$store.state.step.stepStatus = 0;
+    // this.$store.state.step.stepStatus = 0;
     this.$store.state.authOnOff = this.$route.params.isOperRole;
     this.$store.state.archivesId = this.$route.params.id;
     console.log(this.$route.params.id)
@@ -67,7 +82,8 @@ export default {
     if(this.$route.params.status !== undefined) {
       findAllMessage({"archivesId":this.$store.state.archivesId}).then(res=>{
         console.log(res)
-        let data = res.data;           
+        let data = res.data;       
+        this.$store.state.step.archivesId = this.$store.state.archivesId;    
         // 发现
         let obj_checkRegistration=this.$store.state.step.findData.checkRegistration; 
         let obj_basicInformation=this.$store.state.step.findData.basicInformation; 
@@ -105,6 +121,7 @@ export default {
         // 初步处理
             let obj_dealData=this.$store.state.step.dealData.formData; 
             this.$store.state.step.dealData.id = data[1].id;
+            // obj.archivesId = "",
             obj_dealData.name = data[1].wCompanyName;
             obj_dealData.principal = data[1].wCompanyLeader;
             obj_dealData.phone = data[1].wCompanyTel;

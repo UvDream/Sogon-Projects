@@ -17,7 +17,7 @@ const step = {
     // 06再次评定页面
     outControlStatus: false,
     // archivesId
-    archivesId: "276",
+    archivesId: "",
     // 是否有权限
     authOnOff: 1,
     // ---01发现页面
@@ -32,7 +32,7 @@ const step = {
       },
       checkRegistration: {
          // 1
-         id: "222",
+         id: "",
          patientName: "",
          sex: "",
          IdNumber: "",
@@ -56,7 +56,7 @@ const step = {
          guardianPhone: "",
          // 6
          anecdote: "",
-         uploadFiles: [{"filepath":"D://file"},{"filepath":"D://Filetwo"}]
+         uploadFiles: []
       }
     },
     // ---02初步处理页面
@@ -77,17 +77,17 @@ const step = {
     treatData: {
       id: "",
       formPatientLevel: {
-        status:"12",
-        hospital:"12",
-        doctor:"12",
-        phone:"12",
-        time:"12",
-        description:"12",
+        status:"",
+        hospital:"",
+        doctor:"",
+        phone:"",
+        time:"",
+        description:"",
         uploadFiles:[]
       },
       formPatientTreat: [
         {
-          id: "9",
+          id: "",
           patientHospital: null,
           patientDoctor: null,
           doctorTel: null,
@@ -95,7 +95,7 @@ const step = {
           checkinTime: null,
           checkoutTime: null,
           treatRemark: null,
-          fileCode: "1572874968047",
+          fileCode: "",
           treatId: "",
           type: "0",
           tFiles: []
@@ -103,7 +103,7 @@ const step = {
       ],
       formPatientZhuyuan: [
         {
-          id: "9",
+          id: "",
           patientHospital: null,
           patientDoctor: null,
           doctorTel: null,
@@ -118,7 +118,7 @@ const step = {
         }
       ],
     },
-     
+
     // ---05再次评定页面
     againTreatData: {
       id: "",
