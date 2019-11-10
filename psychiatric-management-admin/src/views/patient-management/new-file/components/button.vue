@@ -139,7 +139,8 @@ export default {
           console.log(data)
 
           // obj.archivesId = "",
-          obj.id = this.$store.state.step.findData.id;
+          
+          obj.id = this.$store.state.step.archivesId;
           obj.patientName = data.patientName;
           obj.patientSex = data.sex;
           obj.patientCode = data.IdNumber;
@@ -165,8 +166,7 @@ export default {
 
           id==1?findSaveList(obj).then(res=>{
             console.log(res)  
-            this.$store.state.step.archivesId = res.data.id;
-            // console.log(res.data)
+            this.$store.state.step.archivesId = res.data.id;            
             this.$store.state.step.findData.basicInformation.code = res.data.code;
             this.$store.state.step.findData.basicInformation.status = res.data.status;
             this.$store.state.step.findData.basicInformation.name = res.data.name;

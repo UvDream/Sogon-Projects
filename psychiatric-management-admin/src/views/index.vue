@@ -48,7 +48,7 @@
                     <div>11</div>
                   </div> -->
                 </div>
-                <div class="header-user-right">
+                <div class="header-user-right" @click="logout()">
                   <img src="../assets/fonts/closed.png" alt />
                 </div>
               </div>
@@ -151,7 +151,11 @@ export default {
       return sessionStorage.getItem('username')
     }
   },
-  methods: {}
+  methods: {
+    logout(){
+      this.$router.push({ path: '/login' });      
+    }
+  }
 };
 </script>
 
