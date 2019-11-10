@@ -111,7 +111,7 @@ const step = {
           checkinTime: null,
           checkoutTime: null,
           treatRemark: null,
-          fileCode: "1572874968047",
+          fileCode: "",
           treatId: "",
           type: "0",
           tFiles: []

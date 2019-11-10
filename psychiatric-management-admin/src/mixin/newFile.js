@@ -20,14 +20,14 @@ export default {
         obj.archivesId=this.$store.state.step.archivesId
       }
       api.forward(obj).then(res=>{
-        console.log(this.$route)
-        this.$Message.success("转发成功!");
+        // console.log(this.$route)
+        this.$router.push({ path: '/fileManagement' });
         // this.$store.state.step.stepStatus < 5
         // ? (this.$store.state.step.stepStatus =
         //     this.$store.state.step.stepStatus + 1)
         // : "";
+        this.$Message.success("转发成功!");
 
-        this.$router.push({ path: '/fileManagement' });
 
         // this.$emit('closemodal');
         this.modal=false
