@@ -153,7 +153,9 @@ export default {
   },
   methods: {
     logout(){
-      this.$router.push({ path: '/login' });      
+      this.$router.push({ path: '/login' });    
+      history.go(0);
+      // alert('dsf')
     }
   }
 };
