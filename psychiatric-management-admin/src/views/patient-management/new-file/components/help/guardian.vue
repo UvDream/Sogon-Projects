@@ -27,8 +27,8 @@
             :label-width="200"
           >
             <div class="form" style="margin-top:20px">
-              <FormItem label="姓名" prop="guardianRel" class="form-block">
-                <Input v-model="formValidate.guardianRel" placeholder="输入姓名" />
+              <FormItem label="姓名" prop="name" class="form-block">
+                <Input v-model="formValidate.name" placeholder="输入姓名" />
               </FormItem>
               <FormItem label="与患者关系" prop="relationship" class="form-block">
                 <Select v-model="formValidate.relationship" placeholder="选择与患者关系">
@@ -81,13 +81,13 @@ export default {
     return {
       closed: false,
       formValidate: {
-        guardianRel: "",
+        name: "",
         relationship: "",
         banNumber: "",
         phone: ""
       },
       ruleValidate: {
-        guardianRel: [{ required: true, message: "请输入姓名", trigger: "blur" }],
+        name: [{ required: true, message: "请输入姓名", trigger: "blur" }],
         relationship: [
           { required: true, message: "请输入与患者关系", trigger: "blur" }
         ],
@@ -104,7 +104,7 @@ export default {
     var self = this;
     setTimeout(function(){
       if(self.$store.state.form.id != ""){
-        self.formValidate.guardianRel = self.$store.state.form.guardian.name;
+        self.formValidate.name = self.$store.state.form.guardian.name;
         self.formValidate.relationship = self.$store.state.form.guardian.relationship;
         self.formValidate.banNumber = self.$store.state.form.guardian.banNumber;
         self.formValidate.phone = self.$store.state.form.guardian.phone;

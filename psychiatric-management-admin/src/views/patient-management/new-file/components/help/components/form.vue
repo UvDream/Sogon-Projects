@@ -103,7 +103,51 @@ code:{
   mounted() {
     departmentFunc().then(res => {
       this.departmentList = res.data;
-    });
+    }).then(res=>{
+      if(this.code==0) {
+        this.formValidate.department = this.$store.state.form.cadre.department;
+        let obj = {
+          deptId: this.formValidate.department
+        };
+        nameFunc(obj).then(res => {
+          this.nameList = res.data;
+        }).then(res=>{
+          var self = this;
+          this.formValidate.name = this.$store.state.form.cadre.name;
+        });
+        this.formValidate.IdNumber = this.$store.state.form.cadre.IdNumber;
+        this.formValidate.phone = this.$store.state.form.cadre.phone;
+      }
+      if(this.code==1) {
+        this.formValidate.department = this.$store.state.form.police.department;
+        let obj = {
+          deptId: this.formValidate.department
+        };
+        nameFunc(obj).then(res => {
+          this.nameList = res.data;
+        }).then(res=>{
+          var self = this;
+          this.formValidate.name = this.$store.state.form.police.name;
+        });
+        this.formValidate.IdNumber = this.$store.state.form.police.IdNumber;
+        this.formValidate.phone = this.$store.state.form.police.phone;
+      }
+      if(this.code==2) {
+        this.formValidate.department = this.$store.state.form.doctor.department;
+        let obj = {
+          deptId: this.formValidate.department
+        };
+        nameFunc(obj).then(res => {
+          this.nameList = res.data;
+        }).then(res=>{
+          var self = this;
+          this.formValidate.name = this.$store.state.form.doctor.name;
+        });
+        this.formValidate.IdNumber = this.$store.state.form.doctor.IdNumber;
+        this.formValidate.phone = this.$store.state.form.doctor.phone;
+      }
+      
+    })
   },
   methods: {
     departmentChange() {

@@ -178,6 +178,23 @@ export default {
             obj_helpData.guardian.banNumber = data[3].guardianBankCardNumber;
             obj_helpData.guardian.phone = data[3].guardianTelephone;
 
+            obj_helpData.cadre.department = data[3].gridUser.deptId;
+            obj_helpData.cadre.name = data[3].gridUser.id;
+            obj_helpData.cadre.IdNumber = data[3].gridUser.idCode;
+            obj_helpData.cadre.phone = data[3].gridUser.telephone;
+
+            obj_helpData.police.department = data[3].policeUser.deptId;
+            obj_helpData.police.name = data[3].policeUser.id;
+            obj_helpData.police.IdNumber = data[3].policeUser.idCode;
+            obj_helpData.police.phone = data[3].policeUser.telephone;
+
+            obj_helpData.doctor.department = data[3].doctorUser.deptId;
+            obj_helpData.doctor.name = data[3].doctorUser.id;
+            obj_helpData.doctor.IdNumber = data[3].doctorUser.idCode;
+            obj_helpData.doctor.phone = data[3].doctorUser.telephone;
+            
+
+
             let cadreListArr = [];
             let policeList = [];
             let doctorList = [];

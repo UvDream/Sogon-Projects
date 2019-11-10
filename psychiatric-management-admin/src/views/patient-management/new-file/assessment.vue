@@ -7,7 +7,7 @@
  * @Email: UvDream@163.com
  -->
 <template>
-  <div>
+  <div>   
     <!-- 外地病患 -->
     <ForeignPatients v-if="isLocal==0"/>
     <!-- 本地病患 -->
