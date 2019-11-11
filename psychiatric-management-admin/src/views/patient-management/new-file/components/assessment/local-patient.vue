@@ -99,6 +99,9 @@ export default {
         this.handleSubmit('formValidate');
       }
     });
+  },
+  mounted() {
+    this.formValidate = this.$store.state.step.dealData.formData;
   },  
   methods: {
     handleSubmit(name) {

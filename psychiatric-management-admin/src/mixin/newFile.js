@@ -1,7 +1,9 @@
 import api from "@/api/modal";
 export default {
   data() {
-    return {};
+    return {
+      
+    };
   },
   methods: {
     // 保存/转发
@@ -18,12 +20,15 @@ export default {
         obj.archivesId=this.$store.state.step.archivesId
       }
       api.forward(obj).then(res=>{
-        console.log(this.$route)
+        // console.log(this.$route)
+        this.$router.push({ path: '/fileManagement' });
+        // this.$store.state.step.stepStatus < 5
+        // ? (this.$store.state.step.stepStatus =
+        //     this.$store.state.step.stepStatus + 1)
+        // : "";
         this.$Message.success("转发成功!");
-        this.$store.state.step.stepStatus < 5
-        ? (this.$store.state.step.stepStatus =
-            this.$store.state.step.stepStatus + 1)
-        : "";
+
+
         // this.$emit('closemodal');
         this.modal=false
       })
@@ -50,7 +55,7 @@ export default {
       let obj = {
         tArchiveId:this.indexId,
         remarks:this.formValidate.remarks,
-        curPositionid:this.curPositionid,
+        curPositionid:this.$store.state.step.stepStatus,
         tFilesList:this.formValidate.uploadFiles
       };
       if(this.$route.name=="newFile"){
@@ -59,6 +64,11 @@ export default {
       api.back(obj).then(res=>{
         if(res.success==true){
           this.modal=false
+          this.$store.state.step.authOnOff = res.data;
+          this.$store.state.step.stepStatus < 5
+          ? (this.$store.state.step.stepStatus =
+              this.$store.state.step.stepStatus - 1)
+          : "";
           this.$Message.success("退回成功！");
         }
       })
@@ -70,6 +80,8 @@ export default {
       };
       api.startUp(obj).then(res=>{
         if(res.success==true){
+          this.$store.state.step.authOnOff = res.data;
+          alert(res.data)
           this.$Message.success("启动成功！");
         }else{
           this.$Message.success(res.msg);

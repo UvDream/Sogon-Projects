@@ -1,5 +1,5 @@
-const step = {
-  state: {        
+const oldData = {
+  state: {           
     // 是否·本地·
     isLocal:0,
     // 步骤状态
@@ -32,7 +32,7 @@ const step = {
       },
       checkRegistration: {
          // 1
-         id: "",
+         id: "222",
          patientName: "",
          sex: "",
          IdNumber: "",
@@ -71,23 +71,29 @@ const step = {
         uploadFiles: [],
         type: "0",
         wType: "0",
+        name:"",
+        principal:"",
+        phone:"",
+        contactTime:"",
+        description:"",
+        id:"",
       }
     },
     // ---03评定治疗页面
     treatData: {
       id: "",
       formPatientLevel: {
-        status:"",
-        hospital:"",
-        doctor:"",
-        phone:"",
-        time:"",
-        description:"",
+        status:"12",
+        hospital:"12",
+        doctor:"12",
+        phone:"12",
+        time:"12",
+        description:"12",
         uploadFiles:[]
       },
       formPatientTreat: [
         {
-          id: "",
+          id: "9",
           patientHospital: null,
           patientDoctor: null,
           doctorTel: null,
@@ -95,7 +101,7 @@ const step = {
           checkinTime: null,
           checkoutTime: null,
           treatRemark: null,
-          fileCode: "",
+          fileCode: "1572874968047",
           treatId: "",
           type: "0",
           tFiles: []
@@ -103,7 +109,7 @@ const step = {
       ],
       formPatientZhuyuan: [
         {
-          id: "",
+          id: "9",
           patientHospital: null,
           patientDoctor: null,
           doctorTel: null,
@@ -111,20 +117,62 @@ const step = {
           checkinTime: null,
           checkoutTime: null,
           treatRemark: null,
-          fileCode: "",
+          fileCode: "1572874968047",
           treatId: "",
           type: "0",
           tFiles: []
         }
       ],
     },
-
+    // ---04四帮一页面
+    // helpData: {      
+    //   // 村居干部帮扶
+    //   cjgbbf: {
+    //     guardianRel:"",
+    //     relationship:"",
+    //     banNumber:"",
+    //     phone:"",
+    //   },
+    //   // 监护民警帮扶 
+    //   jhmjbf: {
+    //     guardianRel:"",
+    //     relationship:"",
+    //     banNumber:"",
+    //     phone:"",
+    //   },
+    //   // 防治医生帮扶
+    //   fzysbf: {
+    //     guardianRel:"",
+    //     relationship:"",
+    //     banNumber:"",
+    //     phone:"",
+    //   },
+    //   // 监护人监护
+    //   jhrjh: {
+    //     guardianRel:"",
+    //     relationship:"",
+    //     banNumber:"",
+    //     phone:"",
+    //   },      
+    //   cadreList: [
+       
+    //   ],
+    //   policeList: [
+        
+    //   ],
+    //   doctorList: [
+       
+    //   ],
+    //   guardianList: [
+       
+    //   ]
+    // },    
     // ---05再次评定页面
     againTreatData: {
       id: "",
       formPatientLevel: {
         status:"",
-        hospital:"",
+        hospital:"222",
         doctor:"",
         phone:"",
         date:"",
@@ -141,10 +189,10 @@ const step = {
           patientCuteType:"",
           patientCompany:"",
           patientRemarks:"",
-          uploadFiles:""
+          tFiles:""
         }
       ]
     }
   }
 };
-export default step;
+export default oldData;

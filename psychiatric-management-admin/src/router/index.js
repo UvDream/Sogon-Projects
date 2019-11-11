@@ -87,6 +87,47 @@ const routes = [
           import(
             "../views/personal-center/notification-management/notificationManagement.vue"
           )
+      },
+      {
+        path: "/system",
+        name: "system",
+        meta: {
+          label: "系统管理"
+        },
+        component: () => import("../views/system-management/index.vue")
+      },
+      {
+        path: "/accountManagement",
+        name: "accountManagement",
+        meta: {
+          label: "账户管理"
+        },
+        component: () =>
+          import(
+            "../views/system-management/account-management/index.vue"
+          )
+      },
+      {
+        path: "/personManagement",
+        name: "personManagement",
+        meta: {
+          label: "人员管理"
+        },
+        component: () =>
+          import(
+            "../views/system-management/person-management/index.vue"
+          )
+      },
+      {
+        path: "/logManagement",
+        name: "logManagement",
+        meta: {
+          label: "日志管理"
+        },
+        component: () =>
+          import(
+            "../views/system-management/log-management/index.vue"
+          )
       }
     ]
   },

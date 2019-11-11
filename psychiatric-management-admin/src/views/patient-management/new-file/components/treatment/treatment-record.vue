@@ -16,18 +16,18 @@
             <FormItem
               label="病患就诊医院"
               class="form-block"
-              :prop="'more.' + index + '.hospital'"
+              :prop="'more.' + index + '.patientHospital'"
               :rules="{
               required: true,
               message: '请输入病患就诊医院',
               trigger: 'blur'
             }"
             >
-              <Input v-model="item.hospital" placeholder="输入病患就诊医院" />
+              <Input v-model="item.patientHospital" placeholder="输入病患就诊医院" />
             </FormItem>
             <FormItem
               label="病患主治医生"
-              :prop="'more.' + index + '.doctors'"
+              :prop="'more.' + index + '.patientDoctor'"
               class="form-block"
               :rules="{
               required: true,
@@ -35,11 +35,11 @@
               trigger: 'blur'
             }"
             >
-              <Input v-model="item.doctors" placeholder="输入病患主治医生" />
+              <Input v-model="item.patientDoctor" placeholder="输入病患主治医生" />
             </FormItem>
             <FormItem
               label="医生联系电话"
-              :prop="'more.' + index + '.phone'"
+              :prop="'more.' + index + '.doctorTel'"
               class="form-block"
               :rules="{
               required: true,
@@ -47,11 +47,11 @@
               trigger: 'blur'
             }"
             >
-              <Input v-model="item.phone" placeholder="输入医生联系电话" />
+              <Input v-model="item.doctorTel" placeholder="输入医生联系电话" />
             </FormItem>
             <FormItem
               label="病患就诊时间"
-              :prop="'more.' + index + '.dischargeTime'"
+              :prop="'more.' + index + '.treatTime'"
               class="form-block"
               :rules="{
               required: true,
@@ -59,13 +59,13 @@
               trigger: 'blur'
             }"
             >
-              <DatePicker type="datetime" placeholder="请选择病患就诊时间" v-model="item.dischargeTime"></DatePicker>
+              <DatePicker type="datetime" placeholder="请选择病患就诊时间" v-model="item.treatTime"></DatePicker>
             </FormItem>
           </div>
           <div class="form">
             <FormItem
               label="病患诊断记录情况"
-              :prop="'more.' + index + '.recording'"
+              :prop="'more.' + index + '.treatRemark'"
               class="form-blocks"
               :rules="{
               required: true,
@@ -73,11 +73,11 @@
               trigger: 'blur'
             }"
             >
-              <Input type="textarea" v-model="item.recording" placeholder="输入病患诊断记录情况" />
+              <Input type="textarea" v-model="item.treatRemark" placeholder="输入病患诊断记录情况" />
             </FormItem>
             <FormItem
               label="病患治疗证明材料"
-              :prop="'more.' + index + '.uploadFiles'"
+              :prop="'more.' + index + '.tFiles'"
               class="form-block"
               :rules="{
               required: true,
@@ -85,7 +85,7 @@
               trigger: 'blur'
             }"
             >
-              <Upload v-model="item.uploadFiles"/>
+              <Upload v-model="item.tFiles"/>
             </FormItem>
           </div>
 
@@ -123,12 +123,12 @@ export default {
       formValidate: {
         more: [
           {
-            hospital: "",
-            doctors: "",
-            phone: "",
-            dischargeTime: "",
-            recording: "",
-            uploadFiles: []
+            patientHospital: "",
+            patientDoctor: "",
+            doctorTel: "",
+            treatTime: "",
+            treatRemark: "",
+            tFiles: []
           }
         ]
       }
@@ -143,6 +143,9 @@ export default {
         this.$store.state.step.treatData.formPatientTreat = this.formValidate.more;
       }
     });
+  },
+  mounted(){
+    this.formValidate.more = this.$store.state.step.treatData.formPatientTreat;
   },
   methods: {
     handleSubmit(name) {
@@ -160,12 +163,12 @@ export default {
     // 添加
     handleAdd() {
       let obj = {
-        hospital: "",
-        doctors: "",
-        hospitalStay: "",
-        dischargeTime: "",
-        recording: "",
-        uploadFiles: []
+        patientHospital: "",
+        patientDoctor: "",
+        doctorTel: "",
+        treatTime: "",
+        treatRemark: "",
+        tFiles: []
       };
       this.formValidate.more.push(obj);
     },

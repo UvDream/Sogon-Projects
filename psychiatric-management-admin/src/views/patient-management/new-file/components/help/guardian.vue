@@ -63,6 +63,20 @@ export default {
     TopMessage,
     cTable
   },
+  // computed: {
+  //   guardianRel: function() {
+  //     return this.$store.state.form.guardian.name;
+  //   },
+  //   relationship: function() {
+  //     return this.$store.state.form.guardian.relationship;
+  //   },
+  //   banNumber: function() {
+  //     return this.$store.state.form.guardian.banNumber;
+  //   },
+  //   phone: function() {
+  //     return this.$store.state.form.guardian.phone;
+  //   }
+  // },
   data() {
     return {
       closed: false,
@@ -81,19 +95,29 @@ export default {
       }
     };
   },
-  watch: {
+  watch: {  
     closed(val) {
       console.log("折叠", val);
     }
   },
+  mounted() {
+    var self = this;
+    setTimeout(function(){
+      if(self.$store.state.form.id != ""){
+        self.formValidate.name = self.$store.state.form.guardian.name;
+        self.formValidate.relationship = self.$store.state.form.guardian.relationship;
+        self.formValidate.banNumber = self.$store.state.form.guardian.banNumber;
+        self.formValidate.phone = self.$store.state.form.guardian.phone;
+      }
+    },500)
+  },
   created() {
     vm.$on("blur", val => {
       if (val == "saveEvent") {
-        this.$store.state.form.guardian = this.formValidate
+        this.$store.state.form.guardian = this.formValidate;
       }
     });
-  }, 
-
+  },   
   methods: {}
 };
 </script>

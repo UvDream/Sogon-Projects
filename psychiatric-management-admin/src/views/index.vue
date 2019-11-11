@@ -39,16 +39,16 @@
               <div class="header-user">
                 <div class="header-user-left">
                   <img src="../assets/fonts/avatar.png" alt />
-                  <span>
+                  <span style="margin-left: 20px ">
                     您好!
-                    <span style="color:#53A7A9">民政局张云满</span>
+                    <span style="color:#53A7A9">{{username}}</span>
                   </span>
-                  <div>
+                  <!-- <div>
                     <img src="../assets/fonts/message.png" alt />
                     <div>11</div>
-                  </div>
+                  </div> -->
                 </div>
-                <div class="header-user-right">
+                <div class="header-user-right" @click="logout()">
                   <img src="../assets/fonts/closed.png" alt />
                 </div>
               </div>
@@ -106,7 +106,18 @@ export default {
             { name: "已办档案", id: "2-2", url: "/fileAlreadyManagement" },
             { name: "通知管理", id: "2-3", url: "/notificationManagement" }
           ]
-        }
+        },
+        /*{
+          name: "系统管理",
+          icon: "ios-build",
+          id: "4",
+          url: "/system",
+          children: [
+            { name: "账户管理", id: "4-1", url: "/accountManagement" },
+            { name: "人员管理", id: "4-2", url: "/personManagement" },
+            { name: "日志管理", id: "4-3", url: "/logManagement" }
+          ]
+        }*/
       ],
       breadcrumb: {
         dashboard: ["首页"],
@@ -115,7 +126,11 @@ export default {
         personCenter: ["个人中心"],
         personalAccount: ["个人中心", "个人账户"],
         fileAlreadyManagement: ["个人中心", "已办档案"],
-        notificationManagement: ["个人中心", "通知管理"]
+        notificationManagement: ["个人中心", "通知管理"],
+        system: ["系统管理"],
+        accountManagement: ["系统管理", "账户管理"],
+        personManagement: ["系统管理", "人员管理"],
+        logManagement: ["系统管理", "日志管理"]
       },
       nowBreadcrunmb: []
     };
@@ -131,9 +146,18 @@ export default {
   computed: {
     isCollapsed: function() {
       return this.$store.state.isCollapsed;
+    },
+    username:function(){
+      return sessionStorage.getItem('username')
     }
   },
-  methods: {}
+  methods: {
+    logout(){
+      this.$router.push({ path: '/login' });    
+      history.go(0);
+      // alert('dsf')
+    }
+  }
 };
 </script>
 
@@ -160,7 +184,7 @@ export default {
       height: 50px;
       background-color: #fff;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
       border-radius: 50px;
       & > img {
         width: 50px;
@@ -201,4 +225,9 @@ export default {
     }
   }
 }
+</style>
+<style type="text/css">
+  .ivu-menu-submenu-title > i, .ivu-menu-submenu-title span > i{
+    margin-right:0
+  }
 </style>
