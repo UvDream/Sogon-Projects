@@ -92,9 +92,10 @@ export default {
             obj_basicInformation.status = data[0].status;
             obj_basicInformation.checkin_dept = data[0].checkinUserName;
             // obj_basicInformation.createDate = data[0].createDate;
-            this.$store.state.step.isLocal = data[0].isforeign;
+            this.$store.state.step.isForeign = data[0].isforeign;
             // obj.archivesId = "",
             this.$store.state.step.findData.id = data[0].id;
+            this.$store.state.step.archivesId = data[0].id;
             obj_checkRegistration.patientName = data[0].patientName;
             obj_checkRegistration.sex = data[0].patientSex;
             obj_checkRegistration.patientPhone = data[0].patientPhone;

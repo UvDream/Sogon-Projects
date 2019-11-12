@@ -113,7 +113,7 @@
               <Option value="0">父母</Option>
               <Option value="1">配偶</Option>
               <Option value="2">子女</Option>
-              <Option value="2">其它亲属</Option>
+              <Option value="3">其它亲属</Option>
             </Select>
           </FormItem>
           <FormItem label="监护人单位" prop="guardianUnit" class="form-blocks">
@@ -264,13 +264,13 @@ export default {
       console.log(this.$store.state.step.findData.checkRegistration)
       this.formValidate = JSON.parse(JSON.stringify(this.$store.state.step.findData.checkRegistration));
       this.formValidate.sex = (this.$store.state.step.findData.checkRegistration.sex || 0) + "";
-      this.formValidate.patientPhone = (this.$store.state.step.findData.checkRegistration.patientPhone || 0) + "";
+      this.formValidate.patientPhone = (this.$store.state.step.findData.checkRegistration.patientPhone || "") + "";
       this.formValidate.status = (this.$store.state.step.findData.checkRegistration.status || 0) + "";
       this.formValidate.foreigner = (this.$store.state.step.findData.checkRegistration.foreigner || 0) + "";
       this.formValidate.processingMethod = (this.$store.state.step.findData.checkRegistration.processingMethod || 0) + "";
       this.formValidate.patientCondition = (this.$store.state.step.findData.checkRegistration.patientCondition || 0) + "";
       this.formValidate.risk = (this.$store.state.step.findData.checkRegistration.risk || 0) + "";
-      this.formValidate.guardianPhone = (this.$store.state.step.findData.checkRegistration.guardianPhone || 0) + "";
+      this.formValidate.guardianPhone = (this.$store.state.step.findData.checkRegistration.guardianPhone || "") + "";
       this.formValidate.relationship = (this.$store.state.step.findData.checkRegistration.relationship || 0) + "";
     
     }
@@ -278,7 +278,7 @@ export default {
   methods: {
     selectChange(e){
       console.log(e)
-      this.$store.state.step.isLocal=e;
+      this.$store.state.step.isForeign=e;
       if(this.formValidate.foreigner != 0){
         this.ruleValidate.processingMethod = false;
         this.formValidate.processingMethod = "";

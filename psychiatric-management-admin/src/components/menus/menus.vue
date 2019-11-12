@@ -91,7 +91,7 @@ export default {
       return num;
     },
     resetVueStore(){
-      this.$store.state.step.isLocal = 0;
+      this.$store.state.step.isForeign = 0;
       this.$store.state.step.stepStatus = 0;
       this.$store.state.step.findStatus = true;
       this.$store.state.step.dealStatus = false;

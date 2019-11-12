@@ -200,10 +200,10 @@ export default {
           align: "center"
         },
         {
-          title: "是否申请补助金",
+          title: "是否符合申请补助金",
           slot: "isubsidy",
           align: "center"
-        },
+        },        
         {
           title: "是否坚持治疗",
           slot: "istilltreat",
@@ -233,6 +233,9 @@ export default {
     this.code === 1 ? (this.data = this.policeList) : "";
     this.code === 2 ? (this.data = this.doctorList) : "";
     this.code === 3 ? (this.data = this.guardianList) : "";
+    if(this.code === 1){
+      this.columns[3].title = "是否申请补助金"      
+    }
   },
   methods: {
     // 新增

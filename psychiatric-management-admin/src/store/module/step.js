@@ -1,7 +1,7 @@
 const step = {
   state: {        
     // 是否·本地·
-    isLocal:0,
+    isForeign:0,
     // 步骤状态
     stepStatus: 0,
     // 01发现页面

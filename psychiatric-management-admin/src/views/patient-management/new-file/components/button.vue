@@ -209,8 +209,8 @@ export default {
             "fristRemarks":"0",
             "secondRemarks":"0",
             "thirdRemarks":"13222222222",
-            "type": this.$store.state.step.isLocal,
-            "wType": this.$store.state.step.isLocal,
+            "type": this.$store.state.step.isForeign,
+            "wType": this.$store.state.step.isForeign,
             "tFiles":"asdfsdf",                      
           }        
 

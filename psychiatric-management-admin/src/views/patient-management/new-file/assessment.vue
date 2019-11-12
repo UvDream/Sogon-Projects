@@ -9,9 +9,9 @@
 <template>
   <div>   
     <!-- 外地病患 -->
-    <ForeignPatients v-if="isLocal==0"/>
+    <ForeignPatients v-if="isForeign==0"/>
     <!-- 本地病患 -->
-    <LocalPatient v-if="isLocal==1" />
+    <LocalPatient v-if="isForeign==1" />
     <Btn />
   </div>
 </template>
@@ -28,8 +28,8 @@ export default {
     Btn
   },
   computed:{
-    isLocal:function(){
-      return this.$store.state.step.isLocal
+    isForeign:function(){
+      return this.$store.state.step.isForeign
     }
   }
 };

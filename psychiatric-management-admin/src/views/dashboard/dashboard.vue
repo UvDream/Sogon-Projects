@@ -15,7 +15,7 @@
         </div>
         <div>
           <p>
-            <span style="color:#333;font-size:25px">{{item.num}}</span>个
+            <span style="color:#333;font-size:25px">{{item.num}}</span>{{item.unit}}
           </p>
           <p>{{item.name}}</p>
         </div>
@@ -159,17 +159,20 @@ export default {
         {
           img: require("../../assets/file.png"),
           num: "100",
-          name: "病患档案总数"
+          name: "病患档案总数",
+          unit: "个"
         },
         {
           img: require("../../assets/help.png"),
           num: "100",
-          name: "帮扶管控中病患档案数"
+          name: "帮扶管控中病患档案数",
+          unit: "个"
         },
         {
           img: require("../../assets/subsidy.png"),
-          num: "40",
-          name: "补助金发放总额"
+          num: "48",
+          name: "补助金发放总额",
+          unit: "万"
         }
       ],
       tableList: [
