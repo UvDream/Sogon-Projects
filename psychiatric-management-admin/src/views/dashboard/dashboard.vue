@@ -2,7 +2,7 @@
  * @Author: wangzhongjie
  * @Date: 2019-10-22 11:52:31
  * @LastEditors: wangzhongjie
- * @LastEditTime: 2019-11-07 19:08:18
+ * @LastEditTime: 2019-11-12 11:34:50
  * @Description: 首页
  * @Email: UvDream@163.com
  -->
@@ -158,43 +158,43 @@ export default {
       list: [
         {
           img: require("../../assets/file.png"),
-          num: "1000",
+          num: "100",
           name: "病患档案总数"
         },
         {
           img: require("../../assets/help.png"),
-          num: "1000",
+          num: "100",
           name: "帮扶管控中病患档案数"
         },
         {
           img: require("../../assets/subsidy.png"),
-          num: "1000",
+          num: "40",
           name: "补助金发放总额"
         }
       ],
       tableList: [
-        { id: "1", name: "王增平", date: "2019-10-22" },
-        { id: "2", name: "王增平", date: "2019-10-22" },
-        { id: "3", name: "王增平", date: "2019-10-22" },
-        { id: "4", name: "王增平", date: "2019-10-22" },
-        { id: "5", name: "王增平", date: "2019-10-22" },
-        { id: "6", name: "王增平", date: "2019-10-22" },
-        { id: "7", name: "王增平", date: "2019-10-22" },
-        { id: "8", name: "王增平", date: "2019-10-22" },
-        { id: "9", name: "王增平", date: "2019-10-22" },
-        { id: "10", name: "王增平", date: "2019-10-22" }
+        { id: " 1", name: "周强", date: "2015.3.1" },
+        { id: " 2", name: "师永", date: "2000.3.4" },
+        { id: " 3", name: "董向奎", date: "2005.7.18" },
+        { id: " 4", name: "耿小新", date: "1990" },
+        { id: " 5", name: "王忠亮", date: "1984.7.11" },
+        { id: " 6", name: "薛亚东", date: "2012.3.21" },
+        { id: " 7", name: "汪培", date: "2003.3.21" },
+        { id: " 8", name: "卢桂", date: "2005.3.19" },
+        { id: " 9", name: "许培", date: "2007.6.19" },
+        { id: "10", name: "张丹", date: "1991.8.20" }
       ],
       tableLists: [
-        { id: "1", name: "王增平", date: "2019-10-22", price: 2000 },
-        { id: "2", name: "王增平", date: "2019-10-22", price: 2000 },
-        { id: "3", name: "王增平", date: "2019-10-22", price: 2000 },
-        { id: "4", name: "王增平", date: "2019-10-22", price: 2000 },
-        { id: "5", name: "王增平", date: "2019-10-22", price: 2000 },
-        { id: "6", name: "王增平", date: "2019-10-22", price: 2000 },
-        { id: "7", name: "王增平", date: "2019-10-22", price: 2000 },
-        { id: "8", name: "王增平", date: "2019-10-22", price: 2000 },
-        { id: "9", name: "王增平", date: "2019-10-22", price: 2000 },
-        { id: "10", name: "王增平", date: "2019-10-22", price: 2000 }
+        { id: " 1", name: "周强", date: "2019-10-22", price: 2000 },
+        { id: " 2", name: "师永", date: "2019-10-22", price: 2000 },
+        { id: " 3", name: "董向奎", date: "2019-10-22", price: 2000 },
+        { id: " 4", name: "耿小新", date: "2019-10-22", price: 2000 },
+        { id: " 5", name: "王忠亮", date: "2019-10-22", price: 2000 },
+        { id: " 6", name: "薛亚东", date: "2019-10-22", price: 2000 },
+        { id: " 7", name: "汪培", date: "2019-10-22", price: 2000 },
+        { id: " 8", name: "卢桂", date: "2019-10-22", price: 2000 },
+        { id: " 9", name: "许培", date: "2019-10-22", price: 2000 },
+        { id: "10", name: "张丹", date: "2019-10-22", price: 2000 }
       ]
     };
   },
