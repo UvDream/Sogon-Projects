@@ -198,12 +198,7 @@ export default {
         {
           title: "帮扶日期",
           key: "helpDate",
-          align: "center",
-          render: (h,params)=>{  
-              return h('div',
-                  unixTimeToDateTime('')
-              )
-          }
+          align: "center"          
         },
         {
           title: "是否符合申请补助金",
