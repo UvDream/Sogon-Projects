@@ -80,6 +80,7 @@ export default {
     console.log(this.$route)
     // 如果是修改则执行下面
     if(this.$route.params.status !== undefined) {
+      
       findAllMessage({"archivesId":this.$store.state.archivesId}).then(res=>{
         console.log(res)
         let data = res.data;       

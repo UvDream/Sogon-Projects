@@ -158,13 +158,13 @@ export default {
       list: [
         {
           img: require("../../assets/file.png"),
-          num: "100",
+          num: "110",
           name: "病患档案总数",
           unit: "个"
         },
         {
           img: require("../../assets/help.png"),
-          num: "100",
+          num: "62",
           name: "帮扶管控中病患档案数",
           unit: "个"
         },

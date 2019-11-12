@@ -78,7 +78,10 @@ export default {
     };
   },
   mounted() {
-    this.formValidate = this.$store.state.step.dealData.formData;
+    var self = this;
+    setTimeout(() => {   
+      self.formValidate = self.$store.state.step.dealData.formData;
+    },300);
   },
   created() {
     vm.$on("blur", val => {

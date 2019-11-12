@@ -71,11 +71,12 @@ export default {
     // 点击菜单触发事件
     resetMenuInfo(){
       var self = this;
+      self.resetVueStore();
+      
       if(this.$route.name=="newFile") {
         setTimeout(function(){
-          self.resetVueStore();
           self.$store.state.step.stepStatus = 0;
-        },500)
+        },300)
         }      
     },
     activeFunc(path) {

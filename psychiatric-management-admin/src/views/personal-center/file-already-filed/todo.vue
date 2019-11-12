@@ -88,7 +88,7 @@
           </span>
         </template>
         <template slot-scope="{ row, index}" slot="code">
-          <router-link :to="{name:'newFile', params: { status : row.status }}">
+          <router-link :to="{name:'newFile', params: { status : row.status,id: row.id,isOperRole: row.isOperRole }}">
             {{row.code}}
           </router-link>
         </template>

@@ -93,6 +93,16 @@ export default {
       }
     };
   },
+  computed:{
+    listenData(){
+      return this.$store.state.step.dealData.formData;;
+    }
+  },
+  watch:{
+    listenData: function(newVal,oldVal){
+      this.formValidate = newVal
+    }
+  },
   created() {
     vm.$on("blur", val => {
       if (val == "saveEvent") {
@@ -101,7 +111,10 @@ export default {
     });
   },
   mounted() {
-    this.formValidate = this.$store.state.step.dealData.formData;
+    var self = this;
+    setTimeout(() => {   
+      self.formValidate = self.$store.state.step.dealData.formData;
+    },300);
   },  
   methods: {
     handleSubmit(name) {

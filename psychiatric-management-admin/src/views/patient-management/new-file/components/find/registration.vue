@@ -260,20 +260,23 @@ export default {
   },
   mounted() {
     // 如果是点进来修改
-    if(true) {
-      console.log(this.$store.state.step.findData.checkRegistration)
-      this.formValidate = JSON.parse(JSON.stringify(this.$store.state.step.findData.checkRegistration));
-      this.formValidate.sex = (this.$store.state.step.findData.checkRegistration.sex || 0) + "";
-      this.formValidate.patientPhone = (this.$store.state.step.findData.checkRegistration.patientPhone || "") + "";
-      this.formValidate.status = (this.$store.state.step.findData.checkRegistration.status || 0) + "";
-      this.formValidate.foreigner = (this.$store.state.step.findData.checkRegistration.foreigner || 0) + "";
-      this.formValidate.processingMethod = (this.$store.state.step.findData.checkRegistration.processingMethod || 0) + "";
-      this.formValidate.patientCondition = (this.$store.state.step.findData.checkRegistration.patientCondition || 0) + "";
-      this.formValidate.risk = (this.$store.state.step.findData.checkRegistration.risk || 0) + "";
-      this.formValidate.guardianPhone = (this.$store.state.step.findData.checkRegistration.guardianPhone || "") + "";
-      this.formValidate.relationship = (this.$store.state.step.findData.checkRegistration.relationship || 0) + "";
-    
-    }
+    var self = this;
+    setTimeout(() => {      
+      if(true) {
+        console.log(self.$store.state.step.findData.checkRegistration)
+          self.formValidate = JSON.parse(JSON.stringify(self.$store.state.step.findData.checkRegistration));
+          self.formValidate.sex = (self.$store.state.step.findData.checkRegistration.sex || 0) + "";
+          self.formValidate.patientPhone = (self.$store.state.step.findData.checkRegistration.patientPhone || "") + "";
+          self.formValidate.status = (self.$store.state.step.findData.checkRegistration.status || 0) + "";
+          self.formValidate.foreigner = (self.$store.state.step.findData.checkRegistration.foreigner || 0) + "";
+          self.formValidate.processingMethod = (self.$store.state.step.findData.checkRegistration.processingMethod || 0) + "";
+          self.formValidate.patientCondition = (self.$store.state.step.findData.checkRegistration.patientCondition || 0) + "";
+          self.formValidate.risk = (self.$store.state.step.findData.checkRegistration.risk || 0) + "";
+          self.formValidate.guardianPhone = (self.$store.state.step.findData.checkRegistration.guardianPhone || "") + "";
+          self.formValidate.relationship = (self.$store.state.step.findData.checkRegistration.relationship || 0) + "";
+        
+        }
+    }, 300);
   },
   methods: {
     selectChange(e){

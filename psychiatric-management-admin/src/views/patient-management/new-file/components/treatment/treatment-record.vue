@@ -145,7 +145,10 @@ export default {
     });
   },
   mounted(){
-    this.formValidate.more = this.$store.state.step.treatData.formPatientTreat;
+    var self = this;
+    setTimeout(() => {   
+      self.formValidate.more = self.$store.state.step.treatData.formPatientTreat;
+    },300);
   },
   methods: {
     handleSubmit(name) {

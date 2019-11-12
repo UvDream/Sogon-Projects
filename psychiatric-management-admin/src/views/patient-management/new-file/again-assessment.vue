@@ -117,8 +117,11 @@ export default {
     };
   },
   mounted(){
-    this.formValidate = this.$store.state.step.againTreatData.formPatientLevel;
-    console.log(this.$store.state.step.againTreatData.formPatientLevel)
+    var self = this;
+    setTimeout(() => {   
+      self.formValidate = self.$store.state.step.againTreatData.formPatientLevel;
+      console.log(self.$store.state.step.againTreatData.formPatientLevel)
+    },300)
   },
   created() {
     vm.$on("blur", val => {

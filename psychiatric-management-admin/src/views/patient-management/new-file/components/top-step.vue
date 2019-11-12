@@ -2,7 +2,7 @@
   <div class="top-step">
     <div style="margin:0 auto;display:flex;">
       <div v-for="(item,index) in list" :key="index" class="top-step-block">
-        <div class="top-step-block-body" :class="{'isSelect':status>=index}">
+        <div class="top-step-block-body" :class="{'isSelect':status>=index}" @click="btnJump(index)">
           <div>
             <Icon :type="item.icon" size="18" />
             <div>{{item.name}}</div>
@@ -44,6 +44,11 @@ export default {
   computed: {
     status: function() {
       return this.$store.state.step.stepStatus;
+    }
+  },
+  methods: {
+    btnJump(stepData) {
+      this.$store.state.step.stepStatus = stepData;
     }
   }
 };

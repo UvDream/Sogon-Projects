@@ -66,8 +66,8 @@
           <FormItem label="帮扶时间" prop="helpDate" class="form-block">
             <DatePicker
               type="date"
-              v-model="formValidate.helpDate"
-              format="yyyy/MM/dd"
+              v-model="formValidate.helpDate"     
+              format="yyyy-MM-dd"
               placeholder="请选择帮扶时间"
             ></DatePicker>
           </FormItem>
@@ -121,6 +121,7 @@
 
 <script>
 import Upload from "@/components/upload/upload";
+import {unixTimeToDate} from "@../../util/util.js";
 export default {
   props: {
     // 区分块
@@ -197,7 +198,12 @@ export default {
         {
           title: "帮扶日期",
           key: "helpDate",
-          align: "center"
+          align: "center",
+          render: (h,params)=>{  
+              return h('div',
+                  unixTimeToDateTime('')
+              )
+          }
         },
         {
           title: "是否符合申请补助金",
@@ -229,13 +235,16 @@ export default {
     };
   },
   mounted() {
-    this.code === 0 ? (this.data = this.cadreList) : "";
-    this.code === 1 ? (this.data = this.policeList) : "";
-    this.code === 2 ? (this.data = this.doctorList) : "";
-    this.code === 3 ? (this.data = this.guardianList) : "";
-    if(this.code === 1){
-      this.columns[3].title = "是否申请补助金"      
-    }
+    var self = this;
+    setTimeout(() => {   
+      self.code === 0 ? (self.data = self.cadreList) : "";
+      self.code === 1 ? (self.data = self.policeList) : "";
+      self.code === 2 ? (self.data = self.doctorList) : "";
+      self.code === 3 ? (self.data = self.guardianList) : "";
+      if(this.code === 1){
+        this.columns[3].title = "是否申请补助金"      
+      }
+    },300);
   },
   methods: {
     // 新增
