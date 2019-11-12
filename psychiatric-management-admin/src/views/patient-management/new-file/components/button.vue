@@ -2,7 +2,7 @@
   <div class="white-block btn" style="height:100px">
     <div>
       <!-- 转发弹窗 -->
-      <Forward v-model="modalStatus" />
+      <Forward v-model="modalStatus"  />
       <!-- 办结弹窗 -->
       <SetUp  v-model="setModal"/>
       <!-- 退回弹窗-->
@@ -109,7 +109,7 @@ export default {
     findSave(id) {
       console.log('findsave')
       console.log(this.$store.state.step.findStatus)
-      // if (this.$store.state.findStatus) {
+      if (this.$store.state.step.findStatus) {
         let obj={
           "id":"",
           "patientName":"",
@@ -166,7 +166,9 @@ export default {
 
           id==1?findSaveList(obj).then(res=>{
             console.log(res)  
-            this.$store.state.step.archivesId = res.data.id;            
+            if(res.data.id != undefined){
+              this.$store.state.step.archivesId = res.data.id;            
+            }
             this.$store.state.step.findData.basicInformation.code = res.data.code;
             this.$store.state.step.findData.basicInformation.status = res.data.status;
             this.$store.state.step.findData.basicInformation.name = res.data.name;
@@ -188,9 +190,9 @@ export default {
 
           })
           console.log("可以掉接口保存");
-      // } else {
-      //   console.error("不可以保存");
-      // }
+      } else {
+        console.error("不可以保存");
+      }
     },
     // 02初步处理保存
     dealSave(id) {
@@ -464,8 +466,46 @@ export default {
       // }
     },    
     // 转发
-    pushFunc() {
+    pushFunc() {      
       this.modalStatus=true;
+      console.log(this.$store.state.step.stepStatus)
+      console.log(this.$store.state.step.findData.checkRegistration.foreigner)
+      if(this.$store.state.step.stepStatus == 0) {      
+        if(this.$store.state.step.findData.checkRegistration.foreigner == 1){
+          this.$store.state.step.ruleForm.forward = [
+            { deptId: "2"}
+          ]          
+        }else if(this.$store.state.step.findData.checkRegistration.foreigner == 0){
+            console.log(this.$store.state.step.findData.checkRegistration.processingMethod)
+            if(this.$store.state.step.findData.checkRegistration.processingMethod == 2 || this.$store.state.step.findData.checkRegistration.processingMethod == 3){
+                this.$store.state.step.ruleForm.forward = [
+                  { deptId: "3"}
+                ]
+              }else {
+                this.$store.state.step.ruleForm.forward = [
+                  { deptId: "2"}
+                ]
+            }
+        }
+    }else if(this.$store.state.step.stepStatus == 1) {
+       this.$store.state.step.ruleForm.forward = [
+        { deptId: "3"}
+      ]
+    }else if(this.$store.state.step.stepStatus == 2) {
+       this.$store.state.step.ruleForm.forward = [
+        { deptId: "1"},
+        { deptId: "2"},
+        { deptId: "3"}
+      ]
+    }else if(this.$store.state.step.stepStatus == 3) {
+       this.$store.state.step.ruleForm.forward = [
+        { deptId: "3"}
+      ]
+    }else if(this.$store.state.step.stepStatus == 4) {
+       this.$store.state.step.ruleForm.forward = [
+        { deptId: "4"}
+      ]
+    }
       // this.$store.state.step.stepStatus < 5
       //   ? (this.$store.state.step.stepStatus =
       //       this.$store.state.step.stepStatus + 1)

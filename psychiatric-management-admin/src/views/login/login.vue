@@ -29,7 +29,7 @@
         </div>
         <div>
           <FormItem prop="password">
-            <Input prefix="ios-lock-outline" placeholder="密码" type="text" v-model="formInline.password" style="width: 380px;" />
+            <Input prefix="ios-lock-outline" placeholder="密码" type="password" v-model="formInline.password" style="width: 380px;" />
           </FormItem>
         </div>
         <div>

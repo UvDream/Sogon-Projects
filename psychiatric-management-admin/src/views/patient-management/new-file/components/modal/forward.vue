@@ -8,7 +8,7 @@
  -->
 
 <template>
-  <Modal v-model="modal" title="档案转发" width="600" @on-cancel="cancle">
+  <Modal v-model="modal" title="档案转发" width="600" @on-cancel="cancle" >
     <Form ref="ruleForm" label-position="top" :model="ruleForm" :label-width="200">
       <div v-for="(item,index) in ruleForm.forward" :key="index">
         <div class="form">
@@ -22,9 +22,9 @@
               trigger: 'blur'
             }"
           >
-            <Select v-model="item.deptId">
+            <Select v-model="item.deptId" :disabled="true">
               <Option value="1">网格员</Option>
-              <Option value="2" >公安</Option>
+              <Option value="2">公安</Option>
               <Option value="3">卫生</Option>
               <Option value="4">民政</Option>
             </Select>
@@ -87,9 +87,13 @@ export default {
       this.modal = val;
     },
     modal:function(val){
+      this.ruleForm.forward=this.$store.state.step.ruleForm.forward;
+      console.log("ji内测")
+      console.log(this.ruleForm)
       this.$emit("input",val)
     },
     ruleForm:function(val){
+      this.ruleForm.forward=val.ruleForm.forward;
       this.deptIds = this.ruleForm.forward.map((item,index)=>{
         return {deptId:item.deptId}
       })

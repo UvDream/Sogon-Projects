@@ -102,6 +102,8 @@ export default {
       this.$store.state.step.archivesId = "";
       this.$store.state.step.authOnOff = 1;
       this.$store.state.step.findData.id = "";
+      this.$store.state.step.ruleForm.forward = [];
+     
       this.$store.state.step.findData.basicInformation.code = "";
       this.$store.state.step.findData.basicInformation.status = "";
       this.$store.state.step.findData.basicInformation.name = "";

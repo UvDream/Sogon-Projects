@@ -20,6 +20,12 @@ const step = {
     archivesId: "",
     // 是否有权限
     authOnOff: 1,
+    // 转发部门
+    ruleForm: {
+      forward: [
+        { deptId: "1"}
+      ]
+    },
     // ---01发现页面
     findData: {
       id: "",
