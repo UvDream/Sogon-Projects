@@ -17,13 +17,24 @@
               <Input disabled v-model="formValidate.code" placeholder="输入档案号" />
             </FormItem>
             <FormItem label="档案状态" prop="status" class="form-block">
-              <Input disabled v-model="formValidate.status" placeholder="输入档案状态" />
+              <!-- <Input disabled v-model="formValidate.status" placeholder="输入档案状态" /> -->
+              <Select disabled v-model="formValidate.status" placeholder="选择档案状态">
+                <Option value="0">发现中</Option>
+                <Option value="1">已推送</Option>
+                <Option value="2">初步处理中</Option>
+                <Option value="3">已办结</Option>
+                <Option value="4">评定治疗中</Option>
+                <Option value="5">监护中</Option>
+                <Option value="6">帮扶中</Option>
+                <Option value="7">再次评定</Option>
+                <Option value="8">脱离管控</Option>
+              </Select>
             </FormItem>
             <FormItem label="创建人" prop="founder" class="form-block">
               <Input disabled v-model="formValidate.checkin_dept" placeholder="输入创建人" />
             </FormItem>
             <FormItem label="创建日期" prop="createDate" class="form-block">
-              <DatePicker disabled type="date" placeholder="选择日期" v-model="formValidate.createDate"></DatePicker>
+              <Date-picker disabled type="datetime" placeholder="选择日期" v-model="formValidate.createDate" format="yyyy-MM-dd"></Date-picker>
             </FormItem>
             <!-- <FormItem label="转发人" prop="forwarder" class="form-block">
               <Input disabled v-model="formValidate.forwarder" placeholder="输入转发人" />
@@ -45,6 +56,7 @@
 import TopTitle from "@/components/top-title/top-title";
 import vm from "../../event";
 // import { saveList } from "@/api/new-file/find";
+import {formatDate} from "@/util/util";
 export default {
   components: {
     TopTitle
@@ -55,9 +67,9 @@ export default {
       formValidate: {
         code: "",
         // name: "",
-        status: "",
+        zhuangtai: "",
         checkin_dept: "",
-        createDate: "",
+        createDate: '',
         // forwarder: "",
         // forwardDate: ""
       },
@@ -67,15 +79,25 @@ export default {
   created() {
     vm.$on("blur", val => {
       if (val == "saveEvent") {
-        this.$store.state.step.findData.basicInformation = this.formValidate;
+        var self = this;
+        setTimeout(function(){
+          self.formValidate = self.$store.state.step.findData.basicInformation;
+          self.formValidate.status = self.$store.state.step.findData.basicInformation.status;     
+          self.formValidate.createDate = formatDate(new Date(self.$store.state.step.findData.basicInformation.createDate),'yyyy-MM-dd');                                      
+        },300)
       }
     });
   },
   mounted() {
     // 如果是点进来修改
     if(true) {
+      let self = this;
       console.log(this.$store.state.step.findData.basicInformation)
-      // this.formValidate = this.$store.state.step.findData.basicInformation;
+      setTimeout(function(){
+        self.formValidate = self.$store.state.step.findData.basicInformation;
+        self.formValidate.createDate = formatDate(new Date(self.$store.state.step.findData.basicInformation.createDate),'yyyy-MM-dd');                        
+        self.formValidate.status = self.$store.state.step.findData.basicInformation.status;                        
+      },1500);
     }
   },
   methods: {}

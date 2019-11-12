@@ -121,7 +121,7 @@
 
 <script>
 import Upload from "@/components/upload/upload";
-import {unixTimeToDate} from "@../../util/util.js";
+import {formatDate} from "@/util/util";
 export default {
   props: {
     // 区分块
@@ -198,7 +198,12 @@ export default {
         {
           title: "帮扶日期",
           key: "helpDate",
-          align: "center"          
+          align: "center",
+          render: (h,params)=>{  
+              return h('div',
+                  formatDate(new Date(params.row.helpDate),'yyyy-MM-dd hh:mm')
+              )
+          }
         },
         {
           title: "是否符合申请补助金",

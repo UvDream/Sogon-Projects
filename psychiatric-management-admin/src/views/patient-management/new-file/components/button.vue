@@ -8,7 +8,7 @@
       <!-- 退回弹窗-->
       <Return v-model="returnModal" :statusObj="statusObj"/>
       <Button type="info" @click="cancelFunc">返回列表</Button>
-      <Button type="primary" @click="saveFunc(1)" :disabled="auth">保存</Button>
+      <Button type="primary" :disabled="auth">保存</Button>
       <Button type="primary" v-if="status==0" @click="saveFunc(2)" :disabled="auth">保存并推送</Button>
       <Button
         type="primary"
@@ -172,9 +172,10 @@ export default {
             this.$store.state.step.findData.basicInformation.code = res.data.code;
             this.$store.state.step.findData.basicInformation.status = res.data.status;
             this.$store.state.step.findData.basicInformation.name = res.data.name;
-            this.$store.state.step.findData.basicInformation.checkin_dept = res.data.checkin_dept;
+            this.$store.state.step.findData.basicInformation.checkin_dept = res.data.checkinUserName;
             this.$store.state.step.findData.basicInformation.createDate = res.data.createDate;
 
+            console.log(this.$store.state.step.findData.basicInformation.createDate,res.data.createDate)
             
 
           }):findSaveLists(obj).then(res=>{
@@ -183,7 +184,7 @@ export default {
             this.$store.state.step.findData.basicInformation.code = res.data.code;
             this.$store.state.step.findData.basicInformation.status = res.data.status;
             this.$store.state.step.findData.basicInformation.name = res.data.name;
-            this.$store.state.step.findData.basicInformation.checkin_dept = res.data.checkin_dept;
+            this.$store.state.step.findData.basicInformation.checkin_dept = res.data.checkinUserName;
             this.$store.state.step.findData.basicInformation.createDate = res.data.createDate;
             
             
