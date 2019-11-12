@@ -71,8 +71,8 @@
               placeholder="请选择帮扶时间"
             ></DatePicker>
           </FormItem>
-          <FormItem label="是否符合补助条件" prop="isubsidy" class="form-block">
-            <Select v-model="formValidate.isubsidy" placeholder="选择是否符合补助条件">
+          <FormItem label="是否申请补助金" prop="isubsidy" class="form-block">
+            <Select v-model="formValidate.isubsidy" placeholder="选择是否申请补助金">
               <Option value="0">是</Option>
               <Option value="1">否</Option>
             </Select>
@@ -175,7 +175,7 @@ export default {
       },
       ruleValidate: {
         helpDate: [{ required: true, message: "请输入帮扶时间" }],
-        isubsidy: [{ required: true, message: "请选择是否符合补助条件" }],
+        isubsidy: [{ required: true, message: "请选择是否申请补助金" }],
         istilltreat: [{ required: true, message: "请选择是否坚持治疗" }],
         isguardianduty: [
           { required: true, message: "请选择监护人是否履行职责" }
@@ -200,7 +200,7 @@ export default {
           align: "center"
         },
         {
-          title: "是否符合补助条件",
+          title: "是否申请补助金",
           slot: "isubsidy",
           align: "center"
         },

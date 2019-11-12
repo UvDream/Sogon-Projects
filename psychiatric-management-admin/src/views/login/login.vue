@@ -105,7 +105,7 @@ export default {
           }
           this.$router.push({ path: '/dashboard' })
         }else{
-          this.$Message.error("Fail!");
+          this.$Message.error("登陆失败!");
         }
       })
       // this.$refs[name].validate(valid => {
