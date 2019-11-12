@@ -1,6 +1,6 @@
 import fetch from "../fetch";
 
-// 村干部
+// 网格员
 export const villageLeaders = data => {
   return fetch({
     url: "/jsbrgl/userapi/login",

@@ -24,7 +24,7 @@
           >
             <Select v-model="item.deptId">
               <Option value="1">网格员</Option>
-              <Option value="2">公安</Option>
+              <Option value="2" >公安</Option>
               <Option value="3">卫生</Option>
               <Option value="4">民政</Option>
             </Select>
