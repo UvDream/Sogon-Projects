@@ -41,6 +41,8 @@ import AgainAssessment from "./again-assessment";
 // 获取默认数据
 import {findAllMessage} from "@/api/new-file/oldData"
 
+import { formatDate } from "@/util/util";
+
 export default {
   components: {
     TopStep,
@@ -127,7 +129,8 @@ export default {
             obj_dealData.name = data[1].wCompanyName;
             obj_dealData.principal = data[1].wCompanyLeader;
             obj_dealData.phone = data[1].wCompanyTel;
-            obj_dealData.contactTime = data[1].wCompanyContactTime;
+            // obj_dealData.contactTime = data[1].wCompanyContactTime;
+            obj_dealData.contactTime = formatDate(new Date(data[1].wCompanyContactTime),'yyyy-MM-dd hh:mm');
             obj_dealData.description = data[1].wDoRemarks;
 
             obj_dealData.isTreatment = data[1].bIstreat;

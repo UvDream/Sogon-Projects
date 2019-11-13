@@ -30,6 +30,7 @@
           <FormItem label="原籍公安联系时间" prop="contactTime" class="form-block">
             <DatePicker
               type="datetime"
+              format="yyyy-MM-dd HH:mm"
               placeholder="请选择时间"
               v-model="formValidate.contactTime"
             ></DatePicker>
