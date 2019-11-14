@@ -128,6 +128,14 @@ const routes = [
           import(
             "../views/system-management/log-management/index.vue"
           )
+      },
+      {
+        path: "/grants",
+        name: "grants",
+        meta: {
+          label: "补助金管理"
+        },
+        component: () => import("../views/grants-management/index.vue")
       }
     ]
   },
