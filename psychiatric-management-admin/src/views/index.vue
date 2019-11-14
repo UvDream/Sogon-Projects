@@ -162,7 +162,6 @@ export default {
     logout(){
       this.$router.push({ path: '/login' });    
       history.go(0);
-      // alert('dsf')
     }
   }
 };

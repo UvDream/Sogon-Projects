@@ -114,6 +114,7 @@ export default {
     var self = this;
     setTimeout(() => {   
       self.formValidate = self.$store.state.step.dealData.formData;
+      self.formValidate.isTreatment = self.$store.state.step.dealData.formData.isTreatment.toString();
     },300);
   },  
   methods: {

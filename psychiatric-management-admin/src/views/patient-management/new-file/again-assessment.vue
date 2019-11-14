@@ -41,7 +41,7 @@
             <Input v-model="formValidate.phone" placeholder="输入等级评定医生联系电话" />
           </FormItem>
           <FormItem label="等级评定日期" prop="date" class="form-block">
-            <DatePicker type="date" placeholder="选择等级评定日期" v-model="formValidate.date"></DatePicker>
+            <DatePicker type="datetime" placeholder="选择等级评定日期" v-model="formValidate.date" format="yyyy-MM-dd HH:mm"></DatePicker>
           </FormItem>
         </div>
         <div class="form">
@@ -120,6 +120,7 @@ export default {
     var self = this;
     setTimeout(() => {   
       self.formValidate = self.$store.state.step.againTreatData.formPatientLevel;
+      self.formValidate.status = self.$store.state.step.againTreatData.formPatientLevel.status.toString();
       console.log(self.$store.state.step.againTreatData.formPatientLevel)
     },300)
   },

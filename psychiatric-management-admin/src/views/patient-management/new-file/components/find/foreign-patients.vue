@@ -34,7 +34,7 @@
               <Input disabled v-model="formValidate.checkin_dept" placeholder="输入创建人" />
             </FormItem>
             <FormItem label="创建日期" prop="createDate" class="form-block">
-              <Date-picker disabled type="datetime" placeholder="选择日期" v-model="formValidate.createDate" format="yyyy-MM-dd"></Date-picker>
+              <Date-picker disabled type="datetime" placeholder="选择日期" v-model="formValidate.createDate" format="yyyy-MM-dd HH:mm" ></Date-picker>
             </FormItem>
             <!-- <FormItem label="转发人" prop="forwarder" class="form-block">
               <Input disabled v-model="formValidate.forwarder" placeholder="输入转发人" />
@@ -80,11 +80,8 @@ export default {
     vm.$on("blur", val => {
       if (val == "saveEvent") {
         var self = this;
-        setTimeout(function(){
           self.formValidate = self.$store.state.step.findData.basicInformation;
-          self.formValidate.status = self.$store.state.step.findData.basicInformation.status;     
-          self.formValidate.createDate = formatDate(new Date(self.$store.state.step.findData.basicInformation.createDate),'yyyy-MM-dd');                                      
-        },300)
+          self.formValidate.status = '4';                                      
       }
     });
   },
@@ -92,12 +89,10 @@ export default {
     // 如果是点进来修改
     if(true) {
       let self = this;
-      console.log(this.$store.state.step.findData.basicInformation)
-      setTimeout(function(){
-        self.formValidate = self.$store.state.step.findData.basicInformation;
-        self.formValidate.createDate = formatDate(new Date(self.$store.state.step.findData.basicInformation.createDate),'yyyy-MM-dd');                        
-        self.formValidate.status = self.$store.state.step.findData.basicInformation.status;                        
-      },1500);
+      console.log(self.$store.state.step.findData.basicInformation.status)
+      
+      self.formValidate = self.$store.state.step.findData.basicInformation;  
+      self.formValidate.status = self.$store.state.step.findData.basicInformation.status.toString();                        
     }
   },
   methods: {}

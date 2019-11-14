@@ -82,6 +82,7 @@ export default {
     var self = this;
     setTimeout(() => {   
       self.formValidate = self.$store.state.step.dealData.formData;
+      alert(self.formValidate.contactTime)
     },300);
   },
   created() {

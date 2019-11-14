@@ -47,7 +47,7 @@
               trigger: 'blur'
             }"
             >
-              <DatePicker type="datetime" placeholder="请选择病患住院时间" v-model="item.checkinTime"></DatePicker>
+              <DatePicker type="datetime" placeholder="请选择病患住院时间" v-model="item.checkinTime" format="yyyy-MM-dd HH:mm"></DatePicker>
             </FormItem>
             <FormItem
               label="病患出院时间"
@@ -59,7 +59,7 @@
               trigger: 'blur'
             }"
             >
-              <DatePicker type="datetime" placeholder="请选择病患出院时间" v-model="item.checkoutTime"></DatePicker>
+              <DatePicker type="datetime" placeholder="请选择病患出院时间" v-model="item.checkoutTime" format="yyyy-MM-dd HH:mm"></DatePicker>
             </FormItem>
           </div>
           <div class="form">

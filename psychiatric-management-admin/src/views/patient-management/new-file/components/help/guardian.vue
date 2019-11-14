@@ -105,7 +105,7 @@ export default {
     setTimeout(function(){
       if(self.$store.state.form.id != ""){
         self.formValidate.name = self.$store.state.form.guardian.name;
-        self.formValidate.relationship = self.$store.state.form.guardian.relationship;
+        self.formValidate.relationship = self.$store.state.form.guardian.relationship.toString();
         self.formValidate.banNumber = self.$store.state.form.guardian.banNumber;
         self.formValidate.phone = self.$store.state.form.guardian.phone;
       }

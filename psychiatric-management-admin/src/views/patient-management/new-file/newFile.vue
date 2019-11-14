@@ -94,7 +94,7 @@ export default {
             obj_basicInformation.code = data[0].code;
             obj_basicInformation.status = data[0].status;
             obj_basicInformation.checkin_dept = data[0].checkinUserName;
-            // obj_basicInformation.createDate = data[0].createDate;
+            obj_basicInformation.createDate =  formatDate(new Date(data[0].createDate),'yyyy-MM-dd hh:mm');
             this.$store.state.step.isForeign = data[0].isforeign;
             // obj.archivesId = "",
             this.$store.state.step.findData.id = data[0].id;
@@ -144,8 +144,8 @@ export default {
         // 评定治疗
             let obj_treatData = this.$store.state.step.treatData;
             this.$store.state.step.treatData.id = data[2].id;
-            // obj_treatData.formPatientLevel.time = data[2].doctorEvtime;
             obj_treatData.formPatientLevel.doctor = data[2].doctorName;
+            obj_treatData.formPatientLevel.time = formatDate(new Date(data[2].doctorEvtime),'yyyy-MM-dd hh:mm');
             obj_treatData.formPatientLevel.phone = data[2].doctorTel;
             obj_treatData.formPatientLevel.hospital = data[2].hospitalName;
             obj_treatData.formPatientLevel.description = data[2].levelRemark;
@@ -156,8 +156,11 @@ export default {
             data[2].tTreatRecords.forEach((element,index) => {              
               // 0 是 治疗
               if(element.type == 0) {
+                data[2].tTreatRecords[index].treatTime = formatDate(new Date(data[2].tTreatRecords[index].treatTime),'yyyy-MM-dd hh:mm');
                 formPatientTreatArr.push(data[2].tTreatRecords[index])
               }else if(element.type == 1){
+                data[2].tTreatRecords[index].checkinTime = formatDate(new Date(data[2].tTreatRecords[index].checkinTime),'yyyy-MM-dd hh:mm');
+                data[2].tTreatRecords[index].checkoutTime = formatDate(new Date(data[2].tTreatRecords[index].checkoutTime),'yyyy-MM-dd hh:mm');
                 formPatientZhuyuanArr.push(data[2].tTreatRecords[index])
               }
             });
@@ -188,15 +191,19 @@ export default {
             obj_helpData.cadre.IdNumber = data[3].gridUser.idCode;
             obj_helpData.cadre.phone = data[3].gridUser.telephone;
 
-            obj_helpData.police.department = data[3].policeUser.deptId;
-            obj_helpData.police.name = data[3].policeUser.id;
-            obj_helpData.police.IdNumber = data[3].policeUser.idCode;
-            obj_helpData.police.phone = data[3].policeUser.telephone;
+            if(data[3].policeUser != undefined){
+              obj_helpData.police.department = data[3].policeUser.deptId;
+              obj_helpData.police.name = data[3].policeUser.id;
+              obj_helpData.police.IdNumber = data[3].policeUser.idCode;
+              obj_helpData.police.phone = data[3].policeUser.telephone;
+            }
 
-            obj_helpData.doctor.department = data[3].doctorUser.deptId;
-            obj_helpData.doctor.name = data[3].doctorUser.id;
-            obj_helpData.doctor.IdNumber = data[3].doctorUser.idCode;
-            obj_helpData.doctor.phone = data[3].doctorUser.telephone;
+            if(data[3].doctorUser != undefined){
+              obj_helpData.doctor.department = data[3].doctorUser.deptId;
+              obj_helpData.doctor.name = data[3].doctorUser.id;
+              obj_helpData.doctor.IdNumber = data[3].doctorUser.idCode;
+              obj_helpData.doctor.phone = data[3].doctorUser.telephone;
+            }
             
 
 
@@ -207,8 +214,11 @@ export default {
 
             data[3].tHelpRecordsList.forEach((element,index) => {
               console.log(element)
+            
+
               // 0 是 治疗
               if(element.type == 0) {
+                data[3].tHelpRecordsList[index].helpDate = formatDate(new Date(data[3].tHelpRecordsList[index].helpDate),'yyyy-MM-dd hh:mm');
                 cadreListArr.push(data[3].tHelpRecordsList[index]);
               }else if(element.type == 1){
                 policeList.push(data[3].tHelpRecordsList[index]);
@@ -218,17 +228,20 @@ export default {
                 guardianList.push(data[3].tHelpRecordsList[index]);
               }
             });
+            
 
             obj_helpData.cadreList = cadreListArr;
             obj_helpData.policeList = policeList;
             obj_helpData.doctorList = doctorList;
             obj_helpData.guardianList = guardianList;
 
+            console.log(obj_helpData.cadreList)
+
 
         // 再次评定
         let obj_againTreat = this.$store.state.step.againTreatData;
             this.$store.state.step.againTreatData.id = data[4].id;
-            // obj_againTreat.formPatientLevel.time = data[2].doctorEvtime;
+            obj_againTreat.formPatientLevel.date = formatDate(new Date(data[4].doctorEvtime),'yyyy-MM-dd hh:mm');
             obj_againTreat.formPatientLevel.doctor = data[4].doctorName;
             obj_againTreat.formPatientLevel.phone = data[4].doctorTel;
             obj_againTreat.formPatientLevel.hospital = data[4].hospitalName;
@@ -241,6 +254,9 @@ export default {
             this.$store.state.step.outControlData.id = data[5].id;
             // obj_againTreat.formPatientLevel.time = data[2].doctorEvtime;
             console.log(data[5].tCuteRecordsList)
+            data[5].tCuteRecordsList.forEach((element,index) => {           
+              data[5].tCuteRecordsList[index].patientCuteDate = formatDate(new Date(data[5].tCuteRecordsList[index].patientCuteDate),'yyyy-MM-dd hh:mm');
+            })
             obj_outControl.formPatientRecorder = data[5].tCuteRecordsList;
       })
     }

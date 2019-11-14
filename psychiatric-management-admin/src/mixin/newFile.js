@@ -81,7 +81,6 @@ export default {
       api.startUp(obj).then(res=>{
         if(res.success==true){
           this.$store.state.step.authOnOff = res.data;
-          alert(res.data)
           this.$Message.success("启动成功！");
         }else{
           this.$Message.success(res.msg);

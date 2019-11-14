@@ -59,7 +59,7 @@
               trigger: 'blur'
             }"
             >
-              <DatePicker type="datetime" placeholder="请选择病患就诊时间" v-model="item.treatTime"></DatePicker>
+              <DatePicker type="datetime" placeholder="请选择病患就诊时间" v-model="item.treatTime" format="yyyy-MM-dd HH:mm"></DatePicker>
             </FormItem>
           </div>
           <div class="form">

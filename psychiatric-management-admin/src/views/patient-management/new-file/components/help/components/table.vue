@@ -237,6 +237,8 @@ export default {
   mounted() {
     var self = this;
     setTimeout(() => {   
+      console.log(self.$store.state.form.cadreList);
+
       self.code === 0 ? (self.data = self.cadreList) : "";
       self.code === 1 ? (self.data = self.policeList) : "";
       self.code === 2 ? (self.data = self.doctorList) : "";
@@ -264,6 +266,7 @@ export default {
             ? this.$store.state.form.guardianList.push(this.formValidate)
             : "";
           this.$Message.success("Success!");
+          this.formValidate = {};
         } else {
           this.$Message.error("Fail!");
         }

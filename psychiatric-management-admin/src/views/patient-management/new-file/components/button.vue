@@ -8,7 +8,7 @@
       <!-- 退回弹窗-->
       <Return v-model="returnModal" :statusObj="statusObj"/>
       <Button type="info" @click="cancelFunc">返回列表</Button>
-      <Button type="primary" :disabled="auth">保存</Button>
+      <Button type="primary" :disabled="auth" @click="saveFunc(1)" >保存</Button>
       <Button type="primary" v-if="status==0" @click="saveFunc(2)" :disabled="auth">保存并推送</Button>
       <Button
         type="primary"
@@ -207,6 +207,7 @@ export default {
             "bIstreat":"123",
             "bIswilltreat":"0",
             "bDoRemarks":"222222222222222222",
+            "wCompanyContactTime":"",
             "fristRemarks":"0",
             "secondRemarks":"0",
             "thirdRemarks":"13222222222",

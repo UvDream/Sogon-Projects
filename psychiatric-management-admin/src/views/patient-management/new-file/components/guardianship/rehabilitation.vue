@@ -24,7 +24,7 @@
               trigger: 'blur'
             }"
             >
-              <DatePicker type="datetime" placeholder="请选择病患康复日期" v-model="item.patientCuteDate"></DatePicker>
+              <DatePicker type="datetime" format="yyyy-MM-dd HH:mm" placeholder="请选择病患康复日期" v-model="item.patientCuteDate"></DatePicker>
             </FormItem>
             <FormItem
               label="病患康复后状态"
@@ -133,6 +133,9 @@ export default {
     let self = this;
     setTimeout(function(){
       self.ruleForm.more = self.$store.state.step.outControlData.formPatientRecorder;
+      self.ruleForm.more.forEach(element => {
+        element.patientCuteType = element.patientCuteType.toString();
+      });
     },500)
   },
   created() {
