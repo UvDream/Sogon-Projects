@@ -106,6 +106,7 @@ export default {
   created() {
     vm.$on("blur", val => {
       if (val == "saveEvent") {
+        // alert('dsf')
         this.handleSubmit('formValidate');
       }
     });
@@ -121,11 +122,13 @@ export default {
     handleSubmit(name) {
       this.$refs[name].validate(valid => {
         if (valid) {
-          // this.$Message.success("Success!");
+          this.$Message.success("Success!");
+          // alert('Success')
           this.$store.state.step.dealData.formData = this.formValidate;
           this.$store.state.step.dealStatus = true;
         } else {
-          // this.$Message.error("Fail!");
+          this.$Message.error("Fail!");
+          // alert('fail')
           this.$store.state.step.dealStatus = false;
         }
       });

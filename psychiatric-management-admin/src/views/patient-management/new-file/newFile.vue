@@ -72,7 +72,7 @@ export default {
       }
     }
     // this.$store.state.step.stepStatus = this.$route.params.status == undefined?0:this.$route.params.status;
-    // this.$store.state.step.stepStatus = 0;
+    this.$store.state.step.stepStatus = 1;
     this.$store.state.authOnOff = this.$route.params.isOperRole;
     this.$store.state.archivesId = this.$route.params.id;
     console.log(this.$route.params.id)
@@ -101,7 +101,7 @@ export default {
             this.$store.state.step.archivesId = data[0].id;
             obj_checkRegistration.patientName = data[0].patientName;
             obj_checkRegistration.sex = data[0].patientSex;
-            obj_checkRegistration.patientPhone = data[0].patientPhone;
+            obj_checkRegistration.patientPhone = data[0].patientTel;
             obj_checkRegistration.IdNumber = data[0].patientCode;
             obj_checkRegistration.status = data[0].type;
             obj_checkRegistration.employer = data[0].patientCompany;

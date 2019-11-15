@@ -277,9 +277,15 @@ export default {
           width: 200,
           key: 'lastForWardTime',
           render:(h,params)=>{
-            return h('div',
-              formatDate(new Date(params.row.lastForWardTime),'yyyy-MM-dd hh:mm')
-            )
+            if(params.row.lastForWardTime != undefined){
+              return h('div',
+                formatDate(new Date(params.row.lastForWardTime),'yyyy-MM-dd hh:mm')
+              )
+            }else {
+              return h('div',
+                '--'
+              )
+            }
           }
         },
         {

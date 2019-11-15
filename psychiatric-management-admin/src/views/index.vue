@@ -107,17 +107,17 @@ export default {
             { name: "通知管理", id: "2-3", url: "/notificationManagement" }
           ]
         },
-        {
-          name: "系统管理",
-          icon: "ios-build",
-          id: "4",
-          url: "/system",
-          children: [
-            { name: "账户管理", id: "4-1", url: "/accountManagement" },
-            { name: "人员管理", id: "4-2", url: "/personManagement" },
-            { name: "日志管理", id: "4-3", url: "/logManagement" }
-          ]
-        },
+        // {
+        //   name: "系统管理",
+        //   icon: "ios-build",
+        //   id: "4",
+        //   url: "/system",
+        //   children: [
+        //     { name: "账户管理", id: "4-1", url: "/accountManagement" },
+        //     { name: "人员管理", id: "4-2", url: "/personManagement" },
+        //     { name: "日志管理", id: "4-3", url: "/logManagement" }
+        //   ]
+        // },
         {
           name: "补助金管理",
           icon: "md-ribbon",

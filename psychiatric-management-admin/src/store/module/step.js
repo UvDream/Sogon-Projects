@@ -46,6 +46,7 @@ const step = {
          // 2
          employer: "",
          patient: "",
+         patientPhone: "",
          village: "",
          police: "",
          // 3

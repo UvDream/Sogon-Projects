@@ -146,7 +146,7 @@ export default {
           obj.patientCode = data.IdNumber;
           obj.type = data.status;
           obj.patientCompany = data.employer;
-          obj.patientTel = data.patient;
+          obj.patientTel = data.patientPhone;
           obj.patientRusticate = data.village;
           obj.patientPolice = data.police;
           obj.isforeign = data.foreigner;
@@ -197,7 +197,8 @@ export default {
     },
     // 02初步处理保存
     dealSave(id) {
-      // if (this.$store.state.step.dealStatus) {
+      // alert(this.$store.state.step.dealStatus)
+      if (this.$store.state.step.dealStatus) {
         console.log(this.$store.state.step.archivesId)
         console.log(this.$store.state.step.archivesId)
 
@@ -214,7 +215,7 @@ export default {
             "type": this.$store.state.step.isForeign,
             "wType": this.$store.state.step.isForeign,
             "tFiles":"asdfsdf",                      
-          }        
+          }
 
           // 左边后台接口名称，右边本地命名（表单、通信vuex）
 
@@ -241,9 +242,9 @@ export default {
             
           })
           console.log("可以掉接口保存");
-      // } else {
-      //   console.error("不可以保存");
-      // }
+      } else {
+        console.error("不可以保存");
+      }
     },
     // 03评定治疗保存
     treatSave(id) {
