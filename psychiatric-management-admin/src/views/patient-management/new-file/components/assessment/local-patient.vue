@@ -25,6 +25,12 @@
               <Option value="1">否</Option>
             </Select>
           </FormItem>
+          <FormItem label="是否愿意接受治疗" prop="bIswilltreat" class="form-block">
+            <Select v-model="formValidate.bIswilltreat" placeholder="选择档案状态">
+              <Option value="0">是</Option>
+              <Option value="1">否</Option>
+            </Select>
+          </FormItem>
           <FormItem label="情况说明" prop="isTreatmentDescription" class="form-blockd">
             <Input v-model="formValidate.isTreatmentDescription" placeholder="请输入情况说明" />
           </FormItem>
@@ -80,6 +86,7 @@ export default {
       closed: false,
       formValidate: {
         isTreatment: "",
+        bIswilltreat:"",
         isTreatmentDescription: "",
         firstVisit: "",
         secondVisit: "",
@@ -89,7 +96,8 @@ export default {
       },
       ruleValidate: {
         isTreatment: [{ required: true, message: "请选择是否接受治疗" }],
-        uploadFiles: [{ required: true, message: "上传本埠证明材料" }]
+        bIswilltreat: [{ required: true, message: "请选择是否接受治疗" }],
+        // uploadFiles: [{ required: true, message: "上传本埠证明材料" }]
       }
     };
   },
@@ -116,6 +124,7 @@ export default {
     setTimeout(() => {   
       self.formValidate = self.$store.state.step.dealData.formData;
       self.formValidate.isTreatment = self.$store.state.step.dealData.formData.isTreatment.toString();
+      self.formValidate.bIswilltreat = self.$store.state.step.dealData.formData.bIswilltreat.toString();      
     },300);
   },  
   methods: {
@@ -123,7 +132,7 @@ export default {
       this.$refs[name].validate(valid => {
         if (valid) {
           this.$Message.success("Success!");
-          // alert('Success')
+          alert('Success')
           this.$store.state.step.dealData.formData = this.formValidate;
           this.$store.state.step.dealStatus = true;
         } else {

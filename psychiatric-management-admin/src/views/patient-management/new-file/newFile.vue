@@ -134,6 +134,7 @@ export default {
             obj_dealData.description = data[1].wDoRemarks;
 
             obj_dealData.isTreatment = data[1].bIstreat;
+            obj_dealData.bIswilltreat = data[1].bIswilltreat;          
             obj_dealData.isTreatmentDescription = data[1].bDoRemarks;
             obj_dealData.firstVisit = data[1].fristRemarks;
             obj_dealData.secondVisit = data[1].secondRemarks;

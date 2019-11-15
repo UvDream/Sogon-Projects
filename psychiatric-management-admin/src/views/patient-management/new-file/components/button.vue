@@ -170,10 +170,10 @@ export default {
               this.$store.state.step.archivesId = res.data.id;            
             }
             this.$store.state.step.findData.basicInformation.code = res.data.code;
-            this.$store.state.step.findData.basicInformation.status = res.data.status;
+            this.$store.state.step.findData.basicInformation.status = res.data.status.toString(); 
             this.$store.state.step.findData.basicInformation.name = res.data.name;
             this.$store.state.step.findData.basicInformation.checkin_dept = res.data.checkinUserName;
-            this.$store.state.step.findData.basicInformation.createDate = res.data.createDate;
+            this.$store.state.step.findData.basicInformation.createDate = formatDate(new Date(res.data.createDate),'yyyy-MM-dd hh:mm');
 
             console.log(this.$store.state.step.findData.basicInformation.createDate,res.data.createDate)
             
@@ -197,7 +197,7 @@ export default {
     },
     // 02初步处理保存
     dealSave(id) {
-      // alert(this.$store.state.step.dealStatus)
+      alert(this.$store.state.step.dealStatus)
       if (this.$store.state.step.dealStatus) {
         console.log(this.$store.state.step.archivesId)
         console.log(this.$store.state.step.archivesId)
@@ -205,16 +205,16 @@ export default {
           let obj={
             "id":"",
             "archivesId": this.$store.state.step.archivesId,
-            "bIstreat":"123",
+            "bIstreat":"0",
             "bIswilltreat":"0",
-            "bDoRemarks":"222222222222222222",
+            "bDoRemarks":"",
             "wCompanyContactTime":"",
             "fristRemarks":"0",
             "secondRemarks":"0",
-            "thirdRemarks":"13222222222",
+            "thirdRemarks":"",
             "type": this.$store.state.step.isForeign,
             "wType": this.$store.state.step.isForeign,
-            "tFiles":"asdfsdf",                      
+            "tFiles": [],                      
           }
 
           // 左边后台接口名称，右边本地命名（表单、通信vuex）
@@ -231,6 +231,7 @@ export default {
 
 
           obj.bIstreat = vx_data_outside.isTreatment;
+          obj.bIswilltreat = vx_data_outside.bIswilltreat;
           obj.bDoRemarks = vx_data_outside.isTreatmentDescription;
           obj.fristRemarks = vx_data_outside.firstVisit;
           obj.secondRemarks = vx_data_outside.secondVisit;
@@ -255,15 +256,15 @@ export default {
             "id": "",
             "archivesId": this.$store.state.step.archivesId,
             "patientLevel": "1",
-            "hospitalName": "cdhjas",
-            "doctorName": "xasxas",
-            "doctorTel": "1111111",
+            "hospitalName": "",
+            "doctorName": "",
+            "doctorTel": "",
             "doctorEvtime": null,
-            "levelRemark": "sajdakdhask",
+            "levelRemark": "",
             "tFiles": [],
             "tTreatRecords": [
                 {
-                    "id": "9",
+                    "id": "",
                     "patientHospital": null,
                     "patientDoctor": null,
                     "doctorTel": null,
@@ -271,7 +272,7 @@ export default {
                     "checkinTime": null,
                     "checkoutTime": null,
                     "treatRemark": null,
-                    "fileCode": "1572874968047",
+                    "fileCode": "",
                     "treatId": "",
                     "type": "0",
                     "tFiles": []
@@ -285,7 +286,7 @@ export default {
                     "checkinTime": null,
                     "checkoutTime": null,
                     "treatRemark": null,
-                    "fileCode": "1572874968047",
+                    "fileCode": "",
                     "treatId": "",
                     "type": "1",
                     "tFiles": []
@@ -328,18 +329,18 @@ export default {
             "archivesId": this.$store.state.step.archivesId,
             "gridUserId": "zjjjz",
             "policeUserId": "1",
-            "doctorUserId": "sdssss",
-            "guardianName": "daadadsa",
-            "guardianRel": "daadadsa",
-            "guardianBankCardNumber": "daadadsa",
-            "guardianTelephone": "daadadsa",
+            "doctorUserId": "",
+            "guardianName": "",
+            "guardianRel": "",
+            "guardianBankCardNumber": "",
+            "guardianTelephone": "daaddsa",
             "tHelpRecordsList": [{
               "isubsidy": "0",
               "istilltreat": "0",
               "isguardianduty": "0",
-              "causeTrouble": "sjsjsjjs",
-              "recureinfo": "ssss",
-              "archivesId": "56",
+              "causeTrouble": "",
+              "recureinfo": "",
+              "archivesId": "",
               "type": "3",
               "tFiles": []
             },
@@ -347,9 +348,9 @@ export default {
               "isubsidy": "0",
               "istilltreat": "0",
               "isguardianduty": "0",
-              "causeTrouble": "sjsjsjjs",
-              "recureinfo": "ssss",
-              "archivesId": "56",
+              "causeTrouble": "",
+              "recureinfo": "",
+              "archivesId": "",
               "type": "3",
               "tFiles": []
             }]
@@ -396,12 +397,12 @@ export default {
           let formPatientLevel={
             "id":"",
             "archivesId": this.$store.state.step.archivesId,
-            "patientLevel":"123",
+            "patientLevel":"",
             "hospitalName":"0",
-            "doctorName":"222222222222222222",
+            "doctorName":"",
             "doctorTel":"0",
             "doctorEvtime":"0",
-            "levelRemark":"13222222222",
+            "levelRemark":"",
             "tFiles":[],          
           }
 
@@ -441,8 +442,8 @@ export default {
                   {
                       "patientCuteDate": "",
                       "patientCuteType": "1", 
-                      "patientCompany": "曙光", 
-                      "patientRemarks": "sssss",
+                      "patientCompany": "", 
+                      "patientRemarks": "",
                       "uploadFiles": []
                   }
               ]
