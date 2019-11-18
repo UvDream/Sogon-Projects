@@ -23,7 +23,7 @@
               trigger: 'blur'
             }"
             >
-              <Input v-model="item.patientHospital" placeholder="输入病患就诊医院" />
+              <Input v-model="item.patientHospital" placeholder="输入病患就诊医院" :disabled="auth"/>
             </FormItem>
             <FormItem
               label="病患主治医生"
@@ -35,7 +35,7 @@
               trigger: 'blur'
             }"
             >
-              <Input v-model="item.patientDoctor" placeholder="输入病患主治医生" />
+              <Input v-model="item.patientDoctor" placeholder="输入病患主治医生" :disabled="auth"/>
             </FormItem>
             <FormItem
               label="医生联系电话"
@@ -47,7 +47,7 @@
               trigger: 'blur'
             }"
             >
-              <Input v-model="item.doctorTel" placeholder="输入医生联系电话" />
+              <Input v-model="item.doctorTel" placeholder="输入医生联系电话" :disabled="auth"/>
             </FormItem>
             <FormItem
               label="病患就诊时间"
@@ -59,7 +59,7 @@
               trigger: 'blur'
             }"
             >
-              <DatePicker type="datetime" placeholder="请选择病患就诊时间" v-model="item.treatTime" format="yyyy-MM-dd HH:mm"></DatePicker>
+              <DatePicker type="datetime" placeholder="请选择病患就诊时间" v-model="item.treatTime" format="yyyy-MM-dd HH:mm" :disabled="auth"></DatePicker>
             </FormItem>
           </div>
           <div class="form">
@@ -73,7 +73,7 @@
               trigger: 'blur'
             }"
             >
-              <Input type="textarea" v-model="item.treatRemark" placeholder="输入病患诊断记录情况" />
+              <Input type="textarea" v-model="item.treatRemark" placeholder="输入病患诊断记录情况" :disabled="auth"/>
             </FormItem>
             <FormItem
               label="病患治疗证明材料"
@@ -119,6 +119,7 @@ export default {
   },
   data() {
     return {
+      auth: false,
       closed: false,
       formValidate: {
         more: [

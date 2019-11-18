@@ -18,6 +18,7 @@
       <div class="form" style="margin-top:20px">
         <FormItem label="部门" prop="department" class="form-block">
           <Select
+            :disabled="auth"
             v-model="formValidate.department"
             placeholder="请选择部门"
             @on-change="departmentChange"
@@ -30,16 +31,16 @@
           </Select>
         </FormItem>
         <FormItem label="姓名" prop="name" class="form-block">
-          <Select v-model="formValidate.name" placeholder="请输入姓名" @on-change="nameChange">
+          <Select v-model="formValidate.name" placeholder="请输入姓名" @on-change="nameChange" :disabled="auth">
             <Option v-for="item in nameList" :value="item.id" :key="item.value">{{ item.name }}</Option>
           </Select>
         </FormItem>
 
         <FormItem label="身份证号" prop="IdNumber" class="form-block">
-          <Input v-model="formValidate.IdNumber" placeholder="输入身份证号" />
+          <Input v-model="formValidate.IdNumber" placeholder="输入身份证号" :disabled="auth"/>
         </FormItem>
         <FormItem label="联系电话" prop="phone" class="form-block">
-          <Input v-model="formValidate.phone" placeholder="输入联系电话" />
+          <Input v-model="formValidate.phone" placeholder="输入联系电话" :disabled="auth"/>
         </FormItem>
         <!-- <FormItem style="width:100px">
           <Button type="primary" style="margin-top:25px">保存</Button>
@@ -63,6 +64,7 @@ code:{
 
   data() {
     return {
+      auth: false,
       departmentList: [],
       nameList: [],
       formValidate: {

@@ -24,7 +24,7 @@
               trigger: 'blur'
             }"
             >
-              <DatePicker type="datetime" format="yyyy-MM-dd HH:mm" placeholder="请选择病患康复日期" v-model="item.patientCuteDate"></DatePicker>
+              <DatePicker type="datetime" format="yyyy-MM-dd HH:mm" placeholder="请选择病患康复日期" v-model="item.patientCuteDate" :disabled="auth"></DatePicker>
             </FormItem>
             <FormItem
               label="病患康复后状态"
@@ -36,7 +36,7 @@
               trigger: 'blur'
             }"
             >
-              <Select v-model="item.patientCuteType" placeholder="选择档案状态">
+              <Select v-model="item.patientCuteType" placeholder="选择档案状态" :disabled="auth">
                 <Option value="0">在家</Option>
                 <Option value="1">住院</Option>
                 <Option value="2">就学</Option>
@@ -55,7 +55,7 @@
               trigger: 'blur'
             }"
             >
-              <Input v-model="item.patientCompany" placeholder="输入病患工作单位" />
+              <Input v-model="item.patientCompany" placeholder="输入病患工作单位" :disabled="auth"/>
             </FormItem>
           </div>
           <div class="form">
@@ -69,7 +69,7 @@
               trigger: 'blur'
             }"
             >
-              <Input type="textarea" v-model="item.patientRemarks" placeholder="输入病患康复情况说明" />
+              <Input type="textarea" v-model="item.patientRemarks" placeholder="输入病患康复情况说明" :disabled="auth"/>
             </FormItem>
             <FormItem
               label="病患治疗证明材料"
@@ -115,6 +115,7 @@ export default {
   },
   data() {
     return {
+      auth: false,
       closed: false,
       ruleForm: {
         more: [

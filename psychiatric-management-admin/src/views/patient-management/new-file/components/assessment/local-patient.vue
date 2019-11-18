@@ -20,25 +20,26 @@
       >
         <div class="form">
           <FormItem label="是否接受治疗" prop="isTreatment" class="form-block">
-            <Select v-model="formValidate.isTreatment" placeholder="选择档案状态">
+            <Select v-model="formValidate.isTreatment" placeholder="选择档案状态" :disabled="auth">
               <Option value="0">是</Option>
               <Option value="1">否</Option>
             </Select>
           </FormItem>
           <FormItem label="是否愿意接受治疗" prop="bIswilltreat" class="form-block">
-            <Select v-model="formValidate.bIswilltreat" placeholder="选择档案状态">
+            <Select v-model="formValidate.bIswilltreat" placeholder="选择档案状态" :disabled="auth">
               <Option value="0">是</Option>
               <Option value="1">否</Option>
             </Select>
           </FormItem>
           <FormItem label="情况说明" prop="isTreatmentDescription" class="form-blockd">
-            <Input v-model="formValidate.isTreatmentDescription" placeholder="请输入情况说明" />
+            <Input v-model="formValidate.isTreatmentDescription" placeholder="请输入情况说明" :disabled="auth"/>
           </FormItem>
         </div>
 
         <div class="form">
           <FormItem label="第一次走访说明" prop="firstVisit" class="form-more">
             <Input
+              :disabled="auth"
               v-model="formValidate.firstVisit"
               type="textarea"
               :autosize="{ minRows: 2, maxRows: 5 }"
@@ -47,6 +48,7 @@
           </FormItem>
           <FormItem label="第二次走访说明" prop="secondVisit" class="form-more">
             <Input
+              :disabled="auth"
               v-model="formValidate.secondVisit"
               type="textarea"
               :autosize="{ minRows: 2, maxRows: 5 }"
@@ -55,6 +57,7 @@
           </FormItem>
           <FormItem label="第三次走访说明" prop="thirdVisit" class="form-more">
             <Input
+              :disabled="auth"
               v-model="formValidate.thirdVisit"
               type="textarea"
               :autosize="{ minRows: 2, maxRows: 5 }"
@@ -83,6 +86,7 @@ export default {
   },
   data() {
     return {
+      auth: false,
       closed: false,
       formValidate: {
         isTreatment: "",

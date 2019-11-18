@@ -23,7 +23,7 @@
               trigger: 'blur'
             }"
             >
-              <Input v-model="item.patientHospital" placeholder="输入病患就诊医院" />
+              <Input v-model="item.patientHospital" placeholder="输入病患就诊医院" :disabled="auth"/>
             </FormItem>
             <FormItem
               label="病患主治医生"
@@ -35,7 +35,7 @@
               trigger: 'blur'
             }"
             >
-              <Input v-model="item.patientDoctor" placeholder="输入病患住院医生" />
+              <Input v-model="item.patientDoctor" placeholder="输入病患住院医生" :disabled="auth"/>
             </FormItem>
             <FormItem
               label="病患住院时间"
@@ -47,7 +47,7 @@
               trigger: 'blur'
             }"
             >
-              <DatePicker type="datetime" placeholder="请选择病患住院时间" v-model="item.checkinTime" format="yyyy-MM-dd HH:mm"></DatePicker>
+              <DatePicker type="datetime" placeholder="请选择病患住院时间" v-model="item.checkinTime" format="yyyy-MM-dd HH:mm" :disabled="auth"></DatePicker>
             </FormItem>
             <FormItem
               label="病患出院时间"
@@ -59,7 +59,7 @@
               trigger: 'blur'
             }"
             >
-              <DatePicker type="datetime" placeholder="请选择病患出院时间" v-model="item.checkoutTime" format="yyyy-MM-dd HH:mm"></DatePicker>
+              <DatePicker type="datetime" placeholder="请选择病患出院时间" v-model="item.checkoutTime" format="yyyy-MM-dd HH:mm" :disabled="auth"></DatePicker>
             </FormItem>
           </div>
           <div class="form">
@@ -73,7 +73,7 @@
               trigger: 'blur'
             }"
             >
-              <Input type="textarea" v-model="item.treatRemark" placeholder="输入病患住院记录" />
+              <Input type="textarea" v-model="item.treatRemark" placeholder="输入病患住院记录" :disabled="auth"/>
             </FormItem>
             <FormItem
               label="病患住院证明材料"
@@ -119,6 +119,7 @@ export default {
   },
   data() {
     return {
+      auth: false,
       closed: false,
       formValidate: {
         more: [

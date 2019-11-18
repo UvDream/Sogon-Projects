@@ -28,10 +28,10 @@
           >
             <div class="form" style="margin-top:20px">
               <FormItem label="姓名" prop="name" class="form-block">
-                <Input v-model="formValidate.name" placeholder="输入姓名" />
+                <Input v-model="formValidate.name" placeholder="输入姓名" :disabled="auth"/>
               </FormItem>
               <FormItem label="与患者关系" prop="relationship" class="form-block">
-                <Select v-model="formValidate.relationship" placeholder="选择与患者关系">
+                <Select v-model="formValidate.relationship" placeholder="选择与患者关系" :disabled="auth">
                   <Option value="0">父母</Option>
                   <Option value="1">配偶</Option>
                   <Option value="2">子女</Option>
@@ -39,10 +39,10 @@
                 </Select>
               </FormItem>
               <FormItem label="救助金额领取银行卡号" prop="banNumber" class="form-block">
-                <Input v-model="formValidate.banNumber" placeholder="输入身份证号" />
+                <Input v-model="formValidate.banNumber" placeholder="输入身份证号" :disabled="auth"/>
               </FormItem>
               <FormItem label="联系电话" prop="phone" class="form-block">
-                <Input v-model="formValidate.phone" placeholder="输入联系电话" />
+                <Input v-model="formValidate.phone" placeholder="输入联系电话" :disabled="auth"/>
               </FormItem>
             </div>
           </Form>
@@ -79,6 +79,7 @@ export default {
   // },
   data() {
     return {
+      auth: false,
       closed: false,
       formValidate: {
         name: "",

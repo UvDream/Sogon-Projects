@@ -21,7 +21,7 @@
       >
         <div class="form">
           <FormItem label="病患危险性等级评定" prop="status" class="form-textarea">
-            <Select v-model="formValidate.status" placeholder="选择病患危险性等级评定">
+            <Select v-model="formValidate.status" placeholder="选择病患危险性等级评定" :disabled="auth">
               <Option value="0">1级：有口头威胁，喊叫，但没有打砸行为的</Option>
               <Option value="1">2级：有打砸行为，局限在家里，针对财物，且能被劝说制止的</Option>
               <Option value="2">3级：有明显打砸行为，不分场合，针对财物，且不能接受劝说制止的</Option>
@@ -32,21 +32,22 @@
         </div>
         <div class="form">
           <FormItem label="等级评定医院" prop="hospital" class="form-block">
-            <Input v-model="formValidate.hospital" placeholder="输入原籍公安机关名称" />
+            <Input v-model="formValidate.hospital" placeholder="输入原籍公安机关名称" :disabled="auth"/>
           </FormItem>
           <FormItem label="等级评定医生" prop="doctor" class="form-block">
-            <Input v-model="formValidate.doctor" placeholder="输入原籍公安机关名称" />
+            <Input v-model="formValidate.doctor" placeholder="输入原籍公安机关名称" :disabled="auth"/>
           </FormItem>
           <FormItem label="评定医生联系方式" prop="phone" class="form-block">
-            <Input v-model="formValidate.phone" placeholder="输入原籍公安机关名称" />
+            <Input v-model="formValidate.phone" placeholder="输入原籍公安机关名称" :disabled="auth"/>
           </FormItem>
           <FormItem label="评定时间" prop="time" class="form-block">
-            <DatePicker type="datetime" placeholder="请选择时间" v-model="formValidate.time" format="yyyy-MM-dd HH:mm"></DatePicker>
+            <DatePicker type="datetime" placeholder="请选择时间" v-model="formValidate.time" format="yyyy-MM-dd HH:mm" :disabled="auth"></DatePicker>
           </FormItem>
         </div>
         <div class="form">
           <FormItem label="患者危险性等级说明" prop="description" class="form-blocks">
             <Input
+              :disabled="auth"
               v-model="formValidate.description"
               type="textarea"
               :autosize="{ minRows: 2, maxRows: 5 }"
@@ -73,6 +74,7 @@ export default {
   },
   data() {
     return {
+      auth: false,
       closed: false,
       formValidate: {
         status:"",
