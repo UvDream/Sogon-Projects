@@ -11,6 +11,7 @@
   <div class="title">
     <slot name="icon"></slot>
     {{ title }}
+    <Button type="primary" :disabled="auth" @click="btnMakeSure()" v-if="makesure">确认康复</Button>
     <Icon
       type="ios-arrow-dropup-circle"
       size="60px"
@@ -29,6 +30,7 @@
 </template>
 
 <script>
+import { makesure } from "@/api/four/index";
 export default {
   props: {
     title: {
@@ -38,6 +40,10 @@ export default {
     value: {
       type: Boolean,
       default: true
+    },
+    makesure: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -53,6 +59,11 @@ export default {
     iconClick(bool) {
       this.status = bool;
       this.$emit("input", bool);
+    },
+    btnMakeSure() {
+      makesure().then(res=>{
+        // alert('sdf')
+      })
     }
   }
 };

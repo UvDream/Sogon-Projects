@@ -9,6 +9,7 @@
 <template>
   <div class="white-block">
     <TopMessage
+      :makesure="true"
       :title="'网格员帮扶'"
       :message="
         '职责说明:经常到精神病人家庭进行走访，了解有关情况，上报有关信息，遇到异常动向及时与镇办、卫生计生部门和派出所民警联系处理。'

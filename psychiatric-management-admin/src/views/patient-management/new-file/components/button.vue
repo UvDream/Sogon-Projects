@@ -197,7 +197,7 @@ export default {
     },
     // 02初步处理保存
     dealSave(id) {
-      alert(this.$store.state.step.dealStatus)
+      // alert(this.$store.state.step.dealStatus)
       if (this.$store.state.step.dealStatus) {
         console.log(this.$store.state.step.archivesId)
         console.log(this.$store.state.step.archivesId)

@@ -19,16 +19,17 @@
       >
         <div class="form">
           <FormItem label="原籍公安机关名称" prop="name" class="form-block">
-            <Input v-model="formValidate.name" placeholder="输入原籍公安机关名称" />
+            <Input v-model="formValidate.name" placeholder="输入原籍公安机关名称" :disabled="auth"/>
           </FormItem>
           <FormItem label="原籍公安负责人" prop="principal" class="form-block">
-            <Input v-model="formValidate.principal" placeholder="输入原籍公安负责人" />
+            <Input v-model="formValidate.principal" placeholder="输入原籍公安负责人" :disabled="auth"/>
           </FormItem>
           <FormItem label="原籍公安联系电话" prop="phone" class="form-block">
-            <Input v-model="formValidate.phone" placeholder="输入原籍公安联系电话" />
+            <Input v-model="formValidate.phone" placeholder="输入原籍公安联系电话" :disabled="auth"/>
           </FormItem>
           <FormItem label="原籍公安联系时间" prop="contactTime" class="form-block">
             <DatePicker
+              :disabled="auth"
               type="datetime"
               format="yyyy-MM-dd HH:mm"
               placeholder="请选择时间"
@@ -39,6 +40,7 @@
         <div class="form">
           <FormItem label="外埠病患处理说明" prop="description" class="form-textarea">
             <Input
+              :disabled="auth"
               v-model="formValidate.description"
               type="textarea"
               :autosize="{ minRows: 2, maxRows: 5 }"
@@ -65,6 +67,7 @@ export default {
   },
   data() {
     return {
+      auth: false,
       closed: false,
       formValidate: {
         name:"",

@@ -21,19 +21,19 @@
         <!-- 第一排 -->
         <div class="form">
           <FormItem label="患者姓名" prop="patientName" class="form-block">
-            <Input v-model="formValidate.patientName" placeholder="输入患者姓名" />
+            <Input v-model="formValidate.patientName" placeholder="输入患者姓名" :disabled="auth"/>
           </FormItem>
           <FormItem label="患者性别" prop="sex" class="form-block">
-            <Select v-model="formValidate.sex" placeholder="选择患者性别">
+            <Select v-model="formValidate.sex" placeholder="选择患者性别" :disabled="auth">
               <Option value="0">男</Option>
               <Option value="1">女</Option>
             </Select>
           </FormItem>
           <FormItem label="患者身份证号" prop="IdNumber" class="form-block">
-            <Input v-model="formValidate.IdNumber" placeholder="输入患者身份证号" />
+            <Input v-model="formValidate.IdNumber" placeholder="输入患者身份证号" :disabled="auth"/>
           </FormItem>
           <FormItem label="患者状况" prop="status" class="form-block">
-            <Select v-model="formValidate.status" placeholder="选择患者状况">
+            <Select v-model="formValidate.status" placeholder="选择患者状况" :disabled="auth">
               <Option value="0">在家</Option>
               <Option value="1">住院</Option>
               <Option value="2">就学</Option>
@@ -46,28 +46,28 @@
         <!-- 第二排 -->
         <div class="form">
           <FormItem label="患者工作单位" prop="employer" class="form-blocks">
-            <Input v-model="formValidate.employer" placeholder="输入患者工作单位" />
+            <Input v-model="formValidate.employer" placeholder="输入患者工作单位" :disabled="auth" />
           </FormItem>
           <FormItem label="联系电话" prop="patientPhone" class="form-block">
-            <Input v-model="formValidate.patientPhone" placeholder="输入联系电话" />
+            <Input v-model="formValidate.patientPhone" placeholder="输入联系电话"  :disabled="auth"/>
           </FormItem>
           <FormItem label="患者所属村居" prop="village" class="form-block">
-            <Input v-model="formValidate.village" placeholder="输入所属村居" />
+            <Input v-model="formValidate.village" placeholder="输入所属村居"  :disabled="auth"/>
           </FormItem>
           <FormItem label="患者社区民警" prop="police" class="form-block">
-            <Input v-model="formValidate.police" placeholder="输入患者社区民警" />
+            <Input v-model="formValidate.police" placeholder="输入患者社区民警"  :disabled="auth"/>
           </FormItem>
         </div>
         <!-- 第三排 -->
         <div class="form">
           <FormItem label="是否是外埠患者" prop="foreigner" class="form-block">
-            <Select v-model="formValidate.foreigner" placeholder="选择是否为外埠患者" @on-change="selectChange">
+            <Select v-model="formValidate.foreigner" placeholder="选择是否为外埠患者" @on-change="selectChange"  :disabled="auth">
               <Option value="0">是</Option>
               <Option value="1">否</Option>
             </Select>
           </FormItem>
           <FormItem label="外籍患者处理" prop="processingMethod" class="form-block">
-            <Select v-model="formValidate.processingMethod" placeholder="选择外籍患者处理" :disabled="formValidate.foreigner != 0">
+            <Select v-model="formValidate.processingMethod" placeholder="选择外籍患者处理" :disabled="formValidate.foreigner != 0 && auth">
               <Option value="0">联系亲属领回</Option>
               <Option value="1">联系原籍公安</Option>
               <Option value="2">联系原籍医院</Option>
@@ -75,13 +75,13 @@
             </Select>
           </FormItem>
           <FormItem label="患者住址" prop="patientAddress" class="form-blocks">
-            <Input v-model="formValidate.patientAddress" placeholder="输入患者住址" />
+            <Input v-model="formValidate.patientAddress" placeholder="输入患者住址"  :disabled="auth"/>
           </FormItem>
         </div>
         <!-- 第四排 -->
         <div class="form">
           <FormItem label="患者病情" prop="patientCondition" class="form-blocks">
-            <Select v-model="formValidate.patientCondition" placeholder="选择患者状况">
+            <Select v-model="formValidate.patientCondition" placeholder="选择患者状况" :disabled="auth">
               <Option value="0">曾在精神科住院治疗</Option>
               <Option value="1">因精神异常被家人关锁</Option>
               <Option value="2">无故冲动，伤人、毁物，或无故离家出走</Option>
@@ -94,7 +94,7 @@
             </Select>
           </FormItem>
           <FormItem label="患者危险性" prop="risk" class="form-blocks">
-            <Select v-model="formValidate.risk" placeholder="选择患者危险性">
+            <Select v-model="formValidate.risk" placeholder="选择患者危险性" :disabled="auth">
               <Option value="0">1级：有口头威胁，喊叫，但没有打砸行为的</Option>
               <Option value="1">2级：有打砸行为，局限在家里，针对财物，且能被劝说制止的</Option>
               <Option value="2">3级：有明显打砸行为，不分场合，针对财物，且不能接受劝说制止的</Option>
@@ -106,10 +106,10 @@
         <!-- 第五排 -->
         <div class="form">
           <FormItem label="监护人姓名" prop="guardianName" class="form-block">
-            <Input v-model="formValidate.guardianName" placeholder="输入监护人姓名" />
+            <Input v-model="formValidate.guardianName" placeholder="输入监护人姓名"  :disabled="auth"/>
           </FormItem>
           <FormItem label="与患者关系" prop="relationship" class="form-block">
-            <Select v-model="formValidate.relationship" placeholder="选择与患者关系">
+            <Select v-model="formValidate.relationship" placeholder="选择与患者关系" :disabled="auth">
               <Option value="0">父母</Option>
               <Option value="1">配偶</Option>
               <Option value="2">子女</Option>
@@ -117,16 +117,17 @@
             </Select>
           </FormItem>
           <FormItem label="监护人单位" prop="guardianUnit" class="form-blocks">
-            <Input v-model="formValidate.guardianUnit" placeholder="输入监护人单位" />
+            <Input v-model="formValidate.guardianUnit" placeholder="输入监护人单位"  :disabled="auth"/>
           </FormItem>
           <FormItem label="联系电话" prop="guardianPhone" class="form-block">
-            <Input v-model="formValidate.guardianPhone" placeholder="输入监护人联系电话" />
+            <Input v-model="formValidate.guardianPhone" placeholder="输入监护人联系电话"  :disabled="auth"/>
           </FormItem>
         </div>
         <!-- 第六排 -->
         <div class="form">
           <FormItem label="肇事肇祸" prop="anecdote" class="form-textarea">
             <Input
+              :disabled="auth"
               v-model="formValidate.anecdote"
               type="textarea"
               :autosize="{ minRows: 2, maxRows: 5 }"
@@ -135,7 +136,7 @@
           </FormItem>
           <!-- 上传文件 -->
           <FormItem label="上传证明文件" prop="uploadFiles" class="form-block">
-            <Upload v-model="formValidate.uploadFiles" />
+            <Upload v-model="formValidate.uploadFiles"/>
           </FormItem>
         </div>
 
@@ -162,6 +163,7 @@ export default {
   },
   data() {
     return {
+      auth: false,
       closed: false,
       formList: {"patientCode":"320623198807064421","isforeign":"0","tFiles":[{"filepath":"D://file"},{"filepath":"D://Filetwo"}]},
       formValidate: {

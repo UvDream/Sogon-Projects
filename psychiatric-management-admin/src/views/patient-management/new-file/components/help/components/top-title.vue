@@ -8,7 +8,7 @@
  -->
 <template>
   <div>
-    <TopTitle :title="title" v-model="closed" />
+    <TopTitle :title="title" v-model="closed" :makesure="makesure" />
     <transition name="slide">
       <div class="more-desc" v-if="!closed">
         <Icon type="ios-alert-outline" style="color:red;" />
@@ -24,6 +24,7 @@ import TopTitle from "@/components/top-title/top-title";
 export default {
   props: {
     title: { type: String },
+    makesure: { type: String, default: false },
     message: {
       type: String
     },

@@ -56,6 +56,7 @@ export default {
   mounted() {
     // status : row.status,id: row.id,isOperRole: row.isOperRole
     // this.$store.state.step.stepStatus = this.$route.params.status == undefined?0:this.$route.params.status;
+    alert(this.$route.params.status)
     if(this.$route.params.status == undefined?0:this.$route.params.status) {
       if(this.$route.params.status == 0){
         this.$store.state.step.stepStatus = 0;
@@ -72,7 +73,7 @@ export default {
       }
     }
     // this.$store.state.step.stepStatus = this.$route.params.status == undefined?0:this.$route.params.status;
-    this.$store.state.step.stepStatus = 1;
+    // this.$store.state.step.stepStatus = 1;
     this.$store.state.authOnOff = this.$route.params.isOperRole;
     this.$store.state.archivesId = this.$route.params.id;
     console.log(this.$route.params.id)

@@ -56,3 +56,13 @@ export const nameFunc = data => {
     data
   });
 };
+
+// 确认康复
+export const makesure = data => {
+  return fetch({
+    url: "/jsbrgl/fourToOneController/sureRehabilitation",
+    method: "POST",
+    data
+  });
+};
+
